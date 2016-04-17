@@ -1,0 +1,3 @@
+[submodule "vsu.func"]
+	path = vsu.func
+	url = https://github.com/RerumNovarum/vsu.func
