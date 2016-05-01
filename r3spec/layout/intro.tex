@@ -1,0 +1,41 @@
+\section{Введение}
+
+Здесь и, если не уточнено иное, далее $X$ --- конечномерное линейное пространство над полем $\KK$,
+$\dim X = n \geq 3$,
+$A : X\mapsto X$ --- линейный оператор ранга $\rg A = \dim\Img A = 3$.
+$A_0 = A|\Img A : \Img A\mapsto \Img A$ --- сужение оператора $A$ на подпространство $\Img A$.
+$\mathcal A_0 \in \Matr_n$ --- матрица оператора $A_0$.
+
+\begin{dfn}{Спектр}
+  Говорят, что число $\lambda\in\KK$ принадлежит спектру $\spec A$ оператора $A$,
+  если оператор $B = A - \lambda I$ не обратим:
+  $\Ker B \neq \{0\} \lor \Img B \neq X$, т.е.
+  $$ \spec A = \{ \lambda\in\KK ;\qquad \Ker (A-\lambda I) \neq \{0\} \lor \Img (A-\lambda I) \neq X \}$$
+
+  В конечномерном пространстве эти два условия эквивалентны, т.к. $X = \Ker B \oplus \Img B$
+\end{dfn}
+
+\begin{thm}{Структура оператора ранга три}
+  \input{thm/op.str}
+\end{thm}
+\begin{proof}
+  \input{pf/op.str}
+\end{proof}
+
+Пусть $A_0 = A|\Img A$ --- сужение оператора $A$ на подпространство $\Img A$.
+$\mathcal A_0$ --- матрица оператора $A_0$.
+
+\begin{thm}{О связи спектра оператора ранга три и спектра его сужения}
+  \input{thm/spec.o.restr}
+\end{thm}
+\begin{proof}
+  \input{pf/spec.o.restr}
+\end{proof}
+
+\begin{thm}{О структуре спектра оператора ранга три}\*
+
+  \input{thm/spec.str}
+\end{thm}
+\begin{proof}
+  \input{pf/spec.str}
+\end{proof}

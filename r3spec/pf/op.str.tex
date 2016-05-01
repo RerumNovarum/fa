@@ -1,0 +1,19 @@
+Пусть $A: X\mapsto X$, $\rg A = 3$.
+$\Img A$ есть линейное подпространство в $X$.
+
+Пусть $e_0, e_1, e_2\in X$ --- базис в $\Img A$.
+
+Образ $x$ при отображении $A$
+является линейной комбинацией векторов $e_j, j=\overline{0,2}$.
+
+То есть, $A$ действует следующим образом:
+$$A: x\mapsto \xi_0(x) e_0 + \xi_1(x) e_1 + \xi_2(x) e_2$$
+где $\xi_j: X\mapsto \KK, j\in\overline{0,2}$ --- некоторые функционалы.
+
+Видно, что эти функционалы линейные:
+\begin{equation*}\begin{aligned}
+& A(x_1 + x_2) = \sum_{j=0}^2 \xi_j(x_1 + x_2) e_j \\
+& A(x_1 + x_2) = A x_1 + A x_2 = \sum_{j=0}^2 (\xi_j(x_1) + x_j(x+2)) e_j \\
+& A(\alpha x) = \sum_{j=0}^2 \xi_j(\alpha x) e_j \\
+& A(\alpha x) = \alpha A x = \sum_{j=0}^2 \alpha \xi_j(x) e_j
+\end{aligned}\end{equation*}
