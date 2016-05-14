@@ -1,6 +1,7 @@
 \documentclass{article}
 
 \usepackage[cm]{fullpage}
+\usepackage{hyperref}
 
 \usepackage{fontspec}
 \setmainfont{CMU Serif}
@@ -15,13 +16,13 @@
 \theoremstyle{definition}
 \newtheorem{dfn}{Def.}
 
-\providecommand{\Hom}{\mathrm{Hom}}
+\providecommand{\LB}{\mathrm{L}}
 \providecommand{\KK}{\mathbb{K}}
 \providecommand{\NN}{\mathbb{N}}
 \providecommand{\ZZ}{\mathbb{Z}}
 \providecommand{\RR}{\mathbb{R}}
 \providecommand{\CC}{\mathbb{C}}
-\providecommand{\rg}{\mathrm{rg}}
+\providecommand{\rank}{\mathrm{rank}}
 \providecommand{\spec}{\mathrm{spec}}
 \providecommand{\Ker}{\mathrm{Ker}}
 \providecommand{\Img}{\mathrm{Im}}
@@ -34,11 +35,11 @@
 
 \begin{document}
   \maketitle
-  \vfill
+  \newpage
 
   \tableofcontents
+  \newpage
 
-  \input{layout/cut}
-  \input{layout/intro}
+  \input{body/intro}
 
 \end{document}

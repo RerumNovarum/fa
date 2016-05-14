@@ -1,0 +1,161 @@
+\section{Введение}
+
+Здесь и, если не уточнено иное, далее $X$ --- конечномерное линейное пространство над полем $\KK$,
+$\dim X = n \geq 3$,
+$A : X\to X$ --- линейный оператор ранга $\rank A = \dim\Img A = 3$.
+$A_0 = A|\Img A : \Img A\to \Img A$ --- сужение оператора $A$ на подпространство $\Img A$.
+$\mathcal A_0 \in \Matr_n$ --- матрица оператора $A_0$.
+
+\begin{dfn}{Спектр}
+  Говорят, что число $\lambda\in\KK$ принадлежит спектру $\spec A$ оператора $A$,
+  если оператор $B = A - \lambda I$ не обратим:
+  $\Ker B \neq \{0\} \lor \Img B \neq X$, т.е.
+  $$ \spec A = \{ \lambda\in\KK ;\qquad \Ker (A-\lambda I) \neq \{0\} \lor \Img (A-\lambda I) \neq X \}$$
+
+  В конечномерном пространстве эти два условия эквивалентны, т.к. $X = \Ker B \oplus \Img B$
+\end{dfn}
+
+Задача состоит в том, чтобы найти явные формулы для собственных значений оператора ранга три.
+
+\subsection{Структура оператора}
+Для начала уточним, как ``работает'' линейный оператор $A: X\to X$ ранга три.
+Пусть $e_1, e_2, e_3\in X$ --- базис в $\Img A$.
+Для любого $x\in X$,
+$A x = \xi_1(x) e_1 + \xi_2(x) e_2 + \xi_3(x) e_3$,
+где $xi_j: X\to \KK$ --- некоторые функционалы.
+Несложно показать, что эти функционалы линейны:
+$$ A(x_1 + x_2) = \sum_{j=1}^3 \xi_j(x_1 + x_2) e_j $$
+$$ A(x_1 + x_2) = A x_1 + A x_2 = \sum_{j=1}^3 (\xi_j(x_1) + x_j(x+2)) e_j $$
+$$ A(\alpha x) = \sum_{j=1}^3 \xi_j(\alpha x) e_j $$
+$$ A(\alpha x) = \alpha A x = \sum_{j=1}^3 \alpha \xi_j(x) e_j $$
+Где $(e_j)$ линейно-независимы, и поэтому для любого $x\in X$
+$$\xi_j(x_1 + x_2) = \xi_j(x_1) + \xi_j(x_2)$$
+$$\xi_j(\alpha x) = \alpha\xi_j(x)$$
+Кроме того, $(xi_j)$ линейно-независимы:
+$$\xi_1 = \alpha\xi_2 + \beta\xi_3
+\implies
+A x = \xi_2(x) (\alpha e_1 + e_2) + \xi_3(x) (\beta e_1 + e_3)
+\implies
+\dim\Img A \leq 2$$
+В то время как $\dim\Img A = 3$ и мы пришли к противоречию.
+
+Таким образом, доказана
+\begin{thm}
+  Пусть $A: X\to X$,
+  $\rank A = 3$.
+  $e_0, e_1, e_2$ --- базис в $\Img A$.
+  Тогда
+  \begin{equation*}\begin{aligned}
+      & \exists \xi_0, \xi_1, \xi_2: X\to \KK \text{ --- линейно-независимые линейные функционалы} \\
+      & \forall x\in X \qquad A x = \xi_0(x) e_0 + \xi_1(x) e_1 + \xi_2(x) e_2
+    \end{aligned}\end{equation*}
+\end{thm}
+
+\subsection{Спектр оператора ранга три}
+Для начала заметим:
+\begin{thm}
+  $$\left\{\begin{aligned}
+    & \dim X > 3 \implies 0\in \spec A \\
+    & \dim X = 3 \implies 0\notin \spec A\end{aligned}\right.$$
+\end{thm}
+\begin{proof}
+  Утверждение очевидным образом
+  следует из $3 < n = \dim X = \dim\Ker A + \dim\Img A$.
+
+  В первом случае $\dim\Ker A = \dim X - \dim\Img A = n - 3 \geq 1$.
+  I.e., существует ненулевой  $x\in X$, для которого $A x = 0 x$, а значит $0\in\spec A$.
+
+  Если же $\dim X = 3$, то $\dim X = \rank A$, $A$ обратим и потому $0\notin\spec A$
+\end{proof}
+
+Введём теперь $A_0 = A|\Img A \in \LB(\Img A)$
+--- сужение оператора $A$ на подпространство $\Img A\subset X$.
+
+$\mathcal A_0 = \left(a_{ij}\right) \in \KK^{3\times 3}$ --- матрица оператора $A_0$.
+
+Её столбцы --- это векторы $A_0 e_j  = A e_j$, то есть $a_{ij} = \xi_i(e_j)$:
+
+$$\mathcal A_0 =
+\begin{pmatrix}
+\xi_1(e_1) & \xi_1(e_2) & \xi_1(e_3) \\
+\xi_2(e_1) & \xi_2(e_2) & \xi_2(e_3) \\
+\xi_3(e_1) & \xi_3(e_2) & \xi_3(e_3)
+\end{pmatrix}$$
+
+Если $\dim X = 3$, то $A = A_0$ и $\spec A = \spec A_0$.
+Пусть $\dim X > 3$.
+
+Из предыдущей теоремы следует,
+что $0\in\spec A$ и $0\notin\spec A_0$.
+
+Если $0\neq\lambda\in\spec A$, то $\exists x\neq 0$,
+такой что $A x = \lambda x \in \Img A$.
+Тогда $x = \frac{1}{\lambda} A x\in\Img A$, i.e. $x\in \Img A$,
+то есть $A_0$ определён на $x$,
+и $A_0 x = \lambda x$, что и означает $\lambda\in\spec A_0$.
+
+Обратно, если $\lambda\in\spec A_0$,
+то $\exists x\in\Img A\subset X$,
+для которого $A x = A_0 x = \lambda x$,
+i.e. $\lambda\in\spec A$.
+
+Фактически, доказана
+\begin{thm}{О связи спектра оператора ранга три и спектра его сужения}
+  \begin{equation*}
+    \left\{\begin{aligned}
+      & \dim X = 3 & \implies & \spec A = \spec A_0 \\
+      & \dim X > 3 & \implies & \spec A = \spec A_0 \cup \{0\}
+    \end{aligned}\right.\end{equation*}
+\end{thm}
+
+\begin{thm}{О структуре спектра оператора ранга три}\*
+  $$
+  \dim X = 3 \implies
+  (\spec A = \emptyset)
+  \lor (\exists \lambda_0 \neq 0 \quad
+  \spec A = \{\lambda_0,
+    \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
+    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 })
+  \})$$
+  $$
+  \dim X > 3 \implies
+  (\spec A = \{0\})
+  \lor (\exists \lambda_0 \neq 0 \quad
+  \spec A = \{0, \lambda_0,
+    \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
+    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 })
+  \})$$
+\end{thm}
+\begin{proof}
+  Пусть имеется $\lambda_0\in\spec A_0$.
+  Из предыдущих теорем известно, что $\lambda_0\neq 0$.
+  Характеристический многочлен $A_0$ имеет вид
+  $$\chi(\lambda) = -\lambda^3 + \tr\mathcal A_0 \lambda^2 + k\lambda + \det\mathcal A_0$$
+  NB: $k$ легко вывести из определения определителя, но в этом нет нужды.
+
+  В то же время, $\lambda_0$ является корнем многочлена $\chi$, поэтому
+  $$\chi(\lambda) = (\lambda - \lambda)(c_1 \lambda^2 + c_2 \lambda + c_3)$$
+
+  Приравнивая эти представления, получаем:
+  $$\left\{\begin{aligned}
+    & c_1 = -1 \\
+    & c_2 = \tr\mathcal A_0 - \lambda_0 \\
+    & c_3 = - \frac{1}{\lambda_0} \det\mathcal A_0
+  \end{aligned}\right.$$
+
+  $$\chi(\lambda) = -(\lambda - \lambda)(\lambda^2 + (\lambda_0 - \tr\mathcal A_0) \lambda + \frac{1}{\lambda_0}\det\mathcal A_0)$$
+
+  Значит числа вида
+  $$\lambda =
+  \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
+  \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 }) $$
+
+  также являются корнями $\chi$.
+
+  $$\spec A_0 = \{\lambda_0,
+    \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
+    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 }
+  \}$$
+
+  Наконец, $\spec A = \spec A_0$ если $\dim X = 3$, иначе $\spec A = \spec A_0 \cup \{ 0 \}$
+\end{proof}
