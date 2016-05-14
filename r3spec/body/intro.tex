@@ -90,6 +90,7 @@ $$\mathcal A_0 =
 
 Если $0\neq\lambda\in\spec A$, то $\exists x\neq 0$,
 такой что $A x = \lambda x \in \Img A$.
+
 Тогда $x = \frac{1}{\lambda} A x\in\Img A$, i.e. $x\in \Img A$,
 то есть $A_0$ определён на $x$,
 и $A_0 x = \lambda x$, что и означает $\lambda\in\spec A_0$.
@@ -109,53 +110,118 @@ i.e. $\lambda\in\spec A$.
 \end{thm}
 
 \begin{thm}{О структуре спектра оператора ранга три}\*
+  \label{thm:specstr}
   $$
   \dim X = 3 \implies
   (\spec A = \emptyset)
-  \lor (\exists \lambda_0 \neq 0 \quad
-  \spec A = \{\lambda_0,
-    \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
-    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 })
+  \lor (\exists \lambda_1 \neq 0 \quad
+  \spec A = \{\lambda_1,
+    \frac{1}{2} (\tr\mathcal A_0 - \lambda_1
+    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_1)}^2 - 4\frac{1}{\lambda_1} \det\mathcal A_0 })
   \})$$
   $$
   \dim X > 3 \implies
   (\spec A = \{0\})
-  \lor (\exists \lambda_0 \neq 0 \quad
-  \spec A = \{0, \lambda_0,
-    \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
-    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 })
+  \lor (\exists \lambda_1 \neq 0 \quad
+  \spec A = \{0, \lambda_1,
+    \frac{1}{2} (\tr\mathcal A_0 - \lambda_1
+    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_1)}^2 - 4\frac{1}{\lambda_1} \det\mathcal A_0 })
   \})$$
 \end{thm}
 \begin{proof}
-  Пусть имеется $\lambda_0\in\spec A_0$.
-  Из предыдущих теорем известно, что $\lambda_0\neq 0$.
+  Пусть имеется $\lambda_1\in\spec A_0$.
+  Из предыдущих теорем известно, что $\lambda_1\neq 0$.
   Характеристический многочлен $A_0$ имеет вид
   $$\chi(\lambda) = -\lambda^3 + \tr\mathcal A_0 \lambda^2 + k\lambda + \det\mathcal A_0$$
   NB: $k$ легко вывести из определения определителя, но в этом нет нужды.
 
-  В то же время, $\lambda_0$ является корнем многочлена $\chi$, поэтому
+  В то же время, $\lambda_1$ является корнем многочлена $\chi$, поэтому
   $$\chi(\lambda) = (\lambda - \lambda)(c_1 \lambda^2 + c_2 \lambda + c_3)$$
 
   Приравнивая эти представления, получаем:
   $$\left\{\begin{aligned}
     & c_1 = -1 \\
-    & c_2 = \tr\mathcal A_0 - \lambda_0 \\
-    & c_3 = - \frac{1}{\lambda_0} \det\mathcal A_0
+    & c_2 = \tr\mathcal A_0 - \lambda_1 \\
+    & c_3 = - \frac{1}{\lambda_1} \det\mathcal A_0
   \end{aligned}\right.$$
 
-  $$\chi(\lambda) = -(\lambda - \lambda)(\lambda^2 + (\lambda_0 - \tr\mathcal A_0) \lambda + \frac{1}{\lambda_0}\det\mathcal A_0)$$
+  $$\chi(\lambda) = -(\lambda - \lambda)(\lambda^2 + (\lambda_1 - \tr\mathcal A_0) \lambda + \frac{1}{\lambda_1}\det\mathcal A_0)$$
 
   Значит числа вида
   $$\lambda =
-  \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
-  \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 }) $$
+  \frac{1}{2} (\tr\mathcal A_0 - \lambda_1
+  \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_1)}^2 - 4\frac{1}{\lambda_1} \det\mathcal A_0 }) $$
 
   также являются корнями $\chi$.
 
-  $$\spec A_0 = \{\lambda_0,
-    \frac{1}{2} (\tr\mathcal A_0 - \lambda_0
-    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_0)}^2 - 4\frac{1}{\lambda_0} \det\mathcal A_0 }
+  $$\spec A_0 = \{\lambda_1,
+    \frac{1}{2} (\tr\mathcal A_0 - \lambda_1
+    \pm\sqrt{ {(\tr\mathcal A_0 - \lambda_1)}^2 - 4\frac{1}{\lambda_1} \det\mathcal A_0 }
   \}$$
 
   Наконец, $\spec A = \spec A_0$ если $\dim X = 3$, иначе $\spec A = \spec A_0 \cup \{ 0 \}$
+\end{proof}
+
+\subsection{Спектральное разложение}
+Снова $X$ --- линейное пространство, $\dim X = n$.
+\begin{dfn}{Оператор простой структуры}
+  Говорят, что оператор $A\in\LB(X)$ --- простой структуры,
+  если у него есть $n=\dim X$ линейно-независимых собственных векторов,
+  то есть, в $X$ существует базис $(v_1, \ldots, v_n)$, такой что
+  $$A v_k = \lambda_k v_k, \quad k=\overline{1,n}, \lambda_k\in\spec A$$
+\end{dfn}
+
+Известен следующий результат линейной алгебры:
+\begin{thm}{Интерполяционная формула Сильвестра}
+  Пусть $A\in\LB(X)$ --- простой структуры,
+  $(v_1, \ldots, v_n)$ --- линейно-независимы
+  и $A v_k = \lambda v_k$.
+  Тогда имеет место разложение:
+  $$A = \sum_{k=1}^n \lambda_k P_k$$
+
+  Где
+  $$P_k = \prod_{j=1,j\neq k} \frac{A - \lambda_j}{\lambda_k - \lambda_j}$$
+\end{thm}
+
+Далее будем рассматривать операторы ранга три простой структуры.
+Это означает, что в $\Img A$ существует базис, состоящий из собственных векторов.
+В частности, это верно, когда спектр оператора $A|\Img A$ состоит из трёх различных точек.
+
+Кроме того, как и прежде, будем считать одно собственное значение $\lambda_1\in\spec A$ известным.
+Последняя теорема утверждает, что
+$$A = \sout{0 P_0} + \lambda_1 P_1 + \lambda_2 P_2 + \lambda_3 P_3$$
+
+Где $\lambda_1$ --- известное собственное значение,
+$\lambda_2, \lambda_3$ определяются формулами из Thm.~\ref{thm:specstr},
+а $P_k$ --- проекторы, вида
+$$\begin{aligned}
+  & P_1 = \frac{A - \lambda_2 I}{\lambda_1 - \lambda_2}\frac{A - \lambda_3 I}{\lambda_1 - \lambda_3}\frac{A}{\lambda_1} \\
+  & P_2 = \frac{A - \lambda_1 I}{\lambda_2 - \lambda_1}\frac{A - \lambda_3 I}{\lambda_2 - \lambda_3}\frac{A}{\lambda_2} \\
+  & P_3 = \frac{A - \lambda_1 I}{\lambda_3 - \lambda_1}\frac{A - \lambda_2 I}{\lambda_3 - \lambda_2}\frac{A}{\lambda_3} \\
+  & P_0 = - \frac{A - \lambda_1 I}{\lambda_1}\frac{A - \lambda_2 I}{\lambda_2}\frac{A - \lambda_3}{\lambda_3} = I - P_1 - P_2 - P_3 \\
+\end{aligned}$$
+
+NB: Если $\dim X = 3$, то $P_0 = 0$.
+
+\subsection{Экспонента}
+
+\begin{dfn}{Операторная экспонента}
+  Пусть $A\in\LB(X)$
+  $$e^A \defeq \sum_{k=0}^\infty \frac{1}{k!} A^k \in\LB(X)$$
+\end{dfn}
+
+\begin{thm}
+  Пусть $\dim X = n \geq 3$, $A\in\LB(X)$ --- оператор простой структуры, $\rank A = 3$,
+  а $\lambda_0$ --- известное собственное значение.
+
+  Тогда
+  $$e^A = P_0 + e^{\lambda_1} P_1 + e^{\lambda_2} P_2 + e^{\lambda_3} P_3$$
+\end{thm}
+\begin{proof}
+  \begin{align*}
+  e^A & = \sum_{k=0}^\infty \frac{1}{k!} A^k 
+    = \sum_{k=0}^\infty \frac{1}{k!} (\sum_{j=1}^3 \lambda_j P_j)^k
+    = \sum_{k=0}^\infty \frac{1}{k!} (\sum_{j=1}^3 \lambda_j^k P_j) = \\
+  & = I - P_1 - P_2 - P_3 + e^{\lambda_1} P_1 + e^{\lambda_2} P_2 + e^{\lambda_3} P_3 = \\
+  & = P_0 +                 e^{\lambda_1} P_1 + e^{\lambda_2} P_2 + e^{\lambda_3} P_3\end{align*}
 \end{proof}

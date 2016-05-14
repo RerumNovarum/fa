@@ -1,7 +1,8 @@
 SOURCES=*.tex */*.tex
 
-all: r3spec.pdf toc
+all: main odds.pdf evens.pdf
 
+main: r3spec.pdf toc
 
 r3spec.pdf: $(SOURCES)
 	xelatex r3spec.tex
@@ -9,7 +10,7 @@ r3spec.pdf: $(SOURCES)
 toc: r3spec.pdf $(SOURCES)
 	xelatex r3spec.tex
 
-r3spec.ps: all
+r3spec.ps: main
 	pdf2ps r3spec.pdf
 
 r3spec.signatures.ps: r3spec.ps
