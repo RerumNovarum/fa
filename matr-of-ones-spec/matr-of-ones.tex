@@ -1,0 +1,142 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+% \usepackage[utf8]{inputenc}
+
+\providecommand{\Matr}{\mathit{Matr}}
+
+\title{Spectra of matrix of ones}
+\author{rn}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Intro}
+Let $\mathcal A \in \Matr_{N\times N}$ be matrix consisting of all ones
+$$\mathcal A =
+\begin{pmatrix}
+    1      & 1      & \cdots & 1 \\
+    1      & 1      & \cdots & 1 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    1      & 1      & \cdots & 1
+\end{pmatrix}$$
+
+Note
+$$\mathcal A^2 =
+\begin{pmatrix}
+    N      & \cdots & N \\
+    \vdots & \ddots & \vdots \\
+    N      & \cdots & N
+\end{pmatrix} = N \mathcal A$$
+
+And
+$\mathcal A^k = N^{k-1} \mathcal A$
+
+It follows then, that polynomial $p$ given by formula
+$$p(\lambda) = \lambda^2 - N \lambda$$
+is annihilating polynomial of $\mathcal A$,
+since $\mathcal A^2 - N\mathcal A = N\mathcal A - N\mathcal A = 0$.
+
+From Hamilton-Cayley theorem and things (TODO: fixme, i.e. make it more specific)
+one can see that spectrum of $A$
+is a subset of set of roots of $p(\lambda)$
+$$\sigma(A) \subset \{ \lambda; \quad p(\lambda) = 0 \}$$
+
+Now let's try to find corresponding eigenvectors.
+$N$ is an eigenvalue, since $A x = N x$ for $x = \left(1, \cdots, 1\right)^T$.
+
+As for zero, its eignspace consists exactly of these vectors,
+for which the sum of the coordinates equals zero.
+Choose the basis of $E(A; 0)$ as
+$$
+g_1 = \begin{pmatrix}1 \\ -1 \\ 0 \\ \vdots \\ 0\end{pmatrix}
+g_2 = \begin{pmatrix}0 \\ 1 \\ -1 \\ 0 \\ \vdots \\ 0\end{pmatrix}
+g_{n-1} = \begin{pmatrix}0 \\ \vdots \\ 0 \\ 1 \\ -1 \end{pmatrix}$$
+
+We can orthonormalize it then.
+
+$$e_1 = g_1 / \|g_1\| =
+\begin{pmatrix}\frac{1}{\sqrt2} \\ - \frac{1}{\sqrt2} \\ \vdots \end{pmatrix}$$
+
+$$f_2 = g_2 - \left(g_2|e_1\right)e_1 =
+\begin{pmatrix}0\\ 1\\ -1\\ \vdots\end{pmatrix}
+-
+\frac{-1}{\sqrt2} \begin{pmatrix}\frac{1}{\sqrt2} \\ - \frac{1}{\sqrt2} \\ \vdots \end{pmatrix}
+= \begin{pmatrix} 1/2 \\ 1/2 \\ -1 \\ \vdots \end{pmatrix}$$
+
+$$e_2 = f_2/\|f_2\| =
+f_2 \frac{1}{\sqrt{4/3}} =
+\begin{pmatrix} \frac1{\sqrt6} \\ \frac1{\sqrt6} \\ - \frac2{\sqrt6} \\ \vdots \end{pmatrix}$$
+
+Same way
+
+$$f_3 =
+g_3 - \underbrace{\left(g_3|e_1\right)}_{=0}e_1
+    - \underbrace{\left(g_3|e_2\right)}_{=-\sqrt{\frac23}}e_2
+= \begin{pmatrix}0 \\ 0 \\ 1 \\ -1 \\ \vdots\end{pmatrix}
+    - (-\sqrt{\frac23}) \begin{pmatrix} \frac1{\sqrt6} \\ \frac1{\sqrt6} \\ - \sqrt{\frac23} \\ \vdots \end{pmatrix}
+= \begin{pmatrix} 1/3 \\ 1/3 \\ 1/3 \\ -1 \\ \vdots \end{pmatrix}$$
+
+    $$e_3 = f_3 / \|f_3\| = f_3 \frac{1}{\sqrt{1/3 + 1}} =
+\begin{pmatrix}
+    \frac{1}{2\sqrt3} \\ \frac{1}{2\sqrt3} \\ \frac{1}{2\sqrt3} \\ \frac{1}{2\sqrt3} \\ - \frac{3}{2\sqrt3} \\ \vdots
+\end{pmatrix}$$
+
+So suppose that first $m$ vectors of this orthonormal system
+are of the form
+
+$$ e_k =
+\begin{pmatrix}
+    a_k \\ a_k \\ \vdots \\ a_k \\ b_k \\ 0 \\ \vdots \\ 0
+\end{pmatrix}$$
+i.e. first $k$ elements of the vector all equal the same $a_k$
+and $(k+1)$'st is the $b_k$ closing the sequence.
+At the same time $g_{k+1}$ has all zeros
+except $(k+1)$'th and $(k+2)$'th elements which are $1$ and $-1$ respectively.
+Hence $\left(g_k|e_{k-1}\right) = b_{k-1}$ and $\left(g_k|e_j\right) = 0$ for $j < k-1$.
+That gives
+
+$$f_k = g_k - \left(g_k|e_{k-1}\right) e_{k-1} =
+\begin{pmatrix}
+    - a_{k-1} b_{k-1} \\
+    - a_{k-1} b_{k-1} \\
+    \vdots \\
+    - a_{k-1} b_{k-1} \\
+    1 - b_{k-1}^2     \\
+    -1 \\
+    \vdots
+\end{pmatrix}$$
+
+One can also note (TODO: prove) that
+$1 - b_{k-1}^2 = - a_{k-1} b_{k-1}$ for $k>1$
+and thus
+
+$$f_k =
+\begin{pmatrix}
+    - a_{k-1} b_{k-1} \\
+    \vdots \\
+    - a_{k-1} b_{k-1} \\
+    -1 \\
+    \vdots
+\end{pmatrix}$$
+
+Norm of this vector can be calculated as
+
+\providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
+$$\|f_k\| =
+\fknorm$$
+
+So here are recursive formulas which allow to compute $e_k$ in linear time and space:
+
+$$a_1 = - b_1 = \frac1{\sqrt2}$$
+$$a_k = \frac{- a_{k-1} b_{k-1}}{\fknorm}$$
+$$b_k = \frac{-1}{\fknorm}$$
+$$ e_k =
+\begin{pmatrix}
+    a_k \\ \vdots \\ a_k \\ b_k \\ \vdots
+\end{pmatrix}$$
+
+
+\end{document}
