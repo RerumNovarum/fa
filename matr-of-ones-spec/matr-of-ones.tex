@@ -1,9 +1,14 @@
 \documentclass{article}
 
 \usepackage{amsmath}
+\usepackage{amsfonts}
 % \usepackage[utf8]{inputenc}
 
+\usepackage{amsthm}
+\newtheorem{propos}{Proposition}
+
 \providecommand{\Matr}{\mathit{Matr}}
+\providecommand{\NN}{\mathbb{N}}
 
 \title{Spectra of matrix of ones}
 \author{rn}
@@ -81,7 +86,9 @@ g_3 - \underbrace{\left(g_3|e_1\right)}_{=0}e_1
 
     $$e_3 = f_3 / \|f_3\| = f_3 \frac{1}{\sqrt{1/3 + 1}} =
 \begin{pmatrix}
-    \frac{1}{2\sqrt3} \\ \frac{1}{2\sqrt3} \\ \frac{1}{2\sqrt3} \\ \frac{1}{2\sqrt3} \\ - \frac{3}{2\sqrt3} \\ \vdots
+    \frac{1}{2\sqrt3} \\ \frac{1}{2\sqrt3} \\
+    \frac{1}{2\sqrt3} \\ - \frac{3}{2\sqrt3} \\
+    \vdots
 \end{pmatrix}$$
 
 So suppose that first $m$ vectors of this orthonormal system
@@ -92,9 +99,10 @@ $$ e_k =
     a_k \\ a_k \\ \vdots \\ a_k \\ b_k \\ 0 \\ \vdots \\ 0
 \end{pmatrix}$$
 i.e. first $k$ elements of the vector all equal the same $a_k$
-and $(k+1)$'st is the $b_k$ closing the sequence.
+and $(k+1)$'st is the $b_k = -ka_k$ closing the sequence.
+This is true at least for first 3 vectors.
 At the same time $g_{k+1}$ has all zeros
-except $(k+1)$'th and $(k+2)$'th elements which are $1$ and $-1$ respectively.
+except $(k+1)$'st and $(k+2)$'nd entries which are $1$ and $-1$ respectively.
 Hence $\left(g_k|e_{k-1}\right) = b_{k-1}$ and $\left(g_k|e_j\right) = 0$ for $j < k-1$.
 That gives
 
@@ -109,7 +117,7 @@ $$f_k = g_k - \left(g_k|e_{k-1}\right) e_{k-1} =
     \vdots
 \end{pmatrix}$$
 
-One can also note (TODO: prove) that
+One can also note (TODO: prove) (TODO: REALLY) that
 $1 - b_{k-1}^2 = - a_{k-1} b_{k-1}$ for $k>1$
 and thus
 
@@ -125,18 +133,46 @@ $$f_k =
 Norm of this vector can be calculated as
 
 \providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
-$$\|f_k\| =
-\fknorm$$
+$$\|f_k\| = \fknorm$$
 
-So here are recursive formulas which allow to compute $e_k$ in linear time and space:
+Now that $b_k = -(k-1)a_k$
 
-$$a_1 = - b_1 = \frac1{\sqrt2}$$
-$$a_k = \frac{- a_{k-1} b_{k-1}}{\fknorm}$$
-$$b_k = \frac{-1}{\fknorm}$$
-$$ e_k =
-\begin{pmatrix}
-    a_k \\ \vdots \\ a_k \\ b_k \\ \vdots
-\end{pmatrix}$$
+\renewcommand{\fknorm}{\sqrt{k(k-1)^2 a_{k-1}^4 + 1}}
+$$\|f_k\| = \fknorm$$
 
+If $a_k = 1/c_k$ then the closing entry is $b_k = -k/c_k$.
+Also $b_k$ is always $-1/\|f_k\| = \frac{-k}{k\|f_k\|}$.
+That gives us immediately
+
+$$e_k =
+\frac{1}{k\fknorm}
+\begin{pmatrix}1 \\ \vdots \\ 1 \\ -k \\ \vdots\end{pmatrix}$$
+for $k=2,N-1$.
+
+$$e_1
+    = \begin{pmatrix}a_1 \\ -a_1 \\ \vdots \end{pmatrix}
+    = \begin{pmatrix}\frac1{\sqrt2} \\ - \frac{1}{\sqrt2} \\ \vdots \end{pmatrix}$$
+
+The change of basis transformation $U$ which diagonalizes $A$ is given by matrix
+
+    $$\mathcal U =
+    \begin{pmatrix}
+         1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} & 1/\sqrt N \\
+        -1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} & 1/\sqrt N \\
+                  & -2/\sqrt6 & 1/2\sqrt3  & \cdots & a_{n-1} & 1/\sqrt N \\
+                  &           & -3/2\sqrt3 & \cdots & a_{n-1} & 1/\sqrt N \\
+                  &           &            & \ddots & a_{n-1} & 1/\sqrt N \\
+                  &           &            &        & \vdots  & \vdots    \\
+                  &           &            &        & a_{n-1} & 1/\sqrt N \\
+                  &           &            &        & -(n-1)a_{n-1} & 1/\sqrt N
+    \end{pmatrix}$$
+
+\begin{propos}
+    For every $N\in\NN$
+    $$\det U = 1$$
+    where $U$ is the change of basis operator
+    that diagonalizes the matrix of ones
+
+\end{propos}
 
 \end{document}
