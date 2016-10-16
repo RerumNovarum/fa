@@ -1,0 +1,347 @@
+\documentclass{article}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{../fa-style}
+% \usepackage[utf8]{inputenc}
+
+
+\title{Spectra of rank-1 operators. All-ones matrix spectra}
+\author{rn}
+
+\begin{document}
+\maketitle
+\tableofcontents
+\newpage
+
+\section{Intro. Operator representation}
+Let $A: \mathscr X\to\mathscr X$ be a linear operator of the rank 1,
+($\rank A = \dim\img A = 1$).
+
+\begin{propose}
+    Such an opererator can be represented in the form $A x = \xi(x) a$
+    where $\xi\in\mathscr X^*$ is a linear form, $0\neq a \in\mathscr X$.
+    $\spec A = \{0, \xi(a)\}$ if $\dim\mathscr X > 1$, otherwise $\spec A = \{\xi(a)\}$.
+\end{propose}
+
+\section{Matrix of ones}
+Let $\matr{N}{\KK}$ denote an algebra of square matrices of dimension $N$ over field $\KK$,
+with usual operations of addition and multiplication.
+Consider $\allonesmatrix{N} \in \matr{N}{\{0,1\}} \subset \matr{N}{\CC}$,
+--- a matrix of dimension $N$ whose all entries are ones:
+$$\allonesmatrix{N} =
+\begin{pmatrix}
+    1      & 1      & \cdots & 1 \\
+    1      & 1      & \cdots & 1 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    1      & 1      & \cdots & 1
+\end{pmatrix}$$
+
+\begin{propose}
+    $$\allonesmatrix{N}^2 =
+    \begin{pmatrix}
+        N      & \cdots & N \\
+        \vdots & \ddots & \vdots \\
+        N      & \cdots & N
+    \end{pmatrix} = N \allonesmatrix{N}$$
+
+    And
+    $\allonesmatrix{N}^k = N^{k-1} \allonesmatrix{N}$
+\end{propose}
+
+\begin{propose}
+    Let $N>1$.
+    The minimal polynomial $p$ of $\allonesmatrix{N}$ is given by formula
+    $$p(\lambda) = \lambda^2 - N \lambda$$
+
+    And the spectra of $\allonesmatrix{N}$ consists of the roots of $p$:
+    $$\sigma(\allonesmatrix{N}) = \{ 0, N \}$$
+
+\end{propose}
+
+Let $\eigenspace{\mathcal A}{\lambda}$ denote the eigenspace of the matrix $\mathcal A$
+corresponding to the eigenvalue $\lambda$.
+
+\begin{propose}
+    $$\eigenspace{\allonesmatrix{N}}{N} = \linspan{f_0}$$
+    $$f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed$$
+
+        where $\linspan{v_1, \ldots, v_n}$ denotes the linear span of the vectors $v_1, \ldots, v_n$.
+\end{propose}
+
+As for zero, its eigenspace consists exactly of these vectors,
+for which the sum of the coordinates equals zero.
+Choose the basis in $\eigenspace{\allonesmatrix{N}}{0}$ as
+$$
+h_1 = \begin{pmatrix}1 \\ -1 \\ 0 \\ \vdots \\ 0\end{pmatrix}
+    h_2 = \begin{pmatrix}0 \\ 1 \\ -1 \\ 0 \\ \vdots \\ 0\end{pmatrix}
+        h_{n-1} = \begin{pmatrix}0 \\ \vdots \\ 0 \\ 1 \\ -1 \end{pmatrix}$$
+
+            We can orthonormalize it then:
+
+$$f_1 = h_1 / \norm{h_1} =
+\begin{pmatrix}\frac{1}{\sqrt2} & - \frac{1}{\sqrt2} & 0 & \cdots & 0 \end{pmatrix}^\transposed$$
+
+    $$g_2 = h_2 - \left(h_2|f_1\right)f_1 =
+\begin{pmatrix}0\\ 1\\ -1\\ \vdots\end{pmatrix}
+    -
+\frac{-1}{\sqrt2} \begin{pmatrix} 1/\sqrt2 \\ - 1/\sqrt2 \\ 0 \\ \vdots \end{pmatrix}
+    = \begin{pmatrix} 1/2 \\ 1/2 \\ -1 \\ \vdots \end{pmatrix}$$
+
+        $$f_2 = g_2/\norm{g_2} =
+g_2 \frac{1}{\sqrt{4/3}} =
+\begin{pmatrix} \frac1{\sqrt6} & \frac1{\sqrt6} & - \frac2{\sqrt6} & \cdots \end{pmatrix}^\transposed$$
+
+    $$g_3 =
+h_3 - \underbrace{\left(h_3|f_1\right)}_{=0}f_1
+    - \underbrace{\left(h_3|f_2\right)}_{=-\sqrt{\frac23}}f_2
+= \begin{pmatrix} 1/3 & 1/3 & 1/3 & -1 & \cdots \end{pmatrix}^\transposed$$
+
+    $$f_3 = g_3 / \norm{g_3} = g_3 \frac{1}{\sqrt{1/3 + 1}} =
+\begin{pmatrix}
+    \frac{1}{2\sqrt3} & \frac{1}{2\sqrt3} &
+    \frac{1}{2\sqrt3} & - \frac{3}{2\sqrt3} &
+    \cdots
+\end{pmatrix}^\transposed$$
+
+So suppose that first $m$ vectors of this orthonormal system
+are of the form
+
+$$ f_k =
+\begin{pmatrix}
+    a_k & a_k & \cdots & a_k & b_k & 0 & \cdots & 0
+\end{pmatrix}^\transposed$$
+i.e. first $k$ elements of the vector all equal the same $a_k$
+and $(k+1)$'st is the $b_k = -ka_k$ closing the sequence.
+This is true at least for first 3 vectors.
+At the same time $h_{k+1}$ has all zeros
+except $(k+1)$'st and $(k+2)$'nd entries which are $1$ and $-1$ respectively.
+Hence $\left(h_k|f_{k-1}\right) = b_{k-1}$ and $\left(h_k|f_j\right) = 0$ for $j < k-1$.
+That gives
+
+$$g_k = h_k - \left(h_k|f_{k-1}\right) f_{k-1} =
+\begin{pmatrix}
+    - a_{k-1} b_{k-1} \\
+    - a_{k-1} b_{k-1} \\
+    \vdots \\
+    - a_{k-1} b_{k-1} \\
+    1 - b_{k-1}^2     \\
+    -1 \\
+    \vdots
+\end{pmatrix}$$
+
+One can also note that (TODO: prove)
+$$1 - b_{k-1}^2 = - a_{k-1} b_{k-1} \text{ for } k>1$$
+
+Thus
+$$g_k =
+\begin{pmatrix}
+    - a_{k-1} b_{k-1} \\
+    \vdots \\
+    - a_{k-1} b_{k-1} \\
+    -1 \\
+    \vdots
+\end{pmatrix}$$
+
+Norm of this vector can be calculated as
+
+\providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
+$$\norm{g_k} = \fknorm$$
+
+Now that $b_k = -(k-1)a_k$
+
+\renewcommand{\fknorm}{\sqrt{k(k-1)^2 a_{k-1}^4 + 1}}
+$$\norm{g_k} = \fknorm$$
+
+If $a_k = 1/c_k$ then the closing entry is $b_k = -k/c_k$.
+Also $b_k$ is always $-1/\norm{g_k} = \frac{-k}{k\norm{g_k}}$.
+That yields immediately
+
+$$f_k =
+\frac{1}{k\fknorm}
+\begin{pmatrix}1 \\ \vdots \\ 1 \\ -k \\ \vdots\end{pmatrix}$$
+    for $k=\overline{2,N-1}$.
+
+$$f_1
+    = \begin{pmatrix}a_1 \\ -a_1 \\ \vdots \end{pmatrix}
+        = \begin{pmatrix}\frac1{\sqrt2} \\ - \frac{1}{\sqrt2} \\ \vdots \end{pmatrix}
+            $$
+
+            % \begin{dfn}{Similar matrices}
+            %     Two matrices $\mathcal A$ and $\mathcal B$ are called similar,
+            %     if there is non-singular matrix $\mathcal U$ such that
+            %     $\mathcal U \mathcal A \mathcal U^{-1} = \mathcal B$
+            % \end{dfn}
+
+\begin{propose}
+    $\allonesmatrix{N}$ is similar to
+    $$\begin{pmatrix}
+        N &   &        & \\
+        & 0 &        & \\
+        &   & \ddots & \\
+        &   &        & 0
+    \end{pmatrix}$$
+    The transformation matrix that diagonalizes $\allonesmatrix{N}$ is
+
+    $$\mathcal T =
+    \begin{pmatrix}
+        1/\sqrt N &  1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
+        1/\sqrt N & -1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
+        1/\sqrt N &           & -2/\sqrt6 & 1/2\sqrt3  & \cdots & a_{n-1} \\
+        1/\sqrt N &           &           & -3/2\sqrt3 & \cdots & a_{n-1} \\
+        1/\sqrt N &           &           &            & \ddots & a_{n-1} \\
+        \vdots    &           &           &            &        & \vdots  \\
+        1/\sqrt N &           &           &            &        & a_{n-1} \\
+        1/\sqrt N &           &           &            &        & -(n-1)a_{n-1}
+    \end{pmatrix}$$
+
+    Composed of orthonormal real column vectors, this matrix is unitary
+    and thus $\mathcal T^{-1} = \mathcal T^\conjtransposed = \mathcal T^\transposed$,
+    $\det\mathcal T = 1$.
+\end{propose}
+
+\section{Almost-all-ones matrix}
+Let $\mathcal A_0\in\matr{N}{\RR}$ be a matrix comprised of zeros and ones
+with a small (in some sense which is to be determined later) amount of zeros.
+$\mathcal A_0$ can be represented as
+$$\mathcal A_0 = \allonesmatrix{N} - \mathcal B_0$$
+
+Consider the task of localizing the eigenvalues of $\mathcal A_0$.
+
+\subsection{Reduction}
+% 
+% \begin{propose}
+%     Similar matrices have the same spectra
+% \end{propose}
+
+It is clear that $\mathcal A_0$ is similar to the matrix $\mathcal A - \mathcal B$ where
+$$\mathcal A = \transformmatrix{\mathcal T}{\allonesmatrix{N}}
+= \begin{pmatrix}
+    N &   &        & \\
+      & 0 &        & \\
+      &   & \ddots & \\
+      &   &        & 0
+\end{pmatrix}$$
+$$\mathcal B = \transformmatrix{\mathcal T}{\mathcal B_0}$$
+
+
+We're going to use the operators language (just for convenience).
+Let $\mathscr X$ denote the banach space $\RR^N$ with the  euclid norm.
+
+$\mathscr X = \mathscr X_1 \oplus \mathscr X_2$,
+$\mathscr X_1 = \eigenspace{\allonesmatrix{N}}{N}$,
+$\mathscr X_2 = \eigenspace{\allonesmatrix{N}}{0}$.
+$P_1, P_2$ will denote projections performing the above decomposition:
+$P_i x = x_i \forall x = x_1 + x_2, x_j\in\mathscr X_j$
+
+Let $A$ and $B$ be operators defined by matrices $\mathcal A, \mathcal B$ respectively.
+The operator $A$ is called undisturbed and $B$ is called a perturbation.
+We're estimating eigenvalues of the operator $A - B$.
+
+Following the general schema, we introduce
+the space of acceptable perturbations $\mathfrak U$
+and define it to be just $\End{\mathscr X}$.
+We'll be searching for an operator similar to $A - B$
+in the form $A - JX$ with the similarity transformation $I + \Gamma X$,
+where $J\in\End{\mathfrak U}$ is a transformator that somehow "agrees" with $A$,
+in the sense that $A - JX$ has a simpler structure than $A - B$,
+and $\Gamma\in\End{\mathscr X}$ will be chosen so that all the equations become solvable.
+
+Projections $P_j$ decompose $\mathfrak U$ into
+$\mathfrak U_{11} \oplus \mathfrak U_{12} \oplus \mathfrak U_{21} \oplus \mathfrak U_{22}$,
+where $U_{ij} = \Hom{\mathscr X_j}{\mathscr X_i}$.
+Let $X_{ij} \in \mathfrak U_{ij}$ denote the restriction of $P_i X P_j$ to $\mathscr X_j$.
+
+Since $A \sim \begin{pmatrix} N & 0 \\ 0 & 0 \end{pmatrix}$
+(here the matrix $\mathcal A$ is considered blockwise)
+it is natural to define $J$ by formula:
+$$JX = \sum_{j=1}^2 P_j X P_j \sim \begin{pmatrix} X_{11} & 0 \\ 0 & X_{22} \end{pmatrix}$$
+
+As for $\Gamma$, we'll define it to map
+all the operators from $\End{\mathscr X_1}$ and $\End{\mathscr X_2}$ into $0$
+and require to satisfy the equation:
+
+\begin{equation}
+\label{eq:gammadef}
+    A\Gamma X - (\Gamma X) A = X - JX
+\end{equation}
+
+Substituting matrix representations into \eqref{eq:gammadef} we can see
+that for every $X \in \mathfrak U$ this equation has a solution $\Gamma X$
+defined by the operators matrix:
+
+$$
+\frac{1}{N}
+\begin{pmatrix}
+    0       & X_{12} \\
+    -X_{21} & 0
+\end{pmatrix}
+$$
+
+$$\Gamma X = \frac{1}{N} (P_1 X P_2 - P_2 X P_1)$$
+
+Now we need to find such $X$ that
+\begin{equation}\label{eq:similarity1}
+    (A - B)(I + \Gamma X) - (I + \Gamma X)(A - JX) = 0
+\end{equation}
+
+$$\begin{aligned}
+    & (A - B)(I + \Gamma X) - (I + \Gamma X)(A - JX) = \\
+    & = A - B + A\Gamma X - B\Gamma X - A + JX - (\Gamma X) A + (\Gamma X) JX = \\
+    & = X - B - B\Gamma X + (\Gamma X) JX = 0
+\end{aligned}$$
+\begin{equation}\label{eq:similarity2}
+    X = B + B\Gamma X - (\Gamma X) JX
+\end{equation}
+
+Applying $J$ to both sides of the last equation we get
+$$\eqref{eq:similarity2} \implies
+JX = JB + J(B\Gamma X)$$
+
+And substituting this expression for $JX$ back into \eqref{eq:similarity2}:
+
+\begin{equation}\label{eq:similarity}
+    X = \Phi X \eqdef B - (\Gamma X) JB + B\Gamma X - (\Gamma X) J(B\Gamma X)
+\end{equation}
+
+This is the equation we'll be working with
+
+\subsection{Solution}
+$\Phi$ is a (second order) nonlinear operator.
+We'll solve equation \eqref{eq:similarity}
+by showing that $\Phi$ is a contraction in some ball $\{ \norm{X} \leq \varepsilon \} \subset \mathfrak U$ ($\varepsilon>0$)
+and applying fix-point theorem.
+
+\begin{propose}
+    Let $\normex{.}{1}$ denote the norm in $\matr{N}{\RR}$ given by
+    $\norm{\mathcal M} = \sum_{ij} \left|m_{ij}\right|$ for every $M=(m_{ij})\in\matr{N}{\RR}$.
+    $\norm{.}$ means usual operator norm.
+    And let $B_0, T$ be an operator defined by the original perturbation matrix $\mathcal B_0$
+    and transformation operator defined by matrix $\mathcal T$ respectively.
+
+    $$\norm T = \norm{T^{-1}} = 1$$
+
+    $$\norm{\mathcal B_0}_1 = M \leq N^2$$
+    where $M$ is the number of zeros in the original (disturbed) matrix $\mathcal A_0$
+    (equivalently, the number of ones in $\mathcal B_0$).
+
+    $$\norm B \leq \normex{\mathcal B}{1} \leq \norm{\mathcal T^{-1}} \norm{B_0} \norm {\mathcal T} = \norm{B_0} \leq \normex{\mathcal B_0}{1} = M$$
+
+    $$\norm J = \norm{P_1} = \norm{P_2} = 1$$
+
+    $$\norm{\Gamma} = \gamma \leq \frac{2}{N}$$
+\end{propose}
+
+First we show that there is a ball in $\mathfrak U$ centered at $0$
+which is mapped by $\Phi$ to itself.
+
+Suppose $\norm X < r$.
+Then
+\begin{equation*}
+    \begin{split}
+        \norm{\Phi X} &=    \norm{B + B\Gamma X - (\Gamma X) JB - (\Gamma X)J(B\Gamma X)} \\
+                     &\leq \norm{B} + \norm{B}\norm{\Gamma} \norm{X} + \norm{\Gamma}\norm{J}\norm{B} + \norm{\Gamma}^2\norm{J}\norm{B}\norm{X}^2 \\
+                     &\leq M + 2 \gamma M r + \gamma^2 M r^2
+    \end{split}
+\end{equation*}
+\end{document}
