@@ -1,12 +1,17 @@
 \ProvidesPackage{fa-style}
 
-%\usepackage[mathscr]{euscript}
-\usepackage{euler}
+\usepackage[mathscr]{euscript}
+\usepackage{eulervm}
+\usepackage{mathtools}
+
 \usepackage{amsthm}
 \newtheorem{propose}{Proposition}
 \newtheorem{dfn}{Definition}
+\newtheorem{thm}{Theorem}
+\newtheorem{lemma}{Lemma}
 
-\providecommand{\eqdef}{\mathrm{:=}}
+\providecommand{\eqdef}{\coloneqq}
+\providecommand{\defeq}{\eqqcolon}
 \providecommand{\eigenspace}[2]{\mathrm{E}({#1}, {#2})}
 \providecommand{\transformmatrix}[2]{{#1}^{-1}{#2}{#1}}
 \providecommand{\transposed}{\mathrm{T}}

@@ -208,7 +208,7 @@ $$\mathcal A_0 = \allonesmatrix{N} - \mathcal B_0$$
 
 Consider the task of localizing the eigenvalues of $\mathcal A_0$.
 
-\subsection{Reduction}
+\subsection{Reduction to the method of similar operators}
 % 
 % \begin{propose}
 %     Similar matrices have the same spectra
@@ -306,42 +306,166 @@ And substituting this expression for $JX$ back into \eqref{eq:similarity2}:
 
 This is the equation we'll be working with
 
-\subsection{Solution}
-$\Phi$ is a (second order) nonlinear operator.
+\subsection{Solution of nonlinear equation}
+$\Phi:\mathfrak U\to\mathfrak U$ is a (second order) nonlinear operator.
 We'll solve equation \eqref{eq:similarity}
-by showing that $\Phi$ is a contraction in some ball $\{ \norm{X} \leq \varepsilon \} \subset \mathfrak U$ ($\varepsilon>0$)
+by showing that $\Phi$ is a contraction in some ball $\{ X\in \mathfrak U; \norm{X} \leq \varepsilon \}$ ($\varepsilon>0$)
 and applying fix-point theorem.
 
-\begin{propose}
+\begin{lemma}
     Let $\normex{.}{1}$ denote the norm in $\matr{N}{\RR}$ given by
-    $\norm{\mathcal M} = \sum_{ij} \left|m_{ij}\right|$ for every $M=(m_{ij})\in\matr{N}{\RR}$.
+    $\norm{\mathcal M} = \sum_{ij} \left|m_{ij}\right|$ for every $\mathcal M=(m_{ij})\in\matr{N}{\RR}$.
     $\norm{.}$ means usual operator norm.
     And let $B_0, T$ be an operator defined by the original perturbation matrix $\mathcal B_0$
     and transformation operator defined by matrix $\mathcal T$ respectively.
 
     $$\norm T = \norm{T^{-1}} = 1$$
-
-    $$\norm{\mathcal B_0}_1 = M \leq N^2$$
-    where $M$ is the number of zeros in the original (disturbed) matrix $\mathcal A_0$
-    (equivalently, the number of ones in $\mathcal B_0$).
-
-    $$\norm B \leq \normex{\mathcal B}{1} \leq \norm{\mathcal T^{-1}} \norm{B_0} \norm {\mathcal T} = \norm{B_0} \leq \normex{\mathcal B_0}{1} = M$$
-
     $$\norm J = \norm{P_1} = \norm{P_2} = 1$$
-
-    $$\norm{\Gamma} = \gamma \leq \frac{2}{N}$$
-\end{propose}
+    $$\norm{\mathcal B_0}_1 = M \leq N$$
+    where $M^2$ is the number of zeros in the original (disturbed) matrix $\mathcal A_0$
+    (or, equivalently, the number of unities in $\mathcal B_0$).
+    $$\norm B = \beta = \norm{B_0} \leq M$$
+    $$\norm{\Gamma} = \gamma = \frac{1}{N}$$
+\end{lemma}
+\begin{proof}
+    $T$ is unitary, $J, P_1, P_2$ are projections, so they map unit sphere exactly into itself and their norm is 1.
+    Operator $B_0$ is defined by matrix $\mathcal B_0 = \left(b_{ij}\right), b_{ij}\in\{0,1\}$,
+    so if $\norm x = 1$
+    \[
+        \begin{split}
+            \norm{B_0 x} &= \norm{\sum_{i=0}^N \left(\sum_{j=0}^N b_{ij} x_j\right) e_i}
+            = \sqrt{\sum_i \left(\sum_j b_{ij} x_j\right)^2} \\
+            &\leq \sqrt{\sum_i \left(\sum_j (b_{ij} x_j)^2\right)}
+            \leq \sqrt{\sum_{ij} b_{ij}^2} \eqdef M
+        \end{split}
+    \]
+The number of unities in $\mathcal B_0$ is less than $N^2$, so $M<N$.
+$$\norm B = \norm{T^{-1} B_0 T} \underbrace{=}_{T \text{ is isometric}} \norm{B_0} \leq M$$
+    Finally, if $\norm X = 1$, $\norm x = 1$
+    $$\norm{\Gamma X x} = \frac1N \norm{\begin{pmatrix}X_{12}x_2 \\ -X_{21}x_1\end{pmatrix}} = \frac1N$$
+    so $\norm\Gamma = \frac1N$
+\end{proof}
 
 First we show that there is a ball in $\mathfrak U$ centered at $0$
-which is mapped by $\Phi$ to itself.
+which is mapped by $\Phi$ into itself.
 
 Suppose $\norm X < r$.
 Then
-\begin{equation*}
-    \begin{split}
+    \begin{align*}
         \norm{\Phi X} &=    \norm{B + B\Gamma X - (\Gamma X) JB - (\Gamma X)J(B\Gamma X)} \\
-                     &\leq \norm{B} + \norm{B}\norm{\Gamma} \norm{X} + \norm{\Gamma}\norm{J}\norm{B} + \norm{\Gamma}^2\norm{J}\norm{B}\norm{X}^2 \\
-                     &\leq M + 2 \gamma M r + \gamma^2 M r^2
-    \end{split}
-\end{equation*}
+                     &\leq \norm{B} + \norm{B}\norm{\Gamma} \norm{X} + \norm{\Gamma}\norm{X}\norm{J}\norm{B} + \norm{\Gamma}^2\norm{J}\norm{B}\norm{X}^2 \\
+                     &\leq \beta + 2\gamma\beta r + \gamma^2\beta r^2
+    \end{align*}
+    \begin{equation}
+        \label{eq:phi_norm_b1}
+        \norm{\Phi X} \leq \gamma^2\beta r^2 + 2\gamma\beta r + \beta
+    \end{equation}
+
+To show that there is such a ball centered at $0$ that is mapped into itself
+means to show that there is such $r>0$ that
+$$\gamma^2\beta r^2 + 2\gamma\beta r + \beta \leq r$$
+\begin{equation}\label{eq:phi_endo0}
+    \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0
+\end{equation}
+This equation has real solutions if
+$$4\gamma^2\beta^2 - 4\gamma\beta + 1 - 4\gamma^2\beta^2 \geq 0$$
+\begin{equation}\label{eq:phi_endo1}
+    \gamma\beta\leq\frac14
+\end{equation}
+Since $\gamma\beta\leq\frac{2M}{N}$ it'd be also sufficient if
+\begin{equation}\label{eq:phi_endo2}
+    M \leq \frac14 N
+\end{equation}
+
+\begin{propose}
+    If $r$ lies between the two roots of \eqref{eq:phi_endo0}
+    then $\Phi$ maps ball of radia $r$ centered at $0$ to itself.
+
+    The smallest positive root of \eqref{eq:phi_endo0} is
+    \begin{equation}\label{eq:endo_r0}
+        r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}
+    \end{equation}
+    $$\Omega = \{X\in\mathfrak U; \norm{X} \leq r \}$$
+    $$\Phi(\Omega)\subset\Omega$$
+
+    It can be shown that
+    $$r\in (0,1)$$
+\end{propose}
+
+Next step is to show that $\Phi$ is a contraction in $\Omega$.
+and let $\norm X, \norm Y \leq r$, $\norm{X+Y} \leq 2r$
+
+\begin{align*}
+    \norm{\Phi X - \Phi Y}
+    =& \norm{B\Gamma X - (\Gamma X)JB - (\Gamma X)J(B\Gamma X) - B\Gamma Y + (\Gamma Y)JB + (\Gamma Y)J(B\Gamma Y)} = \\
+    =& \norm{B(\Gamma X - \Gamma Y) - (\Gamma X - \Gamma Y) JB + (\Gamma Y) J(B\Gamma Y) - (\Gamma X)J(B\Gamma X)} = \\
+    =& \norm{B\Gamma(X-Y) - \Gamma(X-Y)JB + (\Gamma Y) J(B\Gamma Y) - (\Gamma X)J(B\Gamma X)} \leq \\
+    \leq& 2\gamma\beta\norm{X-Y} + \norm{(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)}
+\end{align*}
+Since 
+\begin{align*}
+    &(\Gamma X - \Gamma Y)(P_jB(\Gamma X)P_j + P_jB(\Gamma Y)P_j) + \\
+    + &(\Gamma X + \Gamma Y)(P_jB(\Gamma X)P_j - P_jB(\Gamma Y)P_j) = \\
+= &2((\Gamma X)P_jB(\Gamma X)P_j- YP_jB(\Gamma Y)P_j)\end{align*}
+$$(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)
+= \frac12\left[\Gamma(X-Y)J(B\Gamma(X+Y)) + \Gamma(X+Y)J(B\Gamma(X-Y))\right]$$
+\begin{align*}
+    \norm{(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)}
+    &= \frac12\norm{\left[\Gamma(X-Y)J(B\Gamma(X+Y)) + \Gamma(X+Y)J(B\Gamma(X-Y))\right]}\leq \\
+    &\leq \gamma^2\beta r \norm{X-Y}
+\end{align*}
+$$\norm{\Phi X - \Phi Y} \leq (\gamma\beta(\gamma r + 2)\norm{X-Y}$$
+
+$\Phi$ will be a contraction in $\Omega$ if
+
+$$\gamma\beta(\gamma r + 2) < 1$$
+$$r < \frac{1-2\gamma\beta}{\gamma^2\beta}$$
+
+It is easily checked that $\frac{1-2\gamma\beta}{\gamma^2\beta}>1>r$
+
+To conclude, we repeat our definitions
+$$0< r = \frac12 \gamma^{-2} \beta^{-1} (1 + \sqrt{1-\gamma\beta} - 2\gamma\beta)$$
+$$\Omega = \{X\in\mathfrak U; \norm X \leq r\}$$
+$\Phi|_{\Omega}:\Omega\to\Omega$ is a contraction on a closed subset $\Omega$ of a banach space $\mathfrak U$.
+
+We just proved
+\begin{thm}
+    Let the number $M^2$ of unities in perturbation matrix $\mathcal B_0$ satisfy equation $M \leq \frac14 N$.
+
+    Then there exist an unique solution of \eqref{eq:similarity}.
+    Specifically, there is a single operator $X_0\in\mathfrak U$, $\norm{X_0} \leq r$,
+    for which operators $A-B$ and $A-JX_0$ are similar.
+    $X_0$ can be found as a limit of a convergent sequence
+    $$\{X_k\in\Omega; k\in\NN\}, X_1 = 0, X_k = \Phi X_{k-1} \text{ for } k>1$$
+\end{thm}
+
+\subsection{Eigenvalues estimation}
+Projections $P_1, P_2$ break operator $X_0$ up into $X_{ij}\in\mathfrak U_{ij}, i,j=\overline{1,2}$.
+$X_{11} = x_{11} I_{\mathcal X_1}$.
+
+\[
+    A-JX_0 \sim
+    \left(
+\begin{array}{c|c}
+    N-x_{11} & 0 \\
+    \hline
+    0        & -X_{22}
+\end{array}
+\right)
+\]
+
+Immediate conclusion is
+\begin{lemma}
+    At least a single eigenvalue of $A-JX_0$ lies in the interval $\left[N-r,N+r\right]$
+    and the rest of the spectra is contained in $\left[-r,r\right]$
+\end{lemma}
+
+%\begin{thm}
+%    Let $\mathcal A_0$ be a matrix of dimension $N>0$ consisting of zeros and ones,
+%    and let $\tilde M$ be the number of zeros in $\mathcal A_0$.
+%    And let
+%    $$\tilde M < \frac{1}{16} N^2$$
+%
+%    Then 
+%\end{thm}
 \end{document}
