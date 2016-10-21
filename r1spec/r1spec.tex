@@ -68,7 +68,15 @@ The operator defined by $\allones{N}$ is of rank $1$.
 
     And the spectra of $\allones{N}$ consists of the roots of $p$:
     $$\sigma(\allones{N}) = \{ 0, N \}$$
+\end{propose}
 
+\begin{dfn}{Similar matrices}
+    Two matrices $\mathcal Y, \mathcal Z \in\matr{N}{\RR}$ are called similar,
+    if there is invertible matrix $\mathcal V\in\matr{N}{\RR}$ such that
+    $$\mathcal V^{-1}\mathcal Y\mathcal V = \mathcal Z$$
+\end{dfn}
+\begin{propose}
+    Similar matrices have the same spectra
 \end{propose}
 
 Let $\eigenspace{\mathcal A}{\lambda}$ denote the eigenspace of the matrix $\mathcal A$
@@ -126,7 +134,7 @@ $$ f_k =
 i.e. the first $k$ elements of the vector all equal the same $a_k$
 and $(k+1)$'st is the $b_k = -ka_k$ closing the sequence.
 This is true at least for first 3 vectors.
-At the same time $h_{k+1}$ has all zeros
+At the same time $h_{k+1}$ has all zeroes
 except $(k+1)$'st and $(k+2)$'nd entries which are $1$ and $-1$ respectively.
 Hence $\left(h_k|f_{k-1}\right) = b_{k-1}$ and $\left(h_k|f_j\right) = 0$ for $j < k-1$.
 That gives
@@ -214,10 +222,13 @@ That yields immediately
 
 
 \section{Almost-all-ones matrix}
-Let $\almostallones{N}{M}\in\matr{N}{\RR}$, be a matrix comprised of zeros and ones
-with a small (in some sense which is to be determined later) amount $M<N^2$ of zeros.
+Let $\almostallones{N}{M}\in\matr{N}{\RR}$, be a matrix comprised of zeroes and ones
+with a small (in some sense which is to be determined later) amount $M<N^2$ of zeroes.
 $\almostallones{N}{M}$ can be represented as
-$$\almostallones{N}{M} = \allones{N} - \perturbmatrix{N}{M}$$
+$$
+\almostallones{N}{M} = \allones{N} - \perturbmatrix{N}{M}
+\footnote{used notation is a bit messy, since neither $\almostallones NM$ or $\perturbmatrix NM$ can be determined solely by $N$ and $M$}
+$$
 
 Consider the task of localization of the eigenvalues of $\almostallones{N}{M}$.
 
@@ -242,19 +253,30 @@ $$\mathcal B = \transformmatrix{\mathcal T}{\perturbmatrix{N}{M}}$$
 
 
 We're going to use the operators language (just for convenience and consistency with related papers).
+
 $\Hom{\mathscr Y}{\mathscr Z}$ denotes the space of continuous linear operators
 from $\mathscr Y$ to $\mathscr Z$,
 $\End{\mathscr Y} = \Hom{\mathscr Y}{\mathscr Y}$ is an algebra of continuous linear operators on $Y$.
-The norm in $\Hom{\mathscr Y}{\mathscr Z}$ and $\End{\mathscr Y}$ is usual operator norm:
+The norm in $\Hom{\mathscr Y}{\mathscr Z}$ and $\End{\mathscr Y}$ is the usual operator norm:
 $$\norm X = \sup_{\norm x = 1}{\norm{X x}}$$
+\begin{dfn}{Similar operators}
+    Two operators $Y_j:\dom{Y_j}\subset\mathscr Y_j\to\mathscr Z_j, j=\overline{1,2}$ are called similar,
+    if there is invertible map $V\in\Hom{\mathscr Y_2}{\mathscr Y_1}$,
+    such that $V(\dom{Y_2}) = \dom{Y_1}$ and
+    $$Y_1 V y = V Y_2 y \text{ for every } y\in\dom{Y_2}$$
+\end{dfn}
+\begin{propose}
+    Similar operators have the same spectra
+\end{propose}
 
-Let $\mathscr X$ denote the banach space $\RR^N$ with the euclid norm $\norm x = \sqrt{\sum_j x_j^2}$.
+Let $\mathscr X$ denote the banach space $\RR^N$ with the euclid norm
+$\norm x = \sqrt{\sum_{j=1}^N x_{(j)}^2}$, where $x_{(j)}$ are coordinates of $x$ in chosen basis.
 
 $\mathscr X = \mathscr X_1 \oplus \mathscr X_2$,
 $\mathscr X_1 = \eigenspace{\allones{N}}{N}$,
 $\mathscr X_2 = \eigenspace{\allones{N}}{0}$.
 $P_1, P_2$ will denote projections performing the above decomposition:
-every $x\in\mathscr X$ can be uniquely represented as $x = x_1 + x_2, x_j\in\mathscr X_j$
+every $x\in\mathscr X$ can be uniquely represented as $x = x_1 + x_2, x_j\in\mathscr X_j,j=\overline{1,2}$
 and we define $P_j x = x_j$, $j=\overline{1,2}$.
 
 Let $A$ and $B$ be operators defined by matrices $\mathcal A, \mathcal B$ respectively.
@@ -274,7 +296,7 @@ $$(A - B)(I + \Gamma X) = (I + \Gamma X)(A - JX)$$
 
 Projections $P_j$ also decompose $\mathfrak U$ into
 $\mathfrak U_{11} \oplus \mathfrak U_{12} \oplus \mathfrak U_{21} \oplus \mathfrak U_{22}$,
-where $U_{ij} = \Hom{\mathscr X_j}{\mathscr X_i}$\footnote{note the order of indices reversed}.
+where $U_{ij} = \Hom{\mathscr X_j}{\mathscr X_i}$.\footnote{note the order of indices reversed}
 
 For every operator $X\in\mathfrak U$
 let $X_{ij} \in \mathfrak U_{ij}$ denote the restriction of $P_i X P_j$ to $\mathscr X_j$.
@@ -283,8 +305,10 @@ $$X \sim \begin{pmatrix}
     X_{11} & X_{12} \\
     X_{21} & X_{22}
 \end{pmatrix}$$
-which acts on every $x = x_1 + x_2, x_j\in\mathscr X_j$ the following way:
-$$\begin{pmatrix}
+which acts on every $x = x_1 + x_2, x_j\in\mathscr X_j,j=\overline{1,2}$ the following way:
+$$
+X x \sim
+\begin{pmatrix}
     X_{11} & X_{12} \\
     X_{21} & X_{22}
 \end{pmatrix}
@@ -293,14 +317,14 @@ $$\begin{pmatrix}
     X_{11} x_1 + X_{12} x_2 \\
     X_{21} x_1 + X_{22} x_2
 \end{pmatrix}
-\sim X x
 $$
 
-Since $A \sim \begin{pmatrix} N & 0 \\ 0 & 0 \end{pmatrix}$
+Since $\mathscr X = \mathscr X_1 \oplus \mathscr X_2$ and $A \sim \begin{pmatrix} N & 0 \\ 0 & 0 \end{pmatrix}$
 (here the matrix $\mathcal A$ is considered blockwise)
-it is natural to define $J$ by formula:
+it is natural to define $J$ by formula
+    \footnote{it is even more natural to define $JX=P_1XP_1$;
+    TODO: dig into, add as an exercise and point the expected results (convergence conditions and radia)}:
 $$JX = \sum_{j=1}^2 P_j X P_j \sim \begin{pmatrix} X_{11} & 0 \\ 0 & X_{22} \end{pmatrix}$$
-(TODO: isn't it even more natural to define $JX=P_1XP_1$? consider)
 
 As for $\Gamma$, we'll define it to map
 all the operators from $\End{\mathscr X_1}$ and $\End{\mathscr X_2}$ into $0$
@@ -359,14 +383,17 @@ and applying fix-point theorem.
 
 Let $B_0, T$ be an operator defined by the original perturbation matrix $\perturbmatrix{N}{M}$
 and transformation operator defined by matrix $\mathcal T$ respectively.
+
+Let $\normex{2}{.}$ denote the norm in $\matr{N}{\RR}$ given by
+$$\normex{2}{\mathcal Y} = \sqrt{\sum_{i,j=1}^N y_{ij}^2} \quad\text{ for every } \mathcal Y = \left(y_{ij}\right) \in \matr{N}{\RR}$$
 \begin{lemma}
     $$\norm T = \norm{T^{-1}} = \norm J = \norm{P_1} = \norm{P_2} = 1$$
-    $$\normex{2}{\perturbmatrix{N}{M}} = M \leq N$$
-    $$\norm B = \beta = \norm{B_0} \leq M$$
-    $$\norm{\Gamma} = \gamma = \frac{1}{N}$$
+    $$\normex{2}{\perturbmatrix{N}{M}} = \sqrt{M} \leq N$$
+    $$\norm B = \norm{B_0} \leq M$$
+    $$\norm{\Gamma} = \frac{1}{N}$$
 \end{lemma}
 \begin{proof}
-    $T$ is unitary, $J, P_1, P_2$ are projections, so they map unit sphere exactly into itself and their norm is 1.
+    $T$ is unitary, $J, P_1, P_2$ are projections, and their norms are equal 1.
     Operator $B_0$ is defined by matrix $\perturbmatrix{N}{M} = \left(b_{ij}\right), b_{ij}\in\{0,1\}$,
     so if $\norm x = 1$
     \[
@@ -374,11 +401,11 @@ and transformation operator defined by matrix $\mathcal T$ respectively.
             \norm{B_0 x} &= \norm{\sum_{i=0}^N \left(\sum_{j=0}^N b_{ij} x_j\right) e_i}
             = \sqrt{\sum_i \left(\sum_j b_{ij} x_j\right)^2} \\
             &\leq \sqrt{\sum_i \left(\sum_j (b_{ij} x_j)^2\right)}
-            \leq \sqrt{\sum_{ij} b_{ij}^2} \eqdef M
+            \leq \sqrt{\sum_{ij} b_{ij}^2} \eqdef \sqrt M
         \end{split}
     \]
-The number of unities in $\perturbmatrix{N}{M}$ is less than $N^2$, so $M<N$.
-$$\norm B = \norm{T^{-1} B_0 T} \underbrace{=}_{T \text{ is isometric}} \norm{B_0} \leq M$$
+The number $M$ of unities in $\perturbmatrix{N}{M}$ is less than $N^2$ by construction.
+$$\norm B = \norm{T^{-1} B_0 T} \underbrace{=}_{T \text{ is isometric}} \norm{B_0} \leq \sqrt M$$
     Finally, if $\norm X = 1$, $\norm x = 1$
     $$\norm{\Gamma X x} = \frac1N \norm{\begin{pmatrix}X_{12}x_2 \\ -X_{21}x_1\end{pmatrix}} = \frac1N$$
     so $\norm\Gamma = \frac1N$
@@ -387,51 +414,79 @@ $$\norm B = \norm{T^{-1} B_0 T} \underbrace{=}_{T \text{ is isometric}} \norm{B_
 First we show that there is a ball in $\mathfrak U$ centered at $0$
 which is mapped by $\Phi$ into itself.
 
-Suppose $\norm X < r$.
-Then
+To show that there is such a ball centered at $0$ that is mapped into itself
+means to show that there is such $r>0$ that
+$$\norm{\Phi(X)} \leq r \text{ whenever } \norm{X}\leq r$$
+
     \begin{align*}
         \norm{\Phi(X)} &=    \norm{B + B\Gamma X - (\Gamma X) JB - (\Gamma X)J(B\Gamma X)} \\
                      &\leq \norm{B} + \norm{B}\norm{\Gamma} \norm{X} + \norm{\Gamma}\norm{X}\norm{J}\norm{B} + \norm{\Gamma}^2\norm{J}\norm{B}\norm{X}^2 \\
-                     &\leq \beta + 2\gamma\beta r + \gamma^2\beta r^2
+                     & = \norm{\Gamma}^2\norm{B}\norm{X}^2 + 2\norm{B}\norm{\Gamma}\norm{X} + \norm{B}
     \end{align*}
     \begin{equation}
         \label{eq:phi_norm_b1}
-        \norm{\Phi(X)} \leq \gamma^2\beta r^2 + 2\gamma\beta r + \beta
+        \norm{\Phi(X)}
+        \leq
+            \gamma^2\beta r^2 + 2\gamma\beta r + \beta
+            \quad \text{ for every } \gamma\geq\norm{\Gamma}, \beta\geq\norm{B}, r\geq\norm{X}
     \end{equation}
 
-To show that there is such a ball centered at $0$ that is mapped into itself
-means to show that there is such $r>0$ that
-$$\gamma^2\beta r^2 + 2\gamma\beta r + \beta \leq r$$
+    It would show that $\Phi$ maps ball of radius $r$ into itself
+    if we found such $\gamma\geq\norm{\Gamma}, \beta\geq\norm{B}, r>0$
+    that
 \begin{equation}\label{eq:phi_endo0}
     \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0
 \end{equation}
+
 This equation has real solutions if
-$$4\gamma^2\beta^2 - 4\gamma\beta + 1 - 4\gamma^2\beta^2 \geq 0$$
 \begin{equation}\label{eq:phi_endo1}
     \gamma\beta\leq\frac14
 \end{equation}
-Since $\gamma\beta\leq\frac{2M}{N}$ it'd be also sufficient if
-\begin{equation}\label{eq:phi_endo2}
-    M \leq \frac14 N
-\end{equation}
+
+We can use these three inequalities \eqref{eq:phi_norm_b1} \eqref{eq:phi_endo0} \eqref{eq:phi_endo1}
+for retrieving different convergence conditions based on different bounds for norms of $B$.
+For now we'll use rough estimates from the last lemma.
 
 \begin{propose}
     If $r$ lies between the two roots of \eqref{eq:phi_endo0}
-    then $\Phi$ maps ball of radia $r$ centered at $0$ to itself.
+    then $\Phi$ maps the ball centered at $0$ of radia $r$ to itself.
 
     The smallest positive root of \eqref{eq:phi_endo0} is
     \begin{equation}\label{eq:endo_r0}
         r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}
     \end{equation}
-    $$\Omega = \{X\in\mathfrak U; \norm{X} \leq r \}$$
-    $$\Phi(\Omega)\subset\Omega$$
-
-    It can be shown that
-    $$r\in (0,1)$$
 \end{propose}
 
+The bottom line is
+\begin{thm}\label{thm:endo}
+    If
+    $$\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B$$
+    $$r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}$$
+    $$\Omega = \{ X\in\mathfrak U; \norm X \leq r \}$$
+    Then
+    $\Phi$ maps the ball $\Omega$ into itself:
+    $$\Phi(\Omega)\subset\Omega$$
+\end{thm}
+
+If we choose $\gamma=\frac{1}{N}, \beta=\sqrt{M}$ we immediately get the following
+\begin{corollary}\label{thm:endo_nm}
+    Let
+    \begin{equation}\label{eq:phi_endo_nm_condition}
+        M \leq \frac{1}{16} N^2
+    \end{equation}
+    \begin{equation}\label{eq:phi_endo_nm_radia}
+        r = \frac12 N
+        \left(
+        \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
+        \right)
+    \end{equation}
+
+    Then
+    $\Phi$ maps the ball $\{ X\in\mathfrak U; \norm X \leq r \}$ into itself
+\end{corollary}
+
 Next step is to show that $\Phi$ is a contraction in $\Omega$.
-and let $\norm X, \norm Y \leq r$, $\norm{X+Y} \leq 2r$
+Let $\norm X, \norm Y \leq r$, $\norm{X+Y} \leq 2r$ and also $\gamma\geq\norm\Gamma$, $\beta\geq\norm B$.
 
 \begin{align*}
     \norm{\Phi(X) - \Phi(Y)}
@@ -453,29 +508,40 @@ $$(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)
     &\leq \gamma^2\beta r \norm{X-Y}
 \end{align*}
 $$\norm{\Phi(X) - \Phi(Y)} \leq (\gamma\beta(\gamma r + 2)\norm{X-Y}$$
+for every $\norm X, \norm Y \leq r$ and $\gamma\geq\norm\Gamma, \beta\geq\norm B$.
 
-$\Phi$ will be a contraction in $\Omega$ if
-
-$$\gamma\beta(\gamma r + 2) < 1$$
+$\Phi$ will be a contraction in $\Omega$ if $\gamma\beta(\gamma r + 2) < 1$, i.e.:
 $$r < \frac{1-2\gamma\beta}{\gamma^2\beta}$$
-
-It is easily checked that $\frac{1-2\gamma\beta}{\gamma^2\beta}>1>r$
-
-To conclude, we repeat our definitions
-$$0< r = \frac12 \gamma^{-2} \beta^{-1} (1 + \sqrt{1-\gamma\beta} - 2\gamma\beta)$$
-$$\Omega = \{X\in\mathfrak U; \norm X \leq r\}$$
-$\Phi|_{\Omega}:\Omega\to\Omega$ is a contraction on a closed subset $\Omega$ of a banach space $\mathfrak U$.
+This inequality holds.
 
 We just proved
 \begin{thm}
-    Let the number $M^2$ of unities in perturbation matrix $\perturbmatrix{N}{M}$ satisfy equation $M \leq \frac14 N$.
+    If
+    $$\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B$$
+    $$r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}$$
+    $$\Omega = \{ X\in\mathfrak U; \norm X \leq r \}$$
 
-    Then there exist an unique solution of \eqref{eq:similarity}.
+    Then
+    $\Phi|_{\Omega}:\Omega\to\Omega$ is a contraction on a closed subset $\Omega$ of a banach space $\mathfrak U$.
+    And there exist the unique solution of \eqref{eq:similarity}.
     Specifically, there is a single operator $X_0\in\mathfrak U$, $\norm{X_0} \leq r$,
     for which operators $A-B$ and $A-JX_0$ are similar.
     $X_0$ can be found as a limit of a convergent sequence
-    $$\{X_k\in\Omega; k\in\NN\}, X_1 = 0, X_k = \Phi(X)_{k-1} \text{ for } k>1$$
+    $$\{X_k\in\Omega; k\in\NN\}, \quad X_1 = 0, X_k = \Phi(X)_{k-1} \text{ for } k>1$$
 \end{thm}
+
+\begin{corollary}
+    Let the number $M$ of unities in perturbation matrix $\perturbmatrix{N}{M}$
+    satisfy the equation \eqref{eq:phi_endo1}: $M \leq \frac{1}{16} N^2$.
+    And let
+    \[ r = \frac12 N
+        \left(
+        \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
+        \right) \]
+
+    Then there exist unique operator $X_0$, $\norm{X_0} \leq r$ such that $A - B$ and $A - J X_0$ are similar
+    and have the same spectra
+\end{corollary}
 
 \subsection{Eigenvalues estimation}
 Projections $P_1, P_2$ break operator $X_0$ up into $X_{ij}\in\mathfrak U_{ij}, i,j=\overline{1,2}$.
@@ -499,8 +565,8 @@ Immediate conclusion is
 \end{lemma}
 
 %\begin{thm}
-%    Let $\almostallones{N}{M}$ be a matrix of dimension $N>0$ consisting of zeros and ones,
-%    and let $\tilde M$ be the number of zeros in $\almostallones{N}{M}$.
+%    Let $\almostallones{N}{M}$ be a matrix of dimension $N>0$ consisting of zeroes and ones,
+%    and let $\tilde M$ be the number of zeroes in $\almostallones{N}{M}$.
 %    And let
 %    $$\tilde M < \frac{1}{16} N^2$$
 %
