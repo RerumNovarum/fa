@@ -581,19 +581,34 @@ Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfra
 \]
 
 Immediate conclusion is
-\begin{lemma}
+\begin{propose}
     At least a single eigenvalue of \( A-JX_0 \) lies in the interval \( \left[N-r,N+r\right] \)
     and the rest of the spectra is contained in \( \left[-r,r\right] \)
-\end{lemma}
+\end{propose}
 
-%\begin{thm}
-%    Let \( \almostallones{N}{M} \) be a matrix of dimension \( N>0 \) consisting of zeroes and ones,
-%    and let \( \tilde M \) be the number of zeroes in \( \almostallones{N}{M} \).
-%    And let
-%    \[\tilde M < \frac{1}{16} N^2\]
-%
-%    Then 
-%\end{thm}
+\begin{thm}
+    If
+    \[\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
+    \[r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
+
+    Then $r>0$ and there is
+	\[ \lambda_0\in\spec{A-B} \cap \left[N-r,N+r\right] \neq\emptyset \]
+	and
+	\[ \spec{A-B}\backslash\{\lambda_0\} \subset \left[-r,r\right] \]
+\end{thm}
+\begin{corollary}
+    Let \( \almostallones{N}{M} \) be a matrix of dimension \( N>0 \) consisting of zeroes and ones,
+    and let \( M \) be the number of zeroes in \( \almostallones{N}{M} \).
+    And let
+    \[ M < \frac{1}{16} N^2 \]
+    \[ r = \frac12 N
+        \left(
+        \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
+        \right) \]
+
+    Then $r>0$ and at least one eigenvalue of \( \almostallones{N}{M} \) lies in the interval \(\left[N-r,N+r\right]\)
+	and the rest of the spectra is contained in the interval \( \left[-r,r\right] \)
+\end{corollary}
 
 \section{Future work}
 This article gives bounds for eigenvalues expressed in terms of the dimension of the matrix and the number of unities in perturbation.
