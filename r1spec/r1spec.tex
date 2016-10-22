@@ -28,121 +28,121 @@ Though simple and naive, this example goes through main steps of the general sch
 and forms the ground for future research.
 
 \section{Intro. Operator representation}
-Let $A: \mathscr X\to\mathscr X$ be a linear operator of the rank 1
-($\rank A = \dim\img A = 1$).
+Let \( A: \mathscr X\to\mathscr X \) be a linear operator of the rank 1
+(\( \rank A = \dim\img A = 1 \)).
 
 \begin{propose}
-    Such an opererator can be represented in the form $A x = \xi(x) a$
-    where $\xi\in\mathscr X^*$ is a linear form, $0\neq a \in\mathscr X$.
-    $\spec A = \{0, \xi(a)\}$ if $\dim\mathscr X > 1$, otherwise $\spec A = \{\xi(a)\}$.
+    Such an opererator can be represented in the form \( A x = \xi(x) a \)
+    where \( \xi\in\mathscr X^* \) is a linear form, \( 0\neq a \in\mathscr X \).
+    \( \spec A = \{0, \xi(a)\} \) if \( \dim\mathscr X > 1 \), otherwise \( \spec A = \{\xi(a)\} \).
 \end{propose}
 
 \section{Matrix of ones}
-Let $\matr{N}{\RR}$ denote an algebra of square matrices of dimension $N$ over field $\RR$,
+Let \( \matr{N}{\RR} \) denote an algebra of square matrices of dimension \( N \) over field \( \RR \),
 with usual operations of addition and multiplication.
-Consider $\allones{N} \in \matr{N}{\RR}$
---- a matrix of dimension $N$ whose all entries are ones:
-$$\allones{N} =
+Consider \( \allones{N} \in \matr{N}{\RR} \)
+--- a matrix of dimension \( N \) whose all entries are ones:
+\[\allones{N} =
 \begin{pmatrix}
     1      & 1      & \cdots & 1 \\
     1      & 1      & \cdots & 1 \\
     \vdots & \vdots & \ddots & \vdots \\
     1      & 1      & \cdots & 1
-\end{pmatrix}$$
+\end{pmatrix}\]
 
-The operator defined by $\allones{N}$ is of rank $1$.
+The operator defined by \( \allones{N} \) is of rank \( 1 \).
 
 \begin{propose}
-    $$\allones{N}^2 =
+    \[\allones{N}^2 =
     \begin{pmatrix}
         N      & \cdots & N \\
         \vdots & \ddots & \vdots \\
         N      & \cdots & N
-    \end{pmatrix} = N \allones{N}$$
+    \end{pmatrix} = N \allones{N}\]
 
     And
-    $\allones{N}^k = N^{k-1} \allones{N}$
+    \( \allones{N}^k = N^{k-1} \allones{N} \)
 \end{propose}
 
 \begin{propose}
-    Let $N>1$.
-    The minimal polynomial $p$ of $\allones{N}$ is given by formula
-    $$p(\lambda) = \lambda^2 - N \lambda$$
+    Let \( N>1 \).
+    The minimal polynomial \( p \) of \( \allones{N} \) is given by formula
+    \[p(\lambda) = \lambda^2 - N \lambda\]
 
-    And the spectra of $\allones{N}$ consists of the roots of $p$:
-    $$\sigma(\allones{N}) = \{ 0, N \}$$
+    And the spectra of \( \allones{N} \) consists of the roots of \( p \):
+    \[\sigma(\allones{N}) = \{ 0, N \}\]
 \end{propose}
 
 \begin{dfn}{Similar matrices}
-    Two matrices $\mathcal Y, \mathcal Z \in\matr{N}{\RR}$ are called similar,
-    if there is invertible matrix $\mathcal V\in\matr{N}{\RR}$ such that
-    $$\mathcal V^{-1}\mathcal Y\mathcal V = \mathcal Z$$
+    Two matrices \( \mathcal Y, \mathcal Z \in\matr{N}{\RR} \) are called similar,
+    if there is invertible matrix \( \mathcal V\in\matr{N}{\RR} \) such that
+    \[\mathcal V^{-1}\mathcal Y\mathcal V = \mathcal Z\]
 \end{dfn}
 \begin{propose}
     Similar matrices have the same spectra
 \end{propose}
 
-Let $\eigenspace{\mathcal A}{\lambda}$ denote the eigenspace of the matrix $\mathcal A$
-corresponding to the eigenvalue $\lambda$.
+Let \( \eigenspace{\mathcal A}{\lambda} \) denote the eigenspace of the matrix \( \mathcal A \)
+corresponding to the eigenvalue \( \lambda \).
 
 \begin{propose}
-    $$\eigenspace{\allones{N}}{N} = \linspan{f_0}$$
-    $$f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed$$
+    \[\eigenspace{\allones{N}}{N} = \linspan{f_0}\]
+    \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed\]
 
-        where $\linspan{v_1, \ldots, v_n}$ denotes the linear span of the vectors $v_1, \ldots, v_n$.
+        where \( \linspan{v_1, \ldots, v_n} \) denotes the linear span of the vectors \( v_1, \ldots, v_n \).
 \end{propose}
 
 As for zero, its eigenspace consists exactly of these vectors,
 for which the sum of the coordinates equals zero.
-Choose the basis in $\eigenspace{\allones{N}}{0}$ as
-$$
+Choose the basis in \( \eigenspace{\allones{N}}{0} \) as
+\[
 h_1 = \begin{pmatrix}1 \\ -1 \\ 0 \\ \vdots \\ 0\end{pmatrix}
     h_2 = \begin{pmatrix}0 \\ 1 \\ -1 \\ 0 \\ \vdots \\ 0\end{pmatrix}
-        h_{n-1} = \begin{pmatrix}0 \\ \vdots \\ 0 \\ 1 \\ -1 \end{pmatrix}$$
+        h_{n-1} = \begin{pmatrix}0 \\ \vdots \\ 0 \\ 1 \\ -1 \end{pmatrix}\]
 
             We can orthonormalize it then:
 
-$$f_1 = h_1 / \norm{h_1} =
-\begin{pmatrix}\frac{1}{\sqrt2} & - \frac{1}{\sqrt2} & 0 & \cdots & 0 \end{pmatrix}^\transposed$$
+\[f_1 = h_1 / \norm{h_1} =
+\begin{pmatrix}\frac{1}{\sqrt2} & - \frac{1}{\sqrt2} & 0 & \cdots & 0 \end{pmatrix}^\transposed\]
 
-    $$g_2 = h_2 - \left(h_2|f_1\right)f_1 =
+    \[g_2 = h_2 - \left(h_2|f_1\right)f_1 =
 \begin{pmatrix}0\\ 1\\ -1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}
     -
 \frac{-1}{\sqrt2} \begin{pmatrix} 1/\sqrt2 \\ - 1/\sqrt2 \\ 0 \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-    = \begin{pmatrix} 1/2 \\ 1/2 \\ -1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}$$
+    = \begin{pmatrix} 1/2 \\ 1/2 \\ -1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}\]
 
-        $$f_2 = g_2/\norm{g_2} =
+        \[f_2 = g_2/\norm{g_2} =
 g_2 \frac{1}{\sqrt{4/3}} =
-\begin{pmatrix} \frac1{\sqrt6} & \frac1{\sqrt6} & - \frac2{\sqrt6} & 0 & \cdots & 0 \end{pmatrix}^\transposed$$
+\begin{pmatrix} \frac1{\sqrt6} & \frac1{\sqrt6} & - \frac2{\sqrt6} & 0 & \cdots & 0 \end{pmatrix}^\transposed\]
 
-    $$g_3 =
+    \[g_3 =
 h_3 - \underbrace{\left(h_3|f_1\right)}_{=0}f_1
     - \underbrace{\left(h_3|f_2\right)}_{=-\sqrt{\frac23}}f_2
-= \begin{pmatrix} 1/3 & 1/3 & 1/3 & -1 & 0 & \cdots & 0 \end{pmatrix}^\transposed$$
+= \begin{pmatrix} 1/3 & 1/3 & 1/3 & -1 & 0 & \cdots & 0 \end{pmatrix}^\transposed\]
 
-    $$f_3 = g_3 / \norm{g_3} = g_3 \frac{1}{\sqrt{1/3 + 1}} =
+    \[f_3 = g_3 / \norm{g_3} = g_3 \frac{1}{\sqrt{1/3 + 1}} =
 \begin{pmatrix}
     \frac{1}{2\sqrt3} & \frac{1}{2\sqrt3} &
     \frac{1}{2\sqrt3} & - \frac{3}{2\sqrt3} &
     0 & \cdots & 0
-\end{pmatrix}^\transposed$$
+\end{pmatrix}^\transposed\]
 
-So suppose that first $m$ vectors of this orthonormal system
+So suppose that first \( m \) vectors of this orthonormal system
 are of the form
 
-$$ f_k =
+\[ f_k =
 \begin{pmatrix}
     a_k & \cdots & a_k & b_k & 0 & \cdots & 0
-\end{pmatrix}^\transposed$$
-i.e. the first $k$ elements of the vector all equal the same $a_k$
-and $(k+1)$'st is the $b_k = -ka_k$ closing the sequence.
+\end{pmatrix}^\transposed\]
+i.e. the first \( k \) elements of the vector all equal the same \( a_k \)
+and \( (k+1) \)'st is the \( b_k = -ka_k \) closing the sequence.
 This is true at least for first 3 vectors.
-At the same time $h_{k+1}$ has all zeroes
-except $(k+1)$'st and $(k+2)$'nd entries which are $1$ and $-1$ respectively.
-Hence $\left(h_k|f_{k-1}\right) = b_{k-1}$ and $\left(h_k|f_j\right) = 0$ for $j < k-1$.
+At the same time \( h_{k+1} \) has all zeroes
+except \( (k+1) \)'st and \( (k+2) \)'nd entries which are \( 1 \) and \( -1 \) respectively.
+Hence \( \left(h_k|f_{k-1}\right) = b_{k-1} \) and \( \left(h_k|f_j\right) = 0 \) for \( j < k-1 \).
 That gives
 
-$$g_k = h_k - \left(h_k|f_{k-1}\right) f_{k-1} =
+\[g_k = h_k - \left(h_k|f_{k-1}\right) f_{k-1} =
 \begin{pmatrix}
     - a_{k-1} b_{k-1} \\
     \vdots \\
@@ -152,13 +152,13 @@ $$g_k = h_k - \left(h_k|f_{k-1}\right) f_{k-1} =
     0 \\
     \vdots \\
     0
-\end{pmatrix}$$
+\end{pmatrix}\]
 
 One can also note that (TODO: prove)
-$$1 - b_{k-1}^2 = - a_{k-1} b_{k-1} \text{ for } k>1$$
+\[1 - b_{k-1}^2 = - a_{k-1} b_{k-1} \text{ for } k>1\]
 
 Thus
-$$g_k =
+\[g_k =
 \begin{pmatrix}
     - a_{k-1} b_{k-1} \\
     \vdots \\
@@ -167,46 +167,46 @@ $$g_k =
     0 \\
     \vdots \\
     0
-\end{pmatrix}$$
+\end{pmatrix}\]
 
 Norm of this vector can be calculated as
 
 \providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
-$$\norm{g_k} = \fknorm$$
+\[\norm{g_k} = \fknorm\]
 
-Now that $b_k = -(k-1)a_k$
+Now that \( b_k = -(k-1)a_k \)
 
 \renewcommand{\fknorm}{\sqrt{k(k-1)^2 a_{k-1}^4 + 1}}
-$$\norm{g_k} = \fknorm$$
+\[\norm{g_k} = \fknorm\]
 
-If $a_k = 1/c_k$ then the closing entry is $b_k = -k/c_k$.
-Also $b_k$ always equals $-1/\norm{g_k} = \frac{-k}{k\norm{g_k}}$.
+If \( a_k = 1/c_k \) then the closing entry is \( b_k = -k/c_k \).
+Also \( b_k \) always equals \( -1/\norm{g_k} = \frac{-k}{k\norm{g_k}} \).
 That yields immediately
 
 \begin{propose}
-    $$a_k = \frac{1}{k\fknorm}$$
-    $$f_k =
+    \[a_k = \frac{1}{k\fknorm}\]
+    \[f_k =
     \begin{pmatrix}a_k \\ \vdots \\ a_k \\ -ka_k \\ 0 \\ \vdots \\ 0 \end{pmatrix} =
     \frac{1}{k\fknorm}
-    \begin{pmatrix}1 \\ \vdots \\ 1 \\ -k \\ 0 \\ \vdots \\ 0 \end{pmatrix}$$
-        for $k=\overline{2,N-1}$.
+    \begin{pmatrix}1 \\ \vdots \\ 1 \\ -k \\ 0 \\ \vdots \\ 0 \end{pmatrix}\]
+        for \( k=\overline{2,N-1} \).
 
-    $$f_1
+    \[f_1
     = \begin{pmatrix}a_1 \\ -a_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}
         = \begin{pmatrix}\frac1{\sqrt2} \\ - \frac{1}{\sqrt2} \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-            $$
-    $$\eigenspace{\allones{N}}{0} = \{ f_1, \ldots, f_{n-1} \}$$
+            \]
+    \[\eigenspace{\allones{N}}{0} = \{ f_1, \ldots, f_{n-1} \}\]
 
-    $\allones{N}$ is similar to
-    $$\begin{pmatrix}
+    \( \allones{N} \) is similar to
+    \[\begin{pmatrix}
         N &   &        & \\
         & 0 &        & \\
         &   & \ddots & \\
         &   &        & 0
-    \end{pmatrix}$$
+    \end{pmatrix}\]
 
-    And the transformation matrix that diagonalizes $\allones{N}$ is
-    $$\mathcal T =
+    And the transformation matrix that diagonalizes \( \allones{N} \) is
+    \[\mathcal T =
     \begin{pmatrix}
         1/\sqrt N &  1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
         \vdots    & -1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
@@ -216,27 +216,27 @@ That yields immediately
         \vdots    & \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
         \vdots    & \vdots    & \vdots    & \vdots     & \cdots & a_{n-1} \\
         1/\sqrt N & 0         & 0         & 0          & \cdots & -(n-1)a_{n-1}
-    \end{pmatrix}$$
+    \end{pmatrix}\]
 
     Composed of orthonormal real column vectors, this matrix is \emph{unitary}
-    and thus $\mathcal T^{-1} = \mathcal T^\conjtransposed = \mathcal T^\transposed$,
-    $\det\mathcal T = 1$.
+    and thus \( \mathcal T^{-1} = \mathcal T^\conjtransposed = \mathcal T^\transposed \),
+    \( \det\mathcal T = 1 \).
 \end{propose}
 
 
 \section{Almost-all-ones matrix}
-Let $\almostallones{N}{M}\in\matr{N}{\RR}$, be a matrix comprised of zeroes and ones
-with a small (in some sense which is to be determined later) amount $M<N^2$ of zeroes.
-$\almostallones{N}{M}$ can be represented as
-$$
+Let \( \almostallones{N}{M}\in\matr{N}{\RR} \), be a matrix comprised of zeroes and ones
+with a small (in some sense which is to be determined later) amount \( M<N^2 \) of zeroes.
+\( \almostallones{N}{M} \) can be represented as
+\[
 \almostallones{N}{M} = \allones{N} - \perturbmatrix{N}{M}
-\footnote{used notation is a bit messy, since neither $\almostallones NM$ or $\perturbmatrix NM$ can be determined solely by $N$ and $M$}
-$$
+\footnote{used notation is a bit messy, since neither \( \almostallones NM \) or \( \perturbmatrix NM \) can be determined solely by \( N \) and \( M \)}
+\]
 
-Consider the task of localization of the eigenvalues of $\almostallones{N}{M}$.
+Consider the task of localization of the eigenvalues of \( \almostallones{N}{M} \).
 
-We'll deduce bounds for eigenvalues of $\almostallones{N}{M}$
-in terms of its two characteristics: the dimension $N$ and number of zeroes $M$.
+We'll deduce bounds for eigenvalues of \( \almostallones{N}{M} \)
+in terms of its two characteristics: the dimension \( N \) and number of zeroes \( M \).
 
 \subsection{Reduction to the method of similar operators}
 
@@ -244,72 +244,72 @@ in terms of its two characteristics: the dimension $N$ and number of zeroes $M$.
     Similar matrices have the same spectra
 \end{propose}
 
-It is clear that $\almostallones{N}{M}$ is similar to the matrix $\mathcal A - \mathcal B$ where
-$$\mathcal A = \transformmatrix{\mathcal T}{\allones{N}}
+It is clear that \( \almostallones{N}{M} \) is similar to the matrix \( \mathcal A - \mathcal B \) where
+\[\mathcal A = \transformmatrix{\mathcal T}{\allones{N}}
 = \begin{pmatrix}
     N &   &        & \\
       & 0 &        & \\
       &   & \ddots & \\
       &   &        & 0
-\end{pmatrix}$$
-$$\mathcal B = \transformmatrix{\mathcal T}{\perturbmatrix{N}{M}}$$
+\end{pmatrix}\]
+\[\mathcal B = \transformmatrix{\mathcal T}{\perturbmatrix{N}{M}}\]
 
 
 We're going to use the operators language (just for convenience and consistency with related papers).
 
-$\Hom{\mathscr Y}{\mathscr Z}$ denotes the space of continuous linear operators
-from $\mathscr Y$ to $\mathscr Z$,
-$\End{\mathscr Y} = \Hom{\mathscr Y}{\mathscr Y}$ is an algebra of continuous linear operators on $Y$.
-The norm in $\Hom{\mathscr Y}{\mathscr Z}$ and $\End{\mathscr Y}$ is the usual operator norm:
-$$\norm X = \sup_{\norm x = 1}{\norm{X x}}$$
+\( \Hom{\mathscr Y}{\mathscr Z} \) denotes the space of continuous linear operators
+from \( \mathscr Y \) to \( \mathscr Z \),
+\( \End{\mathscr Y} = \Hom{\mathscr Y}{\mathscr Y} \) is an algebra of continuous linear operators on \( Y \).
+The norm in \( \Hom{\mathscr Y}{\mathscr Z} \) and \( \End{\mathscr Y} \) is the usual operator norm:
+\[\norm X = \sup_{\norm x = 1}{\norm{X x}}\]
 \begin{dfn}{Similar operators}
-    Two operators $Y_j:\dom{Y_j}\subset\mathscr Y_j\to\mathscr Z_j, j=\overline{1,2}$ are called similar,
-    if there is invertible map $V\in\Hom{\mathscr Y_2}{\mathscr Y_1}$,
-    such that $V(\dom{Y_2}) = \dom{Y_1}$ and
-    $$Y_1 V y = V Y_2 y \text{ for every } y\in\dom{Y_2}$$
+    Two operators \( Y_j:\dom{Y_j}\subset\mathscr Y_j\to\mathscr Z_j, j=\overline{1,2} \) are called similar,
+    if there is invertible map \( V\in\Hom{\mathscr Y_2}{\mathscr Y_1} \),
+    such that \( V(\dom{Y_2}) = \dom{Y_1} \) and
+    \[Y_1 V y = V Y_2 y \text{ for every } y\in\dom{Y_2}\]
 \end{dfn}
 \begin{propose}
     Similar operators have the same spectra
 \end{propose}
 
-Let $\mathscr X$ denote the banach space $\RR^N$ with the euclid norm
-$\norm x = \sqrt{\sum_{j=1}^N x_{(j)}^2}$, where $x_{(j)}$ are coordinates of $x$ in chosen basis.
+Let \( \mathscr X \) denote the banach space \( \RR^N \) with the euclid norm
+\( \norm x = \sqrt{\sum_{j=1}^N x_{(j)}^2} \), where \( x_{(j)} \) are coordinates of \( x \) in chosen basis.
 
-$\mathscr X = \mathscr X_1 \oplus \mathscr X_2$,
-$\mathscr X_1 = \eigenspace{\allones{N}}{N}$,
-$\mathscr X_2 = \eigenspace{\allones{N}}{0}$.
-$P_1, P_2$ will denote projections performing the above decomposition:
-every $x\in\mathscr X$ can be uniquely represented as $x = x_1 + x_2, x_j\in\mathscr X_j,j=\overline{1,2}$
-and we define $P_j x = x_j$, $j=\overline{1,2}$.
+\( \mathscr X = \mathscr X_1 \oplus \mathscr X_2 \),
+\( \mathscr X_1 = \eigenspace{\allones{N}}{N} \),
+\( \mathscr X_2 = \eigenspace{\allones{N}}{0} \).
+\( P_1, P_2 \) will denote projections performing the above decomposition:
+every \( x\in\mathscr X \) can be uniquely represented as \( x = x_1 + x_2, x_j\in\mathscr X_j,j=\overline{1,2} \)
+and we define \( P_j x = x_j \), \( j=\overline{1,2} \).
 
-Let $A$ and $B$ be operators defined by matrices $\mathcal A, \mathcal B$ respectively.
-The operator $A$ is called undisturbed and $B$ is called a perturbation.
-We're estimating eigenvalues of the operator $A - B$.
+Let \( A \) and \( B \) be operators defined by matrices \( \mathcal A, \mathcal B \) respectively.
+The operator \( A \) is called undisturbed and \( B \) is called a perturbation.
+We're estimating eigenvalues of the operator \( A - B \).
 
 Following the general schema, we introduce
-the space of admissible perturbations $\mathfrak U$ ($B\in\mathfrak U$)
-and define it to be just $\End{\mathscr X}$.
-We'll be searching for an operator similar to $A - B$
-in the form $A - JX$ with the similarity transformation $I + \Gamma X$,
-where $J, \Gamma \in \End{\mathfrak U}$ are transformators to be chosen.
-The intuition is that $A - JX$ should have simpler structure compared to $A-B$.
-Specifically, our task is to find $X$ satisfying equation
+the space of admissible perturbations \( \mathfrak U \) (\( B\in\mathfrak U \))
+and define it to be just \( \End{\mathscr X} \).
+We'll be searching for an operator similar to \( A - B \)
+in the form \( A - JX \) with the similarity transformation \( I + \Gamma X \),
+where \( J, \Gamma \in \End{\mathfrak U} \) are transformators to be chosen.
+The intuition is that \( A - JX \) should have simpler structure compared to \( A-B \).
+Specifically, our task is to find \( X \) satisfying equation
 
-$$(A - B)(I + \Gamma X) = (I + \Gamma X)(A - JX)$$
+\[(A - B)(I + \Gamma X) = (I + \Gamma X)(A - JX)\]
 
-Projections $P_j$ also decompose $\mathfrak U$ into
-$\mathfrak U_{11} \oplus \mathfrak U_{12} \oplus \mathfrak U_{21} \oplus \mathfrak U_{22}$,
-where $U_{ij} = \Hom{\mathscr X_j}{\mathscr X_i}$.\footnote{note the order of indices reversed}
+Projections \( P_j \) also decompose \( \mathfrak U \) into
+\( \mathfrak U_{11} \oplus \mathfrak U_{12} \oplus \mathfrak U_{21} \oplus \mathfrak U_{22} \),
+where \( U_{ij} = \Hom{\mathscr X_j}{\mathscr X_i} \).\footnote{note the order of indices reversed}
 
-For every operator $X\in\mathfrak U$
-let $X_{ij} \in \mathfrak U_{ij}$ denote the restriction of $P_i X P_j$ to $\mathscr X_j$.
-$X$ can be represented by operators matrix:
-$$X \sim \begin{pmatrix}
+For every operator \( X\in\mathfrak U \)
+let \( X_{ij} \in \mathfrak U_{ij} \) denote the restriction of \( P_i X P_j \) to \( \mathscr X_j \).
+\( X \) can be represented by operators matrix:
+\[X \sim \begin{pmatrix}
     X_{11} & X_{12} \\
     X_{21} & X_{22}
-\end{pmatrix}$$
-which acts on every $x = x_1 + x_2, x_j\in\mathscr X_j,j=\overline{1,2}$ the following way:
-$$
+\end{pmatrix}\]
+which acts on every \( x = x_1 + x_2, x_j\in\mathscr X_j,j=\overline{1,2} \) the following way:
+\[
 X x \sim
 \begin{pmatrix}
     X_{11} & X_{12} \\
@@ -320,17 +320,17 @@ X x \sim
     X_{11} x_1 + X_{12} x_2 \\
     X_{21} x_1 + X_{22} x_2
 \end{pmatrix}
-$$
+\]
 
-Since $\mathscr X = \mathscr X_1 \oplus \mathscr X_2$ and $A \sim \begin{pmatrix} N & 0 \\ 0 & 0 \end{pmatrix}$
-(here the matrix $\mathcal A$ is considered blockwise)
-it is natural to define $J$ by formula
-    \footnote{it is even more natural to define $JX=P_1XP_1$;
+Since \( \mathscr X = \mathscr X_1 \oplus \mathscr X_2 \) and \( A \sim \begin{pmatrix} N & 0 \\ 0 & 0 \end{pmatrix} \)
+(here the matrix \( \mathcal A \) is considered blockwise)
+it is natural to define \( J \) by formula
+    \footnote{it is even more natural to define \( JX=P_1XP_1 \);
     TODO: dig into, add as an exercise and point the expected results (convergence conditions and radia)}:
-$$JX = \sum_{j=1}^2 P_j X P_j \sim \begin{pmatrix} X_{11} & 0 \\ 0 & X_{22} \end{pmatrix}$$
+\[JX = \sum_{j=1}^2 P_j X P_j \sim \begin{pmatrix} X_{11} & 0 \\ 0 & X_{22} \end{pmatrix}\]
 
-As for $\Gamma$, we'll define it to map
-all the operators from $\End{\mathscr X_1}$ and $\End{\mathscr X_2}$ into $0$
+As for \( \Gamma \), we'll define it to map
+all the operators from \( \End{\mathscr X_1} \) and \( \End{\mathscr X_2} \) into \( 0 \)
 and require to satisfy the equation:
 
 \begin{equation}
@@ -339,38 +339,38 @@ and require to satisfy the equation:
 \end{equation}
 
 Substituting matrix representations into \eqref{eq:gammadef} we can see
-that for every $X \in \mathfrak U$ this equation has a solution $\Gamma X$
+that for every \( X \in \mathfrak U \) this equation has a solution \( \Gamma X \)
 defined by the operators matrix:
 
-$$
+\[
 \frac{1}{N}
 \begin{pmatrix}
     0       & X_{12} \\
     -X_{21} & 0
 \end{pmatrix}
-$$
+\]
 
-$$\Gamma X = \frac{1}{N} (P_1 X P_2 - P_2 X P_1)$$
+\[\Gamma X = \frac{1}{N} (P_1 X P_2 - P_2 X P_1)\]
 
-Now we need to find such $X$ that
+Now we need to find such \( X \) that
 \begin{equation}\label{eq:similarity1}
     (A - B)(I + \Gamma X) - (I + \Gamma X)(A - JX) = 0
 \end{equation}
 
-$$\begin{aligned}
+\[\begin{aligned}
     & (A - B)(I + \Gamma X) - (I + \Gamma X)(A - JX) = \\
     & = A - B + A\Gamma X - B\Gamma X - A + JX - (\Gamma X) A + (\Gamma X) JX = \\
     & = X - B - B\Gamma X + (\Gamma X) JX = 0
-\end{aligned}$$
+\end{aligned}\]
 \begin{equation}\label{eq:similarity2}
     X = B + B\Gamma X - (\Gamma X) JX
 \end{equation}
 
-Applying $J$ to both sides of the last equation we get
-$$\eqref{eq:similarity2} \implies
-JX = JB + J(B\Gamma X)$$
+Applying \( J \) to both sides of the last equation we get
+\[\eqref{eq:similarity2} \implies
+JX = JB + J(B\Gamma X)\]
 
-And substituting this expression for $JX$ back into \eqref{eq:similarity2}:
+And substituting this expression for \( JX \) back into \eqref{eq:similarity2}:
 
 \begin{equation}\label{eq:similarity}
     X = \Phi(X) \eqdef B - (\Gamma X) JB + B\Gamma X - (\Gamma X) J(B\Gamma X)
@@ -379,26 +379,26 @@ And substituting this expression for $JX$ back into \eqref{eq:similarity2}:
 This is the equation we'll be working with
 
 \subsection{Solution of nonlinear equation}
-$\Phi:\mathfrak U\to\mathfrak U$ is a (second order) nonlinear operator.
+\( \Phi:\mathfrak U\to\mathfrak U \) is a (second order) nonlinear operator.
 We'll solve equation \eqref{eq:similarity}
-by showing that $\Phi$ is a contraction in some ball $\{ X\in \mathfrak U; \norm{X} \leq \varepsilon \}$ ($\varepsilon>0$)
+by showing that \( \Phi \) is a contraction in some ball \( \{ X\in \mathfrak U; \norm{X} \leq \varepsilon \} \) (\( \varepsilon>0 \))
 and applying fix-point theorem.
 
-Let $B_0, T$ be an operator defined by the original perturbation matrix $\perturbmatrix{N}{M}$
-and transformation operator defined by matrix $\mathcal T$ respectively.
+Let \( B_0, T \) be an operator defined by the original perturbation matrix \( \perturbmatrix{N}{M} \)
+and transformation operator defined by matrix \( \mathcal T \) respectively.
 
-Let $\normex{2}{.}$ denote the norm in $\matr{N}{\RR}$ given by
-$$\normex{2}{\mathcal Y} = \sqrt{\sum_{i,j=1}^N y_{ij}^2} \quad\text{ for every } \mathcal Y = \left(y_{ij}\right) \in \matr{N}{\RR}$$
+Let \( \normex{2}{.} \) denote the norm in \( \matr{N}{\RR} \) given by
+\[\normex{2}{\mathcal Y} = \sqrt{\sum_{i,j=1}^N y_{ij}^2} \quad\text{ for every } \mathcal Y = \left(y_{ij}\right) \in \matr{N}{\RR}\]
 \begin{lemma}
-    $$\norm T = \norm{T^{-1}} = \norm J = \norm{P_1} = \norm{P_2} = 1$$
-    $$\normex{2}{\perturbmatrix{N}{M}} = \sqrt{M} \leq N$$
-    $$\norm B = \norm{B_0} \leq M$$
-    $$\norm{\Gamma} = \frac{1}{N}$$
+    \[\norm T = \norm{T^{-1}} = \norm J = \norm{P_1} = \norm{P_2} = 1\]
+    \[\normex{2}{\perturbmatrix{N}{M}} = \sqrt{M} \leq N\]
+    \[\norm B = \norm{B_0} \leq M\]
+    \[\norm{\Gamma} = \frac{1}{N}\]
 \end{lemma}
 \begin{proof}
-    $T$ is unitary, $J, P_1, P_2$ are projections, and their norms are equal 1.
-    Operator $B_0$ is defined by matrix $\perturbmatrix{N}{M} = \left(b_{ij}\right), b_{ij}\in\{0,1\}$,
-    so if $\norm x = 1$
+    \( T \) is unitary, \( J, P_1, P_2 \) are projections, and their norms are equal 1.
+    Operator \( B_0 \) is defined by matrix \( \perturbmatrix{N}{M} = \left(b_{ij}\right), b_{ij}\in\{0,1\} \),
+    so if \( \norm x = 1 \)
     \[
         \begin{split}
             \norm{B_0 x} &= \norm{\sum_{i=0}^N \left(\sum_{j=0}^N b_{ij} x_j\right) e_i}
@@ -407,19 +407,19 @@ $$\normex{2}{\mathcal Y} = \sqrt{\sum_{i,j=1}^N y_{ij}^2} \quad\text{ for every 
             \leq \sqrt{\sum_{ij} b_{ij}^2} \eqdef \sqrt M
         \end{split}
     \]
-The number $M$ of unities in $\perturbmatrix{N}{M}$ is less than $N^2$ by construction.
-$$\norm B = \norm{T^{-1} B_0 T} \underbrace{=}_{T \text{ is isometric}} \norm{B_0} \leq \sqrt M$$
-    Finally, if $\norm X = 1$, $\norm x = 1$
-    $$\norm{\Gamma X x} = \frac1N \norm{\begin{pmatrix}X_{12}x_2 \\ -X_{21}x_1\end{pmatrix}} = \frac1N$$
-    so $\norm\Gamma = \frac1N$
+The number \( M \) of unities in \( \perturbmatrix{N}{M} \) is less than \( N^2 \) by construction.
+\[\norm B = \norm{T^{-1} B_0 T} \underbrace{=}_{T \text{ is isometric}} \norm{B_0} \leq \sqrt M\]
+    Finally, if \( \norm X = 1 \), \( \norm x = 1 \)
+    \[\norm{\Gamma X x} = \frac1N \norm{\begin{pmatrix}X_{12}x_2 \\ -X_{21}x_1\end{pmatrix}} = \frac1N\]
+    so \( \norm\Gamma = \frac1N \)
 \end{proof}
 
-First we show that there is a ball in $\mathfrak U$ centered at $0$
-which is mapped by $\Phi$ into itself.
+First we show that there is a ball in \( \mathfrak U \) centered at \( 0 \)
+which is mapped by \( \Phi \) into itself.
 
-To show that there is such a ball centered at $0$ that is mapped into itself
-means to show that there is such $r>0$ that
-$$\norm{\Phi(X)} \leq r \text{ whenever } \norm{X}\leq r$$
+To show that there is such a ball centered at \( 0 \) that is mapped into itself
+means to show that there is such \( r>0 \) that
+\[\norm{\Phi(X)} \leq r \text{ whenever } \norm{X}\leq r\]
 
     \begin{align*}
         \norm{\Phi(X)} &=    \norm{B + B\Gamma X - (\Gamma X) JB - (\Gamma X)J(B\Gamma X)} \\
@@ -434,8 +434,8 @@ $$\norm{\Phi(X)} \leq r \text{ whenever } \norm{X}\leq r$$
             \quad \text{ for every } \gamma\geq\norm{\Gamma}, \beta\geq\norm{B}, r\geq\norm{X}
     \end{equation}
 
-    It would show that $\Phi$ maps ball of radius $r$ into itself
-    if we found such $\gamma\geq\norm{\Gamma}, \beta\geq\norm{B}, r>0$
+    It would show that \( \Phi \) maps ball of radius \( r \) into itself
+    if we found such \( \gamma\geq\norm{\Gamma}, \beta\geq\norm{B}, r>0 \)
     that
 \begin{equation}\label{eq:phi_endo0}
     \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0
@@ -447,42 +447,42 @@ This equation has real solutions if
 \end{equation}
 
 We can use these three inequalities \eqref{eq:phi_norm_b1} \eqref{eq:phi_endo0} \eqref{eq:phi_endo1}
-for retrieving different convergence conditions based on different bounds for norms of $B$.
+for retrieving different convergence conditions based on different bounds for norms of \( B \).
 For now we'll use rough estimates from the last lemma.
 
 \begin{propose}
-    If $r$ lies between the two roots of \eqref{eq:phi_endo0}
-    then $\Phi$ maps the ball centered at $0$ of radia $r$ to itself.
+    If \( r \) lies between the two roots of \eqref{eq:phi_endo0}
+    then \( \Phi \) maps the ball centered at \( 0 \) of radia \( r \) to itself.
 
     The smallest positive root of \eqref{eq:phi_endo0} is
     \begin{equation}\label{eq:endo_r0}
         r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta} > 0
     \end{equation}
 
-    $r>1$, unless $M=0$.
+    \( r>1 \), unless \( M=0 \).
 \end{propose}
 \begin{TRIVIA}
-    $r$ is positive:
-    $$\underbrace{1-2\gamma\beta}_{\geq\frac12} > \underbrace{\sqrt{1-4\gamma\beta}}_{\geq0}$$
-    $$\iff 4\gamma^2\beta^2 > 0 \quad\text{ which is true }$$
-    And $r>1$ since the following statements are equivalent:
-    $$1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} \geq 2 \gamma^2 \beta$$
-    $$1 - 2\gamma\beta(1 +  \gamma) \geq \sqrt{1-4\gamma\beta}$$
-    $$\beta(1+\gamma)^2>1 \quad\text{ which is true}$$
+    \( r \) is positive:
+    \[\underbrace{1-2\gamma\beta}_{\geq\frac12} > \underbrace{\sqrt{1-4\gamma\beta}}_{\geq0}\]
+    \[\iff 4\gamma^2\beta^2 > 0 \quad\text{ which is true }\]
+    And \( r>1 \) since the following statements are equivalent:
+    \[1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} \geq 2 \gamma^2 \beta\]
+    \[1 - 2\gamma\beta(1 +  \gamma) \geq \sqrt{1-4\gamma\beta}\]
+    \[\beta(1+\gamma)^2>1 \quad\text{ which is true}\]
 \end{TRIVIA}
 
 The bottom line is
 \begin{thm}\label{thm:endo}
     If
-    $$\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B$$
-    $$r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}$$
-    $$\Omega = \{ X\in\mathfrak U; \norm X \leq r \}$$
+    \[\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
+    \[r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
+    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r \}\]
     Then
-    $\Phi$ maps the ball $\Omega$ into itself:
-    $$\Phi(\Omega)\subset\Omega$$
+    \( \Phi \) maps the ball \( \Omega \) into itself:
+    \[\Phi(\Omega)\subset\Omega\]
 \end{thm}
 
-If we choose $\gamma=\frac{1}{N}, \beta=\sqrt{M}$ we immediately get the following
+If we choose \( \gamma=\frac{1}{N}, \beta=\sqrt{M} \) we immediately get the following
 \begin{corollary}\label{thm:endo_nm}
     Let
     \begin{equation}\label{eq:phi_endo_nm_condition}
@@ -496,11 +496,11 @@ If we choose $\gamma=\frac{1}{N}, \beta=\sqrt{M}$ we immediately get the followi
     \end{equation}
 
     Then
-    $\Phi$ maps the ball $\{ X\in\mathfrak U; \norm X \leq r \}$ into itself
+    \( \Phi \) maps the ball \( \{ X\in\mathfrak U; \norm X \leq r \} \) into itself
 \end{corollary}
 
-Next step is to show that $\Phi$ is a contraction in $\Omega$.
-Let $\norm X, \norm Y \leq r$, $\norm{X+Y} \leq 2r$ and also $\gamma\geq\norm\Gamma$, $\beta\geq\norm B$.
+Next step is to show that \( \Phi \) is a contraction in \( \Omega \).
+Let \( \norm X, \norm Y \leq r \), \( \norm{X+Y} \leq 2r \) and also \( \gamma\geq\norm\Gamma \), \( \beta\geq\norm B \).
 
 \begin{align*}
     \norm{\Phi(X) - \Phi(Y)}
@@ -514,24 +514,24 @@ Since
     &(\Gamma X - \Gamma Y)(P_jB(\Gamma X)P_j + P_jB(\Gamma Y)P_j) + \\
     + &(\Gamma X + \Gamma Y)(P_jB(\Gamma X)P_j - P_jB(\Gamma Y)P_j) = \\
 = &2((\Gamma X)P_jB(\Gamma X)P_j- YP_jB(\Gamma Y)P_j)\end{align*}
-$$(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)
-= \frac12\left[\Gamma(X-Y)J(B\Gamma(X+Y)) + \Gamma(X+Y)J(B\Gamma(X-Y))\right]$$
+\[(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)
+= \frac12\left[\Gamma(X-Y)J(B\Gamma(X+Y)) + \Gamma(X+Y)J(B\Gamma(X-Y))\right]\]
 \begin{align*}
     \norm{(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)}
     &= \frac12\norm{\left[\Gamma(X-Y)J(B\Gamma(X+Y)) + \Gamma(X+Y)J(B\Gamma(X-Y))\right]}\leq \\
     &\leq \gamma^2\beta r \norm{X-Y}
 \end{align*}
-$$\norm{\Phi(X) - \Phi(Y)} \leq (\gamma\beta(\gamma r + 2)\norm{X-Y}$$
-for every $\norm X, \norm Y \leq r$ and $\gamma\geq\norm\Gamma, \beta\geq\norm B$.
+\[\norm{\Phi(X) - \Phi(Y)} \leq (\gamma\beta(\gamma r + 2)\norm{X-Y}\]
+for every \( \norm X, \norm Y \leq r \) and \( \gamma\geq\norm\Gamma, \beta\geq\norm B \).
 
-$\Phi$ will be a contraction in $\Omega$ if $\gamma\beta(\gamma r + 2) < 1$, i.e.:
-$$r < \frac{1-2\gamma\beta}{\gamma^2\beta}$$
+\( \Phi \) will be a contraction in \( \Omega \) if \( \gamma\beta(\gamma r + 2) < 1 \), i.e.:
+\[r < \frac{1-2\gamma\beta}{\gamma^2\beta}\]
 This inequality holds.
 \begin{TRIVIA}
     \begin{proof}
-        $$\frac{1-2\gamma\beta-\sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < \frac{1-2\gamma\beta}{\gamma^2\beta}$$
-        $$1-2\gamma\beta-\sqrt{1-4\gamma\beta} < 1+1-4\gamma\beta$$
-        $$-2\gamma\beta<\sqrt{1-4\gamma\beta}\left(1+\sqrt{1-4\gamma\beta}\right)$$
+        \[\frac{1-2\gamma\beta-\sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < \frac{1-2\gamma\beta}{\gamma^2\beta}\]
+        \[1-2\gamma\beta-\sqrt{1-4\gamma\beta} < 1+1-4\gamma\beta\]
+        \[-2\gamma\beta<\sqrt{1-4\gamma\beta}\left(1+\sqrt{1-4\gamma\beta}\right)\]
         which is true
     \end{proof}
 \end{TRIVIA}
@@ -539,35 +539,35 @@ This inequality holds.
 We just proved
 \begin{thm}
     If
-    $$\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B$$
-    $$r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}$$
-    $$\Omega = \{ X\in\mathfrak U; \norm X \leq r \}$$
+    \[\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
+    \[r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
+    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r \}\]
 
     Then
-    $\Phi|_{\Omega}:\Omega\to\Omega$ is a contraction on a closed subset $\Omega$ of a banach space $\mathfrak U$.
+    \( \Phi|_{\Omega}:\Omega\to\Omega \) is a contraction on a closed subset \( \Omega \) of a banach space \( \mathfrak U \).
     And there exist unique solution of \eqref{eq:similarity}.
-    Specifically, there is a single operator $X_0\in\mathfrak U$, $\norm{X_0} \leq r$,
-    for which operators $A-B$ and $A-JX_0$ are similar.
-    $X_0$ can be found as a limit of a convergent sequence
-    $$\{X_k\in\Omega; k\in\NN\}, \quad X_1 = 0, X_k = \Phi(X)_{k-1} \text{ for } k>1$$
+    Specifically, there is a single operator \( X_0\in\mathfrak U \), \( \norm{X_0} \leq r \),
+    for which operators \( A-B \) and \( A-JX_0 \) are similar.
+    \( X_0 \) can be found as a limit of a convergent sequence
+    \[\{X_k\in\Omega; k\in\NN\}, \quad X_1 = 0, X_k = \Phi(X)_{k-1} \text{ for } k>1\]
 \end{thm}
 
 \begin{corollary}
-    Let the number $M$ of unities in perturbation matrix $\perturbmatrix{N}{M}$
-    satisfy the equation \eqref{eq:phi_endo1}: $M \leq \frac{1}{16} N^2$.
+    Let the number \( M \) of unities in perturbation matrix \( \perturbmatrix{N}{M} \)
+    satisfy the equation \eqref{eq:phi_endo1}: \( M \leq \frac{1}{16} N^2 \).
     And let
     \[ r = \frac12 N
         \left(
         \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
         \right) \]
 
-    Then there exist unique operator $X_0$, $\norm{X_0} \leq r$ such that $A - B$ and $A - J X_0$ are similar
+    Then there exist unique operator \( X_0 \), \( \norm{X_0} \leq r \) such that \( A - B \) and \( A - J X_0 \) are similar
     and have the same spectra
 \end{corollary}
 
 \subsection{Eigenvalues estimation}
-Projections $P_1, P_2$ break operator $X_0$ up into $X_{ij}\in\mathfrak U_{ij}, i,j=\overline{1,2}$.
-$X_{11} = x_{11} I_{\mathcal X_1}$.
+Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfrak U_{ij}, i,j=\overline{1,2} \).
+\( X_{11} = x_{11} I_{\mathcal X_1} \).
 
 \[
     A-JX_0 \sim
@@ -582,22 +582,22 @@ $X_{11} = x_{11} I_{\mathcal X_1}$.
 
 Immediate conclusion is
 \begin{lemma}
-    At least a single eigenvalue of $A-JX_0$ lies in the interval $\left[N-r,N+r\right]$
-    and the rest of the spectra is contained in $\left[-r,r\right]$
+    At least a single eigenvalue of \( A-JX_0 \) lies in the interval \( \left[N-r,N+r\right] \)
+    and the rest of the spectra is contained in \( \left[-r,r\right] \)
 \end{lemma}
 
 %\begin{thm}
-%    Let $\almostallones{N}{M}$ be a matrix of dimension $N>0$ consisting of zeroes and ones,
-%    and let $\tilde M$ be the number of zeroes in $\almostallones{N}{M}$.
+%    Let \( \almostallones{N}{M} \) be a matrix of dimension \( N>0 \) consisting of zeroes and ones,
+%    and let \( \tilde M \) be the number of zeroes in \( \almostallones{N}{M} \).
 %    And let
-%    $$\tilde M < \frac{1}{16} N^2$$
+%    \[\tilde M < \frac{1}{16} N^2\]
 %
 %    Then 
 %\end{thm}
 
 \section{Future work}
 This article gives bounds for eigenvalues expressed in terms of the dimension of the matrix and the number of unities in perturbation.
-It gives also recursive formula which allows for computation of diagonalizing transformation matrix for $\allones{N}$
+It gives also recursive formula which allows for computation of diagonalizing transformation matrix for \( \allones{N} \)
 which makes it possible to refine the bounds (for the norm of the perturbation matrix and thus for convergence radius)
 for any specific matrix by applying straightforward generic algorithm (TODO: stability of numerical method?).
 \end{document}
