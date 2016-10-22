@@ -5,6 +5,9 @@
 \usepackage{../fa-style}
 % \usepackage[utf8]{inputenc}
 
+% include proofs of trivial facts
+% see TRIVIA environment in fa-style.sty
+\def\TRIVIAPROOFS{}{}
 
 \title{Spectra of rank-1 operators. All-ones matrix and its perturbations}
 \date{October 18, 2016}
@@ -453,9 +456,20 @@ For now we'll use rough estimates from the last lemma.
 
     The smallest positive root of \eqref{eq:phi_endo0} is
     \begin{equation}\label{eq:endo_r0}
-        r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}
+        r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta} > 0
     \end{equation}
+
+    $r>1$, unless $M=0$.
 \end{propose}
+\begin{TRIVIA}
+    $r$ is positive:
+    $$\underbrace{1-2\gamma\beta}_{\geq\frac12} > \underbrace{\sqrt{1-4\gamma\beta}}_{\geq0}$$
+    $$\iff 4\gamma^2\beta^2 > 0 \quad\text{ which is true }$$
+    And $r>1$ since the following statements are equivalent:
+    $$1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} \geq 2 \gamma^2 \beta$$
+    $$1 - 2\gamma\beta(1 +  \gamma) \geq \sqrt{1-4\gamma\beta}$$
+    $$\beta(1+\gamma)^2>1 \quad\text{ which is true}$$
+\end{TRIVIA}
 
 The bottom line is
 \begin{thm}\label{thm:endo}
@@ -513,6 +527,14 @@ for every $\norm X, \norm Y \leq r$ and $\gamma\geq\norm\Gamma, \beta\geq\norm B
 $\Phi$ will be a contraction in $\Omega$ if $\gamma\beta(\gamma r + 2) < 1$, i.e.:
 $$r < \frac{1-2\gamma\beta}{\gamma^2\beta}$$
 This inequality holds.
+\begin{TRIVIA}
+    \begin{proof}
+        $$\frac{1-2\gamma\beta-\sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < \frac{1-2\gamma\beta}{\gamma^2\beta}$$
+        $$1-2\gamma\beta-\sqrt{1-4\gamma\beta} < 1+1-4\gamma\beta$$
+        $$-2\gamma\beta<\sqrt{1-4\gamma\beta}\left(1+\sqrt{1-4\gamma\beta}\right)$$
+        which is true
+    \end{proof}
+\end{TRIVIA}
 
 We just proved
 \begin{thm}
@@ -523,7 +545,7 @@ We just proved
 
     Then
     $\Phi|_{\Omega}:\Omega\to\Omega$ is a contraction on a closed subset $\Omega$ of a banach space $\mathfrak U$.
-    And there exist the unique solution of \eqref{eq:similarity}.
+    And there exist unique solution of \eqref{eq:similarity}.
     Specifically, there is a single operator $X_0\in\mathfrak U$, $\norm{X_0} \leq r$,
     for which operators $A-B$ and $A-JX_0$ are similar.
     $X_0$ can be found as a limit of a convergent sequence
