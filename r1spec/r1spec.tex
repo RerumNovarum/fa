@@ -585,7 +585,7 @@ And automatically
         \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
         \right) \]
 
-    Then there exist unique operator \( X_0 \), \( \norm{X_0} \leq r \) such that \( A - B \) and \( A - J X_0 \) are similar
+    Then there exist unique operator \( X_0 \), \( \norm{X_0} \leq r \), such that \( A - B \) and \( A - J X_0 \) are similar
     and have the same spectra
 \end{thm}
 
@@ -633,9 +633,82 @@ Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfra
     Then $r>0$ and at least one eigenvalue \( \lambda_0 \) of \( \almostallones{N}{M} \) lies in the interval \(\left[N-r,N+r\right]\)
 	and the rest of the spectra is contained in the interval \( \left[-r,r\right] \)
 
-    \[ \lambda_0 \in \left[N-r, N+r\right] \cap \spec{\almostallones{N}{M}} \]
-    \[ \spec{\almostallones{N}{M}} \backslash \left\{\lambda_0\right\} \subset \left[-r,r\right] \]
+    \[ \left|\lambda_0 - N\right| \leq r \]
+    \[ \left|\lambda\right| \leq r \quad \text{ for } \lambda\in\spec{\almostallones{N}{M}}\backslash\{\lambda_0\} \]
 \end{thm}
+
+\section{Splitting the operator}
+Consider again the equation \( \Phi(X) = X \).
+Operator \( \Phi(X) \) can be written as an operators matrix:
+
+\[
+    \Phi X \sim
+    \begin{pmatrix}
+        \Phi_{11}(X) & \Phi_{12}(X) \\
+        \Phi_{21}(X) & \Phi_{22}(X)
+    \end{pmatrix}
+\]
+\begin{subequations}
+    \begin{align}
+        \label{eq:split11}
+        & \Phi_{11}(X) = \Psi_{11}(X_{21}) = -\frac1N B_{12}X_{21} + B_{11} \\
+        \label{eq:split12}
+        & \Phi_{12}(X) = \Psi_{12}(X_{12}) = \frac{1}{N^2} X_{12}B_{21}X_{12} -
+                                   \frac1N\left(X_{12}B_{22} +
+                                   B_{11}X_{12}\right) + B_{12} \\
+        \label{eq:split21}
+        & \Phi_{21}(X) = \Psi_{21}(X_{21}) = -\frac{1}{N^2} X_{21}B_{12}X_{21} -
+                                   \frac1N\left(X_{21}B_{11} +
+                                   B_{22}X_{21}\right) +
+                                   B_{21} \\
+        \label{eq:split22}
+        & \Phi_{22}(X) = \Psi_{22}(X_{12}) = \frac1N B_{21}X_{12} + B_{22}
+    \end{align}
+\end{subequations}
+
+From these equalities it is clear that if we only had
+\( {\Psi_{12}(X_{12}^o) = X_{12}^o} \),
+\( {\Psi_{21}(X_{21}^o) = X_{21}^o} \),
+then it would give us \( X_{11}^o, X_{22}^o \), such that
+\( \Phi(X^o) = X^o \) for
+\( X^o \sim
+\left(\begin{smallmatrix}
+    X_{11}^o & X_{12}^o \\
+    X_{21}^o & X_{22}^o
+\end{smallmatrix}\right) \).
+Let's see if we can refine our results using this fact.
+
+It is easily shown
+that \eqref{eq:split12}, \eqref{eq:split21}
+each have unique stationary points \( X_{12}^o, X_{21}^o \)
+in corresponding \( 0 \)-centered balls.
+These solutions are given by Banach' fix-point theorem.
+
+These separated equations have the same convergence conditions
+and soltuions' norms bounds as equation \( \Phi(X)=X \) from previous sections.
+
+\[ \norm{\Psi_{12}(X_{12})} \leq
+    \frac{1}{N^2}\beta\norm{X_{12}}^2 + \frac2N \beta\norm{X_{12}} + \beta \]
+\[ \frac{1}{N^2}\beta r^2 + \frac{2\beta - N}{N} r + \beta \leq 0 \]
+\[
+    \Delta = 1 - \frac{4\beta}{N} \geq 0
+    \text{ iff }
+    \beta \leq \frac14 N
+\]
+\[
+    r_0 = \frac{N^2}{\beta}
+          \left(
+                \frac{N-2\beta}{N} - \sqrt{1 - \frac{4\beta}{N}}
+          \right)
+    \]
+
+At the same time we can derive new estimates for
+\( \norm{X_{11}^o}, \norm{X_{22}^o} \)
+(which are of particular interest, since they define the spectra)
+
+\[ \norm{X_{11}^o}, \norm{X_{22}^o} \leq \frac{\beta}{N}(r_0 + 1) \]
+
+
 
 \section{Future work}
 This article gives bounds for eigenvalues expressed in terms of the dimension of the matrix and the number of unities in perturbation.
