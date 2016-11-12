@@ -573,9 +573,9 @@ We just proved
     Then
     \( \Phi|_{\Omega}:\Omega\to\Omega \) is a contraction on a closed subset \( \Omega \) of a Banach space \( \mathfrak U \).
     And there exist unique solution of \eqref{eq:similarity}.
-    Specifically, there is a single operator \( X_0\in\mathfrak U \), \( \norm{X_0} \leq r \),
-    for which operators \( A-B \) and \( A-JX_0 \) are similar.
-    \( X_0 \) can be found as a limit of a convergent sequence
+    Specifically, there is a single operator \( X^o\in\mathfrak U \), \( \norm{X^o} \leq r \),
+    for which operators \( A-B \) and \( A-JX^o \) are similar.
+    \( X^o \) can be found as a limit of a convergent sequence
     \[\{X_k\in\Omega; k\in\NN\}, \quad X_1 = 0, X_k = \Phi(X)_{k-1} \text{ for } k>1\]
 \end{lemma}
 And automatically
@@ -588,32 +588,33 @@ And automatically
         \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
         \right) \]
 
-    Then there exist unique operator \( X_0 \), \( \norm{X_0} \leq r \), such that \( A - B \) and \( A - J X_0 \) are similar
+    Then there exist unique operator \( X^o \), \( \norm{X^o} \leq r \), such that \( A - B \) and \( A - J X^o \) are similar
     and have the same spectra
 \end{thm}
 
 \subsection{Eigenvalues estimation}
-Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfrak U_{ij}, i,j=\overline{1,2} \).
-\( X_{11} = x_{11} I_{\mathcal X_1} \).
+Projections \( P_1, P_2 \) break operator \( X^o \) up
+into \( X_{ij}^o\in\mathfrak U_{ij}, i,j=\overline{1,2} \).
+\( X_{11}^o = x_{11}^o I_{\mathcal X_1} \).
 
 \[
-    A-JX_0 \sim
+    A-JX^o \sim
     \left(
 \begin{array}{c|c}
-    N-x_{11} & 0 \\
+    N-x_{11}^o & 0 \\
     \hline
-    0        & -X_{22}
+    0        & -X_{22}^o
 \end{array}
 \right)
 \]
 
 \begin{propose}
-    \[ \spec{\almostallones{M}{N}}  = \left\{N - x_{11}\right\} \cup \spec{-X_{22}} \]
-    \[ \max_{\lambda\in\spec{-X_{22}}} \left|\lambda\right| \leq r \]
+    \[ \spec{\almostallones{M}{N}}  = \left\{N - x_{11}^o\right\} \cup \spec{-X_{22}^o} \]
+    \[ \max_{\lambda\in\spec{-X_{22}^o}} \left|\lambda\right| \leq r \]
 \end{propose}
 \begin{proof}
-    \[ \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A-JX_0} = \{N - x_{11}\} \cup \spec{-X_{22}} \]
-    \[ \max_{\lambda\in\spec{-X_{22}}} \left|\lambda\right| = \spr{-X_{22}} \leq \norm{-X_{22}} \leq \norm{X_0} \leq r \]
+    \[ \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A-JX^o} = \{N - x_{11}^o\} \cup \spec{-X_{22}^o} \]
+    \[ \max_{\lambda\in\spec{-X_{22}^o}} \left|\lambda\right| = \spr{-X_{22}^o} \leq \norm{-X_{22}^o} \leq \norm{X^o} \leq r \]
 \end{proof}
 
 \begin{lemma}
