@@ -27,6 +27,10 @@ and the rest are zeroes.
 Though simple and naive, this example goes through main steps of the general schema
 and forms the ground for future research.
 
+The practical value of this paper consists for example
+in possible applications in graph theory, where "almost all ones" matrix
+would correspond to a complete multigraph with some edges removed.
+
 \section{Intro. Operator representation}
 Let \( A: \mathscr X\to\mathscr X \) be a linear operator of the rank 1
 (\( \rank A = \dim\img A = 1 \)).
@@ -480,20 +484,20 @@ For now we'll use rough estimates from the last lemma.
 
 \begin{lemma}
     If \( r \) lies between the two roots of \eqref{eq:phi_endo0}
-    then \( \Phi \) maps the ball centered at \( 0 \) of radia \( r \) to itself.
+    then \( \Phi \) maps the ball centered at \( 0 \) of radia \( r \) into itself.
 
     The smallest positive root of \eqref{eq:phi_endo0} is
     \begin{equation}\label{eq:endo_r0}
-        r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta} > 0
+        r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta} > 0
     \end{equation}
 
-    \( r>1 \), unless \( M=0 \).
+    \( r_0>1 \), unless \( M=0 \).
 \end{lemma}
 \begin{proof}
-    \( r \) is positive:
+    \( r_0 \) is positive:
     \[\underbrace{1-2\gamma\beta}_{\geq\frac12} > \underbrace{\sqrt{1-4\gamma\beta}}_{\geq0}\]
     \[\iff 4\gamma^2\beta^2 > 0 \quad\text{ which is true }\]
-    And \( r>1 \) since the following statements are equivalent:
+    And \( r_0>1 \) since the following statements are equivalent:
     \[1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} \geq 2 \gamma^2 \beta\]
     \[1 - 2\gamma\beta(1 +  \gamma) \geq \sqrt{1-4\gamma\beta}\]
     \[\beta(1+\gamma)^2>1 \quad\text{ which is true}\]
@@ -503,8 +507,8 @@ The bottom line is
 \begin{lemma}\label{thm:endo}
     If
     \[\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
-    \[r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
-    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r \}\]
+    \[r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
+    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r_0 \}\]
     Then
     \[\Phi(\Omega)\subset\Omega\]
 \end{lemma}
@@ -516,15 +520,15 @@ If we choose \( \gamma=\frac{1}{N}, \beta=\sqrt{M} \) we immediately get the fol
         M \leq \frac{1}{16} N^2
     \end{equation}
     \begin{equation}\label{eq:phi_endo_nm_radia}
-        r = \frac12 N
+        r_0 = \frac12 N
         \left(
         \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
         \right)
     \end{equation}
-    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r \}\]
+    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r_0 \}\]
 
     Then
-    \( \Phi \) maps the ball \( \{ X\in\mathfrak U; \norm X \leq r \} \) into itself
+    \( \Phi \) maps the ball \( \{ X\in\mathfrak U; \norm X \leq r_0 \} \) into itself
     \[\Phi(\Omega)\subset\Omega\]
 \end{thm}
 
@@ -548,34 +552,36 @@ Since
 \begin{align*}
     \norm{(\Gamma X)J(B\Gamma X) - (\Gamma Y) J(B\Gamma Y)}
     &= \frac12\norm{\left[\Gamma(X-Y)J(B\Gamma(X+Y)) + \Gamma(X+Y)J(B\Gamma(X-Y))\right]}\leq \\
-    &\leq \gamma^2\beta r \norm{X-Y}
+    &\leq 2\gamma^2\beta r_0 \norm{X-Y}
 \end{align*}
-\[\norm{\Phi(X) - \Phi(Y)} \leq (\gamma\beta(\gamma r + 2)\norm{X-Y}\]
+\[\norm{\Phi(X) - \Phi(Y)} \leq 2\gamma\beta(\gamma r_0 + 1)\norm{X-Y}\]
 for every \( \norm X, \norm Y \leq r \) and \( \gamma\geq\norm\Gamma, \beta\geq\norm B \).
 
-\( \Phi \) will be a contraction in \( \Omega \) if \( \gamma\beta(\gamma r + 2) < 1 \), i.e.:
-\[r < \frac{1-2\gamma\beta}{\gamma^2\beta}\]
-This inequality holds.
-\begin{TRIVIA}
-        \[\frac{1-2\gamma\beta-\sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < \frac{1-2\gamma\beta}{\gamma^2\beta}\]
-        \[1-2\gamma\beta-\sqrt{1-4\gamma\beta} < 1+1-4\gamma\beta\]
-        \[-2\gamma\beta<\sqrt{1-4\gamma\beta}\left(1+\sqrt{1-4\gamma\beta}\right)\]
-        which is true
-\end{TRIVIA}
+\( \Phi \) will be a contraction on \( \Omega \) if \( 2\gamma\beta(\gamma r_0 + 1) < 1 \), i.e.:
+\[r_0 < \frac{1-2\gamma\beta}{2\gamma^2\beta}\]
+This inequality holds if \( 4\gamma\beta < 1 \) (note strict inequality).
+% \begin{TRIVIA}
+%         \[\frac{1-2\gamma\beta-\sqrt{1-4\gamma\beta}}{2\gamma^2\beta}
+%             < \frac{1-2\gamma\beta}{2\gamma^2\beta}\]
+%         \[1-2\gamma\beta-\sqrt{1-4\gamma\beta} < 1+1-4\gamma\beta\]
+% %OLD:  \[-\gamma\beta<\sqrt{1-4\gamma\beta}\left(1+\sqrt{1-4\gamma\beta}\right)\]
+%         which is true
+% \end{TRIVIA}
 
 We just proved
 \begin{lemma}
     If
-    \[\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
-    \[r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
-    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r \}\]
+    \[\gamma\beta<\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
+    \[r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
+    \[\Omega = \{ X\in\mathfrak U; \norm X \leq r_0 \}\]
 
     Then
-    \( \Phi|_{\Omega}:\Omega\to\Omega \) is a contraction on a closed subset \( \Omega \) of a Banach space \( \mathfrak U \).
+    \( \Phi|_{\Omega}:\Omega\to\Omega \) is a contraction
+    on a closed subset \( \Omega \) of a Banach space \( \mathfrak U \).
     And there exist unique solution of \eqref{eq:similarity}.
-    Specifically, there is a single operator \( X^o\in\mathfrak U \), \( \norm{X^o} \leq r \),
+    Specifically, there is a single operator \( X^o\in\mathfrak U \), \( \norm{X^o} \leq r_0 \),
     for which operators \( A-B \) and \( A-JX^o \) are similar.
-    \( X^o \) can be found as a limit of a convergent sequence \( \{ \Phi^k(0) \} \) i.e.:
+    \( X^o \) can be found as the limit of convergent sequence \( \{ \Phi^k(0) \} \) i.e.:
     \[\{X_k\in\Omega; k\in\NN\}, \quad X_0 = 0, X_k = \Phi(X_{k-1}) \text{ for } k\in\NN\]
 \end{lemma}
 And automatically
@@ -583,12 +589,12 @@ And automatically
     Let the number \( M \) of unities in perturbation matrix \( \perturbmatrix{M}{N} \)
     satisfy the equation \eqref{eq:phi_endo1}: \( M \leq \frac{1}{16} N^2 \).
     And let
-    \[ r = \frac12 N
+    \[ r_0 = \frac12 N
         \left(
         \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
         \right) \]
 
-    Then there exist unique operator \( X^o \), \( \norm{X^o} \leq r \), such that \( A - B \) and \( A - J X^o \) are similar
+    Then there exist unique operator \( X^o \), \( \norm{X^o} \leq r_0 \), such that \( A - B \) and \( A - J X^o \) are similar
     and have the same spectra
 \end{thm}
 
@@ -619,7 +625,7 @@ into \( X_{ij}^o\in\mathfrak U_{ij}, i,j=\overline{1,2} \).
 
 \begin{lemma}
     If
-    \[\gamma\beta\leq\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
+    \[\gamma\beta<\frac14, \gamma\geq\norm\Gamma, \beta\geq\norm B\]
     \[r = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2 \gamma^2 \beta}\]
 
     Then $r>0$ and there is
@@ -628,8 +634,8 @@ into \( X_{ij}^o\in\mathfrak U_{ij}, i,j=\overline{1,2} \).
 	\[ \spec{A-B}\backslash\{\lambda_0\} \subset \left[-r,r\right] \]
 \end{lemma}
 \begin{thm}
-    Let \( \almostallones{M}{N} \) be a matrix of dimension \( N>0 \) consisting of zeroes and ones,
-    and let \( M \) be the number of zeroes in \( \almostallones{M}{N} \).
+    Let \( \almostallones{M}{N} \) be a matrix of dimension \( N>0 \)
+    consisting of \( M \) zeroes and \( N^2-M \)  ones.
     And let
     \[ M < \frac{1}{16} N^2 \]
     \[ r = \frac12 N
@@ -693,9 +699,14 @@ These solutions are given by Banach' fix-point theorem.
 
 These separated equations have the same convergence conditions
 and soltuions' norms bounds as equation \( \Phi(X)=X \) from previous sections.
+Let \( b_{ij} = \norm{B_{ij}} \)
+and \( \norm{X_{12}} \leq r \)
 
-\[ \norm{\Psi_{12}(X_{12})} \leq
-    \frac{1}{N^2}\beta\norm{X_{12}}^2 + \frac2N \beta\norm{X_{12}} + \beta \]
+\[\begin{aligned}
+    \norm{\Psi_{12}(X_{12})}
+    & \leq \frac1{N^2} b_{21}r^2 + \frac1N (b_{11}+b_{22}) r + b_{12} \leq \\
+    & \leq \frac{1}{N^2}\beta r^2 + \frac2N \beta r + \beta
+\end{aligned}\]
 \[ \frac{1}{N^2}\beta r^2 + \frac{2\beta - N}{N} r + \beta \leq 0 \]
 \[
     \Delta = 1 - \frac{4\beta}{N} \geq 0
@@ -703,26 +714,30 @@ and soltuions' norms bounds as equation \( \Phi(X)=X \) from previous sections.
     \beta \leq \frac14 N
 \]
 \[
-    r_0 = \frac{N^2}{\beta}
+    r_0 = \frac{N^2}{2\beta}
           \left(
                 \frac{N-2\beta}{N} - \sqrt{1 - \frac{4\beta}{N}}
           \right)
     \]
+For every \( X_{12}, Y_{12} \) in a ball of radia \( r_0 \)
+\[ \norm{\Psi_{12}(X_{12}) - \Psi_{12}(Y_{12})} \leq q \norm{X_{12}-Y_{12}} \]
+\[ q = \frac{2 b_{21} r_0}{N^2} + \frac{b_{11}+b_{22}}{N} \]
 
 At the same time we can derive new estimates for
 \( \norm{X_{11}^o}, \norm{X_{22}^o} \)
-(which define the spectra and are of particular interest)
+(which define the spectra and hence are of particular interest)
 
 \[ \norm{X_{11}^o}, \norm{X_{22}^o}
    \leq \frac{\beta}{N}(r_0 + 1)
    \leq \frac14 (r_0 + 1)\]
 
-
-
-
 \section{Future work}
-This article gives bounds for eigenvalues expressed in terms of the dimension of the matrix and the number of unities in perturbation.
-It gives also recursive formula which allows for computation of diagonalizing transformation matrix for \( \allones{N} \)
-which makes it possible to refine the bounds (for the norm of the perturbation matrix and thus for convergence radius)
-for any specific matrix by applying straightforward generic algorithm (TODO: stability of numerical method?).
+This article gives bounds for eigenvalues
+expressed in terms of the dimension of the matrix
+and the number of unities in perturbation.
+It gives also recursive formula which allows for computation
+of a diagonalizing transformation matrix for \( \allones{N} \)
+which makes it possible to refine the bounds
+given any specific matrix
+by applying straightforward generic algorithm.
 \end{document}
