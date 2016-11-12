@@ -721,7 +721,9 @@ and \( \norm{X_{12}} \leq r \)
     \]
 For every \( X_{12}, Y_{12} \) in a ball of radia \( r_0 \)
 \[ \norm{\Psi_{12}(X_{12}) - \Psi_{12}(Y_{12})} \leq q \norm{X_{12}-Y_{12}} \]
-\[ q = \frac{2 b_{21} r_0}{N^2} + \frac{b_{11}+b_{22}}{N} \]
+\begin{equation}\label{eq:convergencespeed}
+    q = \frac{2 b_{21} r_0}{N^2} + \frac{b_{11}+b_{22}}{N}
+\end{equation}
 
 At the same time we can derive new estimates for
 \( \norm{X_{11}^o}, \norm{X_{22}^o} \)
@@ -730,6 +732,14 @@ At the same time we can derive new estimates for
 \[ \norm{X_{11}^o}, \norm{X_{22}^o}
    \leq \frac{\beta}{N}(r_0 + 1)
    \leq \frac14 (r_0 + 1)\]
+
+\section{TODO: Further refinement}
+Note \( \Phi(0) = B \).
+We will show that \( X^o \) lies in some ball centered at \( B \).
+
+\[ \norm{X_{12}^o - \Psi_{12}^k(0)} \leq \frac{q^n}{1-q} \norm{B_{12}} \]
+where \( q \) is from \eqref{eq:convergencespeed}.
+(TODO)
 
 \section{Future work}
 This article gives bounds for eigenvalues
