@@ -607,10 +607,13 @@ Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfra
 \]
 
 \begin{propose}
+    \[ \spec{\almostallones{M}{N}}  = \left\{N - x_{11}\right\} \cup \spec{-X_{22}} \]
+    \[ \max_{\lambda\in\spec{-X_{22}}} \left|\lambda\right| \leq r \]
+\end{propose}
+\begin{proof}
     \[ \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A-JX_0} = \{N - x_{11}\} \cup \spec{-X_{22}} \]
     \[ \max_{\lambda\in\spec{-X_{22}}} \left|\lambda\right| = \spr{-X_{22}} \leq \norm{-X_{22}} \leq \norm{X_0} \leq r \]
-    \[ \spec{\almostallones{M}{N}} \subset \left[N-r, N+r\right] \cup \left[-r, r\right] \]
-\end{propose}
+\end{proof}
 
 \begin{lemma}
     If
