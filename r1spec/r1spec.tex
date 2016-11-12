@@ -225,19 +225,21 @@ That yields immediately
 
 
 \section{Almost-all-ones matrix}
-Let \( \almostallones{N}{M}\in\matr{N}{\RR} \), be a matrix comprised of zeroes and ones
-with a small (in some sense which is to be determined later) amount \( M<N^2 \) of zeroes.
-\( \almostallones{N}{M} \) can be represented as
+Let \( \almostallones{M}{N}\in\matr{N}{\RR} \), be a matrix of dimension \( N \)
+comprised of \( M \) zeroes and \( N^2 - M \) unities.
+And let \( M \) be small in some sense to be determined later.
+
+\( \almostallones{M}{N} \) can be represented as
 \[
-\almostallones{N}{M} = \allones{N} - \perturbmatrix{N}{M}
-\footnote{used notation is a bit messy, since neither \( \almostallones NM \) or \( \perturbmatrix NM \) can be determined solely by \( N \) and \( M \)}
+\almostallones{M}{N} = \allones{N} - \perturbmatrix{M}{N}
+\footnote{used notation is a bit messy, since neither \( \almostallones MN \) or \( \perturbmatrix MN \) can be determined solely by \( N \) and \( M \)}
 \]
 
-Where \( \perturbmatrix NM \) (hereafter called perturbation matrix) has unities exactly at these places, where \( \almostallones NM \) has zeroes.
+Where \( \perturbmatrix MN \) (hereafter called perturbation matrix) has unities exactly at these places, where \( \almostallones MN \) has zeroes.
 
-Consider the task of localization of the eigenvalues of \( \almostallones{N}{M} \).
+Consider the task of localization of the eigenvalues of \( \almostallones{M}{N} \).
 
-We'll deduce bounds for eigenvalues of \( \almostallones{N}{M} \)
+We'll deduce bounds for eigenvalues of \( \almostallones{M}{N} \)
 in terms of its two characteristics: the dimension \( N \) and number of zeroes \( M \).
 
 \subsection{Reduction to the method of similar operators}
@@ -246,7 +248,7 @@ in terms of its two characteristics: the dimension \( N \) and number of zeroes 
     Similar matrices have the same spectra
 \end{propose}
 
-It is clear that \( \almostallones{N}{M} \) is similar to the matrix \( \mathcal A - \mathcal B \) where
+It is clear that \( \almostallones{M}{N} \) is similar to the matrix \( \mathcal A - \mathcal B \) where
 \[\mathcal A = \transformmatrix{\mathcal T}{\allones{N}}
 = \begin{pmatrix}
     N &   &        & \\
@@ -254,7 +256,7 @@ It is clear that \( \almostallones{N}{M} \) is similar to the matrix \( \mathcal
       &   & \ddots & \\
       &   &        & 0
 \end{pmatrix}\]
-\[\mathcal B = \transformmatrix{\mathcal T}{\perturbmatrix{N}{M}}\]
+\[\mathcal B = \transformmatrix{\mathcal T}{\perturbmatrix{M}{N}}\]
 
 
 We're going to use the operators language (just for convenience and consistency with related papers).
@@ -409,20 +411,20 @@ We'll solve equation \eqref{eq:similarity}
 by showing that \( \Phi \) is a contraction in some ball \( \{ X\in \mathfrak U; \norm{X} \leq \varepsilon \} \) (\( \varepsilon>0 \))
 and applying fix-point theorem.
 
-Let \( B_0, T \) be an operator defined by the original perturbation matrix \( \perturbmatrix{N}{M} \)
+Let \( B_0, T \) be an operator defined by the original perturbation matrix \( \perturbmatrix{M}{N} \)
 and transformation operator defined by matrix \( \mathcal T \) respectively.
 
 Let \( \normex{2}{.} \) denote the norm in \( \matr{N}{\RR} \) given by
 \[\normex{2}{\mathcal Y} = \sqrt{\sum_{i,j=1}^N y_{ij}^2} \quad\text{ for every } \mathcal Y = \left(y_{ij}\right) \in \matr{N}{\RR}\]
 \begin{lemma}
     \[\norm T = \norm{T^{-1}} = \norm J = \norm{P_1} = \norm{P_2} = 1\]
-    \[\normex{2}{\perturbmatrix{N}{M}} = \sqrt{M} \leq N\]
+    \[\normex{2}{\perturbmatrix{M}{N}} = \sqrt{M} \leq N\]
     \[\norm B = \norm{B_0} \leq \sqrt M\]
     \[\norm{\Gamma} = \frac{1}{N}\]
 \end{lemma}
 \begin{proof}
     \( T \) is unitary, \( J, P_1, P_2 \) are projections, and their norms are equal 1.
-    Operator \( B_0 \) is defined by matrix \( \perturbmatrix{N}{M} = \left(b_{ij}\right), b_{ij}\in\{0,1\} \),
+    Operator \( B_0 \) is defined by matrix \( \perturbmatrix{M}{N} = \left(b_{ij}\right), b_{ij}\in\{0,1\} \),
     so if \( \norm x = 1 \)
     \[
         \begin{split}
@@ -432,7 +434,7 @@ Let \( \normex{2}{.} \) denote the norm in \( \matr{N}{\RR} \) given by
             \leq \sqrt{\sum_{ij} b_{ij}^2} \eqdef \sqrt M
         \end{split}
     \]
-The number \( M \) of unities in \( \perturbmatrix{N}{M} \) is less than \( N^2 \) by construction.
+The number \( M \) of unities in \( \perturbmatrix{M}{N} \) is less than \( N^2 \) by construction.
 \[\norm B = \norm{T^{-1} B_0 T} \underbrace{=}_{T \text{ is isometric}} \norm{B_0} \leq \sqrt M\]
     Finally, if \( \norm X = 1 \), \( \norm x = 1 \)
     \[\norm{\Gamma X x} = \frac1N \norm{\begin{pmatrix}X_{12}x_2 \\ -X_{21}x_1\end{pmatrix}} = \frac1N\]
@@ -577,7 +579,7 @@ We just proved
 \end{lemma}
 And automatically
 \begin{thm}
-    Let the number \( M \) of unities in perturbation matrix \( \perturbmatrix{N}{M} \)
+    Let the number \( M \) of unities in perturbation matrix \( \perturbmatrix{M}{N} \)
     satisfy the equation \eqref{eq:phi_endo1}: \( M \leq \frac{1}{16} N^2 \).
     And let
     \[ r = \frac12 N
@@ -605,9 +607,9 @@ Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfra
 \]
 
 \begin{propose}
-    \[ \spec{\almostallones{N}{M}} = \spec{A-B} = \spec{A-JX_0} = \{N - x_{11}\} \cup \spec{-X_{22}} \]
+    \[ \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A-JX_0} = \{N - x_{11}\} \cup \spec{-X_{22}} \]
     \[ \max_{\lambda\in\spec{-X_{22}}} \left|\lambda\right| = \spr{-X_{22}} \leq \norm{-X_{22}} \leq \norm{X_0} \leq r \]
-    \[ \spec{\almostallones{N}{M}} \subset \left[N-r, N+r\right] \cup \left[-r, r\right] \]
+    \[ \spec{\almostallones{M}{N}} \subset \left[N-r, N+r\right] \cup \left[-r, r\right] \]
 \end{propose}
 
 \begin{lemma}
@@ -621,8 +623,8 @@ Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfra
 	\[ \spec{A-B}\backslash\{\lambda_0\} \subset \left[-r,r\right] \]
 \end{lemma}
 \begin{thm}
-    Let \( \almostallones{N}{M} \) be a matrix of dimension \( N>0 \) consisting of zeroes and ones,
-    and let \( M \) be the number of zeroes in \( \almostallones{N}{M} \).
+    Let \( \almostallones{M}{N} \) be a matrix of dimension \( N>0 \) consisting of zeroes and ones,
+    and let \( M \) be the number of zeroes in \( \almostallones{M}{N} \).
     And let
     \[ M < \frac{1}{16} N^2 \]
     \[ r = \frac12 N
@@ -630,11 +632,11 @@ Projections \( P_1, P_2 \) break operator \( X_0 \) up into \( X_{ij}\in\mathfra
         \sqrt{NM}(\sqrt{N} - \sqrt{N-4\sqrt{M}}) - 2
         \right) \]
 
-    Then $r>0$ and at least one eigenvalue \( \lambda_0 \) of \( \almostallones{N}{M} \) lies in the interval \(\left[N-r,N+r\right]\)
+    Then $r>0$ and at least one eigenvalue \( \lambda_0 \) of \( \almostallones{M}{N} \) lies in the interval \(\left[N-r,N+r\right]\)
 	and the rest of the spectra is contained in the interval \( \left[-r,r\right] \)
 
     \[ \left|\lambda_0 - N\right| \leq r \]
-    \[ \left|\lambda\right| \leq r \quad \text{ for } \lambda\in\spec{\almostallones{N}{M}}\backslash\{\lambda_0\} \]
+    \[ \left|\lambda\right| \leq r \quad \text{ for } \lambda\in\spec{\almostallones{M}{N}}\backslash\{\lambda_0\} \]
 \end{thm}
 
 \section{Splitting the operator}
