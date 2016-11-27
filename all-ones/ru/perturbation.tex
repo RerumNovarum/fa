@@ -1,1 +1,307 @@
 \section{Возмущённый случай}
+
+Рассмотрим возмущённую матрицу единиц
+\( \almostallones{M}{N} \) размерности \( N \)
+состоящую из \( N^2 - M \) единиц и \( M \) нулей.
+
+Её можно представить в виде
+\[
+    \almostallones{M}{N} = \allones{N} - \perturbmatrix{M}{N}
+    \]
+Где \( \allones{N} \) --- матрица единиц,
+а \( \perturbmatrix{M}{N} \) -- матрица-возмущение,
+имеющая единицы в точности в тех местах,
+на которых в \( \almostallones{M}{N} \) стоят нули.
+
+Задача состоит в оценке спектра возмущённой матрицы.
+
+\begin{propose}
+    Подобные матрицы имеют одинаковый спектр
+\end{propose}
+
+Применяя полученную в \eqref{eq:diagtransform} матрицу преобразования,
+получаем, что \( \almostallones{M}{N} \) подобна (а значит разделяет с ней общий спектр)
+матрице
+\[ A - B \]
+Где
+\[
+    A = \transformmatrix{T}{\allones{N}}
+    = \begin{pmatrix}
+    N &   &        & \\
+        & 0 &        & \\
+        &   & \ddots & \\
+        &   &        & 0
+        \end{pmatrix}
+        \]
+\[
+    B = \transformmatrix{T}{\perturbmatrix{M}{N}}
+    \]
+
+\subsection{Общая схема метода подобных операторов}
+Следуя общей схеме, мы будем искать матрицу, подобную \( A - B \)
+в виде
+\[ A - J X \]
+с матрицей подобия вида
+\[ U = E + \Gamma X \]
+Где \[ J, \Gamma \in \End{\matr{N}{}} \]
+-- линейные операторы (трансформаторы), действующие в пространстве матриц,
+подбираемые в ходе решения так, чтобы матрица \( A - JX \)
+имела как можно более простую структуру.
+
+Иначе говоря, будем искать решение \( X \in\matr{N}{} \)
+уравнения подобия
+\begin{equation}\label{eq:similarity-orig}
+    (A - B)(E+\Gamma X) = (E+\Gamma X) (A - JX)
+\end{equation}
+
+Нам потребуется вспомогательная нотация.
+Любая матрица из \( \matr{N}{} \) определяет (непрерывный) линейный оператор (умножения на эту матрицу),
+действующий в линейном пространстве \( \mathscr X = \RR^N \)
+(пространства \( \matr{m}{n} \) и \( \Hom{\RR^n}{\RR^m} \) изоморфны).
+Рассмотрим \( \mathscr X \) как прямую сумму
+\[ \mathscr X = \mathscr X_1 \oplus \mathscr X_2 \]
+\[ \mathscr X_1 = \RR,\quad \mathscr X_2 = \RR^{N-1} \]
+(иначе говоря, любой элемент \( x \) из \( \mathscr X \)
+    можно единственным образом представить в виде суммы \( x_1 \oplus x_2 \),
+    где \( x_1\in\mathscr X_1 \) --- число
+    и \( x_2\in\mathscr X_2 \) --- \( (N-1) \)-мерный вектор,
+    а \( X_j \) естественным образом вложены \( \mathscr X \)).
+Тогда оператор \( \mathscr A \) умножения на матрицу \( A \) действует следующим образом:
+\( \mathscr A x = N x_1 \in \mathscr X_1 \subset \mathscr X \).
+Декомпозиция в прямую сумму осуществляется парой проекторов
+\( P, Q = I - P \) (\( I \) -- тождественный),
+действующих по формулам
+\[ P x = x_1,\quad Q x = x_2 \]
+Пространство линейных преобразований естественным образом
+образом распадается в прямую сумму
+\[ \End{\mathscr X} =
+    \Hom{\mathscr X_1}{\mathscr X_1}
+    \oplus \Hom{\mathscr X_1}{\mathscr X_2}
+    \oplus \Hom{\mathscr X_2}{\mathscr X_1}
+    \oplus \Hom{\mathscr X_2}{\mathscr X_2} \]
+и любой оператор \( \mathcal X \in \End{\mathscr X} \)
+единственным образом представим в виде
+\[ \mathcal X = \mathcal X_{11} \oplus \mathcal X_{12} \oplus \mathcal X_{21} \oplus \mathcal X_{22} \]
+\[
+    \Hom{\mathscr X_j}{\mathscr X_i} \ni\mathcal X_{ij} = {P_i X P_j}
+    \qquad\footnote{понимается бисужение \( P_i\mathcal X P_j \)}
+    \]
+\( \mathcal X_{ij} \) представляет собой ``вклад'' координаты \( x_j \in \mathscr X_j \)
+в \(i\)-ую координату образа \( X x \):
+\[
+    \mathcal X x =
+    \underbrace{\mathcal X_{11} x_1 + \mathcal X_{12} x_2}_{\in\mathscr X_1}
+    \oplus \underbrace{\mathcal X_{21} x_1 + \mathcal X_{22} x_2}_{\in\mathscr X_2}
+    \]
+При этом, \( \mathcal X_{11} \) является умножением на верхний левый элемент \( x_{11} \) матрицы \( X \),
+\( \mathcal X_{12} \) --- умножением на верхнюю правую вектор-строку,
+\( \mathcal X_{21} \) -- нижний левый столбец,
+\( \mathcal X_{22} \) -- правый нижний квадратный блок матрицы \( X \).
+Элемент \( x =  x_1 \oplus x_2 \) теперь будем записывать в виде вектора \( x \sim \begin{pmatrix}x_1\\x_2\end{pmatrix} \).
+Тогда образ \( \mathcal X x \) вектора \( x \) под действием оператора \( \mathcal X \)
+запишется, как
+\[
+    \mathcal X x =
+    \begin{pmatrix}
+    \mathcal X_{11} x_1 + \mathcal X_{12} x_2 \\
+    \mathcal X_{21} x_1 + \mathcal X_{22} x_2 \end{pmatrix}
+        \]
+Ясно, что действие оператора \( \mathcal X \)
+можно описать умножением \( \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \)
+на блочную матрицу.
+Далее операторы и матрицы отождествляются с блочными матрицами
+
+\[
+    X =
+    \begin{pmatrix}
+        X_{11} & X_{12} \\
+        X_{21} & X_{22}
+    \end{pmatrix}
+    \]
+\[
+    X_{11}\in\matr{1,1}{},
+    X_{12}\in\matr{1,N}{},
+    X_{21}\in\matr{N,1}{},
+    X_{22}\in\matr{N-1,N-1}{}
+    \]
+
+Вернёмся к задаче.
+Оператор \( \Gamma X \) определим как решение уравнения
+\[
+    \ad{A}{\Gamma X} = X - JX
+    \qquad
+    \footnote{\(\ad{Y}{} \) --- оператор коммутирования с \(Y\): \( \ad{Y}{Z} = YZ - ZY \) }
+    \]
+Пусть  \( \Gamma X \) задаётся блочной матрицей
+\[ \Gamma X =
+\begin{pmatrix}
+    \Gamma_{11}(X) & \Gamma_{12}(X) \\
+    \Gamma_{21}(X) & \Gamma_{22}(X)
+\end{pmatrix} \]
+\[
+    \ad{A}{\Gamma X} = A \Gamma X - (\Gamma X) A =
+    \frac{1}{N}
+\begin{pmatrix}
+    0               & \Gamma_{12}(X) \\
+    -\Gamma_{21}(X) & 0             
+\end{pmatrix}
+    \]
+
+Положим теперь
+\[
+    JX = \begin{pmatrix}
+        X_{11} & 0 \\
+        0      & X_{22}
+    \end{pmatrix}
+    \]
+\[ \Gamma X =
+    \begin{pmatrix}
+        0       & X_{12} \\
+        -X_{21} & 0
+    \end{pmatrix}
+    \]
+При этом \( A - JX \) оказывается блочно-диагональным
+и, что легко проверить, его спектр есть объединение спектров его диагональных блоков.
+
+Развернём теперь уравнение \eqref{eq:similarity-orig}
+
+\[
+    A - B + A\Gamma X - B\Gamma X = A - JX + (\Gamma X) A - (\Gamma X) JX
+    \]
+\[
+    A\Gamma X - (\Gamma X) A + JX = B \Gamma X + B - (\Gamma X) JX
+    \]
+\[
+    X = B \Gamma X + B - (\Gamma X) JX
+    \]
+Применяя слева обратимый оператор \( J \) и подставляя результат обратно получим уравнение
+\begin{equation}\label{eq:similarity2}
+    X = B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B))
+\end{equation}
+
+Теперь мы докажем существование единственного решения \eqref{eq:similarity2}
+и выведем оценки спектра,
+показав, что в правой части этого уравнения стоит образ \( X \)
+при сжимающем (в некотором шаре с центром в нуле) отображении \( \Phi \),
+\( \Phi(X) = B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B)) \).
+
+\subsection{Существование инвариантного множества}
+Покажем сначала существование такого шара \( \{ \norm{X} \leq \varepsilon \} \),
+который содержит свой образ при отображении \( \Phi \)
+(другими словами, матрицы из этого шара
+ не покидают его под действием \( \Phi \))
+
+\begin{align*}
+    \norm{\Phi(X)} &= \norm{B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B))} \leq \\
+%    &\leq \norm{B}\norm{\Gamma}\norm{X} + \norm{B} + \norm{\Gamma}\norm{X} (\norm{B}\norm{\Gamma}\norm{X}+\norm{B}) \leq \\
+    &= \gamma^2\beta\norm{X}^2 + 2\gamma\beta\norm{X} + \beta
+\end{align*}
+Где \( \beta=\norm{B}, \gamma=\norm{\Gamma} \)
+
+\begin{lemma}
+    Если
+    \[ \gamma\beta \leq \frac14 \]
+    То \( \Phi \) отображает в себя шар
+    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \} \]
+    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} \]
+    \[ 0 < r_0 \leq 4\beta \]
+\end{lemma}
+\begin{proof}
+    Обозначим \( r=\norm{X} \). Тогда
+    \( \norm{\Phi(X)} \leq \norm{X} \), если
+    \begin{equation}\label{eq:omega-invariance}
+        \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0
+    \end{equation}
+    Детерминант возникшего многочлена:
+    \( \Delta = 1 - 4\gamma\beta\).
+    Стало быть, если \( {\gamma\beta \leq \frac14} \),
+    то определённое выше \( r_0 \) есть наименьшее \( r \),
+    удовлетворяющее неравенству \eqref{eq:omega-invariance}
+    
+    Наконец, \( r_0 \geq 0 \):
+    \begin{align*}
+        1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} > 0 \\
+        \iff
+        1-4\gamma\beta + 4\gamma^2\beta^2 > 1 - 4\gamma\beta \marginnote{\(1-2\gamma\beta \geq 1-4\gamma\beta\geq 0\)} \\
+        \iff
+        4\gamma^2\beta^2 \geq 0 \quad \text{что верно}
+    \end{align*}
+    И \( r_0 \leq 4\beta \):
+    \begin{align*}
+        r_0 \leq \varepsilon\beta \\
+        \iff 1-2\gamma\beta-\sqrt{1-\varepsilon\gamma\beta} \leq 2\gamma^2\beta^2 \\
+        \iff 1 - 2\gamma\beta(1+\gamma\beta\varepsilon) \leq \sqrt{1-4\gamma\beta} \\
+        \iff 1 - 4\gamma\beta(1+\gamma\beta\varepsilon)+4\gamma^2\beta^2(1+\gamma\beta\varepsilon)^2 \leq 1-4\gamma\beta \\
+        \iff (1+\gamma\beta\varepsilon)^2\leq\varepsilon \\
+        \iff \frac{1}{16}\varepsilon^2 - \frac{1}{2} \varepsilon + 1 \leq 0 \\
+        \iff \varepsilon=4
+    \end{align*}
+\end{proof}
+
+\subsection{Сжимание}
+Определим теперь, при каких условиях \( \Phi \) будет сжимающим в найдённом шаре.
+\begin{lemma}
+    \[ \norm{\Phi(X)-\Phi(Y)} \leq q \norm{X-Y} \]
+    \[ q<1 \]
+\end{lemma}
+\begin{proof}
+    \begin{align*}
+        \Phi(X) - \Phi(Y) = & B\Gamma (X-Y) - \frac12 \left[
+            \Gamma (X + Y)J(B\Gamma(X - Y)) + 
+            \Gamma (X - Y)J(B\Gamma(X + Y))
+        \right]
+        \quad\footnote{\(
+            (\Gamma X)J(B\Gamma X) - (\Gamma Y)J(B\Gamma Y) =
+            \frac12
+            \left(
+                (\Gamma X + \Gamma Y)(J(B\Gamma X) - J(B\Gamma Y)) +
+                (\Gamma X - \Gamma Y)(J(B\Gamma X) + J(B\Gamma Y))
+            \right) \)}
+    \end{align*}
+    \[
+        \norm{\Phi(X) - \Phi(Y)} \leq (1 + \gamma\norm{X+Y})\beta\gamma \norm{X-Y} \leq q\norm{X-Y}
+        \]
+    Где
+    \begin{equation}\label{eq:lipconst}
+        q = (1+2\gamma r_0)\gamma\beta
+        \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4} \marginnote{\(\gamma\beta \leq \frac14\)}
+    \end{equation}
+    Что и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре
+\end{proof}
+
+Сразу следует вывод
+\begin{propose}
+    Пусть \( \gamma=\norm{\Gamma}, \beta=\norm{B}, \gamma\beta\leq\frac14 \),
+
+    Обозначим
+    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \} \]
+    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} \]
+    \[ q = (1+2\gamma r_0)\gamma\beta \]
+
+    Тогда \( \Phi \) есть сжимающее отображение в шаре \( \Omega \),
+    являющимся инвариантным относительно \( \Phi \),
+    и в шаре существует единственное решение \( X^o \) уравнения
+    \eqref{eq:similarity2} \( X=\Phi(X) \),
+
+    При этом имеют место оценки:
+    \[
+        \norm{X^o} \leq r_0 \leq 4\beta
+        \]
+    \[
+        \norm{X^k - X^o} \leq \frac{q^k}{1-q}\beta
+        \]
+\end{propose}
+\begin{proof}
+    \( \Omega \) --- замкнутое подмножество банахова пространства \( \matr{N}{} \),
+    \( \Phi: \Omega\to\Omega \) -- сжимающее отображение.
+    По теореме Банаха о неподвижной точке, в шаре существует единственное решение \( X^o \)
+    уравнения \( X = \Phi (X) \),
+    доставляемое методом простых итераций (c нулём в качестве начального приближения),
+    как предел сходящейся последовательности
+    \[
+        \{X_k = \Phi^k 0; k\in\NN\}
+        \]
+    Грубейшая верхняя оценка его нормы --- радиус шара.
+\end{proof}
+
+\subsection{Оценка спектра}
