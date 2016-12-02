@@ -1,7 +1,7 @@
 \section{Возмущённый случай}
 
 Рассмотрим возмущённую матрицу единиц
-\( \almostallones{M}{N} \) размерности \( N \)
+\( \almostallones{M}{N} \) размерности \( N \),
 состоящую из \( N^2 - M \) единиц и \( M \) нулей.
 
 Её можно представить в виде
@@ -251,11 +251,11 @@
     И \( r_0 \leq 4\beta \):
     \begin{align*}
         r_0 \leq \varepsilon\beta \\
-        \iff 1-2\gamma\beta-\sqrt{1-\varepsilon\gamma\beta} \leq 2\gamma^2\beta^2 \\
+        \implies 1-2\gamma\beta-\sqrt{1-4\gamma\beta} \leq 2\varepsilon\gamma^2\beta^2 \\
         \iff 1 - 2\gamma\beta(1+\gamma\beta\varepsilon) \leq \sqrt{1-4\gamma\beta} \\
         \iff 1 - 4\gamma\beta(1+\gamma\beta\varepsilon)+4\gamma^2\beta^2(1+\gamma\beta\varepsilon)^2 \leq 1-4\gamma\beta \\
-        \iff (1+\gamma\beta\varepsilon)^2\leq\varepsilon \\
-        \iff \frac{1}{16}\varepsilon^2 - \frac{1}{2} \varepsilon + 1 \leq 0 \\
+        \iff (1+\gamma\beta\varepsilon)^2\leq\varepsilon \marginnote{\(\gamma\beta\leq\frac14\)} \\
+        \implies \frac{1}{16}\varepsilon^2 - \frac{1}{2} \varepsilon + 1 \leq 0 \\
         \iff \varepsilon=4
     \end{align*}
 \end{proof}
@@ -271,22 +271,22 @@
         \Phi(X) - \Phi(Y) = & B\Gamma (X-Y) - \frac12 \left[
             \Gamma (X + Y)J(B\Gamma(X - Y)) + 
             \Gamma (X - Y)J(B\Gamma(X + Y))
-        \right]
-        \quad\footnote{\(
-            (\Gamma X)J(B\Gamma X) - (\Gamma Y)J(B\Gamma Y) =
-            \frac12
-            \left(
-                (\Gamma X + \Gamma Y)(J(B\Gamma X) - J(B\Gamma Y)) +
-                (\Gamma X - \Gamma Y)(J(B\Gamma X) + J(B\Gamma Y))
-            \right) \)}
+        \right] \quad\footnotemark
     \end{align*}
+    \footnotetext{\(
+        (\Gamma X)J(B\Gamma X) - (\Gamma Y)J(B\Gamma Y) =
+        \frac12
+        \left(
+            (\Gamma X + \Gamma Y)(J(B\Gamma X) - J(B\Gamma Y)) +
+            (\Gamma X - \Gamma Y)(J(B\Gamma X) + J(B\Gamma Y))
+        \right) \)}
     \[
         \norm{\Phi(X) - \Phi(Y)} \leq (1 + \gamma\norm{X+Y})\beta\gamma \norm{X-Y} \leq q\norm{X-Y}
         \]
     Где
     \begin{equation}\label{eq:lipconst}
         q = (1+2\gamma r_0)\gamma\beta
-        \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4} \marginnote{\(\gamma\beta \leq \frac14\)}
+        \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4} \marginnote{\(\gamma\beta \leq \frac14\) \(r_0\leq 4\beta\)}
     \end{equation}
     Что и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре
 \end{proof}
@@ -320,7 +320,7 @@
     доставляемое методом простых итераций (c нулём в качестве начального приближения),
     как предел сходящейся последовательности
     \[
-        \{X_k = \Phi^k 0; k\in\NN\}
+        \{X_k = \Phi^k(0); k\in\NN\}
         \]
     Грубейшая верхняя оценка его нормы --- радиус шара \( \Omega \).
 \end{proof}
@@ -335,22 +335,22 @@
     x_{21} & x_{22}
 \end{pmatrix}
 \),
-что \( A-B \) и \( X^o - JX^o \) подобны.
-При этом \( X^o \leq r_0 \leq 4\norm{B} \),
-а \( X^o - JX^o \) --- блочнодиагонален.
+что \( A-B \) и \( A - JX^o \) подобны.
+При этом \( \norm{X^o} \leq r_0 \leq 4\norm{B} \),
+а \( A - JX^o \) --- блочнодиагональна.
 
 \[
     A-B \sim
     \begin{pmatrix}
         N - x_{11} & 0 \\
-        0          & X_{22}^o
+        0          & -X_{22}^o
     \end{pmatrix}
     \]
 
 \begin{propose}
     Спектр \( A - B \) состоит из числа \( N - x_{11} \)
-    и спектра \( X_{22} \)
-    \[ \spec{A-B} = \{ \lambda_1 = N - x_{11} \} \cup \spec{X_{22}} \]
+    и спектра матрицы \( -X_{22} \)
+    \[ \spec{A-B} = \{ \lambda_1 = N - x_{11} \} \cup \spec{-X_{22}} \]
     При этом
     \[ \lvert \lambda_1 - N \rvert \leq r_0 \]
     И для всех \( \lambda\in\spec{A-B}\setminus\{\lambda_1\} \)
@@ -365,8 +365,8 @@
 Теперь будем считать, что и в \( \matr{N}{} \)
 также выбрана норма Гильберта-Шмидта  (обозначим её \( \operatornorm{\cdot} \)),
 которая дала бы нам наиболее тонкие оценки.
-\[ \beta = \operatornorm{B}, \gamma = \norm{\Gamma} \]
-где, напомню, \( B = \mathcal{T}^{-1} \perturbmatrix{M}{N} \mathcal{T} \)
+\[ \beta = \operatornorm{B}, \gamma = \norm{\Gamma} = \sup_{\operatornorm{X}=1} \operatornorm{\Gamma X} \]
+где, напомню, \( B = T^{-1} \perturbmatrix{M}{N} T \)
 получена из матрицы возмущения с \( M \) единицами применением преобразования \eqref{eq:diagtransform},
 диагонализирующего матрицу единиц,
 а \( \Gamma \) --- оператор из \( \End{\matr{N}{}} \),
@@ -390,10 +390,10 @@
     Теперь рассмотрим в \( \matr{N}{} \) норму
     \( \normex{2}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
     Тогда \( \normex{2}{\perturbmatrix{M}{N}} \)
-    это суть корень из числа \( M \) единиц в ней.
-    Ясно, что она соласована и \( \operatornorm{Z} \leq \normex{2}{Z} \).
-    Остаётся заметить, что умножение на унитарную матрицу \( \mathcal{T} \)
-    (и \( \mathcal{T}^{-1} \)) есть изометрия
+    это суть корень из числа \( M \) единиц в \( \perturbmatrix{M}{N} \).
+    Ясно, что \( \normex{2}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{2}{Z} \).
+    Остаётся заметить, что умножение на унитарную матрицу \( T \)
+    (и \( T^{-1} \)) есть изометрия
     в \( \matr{N}{} \)
     и поэтому
     \[ \norm{B} = \norm{\perturbmatrix{M}{N}} \]
@@ -401,9 +401,8 @@
 \end{proof}
 
 Наконец, можем сформулировать первый (грубый) результат:
-\begin{thm}{О грубой оценке собственных значений возмущённой матрицы единиц}
-    Пусть \( \almostallones{M}{N} \) -- возмущённая матрица единиц
-    размерности \( N \),
+\begin{thm}[О грубой оценке собственных значений возмущённой матрицы единиц]
+    Пусть \( \almostallones{M}{N} \) -- матрица размерности \( N \),
     состоящая из \( N^2 - M \) единиц и \( M \) нулей.
 
     Если
@@ -420,8 +419,8 @@
 \end{thm}
 \begin{proof}
     \[
-        \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{X^o - JX^o}
-        = \{ N - x_{11} \} \cup \spec{X^o_{22}}
+        \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A - JX^o}
+        = \{ N - x_{11} \} \cup \spec{-X^o_{22}}
         \]
     \[ x_{11}, \spr{X^o_{22}} \leq r_0 \]
     \[ r_0 \leq 4\norm{B} \leq 4\sqrt{M} \]

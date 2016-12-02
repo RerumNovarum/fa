@@ -25,15 +25,15 @@
 \end{propose}
 
 \begin{dfn}
-    Две матрицы \( \mathcal A_1, \mathcal A_2 \)
-    называются подобными, если существует обратимая матрица \( \mathcal U \),
+    Две матрицы \( A_1, A_2 \)
+    называются подобными, если существует обратимая матрица \( U \),
     такая что
     \[
-        \mathcal A_1 \mathcal U = \mathcal U \mathcal A_2
+        A_1 U = U A_2
         \]
     Или, эквивалентно:
     \[
-        \mathcal U^{-1} \mathcal A_1 \mathcal U = \mathcal A_2
+        U^{-1} A_1 U = A_2
         \]
 \end{dfn}
 
@@ -48,7 +48,7 @@
 
     Диагонализирующая матрица преобразования имеет вид:
     \begin{equation}\label{eq:diagtransform}
-    \mathcal T =
+    T =
     \begin{pmatrix}
         1/\sqrt N &  1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
         \vdots    & -1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
@@ -83,6 +83,6 @@
              \]
 
     Эта матрица ортогональна и поэтому
-    \( \mathcal T^{-1} = \mathcal T^\conjtransposed = \mathcal T^\transposed \),
-    \( \det\mathcal T = 1 \).
+    \( T^{-1} = T^\conjtransposed = T^\transposed \),
+    \( \det T = 1 \).
 \end{propose}
