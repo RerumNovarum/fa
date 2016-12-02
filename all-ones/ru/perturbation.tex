@@ -84,7 +84,7 @@
 \[ \mathcal X = \mathcal X_{11} \oplus \mathcal X_{12} \oplus \mathcal X_{21} \oplus \mathcal X_{22} \]
 \[
     \Hom{\mathscr X_j}{\mathscr X_i} \ni\mathcal X_{ij} = {P_i X P_j}
-    \qquad\footnote{понимается бисужение \( P_i\mathcal X P_j \)}
+    \qquad\footnote{понимается бисужение \( P_i\mathcal X P_j \), осуществляющее отображение\( \mathscr{X}_j\to\mathscr{X}_i \)}
     \]
 \( \mathcal X_{ij} \) представляет собой ``вклад'' координаты \( x_j \in \mathscr X_j \)
 в \(i\)-ую координату образа \( X x \):
@@ -188,21 +188,37 @@
 Теперь мы докажем существование единственного решения \eqref{eq:similarity2}
 и выведем оценки спектра,
 показав, что в правой части этого уравнения стоит образ \( X \)
-при сжимающем (в некотором шаре с центром в нуле) отображении \( \Phi \),
-\( \Phi(X) = B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B)) \).
+при сжимающем (в некотором шаре с центром в нуле) отображении \( \Phi \):
+\[ \Phi(X) = B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B)) \]
 
 \subsection{Существование инвариантного множества}
-Покажем сначала существование такого шара \( \{ \norm{X} \leq \varepsilon \} \),
+Покажем сначала существование такого шара \( X\in\matr{N}{}; \{ \norm{X} \leq \varepsilon \} \),
 который содержит свой образ при отображении \( \Phi \)
 (другими словами, матрицы из этого шара
  не покидают его под действием \( \Phi \))
+
+Будем считать, что алгебре матриц \( \matr{N}{} \)
+введена норма, согласованная%
+\footnote{согласованной с векторным пространством называется
+матричная норма, удовлетворяющая неравенству \( \norm{A x} \leq \norm{A}\norm{x} \),
+для всех \( A\in\matr{N}{}, x\in\RR^n \), где нормы взяты в соответствующих пространствах}
+с \( \mathscr X = \RR^n \),
+а в пространстве \( \End{\matr{N}{}} \) трансформаторов
+используется обычная операторная норма%
+\footnote{операторная норма (норма Гильберта-Шмидта)
+оператора (матрицы) \( \mathcal A \)
+вводится как точная нижняя грань таких констант \( C > 0 \),
+что для всех \( x\in\mathscr X\) имеет место
+(\( \norm{A x} \leq C \norm{x} \)); короче, норма Г-Ш данного оператора
+есть точная нижняя грань его согласованных норм}
 
 \begin{align*}
     \norm{\Phi(X)} &= \norm{B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B))} \leq \\
 %    &\leq \norm{B}\norm{\Gamma}\norm{X} + \norm{B} + \norm{\Gamma}\norm{X} (\norm{B}\norm{\Gamma}\norm{X}+\norm{B}) \leq \\
     &= \gamma^2\beta\norm{X}^2 + 2\gamma\beta\norm{X} + \beta
 \end{align*}
-Где \( \beta=\norm{B}, \gamma=\norm{\Gamma} \)
+Где \[ \beta=\norm{B}, \gamma=\norm{\Gamma} \]
+Пока что отложим оценку этих величин.
 
 \begin{lemma}
     Если
@@ -244,7 +260,7 @@
     \end{align*}
 \end{proof}
 
-\subsection{Сжимание}
+\subsection{Существование и единственность неподвижной точки}
 Определим теперь, при каких условиях \( \Phi \) будет сжимающим в найдённом шаре.
 \begin{lemma}
     \[ \norm{\Phi(X)-\Phi(Y)} \leq q \norm{X-Y} \]
@@ -306,7 +322,107 @@
     \[
         \{X_k = \Phi^k 0; k\in\NN\}
         \]
-    Грубейшая верхняя оценка его нормы --- радиус шара.
+    Грубейшая верхняя оценка его нормы --- радиус шара \( \Omega \).
 \end{proof}
 
 \subsection{Оценка спектра}
+Итак, существует решение \( X^o \) уравнения
+\( (A-B)(I+\Gamma X) = (I+\Gamma X)(A-JX) \),
+или, другими словами, существует такая матрица
+\( X^o =
+\begin{pmatrix}
+    x_{11} & x_{12} \\
+    x_{21} & x_{22}
+\end{pmatrix}
+\),
+что \( A-B \) и \( X^o - JX^o \) подобны.
+При этом \( X^o \leq r_0 \leq 4\norm{B} \),
+а \( X^o - JX^o \) --- блочнодиагонален.
+
+\[
+    A-B \sim
+    \begin{pmatrix}
+        N - x_{11} & 0 \\
+        0          & X_{22}^o
+    \end{pmatrix}
+    \]
+
+\begin{propose}
+    Спектр \( A - B \) состоит из числа \( N - x_{11} \)
+    и спектра \( X_{22} \)
+    \[ \spec{A-B} = \{ \lambda_1 = N - x_{11} \} \cup \spec{X_{22}} \]
+    При этом
+    \[ \lvert \lambda_1 - N \rvert \leq r_0 \]
+    И для всех \( \lambda\in\spec{A-B}\setminus\{\lambda_1\} \)
+    \[ \lvert\lambda\rvert \leq r_0 \]
+\end{propose}
+
+Теперь требуемые результаты мы получим оценив \( \beta, \gamma \).
+
+В ходе рассуждений предполагалось, что норма в \( \matr{N}{} \)
+согласована с векторным пространством,
+а в \( \End{\matr{N}{}} \) используется обычная операторная норма.
+Теперь будем считать, что и в \( \matr{N}{} \)
+также выбрана норма Гильберта-Шмидта  (обозначим её \( \operatornorm{\cdot} \)),
+которая дала бы нам наиболее тонкие оценки.
+\[ \beta = \operatornorm{B}, \gamma = \norm{\Gamma} \]
+где, напомню, \( B = \mathcal{T}^{-1} \perturbmatrix{M}{N} \mathcal{T} \)
+получена из матрицы возмущения с \( M \) единицами применением преобразования \eqref{eq:diagtransform},
+диагонализирующего матрицу единиц,
+а \( \Gamma \) --- оператор из \( \End{\matr{N}{}} \),
+определённый формулой
+\( \Gamma X = \frac1N \begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix} \).
+
+\begin{lemma}
+    Лучшная и точная оценка для \( \gamma \) есть
+    \[ \gamma = \frac1N \]
+    И можно положить \[ \beta \leq \sqrt{M} \]
+    Где \( M \) --- число единиц в матрице \( \perturbmatrix{M}{N} \) возмущения
+    (число нулей в исходной матрице \( \almostallones{M}{N} \))
+\end{lemma}
+\begin{proof}
+    \[ \norm{(\Gamma X) x} = \frac1N \norm{\begin{pmatrix}x_2\\-x_1\end{pmatrix}} \]
+
+    \[
+        \norm{\Gamma} = \sup_{\norm X = 1} \operatornorm{\Gamma X}
+        = \sup_{\norm X = 1} \sup_{\norm x = 1} \norm{(\Gamma X)x} = \frac1N
+        \]
+    Теперь рассмотрим в \( \matr{N}{} \) норму
+    \( \normex{2}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
+    Тогда \( \normex{2}{\perturbmatrix{M}{N}} \)
+    это суть корень из числа \( M \) единиц в ней.
+    Ясно, что она соласована и \( \operatornorm{Z} \leq \normex{2}{Z} \).
+    Остаётся заметить, что умножение на унитарную матрицу \( \mathcal{T} \)
+    (и \( \mathcal{T}^{-1} \)) есть изометрия
+    в \( \matr{N}{} \)
+    и поэтому
+    \[ \norm{B} = \norm{\perturbmatrix{M}{N}} \]
+    \[ \beta \leq \normex{2}{B} = \normex{2}{\perturbmatrix{M}{N}} = \sqrt{M} \]
+\end{proof}
+
+Наконец, можем сформулировать первый (грубый) результат:
+\begin{thm}{О грубой оценке собственных значений возмущённой матрицы единиц}
+    Пусть \( \almostallones{M}{N} \) -- возмущённая матрица единиц
+    размерности \( N \),
+    состоящая из \( N^2 - M \) единиц и \( M \) нулей.
+
+    Если
+    \[
+        M \leq \frac{N^2}{16}
+        \]
+
+    То у матрицы \( \almostallones{M}{N} \) есть по крайней мере одно ненулевое собственное
+    значение \( \lambda_1 \)
+    \[ \lvert \lambda_1 - N \rvert \leq 4\sqrt{M} \]
+    А остальные собственные значения \( \lambda\in\spec{\almostallones{M}{N}} \setminus \{\lambda_1\} \)
+    лежат в отрезке \( \left[-4\sqrt{M},+4\sqrt{M}\right] \):
+    \[ \lvert \lambda \rvert \leq 4\sqrt{M} \]
+\end{thm}
+\begin{proof}
+    \[
+        \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{X^o - JX^o}
+        = \{ N - x_{11} \} \cup \spec{X^o_{22}}
+        \]
+    \[ x_{11}, \spr{X^o_{22}} \leq r_0 \]
+    \[ r_0 \leq 4\norm{B} \leq 4\sqrt{M} \]
+\end{proof}
