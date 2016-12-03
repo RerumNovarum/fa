@@ -1,15 +1,34 @@
 \ProvidesPackage{fa-style}
 
-\usepackage[mathscr]{euscript}
+%\usepackage{hyperref}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+%\usepackage[mathscr]{euscript}
+\usepackage{mathrsfs}
 \usepackage{eulervm}
 \usepackage{mathtools}
+\usepackage{marginnote}
 
 \usepackage{amsthm}
-\newtheorem{propose}{Proposition}
+\theoremstyle{definition}
 \newtheorem{dfn}{Definition}
+\newtheoremstyle{break}% name
+  {}%         Space above, empty = `usual value'
+  {}%         Space below
+  {\itshape}% Body font
+  {}%         Indent amount (empty = no indent, \parindent = para indent)
+  {\bfseries}% Thm head font
+  {.}%        Punctuation after thm head
+  {\newline}% Space after thm head: \newline = linebreak
+  {}%         Thm head spec
+
+\theoremstyle{break}
 \newtheorem{thm}{Theorem}
-\newtheorem{corollary}{Corollary}
 \newtheorem{lemma}{Lemma}
+
+\theoremstyle{remark}
+\newtheorem{propose}{Proposition}
+\newtheorem{corollary}{Corollary}
 \newtheorem{conjecture}{Conjecture}
 
 \providecommand{\eqdef}{\coloneqq}
@@ -19,10 +38,12 @@
 \providecommand{\transposed}{\mathrm{T}}
 \providecommand{\norm}[1]{\left\|{#1}\right\|}
 \providecommand{\normex}[2]{{\left\|{#2}\right\|}_{#1}}
+\providecommand{\operatornorm}[1]{\normex{\text{ГШ}}{#1}}
 \providecommand{\conjtransposed}{\mathrm{*}}
 \providecommand{\allones}[1]{\mathscr{J}_{#1}}
 \providecommand{\almostallones}[2]{\mathscr{A}_{{#1}{#2}}}
 \providecommand{\perturbmatrix}[2]{\mathscr{B}_{{#1}{#2}}}
+\providecommand{\ad}[2]{\mathrm{ad}_{#1}{#2}}
 \providecommand{\matr}[2]{\mathit{Matr}_{#1} {#2}}
 \providecommand{\KK}{\mathbb{K}}
 \providecommand{\NN}{\mathbb{N}}
@@ -33,7 +54,8 @@
 \providecommand{\Hom}[2]{\mathrm{Hom}({#1},{#2})}
 \providecommand{\End}[1]{\mathrm{End}({#1})}
 \providecommand{\linspan}[1]{\mathrm{span}({#1})}
-\providecommand{\spec}[1]{\mathrm{spec} {#1}}
+\providecommand{\spec}[1]{\mathrm{spec}\left({#1}\right)}
+\providecommand{\spr}[1]{\mathrm{spr}\left({#1}\right)}
 \providecommand{\dim}[1]{\mathrm{dim} {#1}}
 \providecommand{\rank}[1]{\mathrm{rank} {#1}}
 \providecommand{\dom}[1]{\mathrm{dom} {#1}}

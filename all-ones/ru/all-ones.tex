@@ -1,0 +1,88 @@
+\section{Матрица единиц}
+
+Матрицей единиц, размерности \( N \) будем называть матрицу
+\( \allones{N} \in \matr{N}{N} \):
+\[
+    \allones{N} =
+    \begin{pmatrix}
+    1 & 1  & \cdots & 1 \\
+    1 & 1  & \cdots & 1 \\
+    \vdots & \vdots & \ddots & \vdots \\
+    1 & 1  & \cdots & 1
+    \end{pmatrix}
+\]
+
+Спектром матрицы \( A \) называется множество таких \( \lambda\in\CC \),
+что матрица \( E + \lambda A \) вырождена
+
+\begin{propose}
+\[
+    \allones{N}^2 = N \allones{N}
+    \]
+\[
+    \spec{\allones{N}} = \left\{ 0, N \right\}
+    \]
+\end{propose}
+
+\begin{dfn}
+    Две матрицы \( A_1, A_2 \)
+    называются подобными, если существует обратимая матрица \( U \),
+    такая что
+    \[
+        A_1 U = U A_2
+        \]
+    Или, эквивалентно:
+    \[
+        U^{-1} A_1 U = A_2
+        \]
+\end{dfn}
+
+\begin{propose}
+    Матрица \( \allones{N} \) подобна матрице
+    \[\begin{pmatrix}
+        N &   &        & \\
+        & 0 &        & \\
+        &   & \ddots & \\
+        &   &        & 0
+    \end{pmatrix}\]
+
+    Диагонализирующая матрица преобразования имеет вид:
+    \begin{equation}\label{eq:diagtransform}
+    T =
+    \begin{pmatrix}
+        1/\sqrt N &  1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
+        \vdots    & -1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
+        \vdots    & 0         & -2/\sqrt6 & 1/2\sqrt3  & \cdots & a_{n-1} \\
+        \vdots    & \vdots    & 0         & -3/2\sqrt3 & \cdots & a_{n-1} \\
+        \vdots    & \vdots    & \vdots    & 0          & \cdots & a_{n-1} \\
+        \vdots    & \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
+        \vdots    & \vdots    & \vdots    & \vdots     & \cdots & a_{n-1} \\
+        1/\sqrt N & 0         & 0         & 0          & \cdots & -(n-1)a_{n-1}
+        \end{pmatrix}
+        \end{equation}
+
+    Её столбцы \( f_0, \ldots, f_n \) -- ортонормированный собственный базис матрицы \( \allones{N} \):
+
+    \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed\]
+    \providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
+    \[
+        f_k =
+        \begin{pmatrix}a_k \\ \vdots \\ a_k \\ -ka_k \\ 0 \\ \vdots \\ 0 \end{pmatrix} =
+        \frac{1}{k\fknorm}
+        \begin{pmatrix}1 \\ \vdots \\ 1 \\ -k \\ 0 \\ \vdots \\ 0 \end{pmatrix}
+        \]
+    \[
+         a_k = \frac{1}{k\fknorm}
+         \]
+         Где \( k=\overline{2,N-1} \)
+
+    \[
+             f_1
+             = \begin{pmatrix}a_1 \\ -a_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}
+             = \begin{pmatrix}\frac1{\sqrt2} \\ - \frac{1}{\sqrt2} \\ 0 \\ \vdots \\ 0 \end{pmatrix}
+             \]
+
+    Эта матрица ортогональна и поэтому
+    \( T^{-1} = T^\conjtransposed = T^\transposed \),
+    \( \det T = 1 \).
+\end{propose}
