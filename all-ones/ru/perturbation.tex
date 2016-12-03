@@ -27,7 +27,7 @@
 \[
     A = \transformmatrix{T}{\allones{N}}
     = \begin{pmatrix}
-    N &   &        & \\
+      N &   &        & \\
         & 0 &        & \\
         &   & \ddots & \\
         &   &        & 0
@@ -36,6 +36,7 @@
 \[
     B = \transformmatrix{T}{\perturbmatrix{M}{N}}
     \]
+Снова, пропущенные элементы матрицы -- нулевые.
 
 \subsection{Общая схема метода подобных операторов}
 Следуя общей схеме, мы будем искать матрицу, подобную \( A - B \)
@@ -54,6 +55,7 @@
     (A - B)(E+\Gamma X) = (E+\Gamma X) (A - JX)
 \end{equation}
 
+\newpage %dirty fix
 Нам потребуется вспомогательная нотация.
 Любая матрица из \( \matr{N}{} \) определяет (непрерывный) линейный оператор (умножения на эту матрицу),
 действующий в линейном пространстве \( \mathscr X = \RR^N \)
@@ -73,7 +75,7 @@
 действующих по формулам
 \[ P x = x_1,\quad Q x = x_2 \]
 Пространство линейных преобразований естественным образом
-образом распадается в прямую сумму
+распадается в прямую сумму
 \[ \End{\mathscr X} =
     \Hom{\mathscr X_1}{\mathscr X_1}
     \oplus \Hom{\mathscr X_1}{\mathscr X_2}
@@ -205,12 +207,12 @@
 с \( \mathscr X = \RR^n \),
 а в пространстве \( \End{\matr{N}{}} \) трансформаторов
 используется обычная операторная норма%
-\footnote{операторная норма (норма Гильберта-Шмидта)
-оператора (матрицы) \( \mathcal A \)
+\footnote{операторная норма
+(матрицы или оператора) \( \mathcal A \)
 вводится как точная нижняя грань таких констант \( C > 0 \),
 что для всех \( x\in\mathscr X\) имеет место
-(\( \norm{A x} \leq C \norm{x} \)); короче, норма Г-Ш данного оператора
-есть точная нижняя грань его согласованных норм}
+(\( \norm{A x} \leq C \norm{x} \)), короче
+\( \operatornorm{A} \) есть точная нижняя грань согласованных норм \( \norm{A} \)}
 
 \begin{align*}
     \norm{\Phi(X)} &= \norm{B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B))} \leq \\
@@ -242,9 +244,9 @@
     
     Наконец, \( r_0 \geq 0 \):
     \begin{align*}
-        1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} > 0 \\
+        1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} > 0 \marginnote{\( 1-4\gamma\beta \geq 0 \)}\\
         \iff
-        1-4\gamma\beta + 4\gamma^2\beta^2 > 1 - 4\gamma\beta \marginnote{\(1-2\gamma\beta \geq 1-4\gamma\beta\geq 0\)} \\
+        1-4\gamma\beta + 4\gamma^2\beta^2 > 1 - 4\gamma\beta \\
         \iff
         4\gamma^2\beta^2 \geq 0 \quad \text{что верно}
     \end{align*}
@@ -363,7 +365,7 @@
 согласована с векторным пространством,
 а в \( \End{\matr{N}{}} \) используется обычная операторная норма.
 Теперь будем считать, что и в \( \matr{N}{} \)
-также выбрана норма Гильберта-Шмидта  (обозначим её \( \operatornorm{\cdot} \)),
+также выбрана операторная норма  (обозначим её \( \operatornorm{\cdot} \)),
 которая дала бы нам наиболее тонкие оценки.
 \[ \beta = \operatornorm{B}, \gamma = \norm{\Gamma} = \sup_{\operatornorm{X}=1} \operatornorm{\Gamma X} \]
 где, напомню, \( B = T^{-1} \perturbmatrix{M}{N} T \)
