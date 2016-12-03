@@ -39,12 +39,15 @@
 
 \begin{propose}
     Матрица \( \allones{N} \) подобна матрице
-    \[\begin{pmatrix}
+    \[
+        \begin{pmatrix}
         N &   &        & \\
-        & 0 &        & \\
-        &   & \ddots & \\
-        &   &        & 0
-    \end{pmatrix}\]
+          & 0 &        & \\
+          &   & \ddots & \\
+          &   &        & 0
+        \end{pmatrix}
+    \]
+Здесь пропущенные элементы матрицы означают нули
 
     Диагонализирующая матрица преобразования имеет вид:
     \begin{equation}\label{eq:diagtransform}
@@ -61,6 +64,7 @@
         \end{pmatrix}
         \end{equation}
 
+        \begin{minipage}{\textwidth}
     Её столбцы \( f_0, \ldots, f_n \) -- ортонормированный собственный базис матрицы \( \allones{N} \):
 
     \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed\]
@@ -85,4 +89,5 @@
     Эта матрица ортогональна и поэтому
     \( T^{-1} = T^\conjtransposed = T^\transposed \),
     \( \det T = 1 \).
+        \end{minipage}
 \end{propose}
