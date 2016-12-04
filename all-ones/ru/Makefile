@@ -1,12 +1,12 @@
 main.pdf: main.tex main.toc intro.tex all-ones.tex perturbation.tex future.tex notation.tex fa-style.sty almost-all-ones.bib
-	pdflatex main.tex
+	xelatex main.tex
 	bibtex main.aux
-	pdflatex main.tex
-	pdflatex main.tex
+	xelatex main.tex
+	xelatex main.tex
 
 %.pdf: %.toc %.tex
-	pdflatex $*.tex
-	pdflatex $*.tex
+	xelatex $*.tex
+	xelatex $*.tex
 
 %.toc: %.tex
-	pdflatex $*.tex
+	xelatex $*.tex
