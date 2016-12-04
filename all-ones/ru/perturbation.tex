@@ -317,31 +317,32 @@
     \]
 
 \begin{lemma}
-    Спектр \( A - B \) состоит из числа \( N - x_{11} \)
+    Пусть \( \norm{\cdot} \) --- суб-мультипликативная норма в \( \matr{N}{} \),
+    \[ \beta = \norm{B}, \]
+    \[ \gamma = \sup_{\norm{X}=1} \norm{\Gamma X}. \]
+    Если
+    \[ \gamma\beta \leq \frac14. \]
+    То спектр \( A - B \) состоит из числа \( N - x_{11} \)
     и спектра матрицы \( -X_{22} \)
     \[ \spec{A-B} = \{ \lambda_1 \} \cup \spec{-X_{22}}, \]
     \[ \lambda_1 = N - x_{11}.  \]
     При этом
     \[ \lvert \lambda_1 - N \rvert \leq r_0, \]
-    и, если \( r_0 \) посчитан на согласованной с \( \mathscr{X} \) матричной норме,
-    для всех \( { \lambda\in\spec{A-B}\setminus\{\lambda_1\} } \) имеет место
+    Если, дополнительно, норма \( \norm{\cdot} \) согласована с нормой в \( \mathscr{X} \),
+    то для всех \( { \lambda\in\spec{A-B}\setminus\{\lambda_1\} } \) имеет место
     \[ \lvert\lambda\rvert \leq r_0. \]
 \end{lemma}
 
 Теперь требуемые результаты мы получим оценив \( \beta, \gamma \).
 
-В ходе рассуждений полагалось, что в \( \matr{N}{} \) выбрана суб-мультипликативная норма,
-а в \( \End{\matr{N}{}} \) используется обычная операторная норма.
-Теперь будем считать, что и в \( \matr{N}{} \)
-также выбрана операторная норма
+Рассмотрим в \( \matr{N}{} \) операторную норму~
 \footnote{фактически, для каждой фиксированной матрицы,
 --- это точная нижняя грань её согласованных норм; таким образом,
 операторная норма даёт наиболее тонкие оценки для \( \spr{-X_{22}} \) }
 (обозначим её \( \operatornorm{\cdot} \))
 --- её согласованность с нормой \( \mathscr{X} \)
 позволит нам дать верхнюю оценку и для \( \spr{-X_{22}^o} \).
-\[ \beta = \operatornorm{B}, \gamma = \norm{\Gamma} = \sup_{\operatornorm{X}=1} \operatornorm{\Gamma X} \]
-где, напомню, \( B = U^{-1} \perturbmatrix{M}{N} U \)
+Напомню, \( B = U^{-1} \perturbmatrix{M}{N} U \)
 получена из матрицы возмущения с \( M \) единицами применением преобразования \eqref{eq:diagtransform},
 диагонализирующего матрицу единиц,
 а \( \Gamma \) --- оператор из \( \End{\matr{N}{}} \),
@@ -363,16 +364,16 @@
         = \sup_{\norm X = 1} \sup_{\norm x = 1} \norm{(\Gamma X)x} = \frac1N
         \]
     Теперь рассмотрим в \( \matr{N}{} \) норму Фробениуса
-    \( \normex{2}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
-    Тогда \( \normex{2}{\perturbmatrix{M}{N}} \)
+    \( \normex{F}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
+    Тогда \( \normex{F}{\perturbmatrix{M}{N}} \)
     это суть корень из числа \( M \) единиц в \( \perturbmatrix{M}{N} \).
-    Ясно, что \( \normex{2}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{2}{Z} \).
+    Ясно, что \( \normex{F}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{F}{Z} \).
     Остаётся заметить, что умножение на унитарную матрицу \( U \)
     (и \( U^{-1} \)) есть изометрия
     в \( \matr{N}{} \)
     и поэтому
     \[ \norm{B} = \norm{\perturbmatrix{M}{N}} \]
-    \[ \beta \leq \normex{2}{B} = \normex{2}{\perturbmatrix{M}{N}} = \sqrt{M} \]
+    \[ \beta \leq \normex{F}{B} = \normex{F}{\perturbmatrix{M}{N}} = \sqrt{M} \]
 \end{proof}
 
 Наконец, можем сформулировать первый (грубый) результат:
@@ -387,9 +388,8 @@
 
     То у матрицы \( \almostallones{M}{N} \) есть в точности одно собственное
     значение \( \lambda_1 \), удовлетворяющее неравенству
-    \[ \lvert \lambda_1 - N \rvert \leq 4\sqrt{M} ,\]
-    а остальные собственные значения \( \lambda\in\spec{\almostallones{M}{N}} \setminus \{\lambda_1\} \)
-    лежат в отрезке \( \left[-4\sqrt{M},+4\sqrt{M}\right] \):
+    \[ \lvert \lambda_1 - N \rvert \leq 4\sqrt{M} \leq N ,\]
+    и для всех \( \lambda\in\spec{\almostallones{M}{N}} \setminus \{\lambda_1\} \)
     \[ \lvert \lambda \rvert \leq 4\sqrt{M} \]
 \end{thm}
 \begin{proof}
