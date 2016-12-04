@@ -187,9 +187,9 @@
     Если
     \[ \gamma\beta \leq \frac14, \]
     то \( \Phi \) отображает в себя шар
-    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0(\beta,\gamma) \}, \]
-    \[ r_0(\beta,\gamma) = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}, \]
-    \[ 0 < r_0(\beta,\gamma) \leq 4\beta. \]
+    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \}, \]
+    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}, \]
+    \[ 0 < r_0 \leq 4\beta. \]
 \end{lemma}
 \begin{proof}
     Обозначим \( r=\norm{X} \). Тогда
@@ -200,10 +200,10 @@
     Детерминант возникшего многочлена:
     \( \Delta = 1 - 4\gamma\beta\).
     Стало быть, если \( {\gamma\beta \leq \frac14} \),
-    то определённое выше \( r_0(\beta,\gamma) \) есть наименьшее \( r \),
+    то определённое выше \( r_0 \) есть наименьшее \( r \),
     удовлетворяющее неравенству \eqref{eq:omega-invariance}
     
-    Наконец, \( r_0(\beta,\gamma) \geq 0 \):
+    Наконец, \( r_0 \geq 0 \):
     \begin{align*}
         1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} > 0 \marginnote{\( 1-4\gamma\beta \geq 0 \)}\\
         \iff
@@ -211,9 +211,9 @@
         \iff
         4\gamma^2\beta^2 \geq 0 \quad \text{что верно}
     \end{align*}
-    И \( r_0(\beta,\gamma) \leq 4\beta \):
+    И \( r_0 \leq 4\beta \):
     \begin{align*}
-        r_0(\beta,\gamma) \leq \varepsilon\beta \\
+        r_0 \leq \varepsilon\beta \\
         \iff 1-2\gamma\beta-\sqrt{1-4\gamma\beta} \leq 2\varepsilon\gamma^2\beta^2 \\
         \iff 1 - 2\gamma\beta(1+\gamma\beta\varepsilon) \leq \sqrt{1-4\gamma\beta} \\
         \iff 1 - 4\gamma\beta(1+\gamma\beta\varepsilon)+4\gamma^2\beta^2(1+\gamma\beta\varepsilon)^2 \leq 1-4\gamma\beta \\
@@ -251,11 +251,11 @@
         \]
     Здесь:
     \begin{equation}\label{eq:lipconst}
-        q = (1+2\gamma r_0(\beta,\gamma))\gamma\beta
+        q = (1+2\gamma r_0)\gamma\beta
         \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4}
         \marginnote{\footnotemark}
     \end{equation}
-    \footnotetext{Здесь используются неравенства \(r_0(\beta,\gamma)\leq 4\beta\) и \(\gamma\beta \leq \frac14\)}
+    \footnotetext{Здесь используются неравенства \(r_0\leq 4\beta\) и \(\gamma\beta \leq \frac14\)}
     Это и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре
 \end{proof}
 
@@ -264,9 +264,9 @@
     Пусть \( \gamma=\norm{\Gamma}, \beta=\norm{B}, \)
     \[ \gamma\beta\leq\frac14. \]
     Обозначим
-    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0(\beta,\gamma) \} \]
-    \[ r_0(\beta,\gamma) = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} \]
-    \[ q = (1+2\gamma r_0(\beta,\gamma))\gamma\beta \]
+    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \} \]
+    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} \]
+    \[ q = (1+2\gamma r_0)\gamma\beta \]
 
     Тогда \( \Phi \) есть сжимающее отображение \(\Omega\to\Omega\) шара \(\Omega\) в себя,
     и в этом шаре существует единственное решение \( X^o \) уравнения
@@ -274,7 +274,7 @@
 
     При этом имеют место оценки:
     \[
-        \norm{X^o} \leq r_0(\beta,\gamma) \leq 4\beta
+        \norm{X^o} \leq r_0 \leq 4\beta
         \]
     \[
         \norm{X^k - X^o} \leq \frac{q^k}{1-q}\beta
@@ -305,7 +305,7 @@
 \end{pmatrix}
 \),
 что \( A-B \) и \( A - JX^o \) подобны.
-При этом \( \norm{X^o} \leq r_0(\beta,\gamma) \leq 4\norm{B} \),
+При этом \( \norm{X^o} \leq r_0 \leq 4\norm{B} \),
 а \( A - JX^o \) --- блочно-диагональна.
 
 \[
@@ -317,55 +317,30 @@
     \]
 
 \begin{lemma}
-    Пусть \( \normex{1}{\cdot} \) --- суб-мультипликативная норма в \( \matr{N}{} \),
-    а \( \normex{2}{\cdot} \) --- норма в \( \matr{N}{} \), согласованная с нормой в \( \mathscr{X} \).
-    \[ \beta_j = \normex{j}{B}, \]
-    \[ \gamma_j = \sup_{\normex{j}{X}=1} \normex{j}{\Gamma X}, \]
-    \[ j=1,2. \]
-
-    Если
-    \[ \gamma_1\beta_1 \leq \frac14, \]
-    то спектр \( A - B \) состоит из числа \( N - x_{11} \)
+    Спектр \( A - B \) состоит из числа \( N - x_{11} \)
     и спектра матрицы \( -X_{22} \)
     \[ \spec{A-B} = \{ \lambda_1 \} \cup \spec{-X_{22}}, \]
     \[ \lambda_1 = N - x_{11}.  \]
     При этом
-    \[ \lvert \lambda_1 - N \rvert \leq r_0(\beta_1,\gamma_1). \]
-    Если и
-    \[ \gamma_2\beta_2 \leq \frac14, \]
-    то, дополнительно,
-    \[ \lvert \lambda_1 - N \rvert \leq r_0(\beta_2,\gamma_2), \]
-    и для всех
-    \( { \lambda\in\spec{A-B}\setminus\{\lambda_1\} } \) имеет место
-    \[ \lvert\lambda\rvert \leq r_0(\beta_2,\gamma_2). \]
+    \[ \lvert \lambda_1 - N \rvert \leq r_0, \]
+    и, если \( r_0 \) посчитан на согласованной с \( \mathscr{X} \) матричной норме,
+    для всех \( { \lambda\in\spec{A-B}\setminus\{\lambda_1\} } \) имеет место
+    \[ \lvert\lambda\rvert \leq r_0. \]
 \end{lemma}
-\begin{proof}
-    Пусть \( \gamma_1\beta_1 \leq \frac14 \).
-    Тогда методом простых итераций находим \( X^o \).
-    Спектр блочной матрицы есть объединение спектров её блоков.
-    Верхний левый блок матрицы \( A - JX^o \)
-    есть число \( N - x_{11} \),
-    поэтому оно входит в спектр.
 
-    Пусть дополнительно \( \gamma_2\beta_2 \leq \frac14 \).
-    Для оценки \( \spr{-X_{22}} \) заметим,
-    что сходимость в топологии, задаваемой \( \normex{1}{\cdot} \)
-    эквивалентна сходимости в топологии, порождённой \( \normex{2}{\cdot} \).
-    Применяя снова метод простых итераций, получим то же самое решение \( X^o \),
-    но в шаре радиуса \( r_0(\beta_2,\gamma_2) \).
-    Вторая норма согласованна с нормой в \( \mathscr{X} \),
-    а значит равномерно ограничивает сверху спектральный радиус.
-\end{proof}
+Теперь требуемые результаты мы получим оценив \( \beta, \gamma \).
 
-Теперь требуемые результаты мы получим оценив \( \beta_j \) и \( \gamma_j \)
-в терминах исходной задачи.
-
-Положим,
-что \( \normex{2}{\cdot} \) --- операторная норма~
+В ходе рассуждений полагалось, что в \( \matr{N}{} \) выбрана суб-мультипликативная норма,
+а в \( \End{\matr{N}{}} \) используется обычная операторная норма.
+Теперь будем считать, что и в \( \matr{N}{} \)
+также выбрана операторная норма
 \footnote{фактически, для каждой фиксированной матрицы,
 --- это точная нижняя грань её согласованных норм; таким образом,
-операторная норма даёт наиболее тонкие оценки для \( \spr{-X_{22}} \) }.
-\[ \beta_2 = \operatornorm{B}, \gamma_2 = \norm{\Gamma} = \sup_{\operatornorm{X}=1} \operatornorm{\Gamma X} \]
+операторная норма даёт наиболее тонкие оценки для \( \spr{-X_{22}} \) }
+(обозначим её \( \operatornorm{\cdot} \))
+--- её согласованность с нормой \( \mathscr{X} \)
+позволит нам дать верхнюю оценку и для \( \spr{-X_{22}^o} \).
+\[ \beta = \operatornorm{B}, \gamma = \norm{\Gamma} = \sup_{\operatornorm{X}=1} \operatornorm{\Gamma X} \]
 где, напомню, \( B = U^{-1} \perturbmatrix{M}{N} U \)
 получена из матрицы возмущения с \( M \) единицами применением преобразования \eqref{eq:diagtransform},
 диагонализирующего матрицу единиц,
@@ -375,8 +350,8 @@
 
 \begin{lemma}
     Имеют место оценки
-    \[ \gamma_2 = \frac1N ,\]
-    \[ \beta_2 \leq \sqrt{M} ,\]
+    \[ \gamma = \frac1N ,\]
+    \[ \beta \leq \sqrt{M} ,\]
     где \( M \) --- число единиц в матрице \( \perturbmatrix{M}{N} \) возмущения
     (число нулей в исходной матрице \( \almostallones{M}{N} \))
 \end{lemma}
@@ -384,28 +359,21 @@
     \[ \norm{(\Gamma X) x} = \frac1N \norm{\begin{pmatrix}x_2\\-x_1\end{pmatrix}} \]
 
     \[
-        \gamma = \sup_{\norm X = 1} \operatornorm{\Gamma X}
+        \norm{\Gamma} = \sup_{\norm X = 1} \operatornorm{\Gamma X}
         = \sup_{\norm X = 1} \sup_{\norm x = 1} \norm{(\Gamma X)x} = \frac1N
         \]
     Теперь рассмотрим в \( \matr{N}{} \) норму Фробениуса
-    \( \normex{F}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
+    \( \normex{2}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
     Тогда \( \normex{2}{\perturbmatrix{M}{N}} \)
     это суть корень из числа \( M \) единиц в \( \perturbmatrix{M}{N} \).
-    Ясно, что \( \normex{F}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{F}{Z} \).
+    Ясно, что \( \normex{2}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{2}{Z} \).
     Остаётся заметить, что умножение на унитарную матрицу \( U \)
     (и \( U^{-1} \)) есть изометрия
     в \( \matr{N}{} \)
     и поэтому
     \[ \norm{B} = \norm{\perturbmatrix{M}{N}} \]
-    \[ \beta_2 \leq \normex{F}{B} = \normex{F}{\perturbmatrix{M}{N}} = \sqrt{M} \]
+    \[ \beta \leq \normex{2}{B} = \normex{2}{\perturbmatrix{M}{N}} = \sqrt{M} \]
 \end{proof}
-
-Теперь рассмотрим в \( \mathscr{X} \) равномерную норму:
-\[ \normex{u}{x} = \max_j \lvert x_j \rvert, \]
-а в качестве \( \normex{1}{\cdot} \) возьмём
-норму Гильберта-Шмидта:
-\[ \normex{2}{Z} = \normex{HS}{Z} = \sqrt{\sum_j \normex{u}{Z e_j}^2}. \]
-
 
 Наконец, можем сформулировать первый (грубый) результат:
 \begin{thm}[О грубой оценке собственных значений возмущённой матрицы единиц]
@@ -429,6 +397,6 @@
         \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A - JX^o}
         = \{ N - x_{11} \} \cup \spec{-X^o_{22}}
         \]
-    \[ x_{11}, \spr{X^o_{22}} \leq r_0(\beta,\gamma) \]
-    \[ r_0(\beta,\gamma) \leq 4\norm{B} \leq 4\sqrt{M} \]
+    \[ x_{11}, \spr{X^o_{22}} \leq r_0 \]
+    \[ r_0 \leq 4\norm{B} \leq 4\sqrt{M} \]
 \end{proof}
