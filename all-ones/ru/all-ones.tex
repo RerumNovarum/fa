@@ -13,16 +13,20 @@
 \]
 
 Спектром матрицы \( A \) называется множество таких \( \lambda\in\CC \),
-что матрица \( E + \lambda A \) вырождена
+что матрица \( {A - \lambda E} \) необратима \footnote{напомню, \( E \) --- единичная матрица}.
 
-\begin{propose}
-\[
-    \allones{N}^2 = N \allones{N}
+\begin{lemma}
+    Имеет место равенство
+    \begin{equation}\label{eq:allones-squared}
+        \allones{N}^2 = N \allones{N}
+    \end{equation}
+    Из равенства \eqref{eq:allones-squared} следует, что
+    \( p(\lambda) = \lambda^2-N\lambda \)
+    есть минимальный многочлен \( \allones{N} \) и поэтому
+    \[
+        \spec{\allones{N}} = \left\{ 0, N \right\}.
     \]
-\[
-    \spec{\allones{N}} = \left\{ 0, N \right\}
-    \]
-\end{propose}
+\end{lemma}
 
 \begin{dfn}
     Две матрицы \( A_1, A_2 \)
@@ -37,21 +41,20 @@
         \]
 \end{dfn}
 
-\begin{propose}
+\begin{lemma}
     Матрица \( \allones{N} \) подобна матрице
     \[
         \begin{pmatrix}
-        N &   &        & \\
-          & 0 &        & \\
-          &   & \ddots & \\
-          &   &        & 0
+            N       & 0      & \cdots & 0 \\
+            0       & 0      & \cdots & 0 \\
+            \vdots  & \vdots & \ddots & \vdots  \\
+            0       & 0      & \cdots & 0
         \end{pmatrix}
     \]
-Здесь пропущенные элементы матрицы означают нули
 
     Диагонализирующая матрица преобразования имеет вид:
     \begin{equation}\label{eq:diagtransform}
-    T =
+    U =
     \begin{pmatrix}
         1/\sqrt N &  1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
         \vdots    & -1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
@@ -65,7 +68,7 @@
         \end{equation}
 
         \begin{minipage}{\textwidth}
-    Её столбцы \( f_0, \ldots, f_n \) -- ортонормированный собственный базис матрицы \( \allones{N} \):
+            Её столбцы \( f_0, \ldots, f_{N-1} \) -- ортонормированный собственный базис матрицы \( \allones{N} \):
 
     \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed\]
     \providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
@@ -86,8 +89,7 @@
              = \begin{pmatrix}\frac1{\sqrt2} \\ - \frac{1}{\sqrt2} \\ 0 \\ \vdots \\ 0 \end{pmatrix}
              \]
 
-    Эта матрица ортогональна и поэтому
-    \( T^{-1} = T^\conjtransposed = T^\transposed \),
-    \( \det T = 1 \).
+    Матрица такого вида ортогональна и поэтому
+    \( U^{-1} = U^\conjtransposed = U^\transposed \).
         \end{minipage}
-\end{propose}
+\end{lemma}

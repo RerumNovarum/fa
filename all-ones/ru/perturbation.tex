@@ -13,11 +13,9 @@
 имеющая единицы в точности в тех местах,
 на которых в \( \almostallones{M}{N} \) стоят нули.
 
-Задача состоит в оценке спектра возмущённой матрицы.
-
-\begin{propose}
+\begin{prop}
     Подобные матрицы имеют одинаковый спектр
-\end{propose}
+\end{prop}
 
 Применяя полученную в \eqref{eq:diagtransform} матрицу преобразования,
 получаем, что \( \almostallones{M}{N} \) подобна (а значит разделяет с ней общий спектр)
@@ -25,7 +23,7 @@
 \[ A - B \]
 Где
 \[
-    A = \transformmatrix{T}{\allones{N}}
+    A = \transformmatrix{U}{\allones{N}}
     = \begin{pmatrix}
       N &   &        & \\
         & 0 &        & \\
@@ -34,7 +32,7 @@
         \end{pmatrix}
         \]
 \[
-    B = \transformmatrix{T}{\perturbmatrix{M}{N}}
+    B = \transformmatrix{U}{\perturbmatrix{M}{N}}
     \]
 Снова, пропущенные элементы матрицы -- нулевые.
 
@@ -43,132 +41,98 @@
 в виде
 \[ A - J X \]
 с матрицей подобия вида
-\[ U = E + \Gamma X \]
-Где \[ J, \Gamma \in \End{\matr{N}{}} \]
--- линейные операторы (трансформаторы), действующие в пространстве матриц,
-подбираемые в ходе решения так, чтобы матрица \( A - JX \)
+\[ E + \Gamma X ,\]
+где
+\[ J, \Gamma \in \End{\mathfrak U} \]
+\[ \mathfrak{U}\subset\matr{N}{} \]
+--- линейные операторы (трансформаторы),
+действующие на некотором \( \mathfrak U \),
+называемом пространством допустимых возмущений,
+и подбираемые в ходе решения так, чтобы матрица \( A - JX \)
 имела как можно более простую структуру.
 
 Иначе говоря, будем искать решение \( X \in\matr{N}{} \)
 уравнения подобия
 \begin{equation}\label{eq:similarity-orig}
-    (A - B)(E+\Gamma X) = (E+\Gamma X) (A - JX)
+    (A - B)(E+\Gamma X) = (E+\Gamma X) (A - JX).
 \end{equation}
 
-\newpage %dirty fix
-Нам потребуется вспомогательная нотация.
-Любая матрица из \( \matr{N}{} \) определяет (непрерывный) линейный оператор (умножения на эту матрицу),
-действующий в линейном пространстве \( \mathscr X = \RR^N \)
-(пространства \( \matr{m}{n} \) и \( \Hom{\RR^n}{\RR^m} \) изоморфны).
-Рассмотрим \( \mathscr X \) как прямую сумму
-\[ \mathscr X = \mathscr X_1 \oplus \mathscr X_2 \]
-\[ \mathscr X_1 = \RR,\quad \mathscr X_2 = \RR^{N-1} \]
-(иначе говоря, любой элемент \( x \) из \( \mathscr X \)
-    можно единственным образом представить в виде суммы \( x_1 \oplus x_2 \),
-    где \( x_1\in\mathscr X_1 \) --- число
-    и \( x_2\in\mathscr X_2 \) --- \( (N-1) \)-мерный вектор,
-    а \( X_j \) естественным образом вложены \( \mathscr X \)).
-Тогда оператор \( \mathscr A \) умножения на матрицу \( A \) действует следующим образом:
-\( \mathscr A x = N x_1 \in \mathscr X_1 \subset \mathscr X \).
-Декомпозиция в прямую сумму осуществляется парой проекторов
-\( P, Q = I - P \) (\( I \) -- тождественный),
-действующих по формулам
-\[ P x = x_1,\quad Q x = x_2 \]
-Пространство линейных преобразований естественным образом
-распадается в прямую сумму
-\[ \End{\mathscr X} =
-    \Hom{\mathscr X_1}{\mathscr X_1}
-    \oplus \Hom{\mathscr X_1}{\mathscr X_2}
-    \oplus \Hom{\mathscr X_2}{\mathscr X_1}
-    \oplus \Hom{\mathscr X_2}{\mathscr X_2} \]
-и любой оператор \( \mathcal X \in \End{\mathscr X} \)
-единственным образом представим в виде
-\[ \mathcal X = \mathcal X_{11} \oplus \mathcal X_{12} \oplus \mathcal X_{21} \oplus \mathcal X_{22} \]
-\[
-    \Hom{\mathscr X_j}{\mathscr X_i} \ni\mathcal X_{ij} = {P_i X P_j}
-    \qquad\footnote{понимается бисужение \( P_i\mathcal X P_j \), осуществляющее отображение\( \mathscr{X}_j\to\mathscr{X}_i \)}
-    \]
-\( \mathcal X_{ij} \) представляет собой ``вклад'' координаты \( x_j \in \mathscr X_j \)
-в \(i\)-ую координату образа \( X x \):
-\[
-    \mathcal X x =
-    \underbrace{\mathcal X_{11} x_1 + \mathcal X_{12} x_2}_{\in\mathscr X_1}
-    \oplus \underbrace{\mathcal X_{21} x_1 + \mathcal X_{22} x_2}_{\in\mathscr X_2}
-    \]
-При этом, \( \mathcal X_{11} \) является умножением на верхний левый элемент \( x_{11} \) матрицы \( X \),
-\( \mathcal X_{12} \) --- умножением на верхнюю правую вектор-строку,
-\( \mathcal X_{21} \) -- нижний левый столбец,
-\( \mathcal X_{22} \) -- правый нижний квадратный блок матрицы \( X \).
-Элемент \( x =  x_1 \oplus x_2 \) теперь будем записывать в виде вектора \( x \sim \begin{pmatrix}x_1\\x_2\end{pmatrix} \).
-Тогда образ \( \mathcal X x \) вектора \( x \) под действием оператора \( \mathcal X \)
-запишется, как
-\[
-    \mathcal X x =
-    \begin{pmatrix}
-    \mathcal X_{11} x_1 + \mathcal X_{12} x_2 \\
-    \mathcal X_{21} x_1 + \mathcal X_{22} x_2 \end{pmatrix}
-        \]
-Ясно, что действие оператора \( \mathcal X \)
-можно описать умножением \( \begin{pmatrix} x_1 \\ x_2 \end{pmatrix} \)
-на блочную матрицу.
-Далее операторы и матрицы отождествляются с блочными матрицами
+В подпространстве \( \mathfrak U \subset \matr{N}{} \)
+мы будем запускать итерационный процесс,
+и, как будет видно ниже, потребуется \( B \in \mathfrak U \)
+и замыкания образов возникающих далее операторов также
+должны содержаться в
+пространстве допустимых возмущенний.
+В виду способа построения матрицы \( B \), сказать что-либо о её структуре затруднительно,
+поэтому мы вынуждены выбрать \( \mathfrak U = \matr{N}{}\).
 
+Пространство \( \mathscr{X} \) представим в виде
+декартова произведения
+\( \mathscr{X} = \mathscr{X}_1~\times~\mathscr{X}_2 \)
+одномерного пространства \( \mathscr{X}_1=\RR \)
+и \((n-1)\)-мерного пространства \( \mathscr{X}_2 \),
+элементы этого пространства в виде
+\( x=\begin{pmatrix}x_1\\x_2\end{pmatrix}, \)
+\( x_i\in\mathscr{X}_i \).
+Матрицы из \( \matr{N}{} \) будем записывать
+в блочном виде:
 \[
-    X =
-    \begin{pmatrix}
-        X_{11} & X_{12} \\
-        X_{21} & X_{22}
-    \end{pmatrix}
+    X = \begin{pmatrix}
+    X_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix},
     \]
-\[
-    X_{11}\in\matr{1,1}{},
-    X_{12}\in\matr{1,N}{},
-    X_{21}\in\matr{N,1}{},
-    X_{22}\in\matr{N-1,N-1}{}
-    \]
+где \( X_{11}\in\RR \) --- число,
+    \( X_{12} \) -- строка длины \( N-1 \),
+    \( X_{21} \) -- столбец,
+    \( X_{22} \in \matr{N-1}{} \).
+При этом произведению матриц соответствует произведение блочных матриц.
 
 Вернёмся к задаче.
 Оператор \( \Gamma X \) определим как решение уравнения
 \[
-    \ad{A}{\Gamma X} = X - JX
-    \qquad
-    \footnote{\(\ad{Y}{} \) --- оператор коммутирования с \(Y\): \( \ad{Y}{Z} = YZ - ZY \) }
+    A\Gamma X - (\Gamma X) A = X - JX.
+    \marginnote{
+        \footnotemark}
     \]
-Пусть  \( \Gamma X \) задаётся блочной матрицей
+\footnotetext{в левой части стоит \( \ad{A}{\Gamma X} \)
+--- оператор коммутирования с \(A\), применённый к \(\Gamma X\): \( \ad{Y}{Z} = YZ - ZY \)}
+Пусть
 \[ \Gamma X =
 \begin{pmatrix}
     \Gamma_{11}(X) & \Gamma_{12}(X) \\
     \Gamma_{21}(X) & \Gamma_{22}(X)
-\end{pmatrix} \]
+\end{pmatrix}, \]
+тогда
 \[
-    \ad{A}{\Gamma X} = A \Gamma X - (\Gamma X) A =
+    A \Gamma X - (\Gamma X) A =
     \frac{1}{N}
 \begin{pmatrix}
     0               & \Gamma_{12}(X) \\
-    -\Gamma_{21}(X) & 0             
+    -\Gamma_{21}(X) & 0
 \end{pmatrix}
-    \]
+    . \]
 
 Положим теперь
 \[
     JX = \begin{pmatrix}
         X_{11} & 0 \\
         0      & X_{22}
-    \end{pmatrix}
+    \end{pmatrix},
     \]
 \[ \Gamma X =
     \begin{pmatrix}
         0       & X_{12} \\
         -X_{21} & 0
-    \end{pmatrix}
+    \end{pmatrix}.
     \]
-При этом матрица \( A - JX \) оказывается блочно-диагональной структуры
-и, что легко проверить, её спектр есть объединение спектров её диагональных блоков.
-Естественнее было бы начать с выбора оператора \( J \) доставляющего структуру,
-как можно более близкую к \( A \).
-Первым делом хочется рассмотреть оператор \( X\mapsto X_{11} \),
-как самый согласованный с \( A \).
-К сожалению, такой выбор \( J \) не позволяет решить уже уравнение для \(\Gamma\) во всём \(\matr{N}{}\)
+При этом матрица \( A - JX \) оказывается блочно-диагональной
+и её спектр есть объединение спектров её диагональных блоков.
+Заметим, естественнее было бы начать с выбора оператора \( J \) доставляющего структуру,
+как можно более близкую к \( A \), а именно
+оператор \( X\mapsto X_{11} \).
+К сожалению, такой выбор \( J \) не позволяет решить
+уже уравнение для \(\Gamma X\) во всём \(\mathfrak U = \matr{N}{}\),
 и мы приходим к блочно-диагональному виду.
 
 Развернём теперь уравнение \eqref{eq:similarity-orig}
@@ -182,66 +146,64 @@
 \[
     X = B \Gamma X + B - (\Gamma X) JX
     \]
-Применяя слева обратимый оператор \( J \) и подставляя результат обратно получим уравнение
+Применяя слева обратимый оператор \( J \) и подставляя результат обратно, получим уравнение
 \begin{equation}\label{eq:similarity2}
     X = B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B))
 \end{equation}
 
-Теперь мы докажем существование единственного решения \eqref{eq:similarity2}
+Теперь мы докажем существование единственного решения уравнения \eqref{eq:similarity2}
 и выведем оценки спектра,
 показав, что в правой части этого уравнения стоит образ \( X \)
 при сжимающем (в некотором шаре с центром в нуле) отображении \( \Phi \):
 \[ \Phi(X) = B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B)) \]
 
 \subsection{Существование инвариантного множества}
-Покажем сначала существование такого шара \( X\in\matr{N}{}; \{ \norm{X} \leq \varepsilon \} \),
+Покажем сначала существование такого шара \( \{ X\in\matr{N}{}; \norm{X} \leq \varepsilon \} \),
 который содержит свой образ при отображении \( \Phi \)
 (другими словами, матрицы из этого шара
  не покидают его под действием \( \Phi \))
 
 Будем считать, что алгебре матриц \( \matr{N}{} \)
-введена норма, согласованная%
-\footnote{согласованной с векторным пространством называется
-матричная норма, удовлетворяющая неравенству \( \norm{A x} \leq \norm{A}\norm{x} \),
-для всех \( A\in\matr{N}{}, x\in\RR^n \), где нормы взяты в соответствующих пространствах}
-с \( \mathscr X = \RR^n \),
+введена некоторая суб-мультипликативная норма
+\footnote{суб-мультипликативной называют норму, удовлетворяющую неравенству \( \norm{XY}\leq \norm{X}\norm{Y} \) при всех \( X, Y \) },
 а в пространстве \( \End{\matr{N}{}} \) трансформаторов
 используется обычная операторная норма%
 \footnote{операторная норма
 (матрицы или оператора) \( \mathcal A \)
 вводится как точная нижняя грань таких констант \( C > 0 \),
 что для всех \( x\in\mathscr X\) имеет место
-(\( \norm{A x} \leq C \norm{x} \)), короче
-\( \operatornorm{A} \) есть точная нижняя грань согласованных норм \( \norm{A} \)}
+(\( \norm{A x} \leq C \norm{x} \))}.
+Тогда имеют место оценки
 
 \begin{align*}
     \norm{\Phi(X)} &= \norm{B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B))} \leq \\
 %    &\leq \norm{B}\norm{\Gamma}\norm{X} + \norm{B} + \norm{\Gamma}\norm{X} (\norm{B}\norm{\Gamma}\norm{X}+\norm{B}) \leq \\
-    &= \gamma^2\beta\norm{X}^2 + 2\gamma\beta\norm{X} + \beta
+    &= \gamma^2\beta\norm{X}^2 + 2\gamma\beta\norm{X} + \beta,
 \end{align*}
-Где \[ \beta=\norm{B}, \gamma=\norm{\Gamma} \]
+где \[ \beta=\norm{B}, \gamma=\norm{\Gamma} \]
 Пока что отложим оценку этих величин.
 
 \begin{lemma}
     Если
-    \[ \gamma\beta \leq \frac14 \]
-    То \( \Phi \) отображает в себя шар
-    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \} \]
-    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} \]
-    \[ 0 < r_0 \leq 4\beta \]
+    \( \gamma\beta \leq \frac14, \)
+    то \( \Phi \) отображает в себя шар
+    \begin{equation}\label{def:omega}
+        \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \},
+    \end{equation}
+    \[0 \leq r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
 \end{lemma}
 \begin{proof}
     Обозначим \( r=\norm{X} \). Тогда
     \( \norm{\Phi(X)} \leq \norm{X} \), если
     \begin{equation}\label{eq:omega-invariance}
-        \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0
+        \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0.
     \end{equation}
     Детерминант возникшего многочлена:
     \( \Delta = 1 - 4\gamma\beta\).
     Стало быть, если \( {\gamma\beta \leq \frac14} \),
     то определённое выше \( r_0 \) есть наименьшее \( r \),
     удовлетворяющее неравенству \eqref{eq:omega-invariance}
-    
+
     Наконец, \( r_0 \geq 0 \):
     \begin{align*}
         1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} > 0 \marginnote{\( 1-4\gamma\beta \geq 0 \)}\\
@@ -265,15 +227,17 @@
 \subsection{Существование и единственность неподвижной точки}
 Определим теперь, при каких условиях \( \Phi \) будет сжимающим в найдённом шаре.
 \begin{lemma}
-    \[ \norm{\Phi(X)-\Phi(Y)} \leq q \norm{X-Y} \]
-    \[ q<1 \]
+    При \( \gamma\beta \leq \frac14 \) отображение \( \Phi \)
+    уже является сжимающим:
+    \[ \norm{\Phi(X)-\Phi(Y)} \leq q \norm{X-Y}, \quad q<1\]
 \end{lemma}
 \begin{proof}
+    Имеют место неравенства:
     \begin{align*}
-        \Phi(X) - \Phi(Y) = & B\Gamma (X-Y) - \frac12 \left[
-            \Gamma (X + Y)J(B\Gamma(X - Y)) + 
-            \Gamma (X - Y)J(B\Gamma(X + Y))
-        \right] \quad\footnotemark
+        \Phi(X) - \Phi(Y) &= B\Gamma (X-Y) + \\
+        &- \frac12 \Gamma (X + Y)J(B\Gamma(X - Y)) + \\
+        &- \frac12 \Gamma (X - Y)J(B\Gamma(X + Y)),
+        \marginnote{\footnotemark}
     \end{align*}
     \footnotetext{\(
         (\Gamma X)J(B\Gamma X) - (\Gamma Y)J(B\Gamma Y) =
@@ -283,28 +247,26 @@
             (\Gamma X - \Gamma Y)(J(B\Gamma X) + J(B\Gamma Y))
         \right) \)}
     \[
-        \norm{\Phi(X) - \Phi(Y)} \leq (1 + \gamma\norm{X+Y})\beta\gamma \norm{X-Y} \leq q\norm{X-Y}
+        \norm{\Phi(X) - \Phi(Y)} \leq (1 + \gamma\norm{X+Y})\beta\gamma \norm{X-Y} \leq q\norm{X-Y}.
         \]
-    Где
+    Здесь:
     \begin{equation}\label{eq:lipconst}
         q = (1+2\gamma r_0)\gamma\beta
-        \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4} \marginnote{\(\gamma\beta \leq \frac14\) \(r_0\leq 4\beta\)}
+        \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4}
+        \marginnote{\footnotemark}
     \end{equation}
-    Что и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре
+    \footnotetext{Здесь используются неравенства \(r_0\leq 4\beta\) и \(\gamma\beta \leq \frac14\)}
+    Это и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре
 \end{proof}
 
 Сразу следует вывод
-\begin{propose}
-    Пусть \( \gamma=\norm{\Gamma}, \beta=\norm{B}, \gamma\beta\leq\frac14 \),
-
-    Обозначим
-    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \} \]
-    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} \]
-    \[ q = (1+2\gamma r_0)\gamma\beta \]
+\begin{lemma}
+    Пусть \( \gamma=\norm{\Gamma}, \beta=\norm{B}, \)
+    \( \gamma\beta\leq\frac14. \)
 
     Тогда \( \Phi \) есть сжимающее отображение \(\Omega\to\Omega\) шара \(\Omega\) в себя,
     и в этом шаре существует единственное решение \( X^o \) уравнения
-    \eqref{eq:similarity2} \( X=\Phi(X) \),
+    \eqref{eq:similarity2} \( X=\Phi(X) \).
 
     При этом имеют место оценки:
     \[
@@ -313,11 +275,11 @@
     \[
         \norm{X^k - X^o} \leq \frac{q^k}{1-q}\beta
         \]
-\end{propose}
+\end{lemma}
 \begin{proof}
-    \( \Omega \) --- замкнутое подмножество банахова пространства \( \matr{N}{} \),
+    \( \Omega \) --- замкнутое подмножество банахова пространства \( \matr{N}{} \).
     \( \Phi: \Omega\to\Omega \) -- сжимающее отображение.
-    По теореме Банаха о неподвижной точке, в шаре существует единственное решение \( X^o \)
+    По теореме Банаха о неподвижной точке, в этом шаре существует единственное решение \( X^o \)
     уравнения \( X = \Phi (X) \),
     доставляемое методом простых итераций (c нулём в качестве начального приближения),
     как предел сходящейся последовательности
@@ -325,6 +287,7 @@
         \{X_k = \Phi^k(0); k\in\NN\}
         \]
     Грубейшая верхняя оценка его нормы --- радиус шара \( \Omega \).
+    При этом \[ \norm{\Phi^k(0) - X^o} \leq \frac{q^k}{1-q} \norm{\Phi(0) - 0} = \frac{q^k}{1-q}\norm{B} \]
 \end{proof}
 
 \subsection{Оценка спектра}
@@ -339,7 +302,7 @@
 \),
 что \( A-B \) и \( A - JX^o \) подобны.
 При этом \( \norm{X^o} \leq r_0 \leq 4\norm{B} \),
-а \( A - JX^o \) --- блочнодиагональна.
+а \( A - JX^o \) --- блочно-диагональна.
 
 \[
     A-B \sim
@@ -349,26 +312,33 @@
     \end{pmatrix}
     \]
 
-\begin{propose}
-    Спектр \( A - B \) состоит из числа \( N - x_{11} \)
+\begin{lemma}
+    Пусть \( \norm{\cdot} \) --- суб-мультипликативная норма в \( \matr{N}{} \),
+    \( \beta = \norm{B}, \)
+    \( \gamma = \sup_{\norm{X}=1} \norm{\Gamma X}. \)
+    Если
+    \[ \gamma\beta \leq \frac14. \]
+    То спектр \( A - B \) состоит из числа \( N - x_{11} \)
     и спектра матрицы \( -X_{22} \)
-    \[ \spec{A-B} = \{ \lambda_1 = N - x_{11} \} \cup \spec{-X_{22}} \]
+    \[ \spec{A-B} = \{ \lambda_1 \} \cup \spec{-X_{22}}, \]
+    \[ \lambda_1 = N - x_{11}.  \]
     При этом
-    \[ \lvert \lambda_1 - N \rvert \leq r_0 \]
-    И для всех \( \lambda\in\spec{A-B}\setminus\{\lambda_1\} \)
-    \[ \lvert\lambda\rvert \leq r_0 \]
-\end{propose}
+    \[ \lvert \lambda_1 - N \rvert \leq r_0, \]
+    Если, дополнительно, норма \( \norm{\cdot} \) согласована с нормой в \( \mathscr{X} \),
+    то для всех \( { \lambda\in\spec{A-B}\setminus\{\lambda_1\} } \) имеет место
+    \[ \lvert\lambda\rvert \leq r_0. \]
+\end{lemma}
 
 Теперь требуемые результаты мы получим оценив \( \beta, \gamma \).
 
-В ходе рассуждений предполагалось, что норма в \( \matr{N}{} \)
-согласована с векторным пространством,
-а в \( \End{\matr{N}{}} \) используется обычная операторная норма.
-Теперь будем считать, что и в \( \matr{N}{} \)
-также выбрана операторная норма  (обозначим её \( \operatornorm{\cdot} \)),
-которая дала бы нам наиболее тонкие оценки.
-\[ \beta = \operatornorm{B}, \gamma = \norm{\Gamma} = \sup_{\operatornorm{X}=1} \operatornorm{\Gamma X} \]
-где, напомню, \( B = T^{-1} \perturbmatrix{M}{N} T \)
+Рассмотрим в \( \matr{N}{} \) операторную норму~
+\footnote{фактически, для каждой фиксированной матрицы,
+--- это точная нижняя грань её согласованных норм; таким образом,
+операторная норма даёт наиболее тонкие оценки для \( \spr{-X_{22}} \) }
+(обозначим её \( \operatornorm{\cdot} \))
+--- её согласованность с нормой \( \mathscr{X} \)
+позволит нам дать верхнюю оценку и для \( \spr{-X_{22}^o} \).
+Напомню, \( B = U^{-1} \perturbmatrix{M}{N} U \)
 получена из матрицы возмущения с \( M \) единицами применением преобразования \eqref{eq:diagtransform},
 диагонализирующего матрицу единиц,
 а \( \Gamma \) --- оператор из \( \End{\matr{N}{}} \),
@@ -376,10 +346,10 @@
 \( \Gamma X = \frac1N \begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix} \).
 
 \begin{lemma}
-    Лучшная и точная оценка для \( \gamma \) есть
-    \[ \gamma = \frac1N \]
-    И можно положить \[ \beta \leq \sqrt{M} \]
-    Где \( M \) --- число единиц в матрице \( \perturbmatrix{M}{N} \) возмущения
+    Имеют место оценки
+    \[ \gamma = \frac1N ,\quad
+       \beta \leq \sqrt{M} ,\]
+    где \( M \) --- число единиц в матрице \( \perturbmatrix{M}{N} \) возмущения
     (число нулей в исходной матрице \( \almostallones{M}{N} \))
 \end{lemma}
 \begin{proof}
@@ -389,41 +359,26 @@
         \norm{\Gamma} = \sup_{\norm X = 1} \operatornorm{\Gamma X}
         = \sup_{\norm X = 1} \sup_{\norm x = 1} \norm{(\Gamma X)x} = \frac1N
         \]
-    Теперь рассмотрим в \( \matr{N}{} \) норму
-    \( \normex{2}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
-    Тогда \( \normex{2}{\perturbmatrix{M}{N}} \)
+    Теперь рассмотрим в \( \matr{N}{} \) норму Фробениуса
+    \( \normex{F}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
+    Тогда \( \normex{F}{\perturbmatrix{M}{N}} \)
     это суть корень из числа \( M \) единиц в \( \perturbmatrix{M}{N} \).
-    Ясно, что \( \normex{2}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{2}{Z} \).
-    Остаётся заметить, что умножение на унитарную матрицу \( T \)
-    (и \( T^{-1} \)) есть изометрия
+    Ясно, что \( \normex{F}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{F}{Z} \).
+    Остаётся заметить, что умножение на унитарную матрицу \( U \)
+    (и \( U^{-1} \)) есть изометрия
     в \( \matr{N}{} \)
     и поэтому
     \[ \norm{B} = \norm{\perturbmatrix{M}{N}} \]
-    \[ \beta \leq \normex{2}{B} = \normex{2}{\perturbmatrix{M}{N}} = \sqrt{M} \]
+    \[ \beta \leq \normex{F}{B} = \normex{F}{\perturbmatrix{M}{N}} = \sqrt{M} \]
 \end{proof}
 
-Наконец, можем сформулировать первый (грубый) результат:
-\begin{thm}[О грубой оценке собственных значений возмущённой матрицы единиц]
-    Пусть \( \almostallones{M}{N} \) -- матрица размерности \( N \),
-    состоящая из \( N^2 - M \) единиц и \( M \) нулей.
-
-    Если
-    \[
-        M \leq \frac{N^2}{16}
-        \]
-
-    То у матрицы \( \almostallones{M}{N} \) есть по крайней мере одно ненулевое собственное
-    значение \( \lambda_1 \)
-    \[ \lvert \lambda_1 - N \rvert \leq 4\sqrt{M} \]
-    А остальные собственные значения \( \lambda\in\spec{\almostallones{M}{N}} \setminus \{\lambda_1\} \)
-    лежат в отрезке \( \left[-4\sqrt{M},+4\sqrt{M}\right] \):
-    \[ \lvert \lambda \rvert \leq 4\sqrt{M} \]
-\end{thm}
+Доказательство теоремы \ref{thm:almostallones-spectra}
+теперь состоит в следующем:
 \begin{proof}
     \[
         \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A - JX^o}
         = \{ N - x_{11} \} \cup \spec{-X^o_{22}}
         \]
-    \[ x_{11}, \spr{X^o_{22}} \leq r_0 \]
-    \[ r_0 \leq 4\norm{B} \leq 4\sqrt{M} \]
+    \[ \lvert x_{11} \rvert, \spr{X^o_{22}} \leq r_0 \]
+    \[ r_0 \leq 4\norm{B} < 4\sqrt{M} \]
 \end{proof}

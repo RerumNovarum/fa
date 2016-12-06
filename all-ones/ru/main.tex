@@ -1,11 +1,19 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 
-\usepackage[utf8]{inputenc}
-\usepackage[english,russian]{babel}
-\usepackage{fa-style}
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+
+\usepackage{marginnote}
+\usepackage{hyperref}
 \usepackage{tabularx}
 
-\title{Спектр матрицы, близкой к матрице единиц}
+\usepackage{my-style}
+
+\title{Оценка спектра почти-полного мультиорграфа}
 \date{\today}
 \author{
     rn\\
@@ -14,10 +22,11 @@
 
 \begin{document}
 \maketitle
+
 \tableofcontents
 \newpage
 
-\include{notation}
+%\include{notation}
 \include{intro}
 \include{all-ones}
 \include{perturbation}

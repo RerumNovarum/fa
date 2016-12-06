@@ -1,0 +1,75 @@
+\documentclass{article}
+
+% \usepackage{libertine}
+% \usepackage{polyglossia}
+% \setdefaultlanguage{russian}
+% \setotherlanguage{english}
+
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+\usepackage{graphicx}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\pagestyle{empty} \textwidth=108mm \textheight=165mm
+\usepackage{calc,ifthen}
+
+\input{style.tex} % not a package? why?
+
+\begin{document}
+\tezis{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ-ПОЛНОГО ОРГРАФА}{}
+{С. В. Козлуков}
+{\me{Козлуков С.В.}}{ (Воронеж)}{rerumnovarum@openmailbox.org}
+
+Пусть \( \mathcal{A}_{MN} \) --- матрица порядка \( N \),
+состоящая из \( N^2 - M \) единиц и \( M \) нулей
+и пусть число нулей невелико.
+Матрица такого вида (рассматриваемая, как матрица смежностей) соответствует
+полному орграфу, с небольшим числом ``удалённых'' рёбер.
+В статье получена оценка спектра
+матриц такого вида.
+Здесь под спектром \( \sigma\left({A}\right) \) матрицы \( A \)
+понимается множество таких \( \lambda\in\mathbb{C} \), для которых
+матрица \( A - \lambda E \), необратима (\( E \) --- единичная матрица).
+
+Матрица \( \mathcal{A}_{MN} \) представима в виде
+\[
+    \mathcal{A}_{MN} = \mathcal{J}_{N} - \mathcal{B}_{MN},
+    \]
+где \(
+\mathcal{J}_{N} =
+\begin{pmatrix}1 & \cdots & 1 \\
+\vdots & \ddots & \vdots \\
+1 & \cdots & 1
+\end{pmatrix} \) --- матрица единиц,
+а \( \mathcal{B}_{MN} \) имеет единицы в точности на тех \( M \)
+местах, на которых в \( \mathcal{A}_{MN} \) стоят нули.
+
+Спектр матрицы \( \mathcal{J}_{N} \) легко считается:
+\( \sigma\left({\mathcal{J}_{N}}\right) = \left\{0, N \right\} \),
+а при \( M~\ll~N^2 \) можно ожидать ``близость'' спектров
+\( \mathcal{A}_{MN} \) и \( \mathcal{J}_{N} \).
+
+Методом подобных операторов [1]
+достигается основной результат:
+
+% you better just provide an environment for theorems...
+\textbf{Теорема~1.}
+\begin{center}\relax
+    Пусть
+    \(M~<~\displaystyle{\frac{1}{16}N^2}. \)
+
+Тогда матрица \( \mathcal{A}_{MN} \) имеет в отрезке
+    радиуса \( 4\sqrt{M} \) с центром в \( N \)
+    в точности одно собственное значение \( \lambda_1 \):
+    \[ \lvert \lambda_1 - N \rvert < 4\sqrt{M}, \]
+    а остальные собственные числа
+    \( \lambda\in\sigma\left({\mathcal{A}_{MN}}\right)\setminus\{\lambda_1\} \)
+    удовлетворяют неравенству
+    \[ \lvert \lambda \rvert < 4\sqrt{M}. \]
+\end{center}
+
+\liter
+
+1. Баскаков~А.~Г. Гармонический анализ линейных операторов. 1987
+\end{document}

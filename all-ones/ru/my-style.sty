@@ -1,35 +1,21 @@
-\ProvidesPackage{fa-style}
+\ProvidesPackage{my-style}
 
-%\usepackage{hyperref}
 \usepackage{amsmath}
 \usepackage{amsfonts}
-%\usepackage[mathscr]{euscript}
 \usepackage{mathrsfs}
-\usepackage{eulervm}
 \usepackage{mathtools}
-\usepackage{marginnote}
 
 \usepackage{amsthm}
 \theoremstyle{definition}
-\newtheorem{dfn}{Definition}
-\newtheoremstyle{break}% name
-  {}%         Space above, empty = `usual value'
-  {}%         Space below
-  {\itshape}% Body font
-  {}%         Indent amount (empty = no indent, \parindent = para indent)
-  {\bfseries}% Thm head font
-  {.}%        Punctuation after thm head
-  {\newline}% Space after thm head: \newline = linebreak
-  {}%         Thm head spec
-
-\theoremstyle{break}
-\newtheorem{thm}{Theorem}
-\newtheorem{lemma}{Lemma}
+\newtheorem{dfn}{Определение}
+\theoremstyle{theorem}
+\newtheorem{thm}{Теорема}
+\newtheorem{lemma}{Лемма}
 
 \theoremstyle{remark}
-\newtheorem{propose}{Proposition}
-\newtheorem{corollary}{Corollary}
-\newtheorem{conjecture}{Conjecture}
+\newtheorem{prop}{Утверждение}
+\newtheorem{corollary}{Следствие}
+\newtheorem{conjecture}{Предположение}
 
 \providecommand{\eqdef}{\coloneqq}
 \providecommand{\defeq}{\eqqcolon}
