@@ -43,27 +43,33 @@
 
 \begin{lemma}
     Матрица \( \allones{N} \) подобна матрице
-    \[
+    \begin{equation}\label{repr:allones-eigen}
         \begin{pmatrix}
             N       & 0      & \cdots & 0 \\
             0       & 0      & \cdots & 0 \\
             \vdots  & \vdots & \ddots & \vdots  \\
             0       & 0      & \cdots & 0
         \end{pmatrix}
-    \]
+    \end{equation}
 
-    Диагонализирующая матрица преобразования имеет вид:
+    Её собственные векторы, соответствующие собственному значению \( 0 \)
+    таковы, что сумма их координат равна нулю,
+    а собственному значению \( N \) соответствует, например,
+    вектор \( \left(1\cdots 1\right) \).
+
+    Проводя ортогонализацию Грамма-Шмидта,
+    получим ортогональную матрицу \( U \) преобразования \( \allones{N} \)
+    к виду \eqref{repr:allones-eigen}:
     \begin{equation}\label{eq:diagtransform}
     U =
     \begin{pmatrix}
-        1/\sqrt N &  1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
-        \vdots    & -1/\sqrt2 & 1/\sqrt6  & 1/2\sqrt3  & \cdots & a_{n-1} \\
-        \vdots    & 0         & -2/\sqrt6 & 1/2\sqrt3  & \cdots & a_{n-1} \\
-        \vdots    & \vdots    & 0         & -3/2\sqrt3 & \cdots & a_{n-1} \\
-        \vdots    & \vdots    & \vdots    & 0          & \cdots & a_{n-1} \\
-        \vdots    & \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
-        \vdots    & \vdots    & \vdots    & \vdots     & \cdots & a_{n-1} \\
-        1/\sqrt N & 0         & 0         & 0          & \cdots & -(n-1)a_{n-1}
+        1/\sqrt N &  1/\sqrt2 & 1/\sqrt6   & \cdots & a_{n-1} \\
+        \vdots    & -1/\sqrt2 & 1/\sqrt6   & \cdots & a_{n-1} \\
+        \vdots    & 0         & -2/\sqrt6  & \cdots & a_{n-1} \\
+        \vdots    & \vdots    & 0          & \cdots & a_{n-1} \\
+        \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
+        \vdots    & \vdots    & \vdots     & \cdots & a_{n-1} \\
+        1/\sqrt N & 0         & 0          & \cdots & -(n-1)a_{n-1}
         \end{pmatrix}
         \end{equation}
 
