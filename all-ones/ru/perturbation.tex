@@ -13,11 +13,9 @@
 имеющая единицы в точности в тех местах,
 на которых в \( \almostallones{M}{N} \) стоят нули.
 
-Задача состоит в оценке спектра возмущённой матрицы.
-
-\begin{lemma}
+\begin{prop}
     Подобные матрицы имеют одинаковый спектр
-\end{lemma}
+\end{prop}
 
 Применяя полученную в \eqref{eq:diagtransform} матрицу преобразования,
 получаем, что \( \almostallones{M}{N} \) подобна (а значит разделяет с ней общий спектр)
@@ -44,8 +42,10 @@
 \[ A - J X \]
 с матрицей подобия вида
 \[ E + \Gamma X ,\]
-где \[ J, \Gamma \in \End{\mathfrak U \subset \matr{N}{}} \]
--- линейные операторы (трансформаторы),
+где
+\[ J, \Gamma \in \End{\mathfrak U} \]
+\[ \mathfrak{U}\subset\matr{N}{} \]
+--- линейные операторы (трансформаторы),
 действующие на некотором \( \mathfrak U \),
 называемом пространством допустимых возмущений,
 и подбираемые в ходе решения так, чтобы матрица \( A - JX \)
@@ -54,12 +54,12 @@
 Иначе говоря, будем искать решение \( X \in\matr{N}{} \)
 уравнения подобия
 \begin{equation}\label{eq:similarity-orig}
-    (A - B)(E+\Gamma X) = (E+\Gamma X) (A - JX)
+    (A - B)(E+\Gamma X) = (E+\Gamma X) (A - JX).
 \end{equation}
 
-В пространстве \( \mathfrak U \)
-мы будем запускать итерационный процесс (применяя теорему Банаха о неподвижной точке),
-и, как ниже будет видно, необходимо \( B \in \mathfrak U \)
+В подпространстве \( \mathfrak U \subset \matr{N}{} \)
+мы будем запускать итерационный процесс,
+и, как будет видно ниже, потребуется \( B \in \mathfrak U \)
 и замыкания образов возникающих далее операторов также
 должны содержаться в
 пространстве допустимых возмущенний.
@@ -68,11 +68,11 @@
 
 Пространство \( \mathscr{X} \) представим в виде
 декартова произведения
-\[ \mathscr{X} = \mathscr{X}_1\times\mathscr{X}_2 \]
+\( \mathscr{X} = \mathscr{X}_1~\times~\mathscr{X}_2 \)
 одномерного пространства \( \mathscr{X}_1=\RR \)
 и \((n-1)\)-мерного пространства \( \mathscr{X}_2 \),
 элементы этого пространства в виде
-\[ x=\begin{pmatrix}x_1\\x_2\end{pmatrix}, \]
+\( x=\begin{pmatrix}x_1\\x_2\end{pmatrix}, \)
 \( x_i\in\mathscr{X}_i \).
 Матрицы из \( \matr{N}{} \) будем записывать
 в блочном виде:
@@ -86,7 +86,7 @@
     \( X_{12} \) -- строка длины \( N-1 \),
     \( X_{21} \) -- столбец,
     \( X_{22} \in \matr{N-1}{} \).
-При этом произведению матриц соответствует произведение блочных матриц. 
+При этом произведению матриц соответствует произведение блочных матриц.
 
 Вернёмся к задаче.
 Оператор \( \Gamma X \) определим как решение уравнения
@@ -95,9 +95,9 @@
     \marginnote{
         \footnotemark}
     \]
-\footnotetext{в левой части, фактически, стоит \( \ad{A}{\Gamma X} \)
+\footnotetext{в левой части стоит \( \ad{A}{\Gamma X} \)
 --- оператор коммутирования с \(A\), применённый к \(\Gamma X\): \( \ad{Y}{Z} = YZ - ZY \)}
-Пусть  \( \Gamma X \) задаётся блочной матрицей
+Пусть
 \[ \Gamma X =
 \begin{pmatrix}
     \Gamma_{11}(X) & \Gamma_{12}(X) \\
@@ -105,11 +105,11 @@
 \end{pmatrix}, \]
 тогда
 \[
-    \ad{A}{\Gamma X} = A \Gamma X - (\Gamma X) A =
+    A \Gamma X - (\Gamma X) A =
     \frac{1}{N}
 \begin{pmatrix}
     0               & \Gamma_{12}(X) \\
-    -\Gamma_{21}(X) & 0             
+    -\Gamma_{21}(X) & 0
 \end{pmatrix}
     . \]
 
@@ -126,13 +126,13 @@
         -X_{21} & 0
     \end{pmatrix}.
     \]
-При этом матрица \( A - JX \) оказывается блочно-диагональной структуры
-и, что легко проверить, её спектр есть объединение спектров её диагональных блоков.
-Естественнее было бы начать с выбора оператора \( J \) доставляющего структуру,
-как можно более близкую к \( A \).
-Первым делом хочется рассмотреть оператор \( X\mapsto X_{11} \),
-как самый согласованный с \( A \).
-К сожалению, такой выбор \( J \) не позволяет решить уже уравнение для \(\Gamma X\) во всём \(\mathfrak U = \matr{N}{}\),
+При этом матрица \( A - JX \) оказывается блочно-диагональной
+и её спектр есть объединение спектров её диагональных блоков.
+Заметим, естественнее было бы начать с выбора оператора \( J \) доставляющего структуру,
+как можно более близкую к \( A \), а именно
+оператор \( X\mapsto X_{11} \).
+К сожалению, такой выбор \( J \) не позволяет решить
+уже уравнение для \(\Gamma X\) во всём \(\mathfrak U = \matr{N}{}\),
 и мы приходим к блочно-диагональному виду.
 
 Развернём теперь уравнение \eqref{eq:similarity-orig}
@@ -185,11 +185,12 @@
 
 \begin{lemma}
     Если
-    \[ \gamma\beta \leq \frac14, \]
+    \( \gamma\beta \leq \frac14, \)
     то \( \Phi \) отображает в себя шар
-    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \}, \]
-    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}, \]
-    \[ 0 < r_0 \leq 4\beta. \]
+    \begin{equation}\label{def:omega}
+        \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \},
+    \end{equation}
+    \[0 \leq r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
 \end{lemma}
 \begin{proof}
     Обозначим \( r=\norm{X} \). Тогда
@@ -202,7 +203,7 @@
     Стало быть, если \( {\gamma\beta \leq \frac14} \),
     то определённое выше \( r_0 \) есть наименьшее \( r \),
     удовлетворяющее неравенству \eqref{eq:omega-invariance}
-    
+
     Наконец, \( r_0 \geq 0 \):
     \begin{align*}
         1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} > 0 \marginnote{\( 1-4\gamma\beta \geq 0 \)}\\
@@ -228,16 +229,15 @@
 \begin{lemma}
     При \( \gamma\beta \leq \frac14 \) отображение \( \Phi \)
     уже является сжимающим:
-    \[ \norm{\Phi(X)-\Phi(Y)} \leq q \norm{X-Y}, \]
-    \[ q<1. \]
+    \[ \norm{\Phi(X)-\Phi(Y)} \leq q \norm{X-Y}, \quad q<1\]
 \end{lemma}
 \begin{proof}
     Имеют место неравенства:
     \begin{align*}
-        \Phi(X) - \Phi(Y) = & B\Gamma (X-Y) - \frac12 \left[
-            \Gamma (X + Y)J(B\Gamma(X - Y)) + 
-            \Gamma (X - Y)J(B\Gamma(X + Y))
-        \right], \marginnote{\footnotemark}
+        \Phi(X) - \Phi(Y) &= B\Gamma (X-Y) + \\
+        &- \frac12 \Gamma (X + Y)J(B\Gamma(X - Y)) + \\
+        &- \frac12 \Gamma (X - Y)J(B\Gamma(X + Y)),
+        \marginnote{\footnotemark}
     \end{align*}
     \footnotetext{\(
         (\Gamma X)J(B\Gamma X) - (\Gamma Y)J(B\Gamma Y) =
@@ -262,11 +262,7 @@
 Сразу следует вывод
 \begin{lemma}
     Пусть \( \gamma=\norm{\Gamma}, \beta=\norm{B}, \)
-    \[ \gamma\beta\leq\frac14. \]
-    Обозначим
-    \[ \Omega = \{ X\in\matr{N}{} ; \norm{X}\leq r_0 \} \]
-    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} \]
-    \[ q = (1+2\gamma r_0)\gamma\beta \]
+    \( \gamma\beta\leq\frac14. \)
 
     Тогда \( \Phi \) есть сжимающее отображение \(\Omega\to\Omega\) шара \(\Omega\) в себя,
     и в этом шаре существует единственное решение \( X^o \) уравнения
@@ -318,8 +314,8 @@
 
 \begin{lemma}
     Пусть \( \norm{\cdot} \) --- суб-мультипликативная норма в \( \matr{N}{} \),
-    \[ \beta = \norm{B}, \]
-    \[ \gamma = \sup_{\norm{X}=1} \norm{\Gamma X}. \]
+    \( \beta = \norm{B}, \)
+    \( \gamma = \sup_{\norm{X}=1} \norm{\Gamma X}. \)
     Если
     \[ \gamma\beta \leq \frac14. \]
     То спектр \( A - B \) состоит из числа \( N - x_{11} \)
@@ -351,8 +347,8 @@
 
 \begin{lemma}
     Имеют место оценки
-    \[ \gamma = \frac1N ,\]
-    \[ \beta \leq \sqrt{M} ,\]
+    \[ \gamma = \frac1N ,\quad
+       \beta \leq \sqrt{M} ,\]
     где \( M \) --- число единиц в матрице \( \perturbmatrix{M}{N} \) возмущения
     (число нулей в исходной матрице \( \almostallones{M}{N} \))
 \end{lemma}
@@ -376,27 +372,13 @@
     \[ \beta \leq \normex{F}{B} = \normex{F}{\perturbmatrix{M}{N}} = \sqrt{M} \]
 \end{proof}
 
-Наконец, можем сформулировать первый (грубый) результат:
-\begin{thm}[О грубой оценке собственных значений возмущённой матрицы единиц]
-    Пусть \( \almostallones{M}{N} \) -- матрица размерности \( N \),
-    состоящая из \( N^2 - M \) единиц и \( M \) нулей.
-
-    Если
-    \[
-        M \leq \frac{N^2}{16}
-        \]
-
-    То у матрицы \( \almostallones{M}{N} \) есть в точности одно собственное
-    значение \( \lambda_1 \), удовлетворяющее неравенству
-    \[ \lvert \lambda_1 - N \rvert \leq 4\sqrt{M} \leq N ,\]
-    и для всех \( \lambda\in\spec{\almostallones{M}{N}} \setminus \{\lambda_1\} \)
-    \[ \lvert \lambda \rvert \leq 4\sqrt{M} \]
-\end{thm}
+Доказательство теоремы \ref{thm:almostallones-spectra}
+теперь состоит в следующем:
 \begin{proof}
     \[
         \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A - JX^o}
         = \{ N - x_{11} \} \cup \spec{-X^o_{22}}
         \]
-    \[ x_{11}, \spr{X^o_{22}} \leq r_0 \]
-    \[ r_0 \leq 4\norm{B} \leq 4\sqrt{M} \]
+    \[ \lvert x_{11} \rvert, \spr{X^o_{22}} \leq r_0 \]
+    \[ r_0 \leq 4\norm{B} < 4\sqrt{M} \]
 \end{proof}

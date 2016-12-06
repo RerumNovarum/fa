@@ -1,0 +1,60 @@
+\ProvidesPackage{my-style}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+\usepackage{amsthm}
+\theoremstyle{definition}
+\newtheorem{dfn}{Определение}
+\theoremstyle{theorem}
+\newtheorem{thm}{Теорема}
+\newtheorem{lemma}{Лемма}
+
+\theoremstyle{remark}
+\newtheorem{prop}{Утверждение}
+\newtheorem{corollary}{Следствие}
+\newtheorem{conjecture}{Предположение}
+
+\providecommand{\eqdef}{\coloneqq}
+\providecommand{\defeq}{\eqqcolon}
+\providecommand{\eigenspace}[2]{\mathrm{E}({#1}, {#2})}
+\providecommand{\transformmatrix}[2]{{#1}^{-1}{#2}{#1}}
+\providecommand{\transposed}{\mathrm{T}}
+\providecommand{\norm}[1]{\left\|{#1}\right\|}
+\providecommand{\normex}[2]{{\left\|{#2}\right\|}_{#1}}
+\providecommand{\operatornorm}[1]{\normex{\text{op}}{#1}}
+\providecommand{\conjtransposed}{\mathrm{*}}
+\providecommand{\allones}[1]{\mathscr{J}_{#1}}
+\providecommand{\almostallones}[2]{\mathscr{A}_{{#1}{#2}}}
+\providecommand{\perturbmatrix}[2]{\mathscr{B}_{{#1}{#2}}}
+\providecommand{\ad}[2]{\mathrm{ad}_{#1}{\left(#2\right)}}
+\providecommand{\matr}[2]{\mathit{Matr}_{#1} {#2}}
+\providecommand{\KK}{\mathbb{K}}
+\providecommand{\NN}{\mathbb{N}}
+\providecommand{\RR}{\mathbb{R}}
+\providecommand{\ZZ}{\mathbb{Z}}
+\providecommand{\CC}{\mathbb{C}}
+\providecommand{\QQ}{\mathbb{Q}}
+\providecommand{\Hom}[2]{\mathrm{Hom}({#1},{#2})}
+\providecommand{\End}[1]{\mathrm{End}({#1})}
+\providecommand{\linspan}[1]{\mathrm{span}({#1})}
+\providecommand{\spec}[1]{\mathrm{spec}\left({#1}\right)}
+\providecommand{\spr}[1]{\mathrm{spr}\left({#1}\right)}
+\providecommand{\dim}[1]{\mathrm{dim} {#1}}
+\providecommand{\rank}[1]{\mathrm{rank} {#1}}
+\providecommand{\dom}[1]{\mathrm{dom} {#1}}
+\providecommand{\codom}[1]{\mathrm{codom} {#1}}
+\providecommand{\img}[1]{\mathrm{img} {#1}}
+\providecommand{\ker}[1]{\mathrm{ker} {#1}}
+\providecommand{\coker}[1]{\mathrm{coker} {#1}}
+\providecommand{\Lp}[1]{\mathrm{L_{#1}}}
+\providecommand{\lp}[1]{\mathcal{l_{#1}}}
+\providecommand{\Ck}[1]{\mathcal{C^{#1}}}
+
+\newenvironment{TRIVIA}{
+    \ifx\TRIVIAPROOFS\undefined\else
+}{
+    \fi
+}

@@ -1,29 +1,32 @@
 \documentclass[a4paper]{article}
 
-%\usepackage{fontspec}
-%\setmainfont[Ligatures=TeX]{Palatino}
-\usepackage{libertine}
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
 \usepackage{polyglossia}
-\setdefaultlanguage{english}
-\setotherlanguage{russian}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
 
+
+\usepackage{marginnote}
 \usepackage{hyperref}
-\usepackage{fa-style}
 \usepackage{tabularx}
 
-\title{Спектр матрицы, близкой к матрице единиц}
+\usepackage{my-style}
+
+\title{Оценка спектра почти-полного мультиорграфа}
 \date{\today}
 \author{
     rn\\
-    <\url{rerumnovarum@openmailbox.org}>\\
-    \url{https://rerumnovarum.github.io}}
+    <rerumnovarum@openmailbox.org>\\
+    https://rerumnovarum.github.io}
 
 \begin{document}
 \maketitle
+
 \tableofcontents
 \newpage
 
-\include{notation}
+%\include{notation}
 \include{intro}
 \include{all-ones}
 \include{perturbation}

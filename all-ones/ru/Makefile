@@ -1,8 +1,14 @@
-main.pdf: main.tex main.toc intro.tex all-ones.tex perturbation.tex future.tex notation.tex fa-style.sty almost-all-ones.bib
+all: main.pdf thesis.pdf
+
+
+main.pdf: main.tex main.toc gist.tex intro.tex all-ones.tex perturbation.tex future.tex notation.tex my-style.sty almost-all-ones.bib
 	xelatex main.tex
 	bibtex main.aux
 	xelatex main.tex
 	xelatex main.tex
+
+thesis.pdf: thesis.tex
+	pdflatex thesis.tex
 
 %.pdf: %.toc %.tex
 	xelatex $*.tex
