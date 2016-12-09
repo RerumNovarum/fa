@@ -33,16 +33,24 @@
 достигается основной результат:
 \begin{thm}\label{thm:almostallones-spectra}
     Пусть
-    \(M~<~\displaystyle{\frac{1}{16}N^2}. \)
+    \(M~<~\displaystyle{\left(N/4\right)^p}, \)
+    для некоторого \( p\in\NN \).
 
-Тогда матрица \( \mathcal{A}_{MN} \) имеет в отрезке
-    радиуса \( 4\sqrt{M} \) с центром в \( N \)
-    в точности одно собственное значение \( \lambda_1 \):
-    \[ \lvert \lambda_1 - N \rvert < 4\sqrt{M}, \]
-    а остальные собственные числа
-    \( \lambda\in\sigma\left({\mathcal{A}_{MN}}\right)\setminus\{\lambda_1\} \)
-    удовлетворяют неравенству
-    \[ \lvert \lambda \rvert < 4\sqrt{M}. \]
+    Тогда спектр \( \spec{\almostallones{M}{N}} \)
+    матрицы \( \almostallones{M}{N} \)
+    представим в виде объединения непересекающихся
+    вещественного одноточечного множества \( \sigma_1 \)
+    и множества \( \sigma_2 \),
+    лежащих в шарах (интервалах) радиуса \( 4M^{1/p} \)
+    с центрами в \( N \) и \( 0 \) соответственно
+    \begin{equation}\begin{aligned}
+        & \spec{ \almostallones{M}{N} } &&=
+        \sigma_1 + \sigma_2 \\
+        & \sigma_1 = \left\{\lambda_1\right\} \subset\RR
+                   && \lvert\lambda_1 - N\rvert < 4M^{1/p} \\
+        & \forall \lambda\in\sigma_2 \subset\CC
+                   && \lvert\lambda\rvert < 4M^{1/p}
+    \end{aligned}\end{equation}
 \end{thm}
 
 Полные (почти-полные) графы --- довольно редкое явление,

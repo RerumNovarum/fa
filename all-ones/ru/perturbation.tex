@@ -45,7 +45,9 @@
 где
 \[ J, \Gamma \in \End{\mathfrak U} \]
 \[ \mathfrak{U}\subset\matr{N}{} \]
---- линейные операторы (трансформаторы),
+--- линейные операторы (трансформаторы)
+\footnote{\( \End{\mathfrak U} \) --- пространство непрерывных линейных операторов,
+действующих на подпространстве \( \mathfrak U \) пространства матриц порядка \( N \)},
 действующие на некотором \( \mathfrak U \),
 называемом пространством допустимых возмущений,
 и подбираемые в ходе решения так, чтобы матрица \( A - JX \)
@@ -227,8 +229,8 @@
 \subsection{Существование и единственность неподвижной точки}
 Определим теперь, при каких условиях \( \Phi \) будет сжимающим в найдённом шаре.
 \begin{lemma}
-    При \( \gamma\beta \leq \frac14 \) отображение \( \Phi \)
-    уже является сжимающим:
+    Пусть \( \gamma\beta \leq \frac14, \)
+    тогда \( \Phi \) есть сжимающее отображение \(\Omega\to\Omega\) шара \(\Omega\) в себя:
     \[ \norm{\Phi(X)-\Phi(Y)} \leq q \norm{X-Y}, \quad q<1\]
 \end{lemma}
 \begin{proof}
@@ -259,21 +261,20 @@
     Это и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре
 \end{proof}
 
-Сразу следует вывод
 \begin{lemma}
-    Пусть \( \gamma=\norm{\Gamma}, \beta=\norm{B}, \)
+    Пусть \( \norm{\cdot} \) --- какая-нибудь субмультипликативная норма в \( \matr{N}{} \),
+    \( \beta=\norm{B}, \gamma=\sup_{\norm{X}=1}\norm{\Gamma X} \)
+    и пусть
     \( \gamma\beta\leq\frac14. \)
 
-    Тогда \( \Phi \) есть сжимающее отображение \(\Omega\to\Omega\) шара \(\Omega\) в себя,
-    и в этом шаре существует единственное решение \( X^o \) уравнения
-    \eqref{eq:similarity2} \( X=\Phi(X) \).
-
-    При этом имеют место оценки:
+    Тогда в \( \Omega \) существует единственное решение \( X^o \) уравнения
+    \eqref{eq:similarity2} \( X=\Phi(X) \),
+    при этом имеют место оценки:
     \[
         \norm{X^o} \leq r_0 \leq 4\beta
         \]
     \[
-        \norm{X^k - X^o} \leq \frac{q^k}{1-q}\beta
+        \norm{X^k - X^o} \leq \frac{3^k}{4^{k-1}}\beta
         \]
 \end{lemma}
 \begin{proof}
@@ -291,94 +292,95 @@
 \end{proof}
 
 \subsection{Оценка спектра}
-Итак, существует решение \( X^o \) уравнения
+Итак, если \( \gamma\beta \leq \frac14 \),
+то существует единственное решение \( X^o \) уравнения
 \( (A-B)(I+\Gamma X) = (I+\Gamma X)(A-JX) \),
 или, другими словами, существует такая матрица
 \( X^o =
 \begin{pmatrix}
-    x_{11} & x_{12} \\
-    x_{21} & x_{22}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
 \end{pmatrix}
 \),
-что \( A-B \) и \( A - JX^o \) подобны.
-При этом \( \norm{X^o} \leq r_0 \leq 4\norm{B} \),
-а \( A - JX^o \) --- блочно-диагональна.
-
+удовлетворяющая \( \norm{X^o} \leq r_0 \leq 4\norm{B} \),
+что матрица \( A-B \) подобна блочно-диагональной матрице \( A - JX^o \):
 \[
     A-B \sim
     \begin{pmatrix}
         N - x_{11} & 0 \\
         0          & -X_{22}^o
-    \end{pmatrix}
+    \end{pmatrix},
     \]
+При этом спектр матрицы \( A - JX^o \) есть объединение спектров
+её диагональных блоков:
+\[ \spec{A-B} = \left\{N - x_{11}\right\} \cup \spec{-X_{22}}. \]
 
 \begin{lemma}
-    Пусть \( \norm{\cdot} \) --- суб-мультипликативная норма в \( \matr{N}{} \),
-    \( \beta = \norm{B}, \)
-    \( \gamma = \sup_{\norm{X}=1} \norm{\Gamma X}. \)
-    Если
-    \[ \gamma\beta \leq \frac14. \]
-    То спектр \( A - B \) состоит из числа \( N - x_{11} \)
-    и спектра матрицы \( -X_{22} \)
-    \[ \spec{A-B} = \{ \lambda_1 \} \cup \spec{-X_{22}}, \]
-    \[ \lambda_1 = N - x_{11}.  \]
-    При этом
-    \[ \lvert \lambda_1 - N \rvert \leq r_0, \]
-    Если, дополнительно, норма \( \norm{\cdot} \) согласована с нормой в \( \mathscr{X} \),
-    то для всех \( { \lambda\in\spec{A-B}\setminus\{\lambda_1\} } \) имеет место
-    \[ \lvert\lambda\rvert \leq r_0. \]
-\end{lemma}
+    Пусть \( \norm{\cdot} \) --- норма в \( \matr{N}{} \),
+    согласованная с какой-нибудь нормой в пространстве \( \mathscr{X} \) векторов,
+    \( \beta = \norm{B}, \gamma=\sup_{\norm{X}=1} \norm{\Gamma X} \)
+    и пусть верно строгое неравенство \( \gamma\beta < \frac14 \).
 
-Теперь требуемые результаты мы получим оценив \( \beta, \gamma \).
+    Тогда спектр \( A - B \)
+    есть объединение неперсекающихся одноточечного вещественного множества \( \sigma_1 \)
+    и множества \( \sigma_2 \),
+    лежащих в шарах радиуса \( 4\beta \)
+    с центрами в \( N \) и \( 0 \) соответственно:
 
-Рассмотрим в \( \matr{N}{} \) операторную норму~
-\footnote{фактически, для каждой фиксированной матрицы,
---- это точная нижняя грань её согласованных норм; таким образом,
-операторная норма даёт наиболее тонкие оценки для \( \spr{-X_{22}} \) }
-(обозначим её \( \operatornorm{\cdot} \))
---- её согласованность с нормой \( \mathscr{X} \)
-позволит нам дать верхнюю оценку и для \( \spr{-X_{22}^o} \).
-Напомню, \( B = U^{-1} \perturbmatrix{M}{N} U \)
-получена из матрицы возмущения с \( M \) единицами применением преобразования \eqref{eq:diagtransform},
-диагонализирующего матрицу единиц,
-а \( \Gamma \) --- оператор из \( \End{\matr{N}{}} \),
-определённый формулой
-\( \Gamma X = \frac1N \begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix} \).
-
-\begin{lemma}
-    Имеют место оценки
-    \[ \gamma = \frac1N ,\quad
-       \beta \leq \sqrt{M} ,\]
-    где \( M \) --- число единиц в матрице \( \perturbmatrix{M}{N} \) возмущения
-    (число нулей в исходной матрице \( \almostallones{M}{N} \))
+    \[ \spec{A-B} = \sigma_1 + \sigma_2 \]
+    \[ \sigma_1 = \left\{\lambda_1\right\} \subset \left\{\lambda\in\RR; \lvert \lambda - N\rvert < 4\beta\right\} \]
+    \[ \sigma_2 \subset \left\{\lambda\in\CC; \lvert\lambda\rvert <4\beta \right\} \]
 \end{lemma}
 \begin{proof}
-    \[ \norm{(\Gamma X) x} = \frac1N \norm{\begin{pmatrix}x_2\\-x_1\end{pmatrix}} \]
+    Согласованная норма субмультипликативна, поэтому применима предыдущая лемма.
+    Согласованность также означает, что для любой матрицы \( Z \)
+    и любого её нормированного собственного вектора \( h_j \),
+    отвечающего собственному значению \( \mu_j \),
+    имеет место \({ \normex{v}{A h_j} \leq \norm{A} }\),
+    т.е. \({ \lvert \mu_j \rvert \leq \norm{A} }\).
 
-    \[
-        \norm{\Gamma} = \sup_{\norm X = 1} \operatornorm{\Gamma X}
-        = \sup_{\norm X = 1} \sup_{\norm x = 1} \norm{(\Gamma X)x} = \frac1N
-        \]
-    Теперь рассмотрим в \( \matr{N}{} \) норму Фробениуса
-    \( \normex{F}{Z} = \sqrt{\sum_{ij} z_{ij}^2} \).
-    Тогда \( \normex{F}{\perturbmatrix{M}{N}} \)
-    это суть корень из числа \( M \) единиц в \( \perturbmatrix{M}{N} \).
-    Ясно, что \( \normex{F}{\cdot} \) соласована и \( \operatornorm{Z} \leq \normex{F}{Z} \).
+    Значит \( \lvert\lambda_1\rvert = \lvert N - x_{11} \rvert \leq r_0 < 4\beta \)
+    и \( \spr{-X_{22}} \leq r_0 < 4\beta  \)
+\end{proof}
+
+
+Доказательство теоремы \ref{thm:almostallones-spectra}
+состоит в выборе подходящих норм.
+\begin{proof}
+    Напомню, \( B = U^{-1} \perturbmatrix{M}{N} U \)
+    получена из матрицы возмущения с \( M \) единицами применением преобразования \eqref{eq:diagtransform},
+    диагонализирующего матрицу единиц,
+    а \( \Gamma \) --- оператор из \( \End{\matr{N}{}} \),
+    определённый формулой
+    \( \Gamma X = \frac1N \begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix} \).
+
+        Рассмотрим в \( \mathscr{X} \) обычную \(p\)-норму:
+    \( \normex{v}{x} = \left(\sum_j \lvert x_j \rvert^p \right)^{1/p} \),
+    и аналогично положим в пространстве \( \matr{N}{} \)
+    \( \normex{m}{Z} = \left( \sum_j {\normex{v}{Z e_j}}^p \right)^{1/p} \),
+    где \( \{ e_j \} \) --- канонический базис в \( \mathscr{X} \).
+    Не трудно убедиться, что \( \normex{m}{\cdot} \) согласована с \( \normex{v}{\cdot} \).
+
+    Тогда оказывается:
+    \[ \gamma = \frac1N, \]
+    \[  \beta = M^{1/p} ,\]
+    где \( M \) --- число единиц в матрице \( \perturbmatrix{M}{N} \) возмущения
+    (число нулей в исходной матрице \( \almostallones{M}{N} \)).
+
+    Подробнее:
+    \[ \gamma = \frac1N \sup\normex{v}{\begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix}} = \frac1N \]
+
     Остаётся заметить, что умножение на унитарную матрицу \( U \)
     (и \( U^{-1} \)) есть изометрия
     в \( \matr{N}{} \)
     и поэтому
-    \[ \norm{B} = \norm{\perturbmatrix{M}{N}} \]
-    \[ \beta \leq \normex{F}{B} = \normex{F}{\perturbmatrix{M}{N}} = \sqrt{M} \]
-\end{proof}
+    \[ \beta = \normex{m}{B} = \normex{m}{\perturbmatrix{M}{N}} = \left(\sum_j{\normex{v}{\perturbmatrix{M}{N}e_j}}^p\right)^{1/p}.\]
+    Ясно, что \( {\normex{v}{\perturbmatrix{M}{N}e_j}}^p \) --- это суть число единиц в \( j \)-ом столбце
+    матрицы \( \perturbmatrix{M}{N} \).
+    Тогда \( \beta \) это суть корень степени \( p \) из числа \( M \) единиц в \( \perturbmatrix{M}{N} \).
 
-Доказательство теоремы \ref{thm:almostallones-spectra}
-теперь состоит в следующем:
-\begin{proof}
-    \[
-        \spec{\almostallones{M}{N}} = \spec{A-B} = \spec{A - JX^o}
-        = \{ N - x_{11} \} \cup \spec{-X^o_{22}}
-        \]
-    \[ \lvert x_{11} \rvert, \spr{X^o_{22}} \leq r_0 \]
-    \[ r_0 \leq 4\norm{B} < 4\sqrt{M} \]
+    Значит, если
+    \( M^{1/p} < \frac{N}{4} \), т.е. \( M < \left(N/4\right)^p \),
+    то выполняются условия леммы,
+    причём \( r_0 < 4M^{1/p} \).
 \end{proof}
