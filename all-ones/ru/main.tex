@@ -13,7 +13,7 @@
 
 \usepackage{my-style}
 
-\title{Оценка спектра почти-полного мультиорграфа}
+\title{Оценка спектра матрицы смежностей почти полного орграфа}
 \date{\today}
 \author{
     rn\\
@@ -27,10 +27,19 @@
 \newpage
 
 %\include{notation}
-\include{intro}
-\include{all-ones}
-\include{perturbation}
-\include{future}
+\section{Введение и результат}
+\input{body/intro}
+\section{Доказательство}
+\subsection{Предварительные преобразования}
+\input{body/prep-all-ones}
+\input{body/prep-almost-all-ones}
+\clearpage
+\subsection{Общая схема метода подобных операторов}
+\input{body/general-method}
+\subsection{Доказательство теоремы}
+\input{body/final-estimates}
+\section{О возможных уточнениях}
+\input{body/future}
 
 \bibliographystyle{plain}
 \bibliography{almost-all-ones}
