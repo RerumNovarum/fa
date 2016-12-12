@@ -9,23 +9,27 @@
     \begin{pmatrix}
         \Phi_{11}(X) & \Phi_{12}(X) \\
         \Phi_{21}(X) & \Phi_{22}(X)
+    \end{pmatrix} =
+    \begin{pmatrix}
+        \Psi_{11}(X_{21}) & \Psi_{12}(X_{12}) \\
+        \Psi_{21}(X_{21}) & \Psi_{22}(X_{12})
     \end{pmatrix},
 \]
 \begin{subequations}
     \begin{align}
         \label{eq:split11}
-        & \Phi_{11}(X) = \Psi_{11}(X_{21}) = -\frac1N B_{12}X_{21} + B_{11} \\
+        & \Psi_{11}(X_{21}) = -\frac1N B_{12}X_{21} + B_{11}, \\
         \label{eq:split12}
-        & \Phi_{12}(X) = \Psi_{12}(X_{12}) = \frac{1}{N^2} X_{12}B_{21}X_{12} -
+        & \Psi_{12}(X_{12}) = \frac{1}{N^2} X_{12}B_{21}X_{12} -
                                    \frac1N\left(X_{12}B_{22} +
-                                   B_{11}X_{12}\right) + B_{12} \\
+                                   B_{11}X_{12}\right) + B_{12}, \\
         \label{eq:split21}
-        & \Phi_{21}(X) = \Psi_{21}(X_{21}) = -\frac{1}{N^2} X_{21}B_{12}X_{21} -
+        & \Psi_{21}(X_{21}) = -\frac{1}{N^2} X_{21}B_{12}X_{21} -
                                    \frac1N\left(X_{21}B_{11} +
                                    B_{22}X_{21}\right) +
-                                   B_{21} \\
+                                   B_{21}, \\
         \label{eq:split22}
-        & \Phi_{22}(X) = \Psi_{22}(X_{12}) = \frac1N B_{21}X_{12} + B_{22}
+        & \Psi_{22}(X_{12}) = \frac1N B_{21}X_{12} + B_{22}.
     \end{align}
 \end{subequations}
 
