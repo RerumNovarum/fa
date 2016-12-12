@@ -30,7 +30,7 @@
 
 Пространство \( \mathscr{X} \) представим в виде
 декартова произведения
-\( \mathscr{X} = \mathscr{X}_1~\times~\mathscr{X}_2 \)
+\( \mathscr{X}_1~\times~\mathscr{X}_2 \)
 одномерного пространства \( \mathscr{X}_1=\RR \)
 и \((n-1)\)-мерного пространства \( \mathscr{X}_2 \),
 элементы \( \mathscr{X} \) в виде
@@ -44,21 +44,20 @@
     X_{21} & X_{22}
     \end{pmatrix},
     \]
-где \( { X_{11}\in\RR } \) --- число,
+где \( { X_{11}\in\RR } \) -- число,
     \( X_{12} \) -- строка длины \( N-1 \),
     \( X_{21} \) -- столбец,
-    \( {X_{22} \in \matr{N-1}{}} \).
+    \( X_{22} \) -- матрица порядка \( N-1 \).
 При этом произведению матриц соответствует произведение блочных матриц.
 
 Вернёмся к задаче.
-Оператор \( \Gamma X \) определим как решение уравнения
+Оператор \( \Gamma X \) определим как решение уравнения\footnotemark
 \[
     A\Gamma X - (\Gamma X) A = X - JX.
-    \marginnote{
-        \footnotemark}
     \]
 \footnotetext{в левой части стоит \( \ad{A}{\Gamma X} \)
 --- оператор коммутирования с \(A\), применённый к \(\Gamma X\): \( \ad{Y}{Z} = YZ - ZY \)}
+
 Пусть
 \[ \Gamma X =
 \begin{pmatrix}
@@ -68,14 +67,22 @@
 тогда
 \[
     A \Gamma X - (\Gamma X) A =
-    \frac{1}{N}
-\begin{pmatrix}
-    0               & \Gamma_{12}(X) \\
-    -\Gamma_{21}(X) & 0
-\end{pmatrix}
-    . \]
-
-Положим теперь
+    N
+    \begin{pmatrix}
+        0               & \Gamma_{12}(X) \\
+        -\Gamma_{21}(X) & 0
+    \end{pmatrix},
+\]
+и уравнение приводится к виду
+\[
+    X - JX =
+    N
+    \begin{pmatrix}
+        0               & \Gamma_{12}(X) \\
+        -\Gamma_{21}(X) & 0
+    \end{pmatrix}.
+\]
+Положим
 \[
     JX = \begin{pmatrix}
         X_{11} & 0 \\
@@ -83,6 +90,7 @@
     \end{pmatrix},
     \]
 \[ \Gamma X =
+\frac1N
     \begin{pmatrix}
         0       & X_{12} \\
         -X_{21} & 0
@@ -159,11 +167,13 @@
     \begin{equation}\label{eq:omega-invariance}
         \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0.
     \end{equation}
-    Детерминант возникшего многочлена:
-    \( \Delta = 1 - 4\gamma\beta\).
-    Стало быть, если \( {\gamma\beta \leq \frac14} \),
-    то определённое выше \( r_0 \) есть наименьшее \( r \),
-    удовлетворяющее неравенству \eqref{eq:omega-invariance}
+    \begin{sloppypar}
+        Детерминант возникшего многочлена:
+        \( \Delta = 1 - 4\gamma\beta\).\-
+        Стало быть, если \( {\gamma\beta \leq \frac14} \),
+        то определённое выше \( r_0 \) есть наименьшее \( r \),
+        удовлетворяющее неравенству \eqref{eq:omega-invariance}
+    \end{sloppypar}
 
     Наконец, \( r_0 \geq 0 \):
     \begin{align*}
@@ -199,13 +209,6 @@
         &- \frac12 \Gamma (X - Y)J(B\Gamma(X + Y)),
         \marginnote{\footnotemark}
     \end{align*}
-    \footnotetext{\(
-        (\Gamma X)J(B\Gamma X) - (\Gamma Y)J(B\Gamma Y) =
-        \frac12
-        \left(
-            (\Gamma X + \Gamma Y)(J(B\Gamma X) - J(B\Gamma Y)) +
-            (\Gamma X - \Gamma Y)(J(B\Gamma X) + J(B\Gamma Y))
-        \right) \)}
     \[
         \norm{\Phi(X) - \Phi(Y)} \leq (1 + \gamma\norm{X+Y})\beta\gamma \norm{X-Y} \leq q\norm{X-Y}.
         \]
@@ -225,27 +228,50 @@
     и пусть
     \( \gamma\beta\leq\frac14. \)
 
-    Тогда в \( \Omega \) существует единственное решение \( X^o \) уравнения
-    \eqref{eq:similarity2} \( X=\Phi(X) \),
-    при этом имеют место оценки:
-    \[
-        \norm{X^o} \leq r_0 \leq 4\beta
-        \]
-    \[
-        \norm{X^k - X^o} \leq \frac{3^k}{4^{k-1}}\beta
-        \]
+    Тогда в \( \Omega \) существует единственное решение
+    \( X^o = \begin{pmatrix}
+        x_{11}^o & X_{12}^o \\
+        X_{21}^o & X_{22}^o
+    \end{pmatrix}\) уравнения подобия
+    \eqref{eq:similarity2},
+    спектр матрицы \( A - B \) есть
+    \( \left\{ N - x_{11}^o \right\} \cup \spec{-X_{22}^o} \).
+    При этом имеют место оценки:
+    \(
+        \spr{X^o} \leq \norm{X^o} \leq r_0 \leq 4\beta
+        \)
+    \footnotetext{\( \spr{X} \) означает спектральный радиус матрицы \( X \in\matr{N}{} \)
+    --- абсолютную величину её максимального по модулю собственного значения}
 \end{lemma}
 \begin{proof}
-    \( \Omega \) --- замкнутое подмножество банахова пространства \( \matr{N}{} \).
-    \( \Phi: \Omega\to\Omega \) -- сжимающее отображение.
+    (Сужение) \( \Phi \) есть сжимающее отображение \( \Omega\to\Omega \)
+    замкнутого подмножества \( \Omega \)
+    банахова пространства \( \matr{N}{} \) в себя.
     По теореме Банаха о неподвижной точке, в этом шаре существует единственное решение \( X^o \)
     уравнения \( X = \Phi (X) \),
     доставляемое методом простых итераций (c нулём в качестве начального приближения),
     как предел сходящейся последовательности
     \[
-        \{X_k = \Phi^k(0); k\in\NN\}
+        \{X_k = \Phi^k(0); k\in\NN\}.
         \]
-    Грубейшая верхняя оценка его нормы --- радиус шара \( \Omega \).
-    При этом \[ \norm{\Phi^k(0) - X^o} \leq \frac{q^k}{1-q} \norm{\Phi(0) - 0} = \frac{q^k}{1-q}\norm{B} \]
-\end{proof}
+    Грубейшая верхняя оценка его нормы --- радиус \( r_0 \) шара \( \Omega \).
+    Кроме того, имеет место оценка скорости сходимости
+    \[
+        \norm{X_k - X^o} \leq \frac{q^k}{1-q} \norm{\Phi(0) - 0} = \frac{q^k}{1-q}\norm{B}
+        \]
+    \[
+        \norm{X_k - X^o} \leq \frac{3^k}{4^{k-1}}\beta. \marginnote{\footnotemark}
+        \]
 
+    Значит, матрица \( A-B \) подобна блочно-диагональной матрице \( A - JX^o \):
+    \[
+        A-B \sim
+    \begin{pmatrix}
+        N - x_{11}^o & 0 \\
+        0            & -X_{22}^o
+    \end{pmatrix},
+    \]
+    поэтому спектр матрицы \( A - B \) есть объединение спектров
+    диагональных блоков матрицы \( A - JX^o \):
+    \[ \spec{A-B} = \left\{N - x_{11}^o\right\} \cup \spec{-X_{22}^o}. \]
+\end{proof}
