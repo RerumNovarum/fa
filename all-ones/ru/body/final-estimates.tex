@@ -1,30 +1,30 @@
 Доказательство основной теоремы (стр. \pageref{thm:almostallones-spectra})
 состоит в выборе подходящей субмультипликативной нормы.
-Матрица \( B = U^{-1} \perturbmatrix{M}{N} U \)
+Матрица \( B = U^{-1} \mathscr{B}_{M,N} U \)
 получена из матрицы возмущения с \( M \) единицами
 ортогональным преобразованием подобия \eqref{eq:diagtransform},
 диагонализирующим матрицу единиц.
-\( \Gamma \) --- оператор, действующий в \( \matr{N}{} \)
+\( \Gamma \) --- оператор, действующий в \( \mathrm{Matr}_{N} \)
 по формуле
 \( { \Gamma X = \frac1N \begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix} } \).
 
-Рассмотрим в пространстве \( \matr{N}{} \)
-норму Фробениуса \( \normex{F}{\cdot} \),
+Рассмотрим в пространстве \( \mathrm{Matr}_{N} \)
+норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
 определённую формулой
-\( \normex{F}{X} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}. \)
+\( {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}. \)
 Эта норма субмультипликативна.
 
 Тогда:
 \[ \gamma = \frac1N
-            \sup_{\normex{F}{X}=1}\normex{F}{\begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix}}
+            \sup_{{\left\|X\right\|}_{F}=1}{\left\|\begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix}\right\|}_{F}
           = \frac1N,
     \]
 и, так как умножение на унитарную матрицу \( U \)
-    (и \( U^{-1} \)) есть изометрия в \( \matr{N}{} \),
-    а \( \perturbmatrix{M}{N} \) состоит из \( M \) единиц:
+    (и \( U^{-1} \)) есть изометрия в \( \mathrm{Matr}_{N} \),
+    а \( \mathscr{B}_{M,N} \) состоит из \( M \) единиц:
 \[
-    \beta = \normex{F}{B} =
-    \normex{F}{\perturbmatrix{M}{N}} = \sqrt{M},
+    \beta = {\left\|B\right\|}_{F} =
+    {\left\|\mathscr{B}_{M,N}\right\|}_{F} = \sqrt{M},
     \]
 
 Значит, если

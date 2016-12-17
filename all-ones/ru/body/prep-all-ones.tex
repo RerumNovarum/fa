@@ -1,7 +1,7 @@
 Матрицей единиц, размерности \( N \) будем называть матрицу
-\( \allones{N} \in \matr{N}{N} \):
+\( \mathscr{J}_{N} \in \mathrm{Matr}_{N\times N} \):
 \[
-    \allones{N} =
+    \mathscr{J}_{N} =
     \begin{pmatrix}
     1 & 1  & \cdots & 1 \\
     1 & 1  & \cdots & 1 \\
@@ -10,19 +10,19 @@
     \end{pmatrix}
 \]
 
-Спектром матрицы \( A \) называется множество таких \( \lambda\in\CC \),
+Спектром матрицы \( A \) называется множество таких \( \lambda\in\mathbb{C} \),
 что матрица \( {A - \lambda E} \) необратима \footnote{напомню, \( E \) --- единичная матрица}.
 
 \begin{lemma}
     Имеет место равенство
     \begin{equation}\label{eq:allones-squared}
-        \allones{N}^2 = N \allones{N}
+        \mathscr{J}_{N}^2 = N \mathscr{J}_{N}
     \end{equation}
     Из равенства \eqref{eq:allones-squared} следует, что
     \( p(\lambda) = \lambda^2-N\lambda \)
-    есть минимальный многочлен \( \allones{N} \) и поэтому
+    есть минимальный многочлен \( \mathscr{J}_{N} \) и поэтому
     \[
-        \spec{\allones{N}} = \left\{ 0, N \right\}.
+        \mathrm{spec}\left({\mathscr{J}_{N}}\right) = \left\{ 0, N \right\}.
     \]
 \end{lemma}
 
@@ -40,7 +40,7 @@
 \end{dfn}
 
 \begin{lemma}
-    Матрица \( \allones{N} \) подобна матрице
+    Матрица \( \mathscr{J}_{N} \) подобна матрице
     \begin{equation}\label{repr:allones-eigen}
         \begin{pmatrix}
             N       & 0      & \cdots & 0 \\
@@ -56,7 +56,7 @@
     вектор \( \left(1\cdots 1\right) \).
 
     Проводя ортогонализацию Грамма-Шмидта,
-    получим ортогональную матрицу \( U \) преобразования \( \allones{N} \)
+    получим ортогональную матрицу \( U \) преобразования \( \mathscr{J}_{N} \)
     к виду \eqref{repr:allones-eigen}:
     \begin{equation}\label{eq:diagtransform}
     U =
@@ -73,9 +73,9 @@
 
         \begin{minipage}{0.9\textwidth}
             Её столбцы \( f_0, \ldots, f_{N-1} \)
-            --- ортонормированный собственный базис матрицы \( \allones{N} \):
+            --- ортонормированный собственный базис матрицы \( \mathscr{J}_{N} \):
 
-            \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed\]
+            \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^{\mathrm{T}}\]
                 \providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
             \[
                 f_k =
@@ -95,6 +95,6 @@
                      \]
 
                  Матрица такого вида ортогональна и поэтому
-            \( U^{-1} = U^\conjtransposed = U^\transposed \).
+            \( U^{-1} = U^\star = U^{\mathrm{T}} \).
         \end{minipage}
 \end{lemma}
