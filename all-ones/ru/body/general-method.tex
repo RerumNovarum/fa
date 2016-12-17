@@ -1,14 +1,14 @@
 Следуя общей схеме, мы будем искать матрицу, подобную \( A - B \)
 в виде
-\[ A - J X \]
+\[ A - J X, \]
 с матрицей подобия вида
 \[ E + \Gamma X ,\]
 где
-\[ J, \Gamma \in \mathrm{End}\left(\mathfrak U\right),\quad \mathfrak{U}\subset\mathrm{Matr}_{N} \]
+\( J, \Gamma \in \mathrm{End}\left(\mathfrak U\right),\quad \mathfrak{U}\subset\mathrm{Matr}_{N} \)
 --- линейные операторы (трансформаторы)
 \footnote{\( \mathrm{End}\left(\mathfrak U\right) \) --- пространство непрерывных линейных операторов,
 действующих на подпространстве \( \mathfrak U \) пространства матриц порядка \( N \)},
-действующие на некотором \( \mathfrak U \),
+действующие на некотором подпространстве \( \mathfrak U \) алгебры \( \mathrm{Matr}_{N} \),
 называемом пространством допустимых возмущений,
 и подбираемые в ходе решения так, чтобы матрица \( A - JX \)
 имела как можно более простую структуру.
@@ -53,7 +53,7 @@
 Вернёмся к задаче.
 Оператор \( \Gamma X \) определим как решение уравнения\footnotemark
 \[
-    A\Gamma X - (\Gamma X) A = X - JX.
+    A\Gamma X - (\Gamma X) A = X - JX,\quad X\in\mathrm{Matr}_{N}
     \]%
 \footnotetext{в левой части стоит \( \mathrm{ad}_{A}\left({\Gamma X}\right) \)
 --- оператор коммутирования с \(A\), применённый к \(\Gamma X\): \( \mathrm{ad}_{Y}\left({Z}\right) = YZ - ZY \)}%
@@ -86,10 +86,9 @@
     JX = \begin{pmatrix}
         X_{11} & 0 \\
         0      & X_{22}
-    \end{pmatrix},
-    \]
-\[ \Gamma X =
-\frac1N
+    \end{pmatrix},\quad
+    \Gamma X =
+    \frac1N
     \begin{pmatrix}
         0       & X_{12} \\
         -X_{21} & 0
@@ -104,7 +103,7 @@
 уже уравнение для \(\Gamma X\) во всём \(\mathfrak U = \mathrm{Matr}_{N}\),
 и мы приходим к блочно-диагональному виду.
 
-Развернём теперь уравнение \eqref{eq:similarity-orig}
+Уравнение \eqref{eq:similarity-orig} перепишем в виде
 
 \[
     A - B + A\Gamma X - B\Gamma X = A - JX + (\Gamma X) A - (\Gamma X) JX
@@ -115,7 +114,7 @@
 \[
     X = B \Gamma X + B - (\Gamma X) JX
     \]
-Применяя слева обратимый оператор \( J \) и подставляя результат обратно, получим уравнение
+Применяя слева оператор \( J \) и подставляя результат обратно, получим уравнение
 \begin{equation}\label{eq:similarity2}
     X = B \Gamma X + B - (\Gamma X) (J(B\Gamma X + B))
 \end{equation}
@@ -166,42 +165,22 @@
     \begin{equation}\label{eq:omega-invariance}
         \gamma^2\beta r^2 + (2\gamma\beta - 1) r + \beta \leq 0.
     \end{equation}
-    \begin{sloppypar}
-        Детерминант возникшего многочлена:
-        \( \Delta = 1 - 4\gamma\beta\).\-
-        Стало быть, если \( {\gamma\beta \leq \frac14} \),
-        то определённое выше \( r_0 \) есть наименьшее \( r \),
-        удовлетворяющее неравенству \eqref{eq:omega-invariance}
-    \end{sloppypar}
-
-    Наконец, \( r_0 \geq 0 \):
-    \begin{align*}
-        1 - 2\gamma\beta - \sqrt{1-4\gamma\beta} > 0 \marginnote{\( 1-4\gamma\beta \geq 0 \)}\\
-        \iff
-        1-4\gamma\beta + 4\gamma^2\beta^2 > 1 - 4\gamma\beta \\
-        \iff
-        4\gamma^2\beta^2 \geq 0 \quad \text{что верно}
-    \end{align*}
-    И \( r_0 \leq 4\beta \):
-    \begin{align*}
-        r_0 \leq \varepsilon\beta \\
-        \iff 1-2\gamma\beta-\sqrt{1-4\gamma\beta} \leq 2\varepsilon\gamma^2\beta^2 \\
-        \iff 1 - 2\gamma\beta(1+\gamma\beta\varepsilon) \leq \sqrt{1-4\gamma\beta} \\
-        \iff 1 - 4\gamma\beta(1+\gamma\beta\varepsilon)+4\gamma^2\beta^2(1+\gamma\beta\varepsilon)^2 \leq 1-4\gamma\beta \\
-        \iff (1+\gamma\beta\varepsilon)^2\leq\varepsilon \marginnote{\(\gamma\beta\leq\frac14\)} \\
-        \impliedby \frac{1}{16}\varepsilon^2 - \frac{1}{2} \varepsilon + 1 \leq 0 \\
-        \iff \varepsilon=4 \\
-    \end{align*}
+    Детерминант возникшего многочлена:
+    \( \Delta = 1 - 4\gamma\beta\).\-
+    Стало быть, если \( {\gamma\beta \leq \frac14} \),
+    то определённое выше \( r_0 \) есть наименьшее \( r \),
+    удовлетворяющее неравенству \eqref{eq:omega-invariance}.
+    Непосредственно проверяется, что \( 0 \leq  r_0 \leq 4\beta \).
 \end{proof}
 
 Определим теперь, при каких условиях \( \Phi \) будет сжимающим в найдённом шаре.
 \begin{lemma}
     Пусть \( \gamma\beta \leq \frac14, \)
     тогда \( \Phi \) есть сжимающее отображение \(\Omega\to\Omega\) шара \(\Omega\) в себя:
-    \[ {\left\|\Phi(X)-\Phi(Y)\right\|} \leq q {\left\|X-Y\right\|}, \quad q<1\]
+    \[ {\left\|\Phi(X)-\Phi(Y)\right\|} \leq q {\left\|X-Y\right\|}, \quad q<1.\]
 \end{lemma}
 \begin{proof}
-    Имеют место неравенства:
+    Имеют место:
     \begin{align*}
         \Phi(X) - \Phi(Y) &= B\Gamma (X-Y) + \\
         &- \frac12 \Gamma (X + Y)J(B\Gamma(X - Y)) + \\
@@ -211,14 +190,14 @@
     \[
         {\left\|\Phi(X) - \Phi(Y)\right\|} \leq (1 + \gamma{\left\|X+Y\right\|})\beta\gamma {\left\|X-Y\right\|} \leq q{\left\|X-Y\right\|}.
         \]
-    Здесь:
-    \begin{equation}\label{eq:lipconst}
+    Здесь
+    \begin{equation*}\label{eq:lipconst}
         q = (1+2\gamma r_0)\gamma\beta
-        \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4}
+        \leq (1+8\gamma\beta)\gamma\beta \leq \frac{3}{4}.
         \marginnote{\footnotemark}
-    \end{equation}
+    \end{equation*}
     \footnotetext{Здесь используются неравенства \(r_0\leq 4\beta\) и \(\gamma\beta \leq \frac14\)}
-    Это и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре
+    Это и значит, что \( \Phi \) --- сжимающее отображение в найдённом шаре.
 \end{proof}
 
 \begin{lemma}
@@ -236,9 +215,8 @@
     Спектр матрицы \( A - B \) представим в виде
     \( \left\{ N - x_{11}^o \right\} \cup \mathrm{spec}\left({-X_{22}^o}\right) \).
     При этом имеют место оценки:
-    \( \lvert x_{11} \rvert, \mathrm{spr}\left({-X_{22}}\right) \leq \mathrm{spr}\left({X^o}\right) \),
-    \(
-        \mathrm{spr}\left({X^o}\right) \leq {\left\|X^o\right\|} \leq r_0 \leq 4\beta.
+    \( \lvert x_{11} \rvert, \mathrm{spr}\left({-X_{22}^o}\right) \leq \mathrm{spr}\left({X^o}\right)
+    \leq {\left\|X^o\right\|} \leq r_0 \leq 4\beta.
         \)
     \footnotetext{\( \mathrm{spr}\left({X}\right) \) означает спектральный радиус матрицы \( X \in\mathrm{Matr}_{N} \)
     --- абсолютную величину её максимального по модулю собственного значения}
@@ -260,10 +238,10 @@
     а собственные значения по модулю не превосходят нормы \cite{baskakov-harmonic}.
     Кроме того, имеет место оценка скорости сходимости
     \[
-        {\left\|X_k - X^o\right\|} \leq \frac{q^k}{1-q} {\left\|\Phi(0) - 0\right\|} = \frac{q^k}{1-q}{\left\|B\right\|}
+        {\left\|X_k - X^o\right\|} \leq \frac{q^k}{1-q} {\left\|\Phi(0) - 0\right\|} = \frac{q^k}{1-q}{\left\|B\right\|},
         \]
     \[
-        {\left\|X_k - X^o\right\|} \leq \frac{3^k}{4^{k-1}}\beta. \marginnote{\footnotemark}
+        {\left\|X_k - X^o\right\|} \leq \frac{3^k}{4^{k-1}}\beta.\marginnote{\footnotemark}
         \]
 
     Значит, матрица \( A-B \) подобна блочно-диагональной матрице \( A - JX^o \):
