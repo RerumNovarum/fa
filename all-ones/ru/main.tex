@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass{article}
 
 \usepackage{fontspec}
 \setmainfont{CMU Serif}
@@ -17,31 +17,77 @@
 \theoremstyle{plain}
 \newtheorem{thm}{Теорема}
 \newtheorem{lemma}{Лемма}
-
 \theoremstyle{remark}
 \newtheorem{prop}{Утверждение}
 \newtheorem{corollary}{Следствие}
 \newtheorem{conjecture}{Предположение}
 
+\usepackage{indentfirst}
+\oddsidemargin=-3mm
+\renewcommand{\baselinestretch}{1.2}
+%\evensidemargin=-3mm %
+ \textwidth 163mm %
+ \textheight220mm %
+ \topmargin-8mm %
+ \sloppy
+ \let\thefootnote\relax
+
 \usepackage{marginnote}
 \usepackage{hyperref}
 \usepackage{tabularx}
 
-
-\title{Оценка спектра матрицы смежностей почти полного орграфа}
-\date{\today}
-\author{
-    rn\\
-    <rerumnovarum@openmailbox.org>\\
-    https://rerumnovarum.github.io}
-
 \begin{document}
-\maketitle
+\setcounter{thm}{0}
+\setcounter{lemma}{0}
+\quad УДК 517.984.3 : 519.177
 
-\tableofcontents
-\newpage
+\begin{center}
+% The whole point of LaTeX (as opposed to e.g. ConTeXt)
+% is to not care about layout and typesetting in the document itself.
+% Instead, macro's and environments are used,
+% which hide all the details and let you enforce a consistent style
+% throughout the whole document by simply modifying
+% these environments' definitions.
+%
+% So the publisher may just ask authors
+% ``please, put theorems in `thm` environments (which we'll provide)''.
+% This way author does not suffer from useless verbosity
+% and an editor can easily adapt an article for publication.
+\vskip0.5cm
+\textbf{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ ПОЛНОГО ОРГРАФА}\\
+\vskip0.5cm
+\textbf{
+    \textbf{Козлуков С.В.\footnotemark} \\
+    \textit{<rerumnovarum@openmailbox.org>} \\
+    \textit{Воронежский Государственный Университет}
+}
+\footnotetext{
+    \copyright Козлуков С.В.
+}
+\end{center}
 
-%\include{notation}
+\addcontentsline{tos}{subsection}{{\it{Козлуков С.в.}} Спектр матрицы смежностей почти полного орграфа}
+\addcontentsline{toc}{subsection}{{\it{Sergey Kozlukov}} Spectra of an almost-all-ones matrix}
+
+\begin{quote}
+    \small{{\bf Аннотация.}
+    В статье найдены оценки собственных значений
+    матриц смежностей почти полных орграфов.
+    }
+    \textbf{Ключевые слова:}
+    \small{метод подобных операторов, собственные значения, спектр графов}
+\end{quote}
+
+\begin{quote}
+    \small{{\bf Abstract.}
+    This article considers almost-all-ones matrices
+.%    and oriented graphs with a large number of edges.
+    Their eigenvalues estimates are derived.
+    }
+    \textbf{Keywords:}
+    \small{similar operators method, eigenvalues, graph spectra}
+\end{quote}
+
 \section{Введение и результат}
 \input{body/intro}
 \section{Доказательство}
@@ -56,6 +102,17 @@
 \section{О возможных уточнениях}
 \input{body/future}
 
-\bibliographystyle{unsrt}
-\bibliography{almost-all-ones}
+% A nice bibtex' include was here,
+% which used to generate a proper bibliography
+% enforcing a single and consistent style;
+% In these times of darkness we're not allowed
+% to use macros or appropriate package
+% or any other kind of generic solution
+% --- you hardcode, so that you can't maintain
+\begin{thebibliography}{9}
+\bibitem{baskakov-harmonic}  Баскаков~А.~Г. Гармонический анализ / Баскаков А.Г.  --- Воронеж. :  1987. ---  с.~93--121.
+\bibitem{epidemic-eigenvalues}  Yang Wang and D. Chakrabarti and Chenxi Wang and C. Faloutsos.
+    Epidemic spreading in real networks: an eigenvalue viewpoint
+        --- 22nd International Symposium on Reliable Distributed Systems, Oct 2003. Proceedings., ---pages~25-34.
+\end{thebibliography}
 \end{document}

@@ -6,9 +6,8 @@ clean:
 	rm main.pdf thesis.pdf thesis-cp1251.pdf thesis-cp1251.tex *.aux *.bgl *.blg *.bbl *.out *.log *.toc
 
 
-main.pdf: main.tex main.toc body/intro.tex body/prep-all-ones.tex body/prep-almost-all-ones.tex body/general-method.tex body/final-estimates.tex body/future.tex my-style.sty almost-all-ones.bib
+main.pdf: main.tex main.toc body/intro.tex body/prep-all-ones.tex body/prep-almost-all-ones.tex body/general-method.tex body/final-estimates.tex body/future.tex
 	xelatex main.tex
-	bibtex main.aux
 	xelatex main.tex
 	xelatex main.tex
 
