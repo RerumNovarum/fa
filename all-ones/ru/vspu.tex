@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass{article}
 
 \usepackage{fontspec}
 \setmainfont{CMU Serif}
@@ -10,17 +10,8 @@
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
-
 \usepackage{amsthm}
-\theoremstyle{definition}
-\newtheorem{dfn}{Определение}
-\theoremstyle{plain}
-\newtheorem{thm}{Теорема}
-\newtheorem{lemma}{Лемма}
-\theoremstyle{remark}
-\newtheorem{prop}{Утверждение}
-\newtheorem{corollary}{Следствие}
-\newtheorem{conjecture}{Предположение}
+\newtheorem{thm}{Теорема.}
 
 % Mimic vestnik' style
 \usepackage{indentfirst}
@@ -30,7 +21,6 @@
 \textwidth 163mm %
 \textheight220mm %
 \topmargin-8mm %
-\sloppy
 \let\thefootnote\relax
 
 \usepackage{marginnote}
@@ -39,21 +29,9 @@
 
 \begin{document}
 \setcounter{thm}{0}
-\setcounter{lemma}{0}
 \quad УДК 517.984.3 : 519.177
 
 \begin{center}
-% The whole point of LaTeX (as opposed to e.g. ConTeXt)
-% is to not care about layout and typesetting in the document itself.
-% Instead, macro's and environments are used,
-% which hide all the details and let you enforce a consistent style
-% throughout the whole document by simply modifying
-% these environments' definitions.
-%
-% So the publisher may just ask authors
-% ``please, put theorems in `thm` environments (which we'll provide)''.
-% This way author does not suffer from useless verbosity
-% and an editor can easily adapt an article for publication.
 \vskip0.5cm
 \textbf{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ ПОЛНОГО ОРГРАФА}\\
 \vskip0.5cm
@@ -90,22 +68,5 @@
 \end{quote}
 
 \input{body/intro}
-
-% A nice bibtex' include was here,
-% which used to generate a proper bibliography
-% enforcing a single and consistent style;
-% In these times of darkness we're not allowed
-% to use macros or appropriate package
-% or any other kind of generic solution
-% --- you hardcode, so that you can't maintain
-\begin{thebibliography}{9}
-\bibitem{baskakov-harmonic}  Баскаков~А.~Г. Гармонический анализ линейных операторов
-    / Баскаков~А.~Г.
-    --- Воронеж : Издательство Воронежского Государственного Университета,
-        1987.
-    ---  с.~93--121.
-\bibitem{epidemic-eigenvalues}  Yang Wang and D. Chakrabarti and Chenxi Wang and C. Faloutsos.
-    Epidemic spreading in real networks: an eigenvalue viewpoint
-        --- 22nd International Symposium on Reliable Distributed Systems, Oct 2003. Proceedings., --- pages~25-34.
-\end{thebibliography}
+\input{bibliography}
 \end{document}
