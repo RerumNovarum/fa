@@ -76,25 +76,23 @@
             --- ортонормированный собственный базис матрицы \( \mathscr{J}_{N} \):
 
             \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^{\mathrm{T}}, \]
-                \providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
-            \[
-                f_k =
-            \begin{pmatrix}a_k \\ \vdots \\ a_k \\ -ka_k \\ 0 \\ \vdots \\ 0 \end{pmatrix} =
-                \frac{1}{k\fknorm}
-            \begin{pmatrix}1 \\ \vdots \\ 1 \\ -k \\ 0 \\ \vdots \\ 0 \end{pmatrix},
-                \]
-            \[
-                a_k = \frac{1}{k\fknorm},
-            \]
-        где \( k=\overline{2,N-1}, \)
-
             \[
                 f_1
-             = \begin{pmatrix}a_1 \\ -a_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-                 = \begin{pmatrix}\frac1{\sqrt2} \\ - \frac{1}{\sqrt2} \\ 0 \\ \vdots \\ 0 \end{pmatrix}.
+             = \begin{pmatrix}a_1 & -a_1 & 0 & \cdots & 0 \end{pmatrix}^\mathrm{T}
+                 = \begin{pmatrix}\frac1{\sqrt2} & - \frac{1}{\sqrt2} & 0 & \cdots & 0 \end{pmatrix}^\mathrm{T},
                      \]
+            \[
+                f_k =
+                a_k
+                \begin{pmatrix}1 & \cdots & 1 & -k & 0 & \cdots & 0 \end{pmatrix}^\mathrm{T},
+                \]
+            \[
+                a_k = \frac{1}{k\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}},
+            \]
+        где \( k=\overline{2,N-1}. \)
 
                  Матрица такого вида ортогональна и поэтому
-            \( U^{-1} = U^\star = U^{\mathrm{T}} \) (\( U^\mathrm{T} \) --- матрица, транспонированная к \( U \)).
+            \( U^{-1} = U^\star = U^{\mathrm{T}} \)
+            (\( X^\mathrm{T} \) --- матрица, транспонированная к \( X\in\mathrm{Matr}_N \)).
         \end{minipage}
 \end{lemma}
