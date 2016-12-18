@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[11pt]{article}
 
 \usepackage{fontspec}
 \setmainfont{CMU Serif}
@@ -6,66 +6,31 @@
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
 
-\usepackage{amsmath}
+
+%\usepackage[a5paper]{geometry}
+\usepackage[a5paper,left=20mm, right=20mm, top=20mm, bottom=20mm, includefoot]{geometry}
+\usepackage[intlimits]{amsmath}
+\interdisplaylinepenalty=2500
 \usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{latexsym}
+
 \usepackage{mathrsfs}
 \usepackage{mathtools}
 \usepackage{amsthm}
 \newtheorem{thm}{Теорема.}
 
-% Mimic vestnik' style
-\usepackage{indentfirst}
-\oddsidemargin=-3mm
-\renewcommand{\baselinestretch}{1.2}
-%\evensidemargin=-3mm %
-\textwidth 163mm %
-\textheight220mm %
-\topmargin-8mm %
-\let\thefootnote\relax
-
-\usepackage{marginnote}
-\usepackage{hyperref}
-\usepackage{tabularx}
-
 \begin{document}
+\addcontentsline{toc}{section}{{\it{Козлуков С.В.}} Spectra of an almost-all-ones matrix}
 \setcounter{thm}{0}
-\quad УДК 517.984.3 : 519.177
+\small УДК 517.984.3 : 519.177
 
 \begin{center}
-\vskip0.5cm
 \textbf{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ ПОЛНОГО ОРГРАФА}\\
-\vskip0.5cm
-\textbf{
-    \textbf{Козлуков С.В.\footnotemark} \\
-    \textit{<rerumnovarum@openmailbox.org>} \\
-    \textit{Воронежский Государственный Университет}
-}
-\footnotetext{
-    \copyright Козлуков С.В.
-}
+\small{Козлуков С.В.} \\
+\small{Воронежский Государственный Университет}
+\small{<rerumnovarum@openmailbox.org>} \\
 \end{center}
-
-\addcontentsline{tos}{subsection}{{\it{Козлуков С.в.}} Спектр матрицы смежностей почти полного орграфа}
-\addcontentsline{toc}{subsection}{{\it{Sergey Kozlukov}} Spectra of an almost-all-ones matrix}
-
-\begin{quote}
-    \small{{\bf Аннотация.}
-    В статье найдены оценки собственных значений
-    матриц смежностей почти полных орграфов.
-    }
-    \textbf{Ключевые слова:}
-    \small{метод подобных операторов, собственные значения, спектр графов}
-\end{quote}
-
-\begin{quote}
-    \small{{\bf Abstract.}
-    This article considers almost-all-ones matrices
-.%    and oriented graphs with a large number of edges.
-    Their eigenvalues estimates are derived.
-    }
-    \textbf{Keywords:}
-    \small{similar operators method, eigenvalues, graph spectra}
-\end{quote}
 
 \input{body/intro}
 \input{bibliography}
