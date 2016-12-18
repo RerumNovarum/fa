@@ -83,24 +83,20 @@
                      \]
             \[
                 f_k =
-                a_k
                 \begin{pmatrix}
                     \smash[b]{
                     \underbrace{
                         \begin{matrix}
-                            1 & \cdots & 1
+                            a_k & \cdots & a_k
                         \end{matrix}
                     }_{k \text{ раз}}
                 }
-                    & -k & 0 & \cdots & 0
-                \end{pmatrix}^\mathrm{T},\quad
-            \]
-
-        \[
-                a_k = \frac{1}{k\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}},\quad
+                    & -ka_k & 0 & \cdots & 0
+                \end{pmatrix}^\mathrm{T},
+                a_k = \frac{1}{k\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}},
                 k=\overline{2,N-1}.
                 \]
-                 Матрица такого вида ортогональна и поэтому
+            Матрица такого вида ортогональна и поэтому
             \( U^{-1} = U^\star = U^{\mathrm{T}} \)
             (\( X^\mathrm{T} \) --- матрица, транспонированная к \( X\in\mathrm{Matr}_N \)).
         \end{minipage}
