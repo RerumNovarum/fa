@@ -1,10 +1,13 @@
-all: main.pdf thesis.pdf thesis-cp1251.pdf
+all: main.pdf thesis.pdf thesis-cp1251.pdf vspu.pdf
 
 .PHONY: clean
 
 clean:
 	rm main.pdf thesis.pdf thesis-cp1251.pdf thesis-cp1251.tex *.aux *.bgl *.blg *.bbl *.out *.log *.toc
 
+vspu.pdf: vspu.tex
+	xelatex vspu.tex
+	xelatex vspu.tex
 
 main.pdf: main.tex main.toc body/intro.tex body/prep-all-ones.tex body/prep-almost-all-ones.tex body/general-method.tex body/final-estimates.tex body/future.tex
 	xelatex main.tex
