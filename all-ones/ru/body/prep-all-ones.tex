@@ -1,7 +1,7 @@
 Матрицей единиц, размерности \( N \) будем называть матрицу
-\( \allones{N} \in \matr{N}{N} \):
+\( \mathscr{J}_{N} \in \mathrm{Matr}_{N\times N} \):
 \[
-    \allones{N} =
+    \mathscr{J}_{N} =
     \begin{pmatrix}
     1 & 1  & \cdots & 1 \\
     1 & 1  & \cdots & 1 \\
@@ -10,19 +10,19 @@
     \end{pmatrix}
 \]
 
-Спектром матрицы \( A \) называется множество таких \( \lambda\in\CC \),
+Спектром матрицы \( A \) называется множество таких \( \lambda\in\mathbb{C} \),
 что матрица \( {A - \lambda E} \) необратима \footnote{напомню, \( E \) --- единичная матрица}.
 
 \begin{lemma}
     Имеет место равенство
     \begin{equation}\label{eq:allones-squared}
-        \allones{N}^2 = N \allones{N}
+        \mathscr{J}_{N}^2 = N \mathscr{J}_{N}
     \end{equation}
     Из равенства \eqref{eq:allones-squared} следует, что
     \( p(\lambda) = \lambda^2-N\lambda \)
-    есть минимальный многочлен \( \allones{N} \) и поэтому
+    есть минимальный многочлен \( \mathscr{J}_{N} \) и поэтому
     \[
-        \spec{\allones{N}} = \left\{ 0, N \right\}.
+        \mathrm{spec}\left({\mathscr{J}_{N}}\right) = \left\{ 0, N \right\}.
     \]
 \end{lemma}
 
@@ -40,7 +40,7 @@
 \end{dfn}
 
 \begin{lemma}
-    Матрица \( \allones{N} \) подобна матрице
+    Матрица \( \mathscr{J}_{N} \) подобна матрице
     \begin{equation}\label{repr:allones-eigen}
         \begin{pmatrix}
             N       & 0      & \cdots & 0 \\
@@ -56,7 +56,7 @@
     вектор \( \left(1\cdots 1\right) \).
 
     Проводя ортогонализацию Грамма-Шмидта,
-    получим ортогональную матрицу \( U \) преобразования \( \allones{N} \)
+    получим ортогональную матрицу \( U \) преобразования \( \mathscr{J}_{N} \)
     к виду \eqref{repr:allones-eigen}:
     \begin{equation}\label{eq:diagtransform}
     U =
@@ -68,32 +68,36 @@
         \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
         \vdots    & \vdots    & \vdots     & \cdots & a_{n-1} \\
         1/\sqrt N & 0         & 0          & \cdots & -(n-1)a_{n-1}
-        \end{pmatrix}
+        \end{pmatrix}.
         \end{equation}
 
-        \begin{minipage}{\textwidth}
-            Её столбцы \( f_0, \ldots, f_{N-1} \) -- ортонормированный собственный базис матрицы \( \allones{N} \):
+        \begin{minipage}{0.9\textwidth}
+            Её столбцы \( f_0, \ldots, f_{N-1} \)
+            --- ортонормированный собственный базис матрицы \( \mathscr{J}_{N} \):
 
-    \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^\transposed\]
-    \providecommand{\fknorm}{\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}}
-    \[
-        f_k =
-        \begin{pmatrix}a_k \\ \vdots \\ a_k \\ -ka_k \\ 0 \\ \vdots \\ 0 \end{pmatrix} =
-        \frac{1}{k\fknorm}
-        \begin{pmatrix}1 \\ \vdots \\ 1 \\ -k \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-        \]
-    \[
-         a_k = \frac{1}{k\fknorm}
-         \]
-         Где \( k=\overline{2,N-1} \)
-
-    \[
-             f_1
-             = \begin{pmatrix}a_1 \\ -a_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-             = \begin{pmatrix}\frac1{\sqrt2} \\ - \frac{1}{\sqrt2} \\ 0 \\ \vdots \\ 0 \end{pmatrix}
-             \]
-
-    Матрица такого вида ортогональна и поэтому
-    \( U^{-1} = U^\conjtransposed = U^\transposed \).
+            \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^{\mathrm{T}}, \]
+            \[
+                f_1
+             = \begin{pmatrix}a_1 & -a_1 & 0 & \cdots & 0 \end{pmatrix}^\mathrm{T},\quad
+                 a_1 = \frac{1}{\sqrt{2}}
+                     \]
+            \[
+                f_k =
+                \begin{pmatrix}
+                    \smash[b]{
+                    \underbrace{
+                        \begin{matrix}
+                            a_k & \cdots & a_k
+                        \end{matrix}
+                    }_{k \text{ раз}}
+                }
+                    & -ka_k & 0 & \cdots & 0
+                \end{pmatrix}^\mathrm{T},
+                a_k = \frac{1}{k\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}},
+                k=\overline{2,N-1}.
+                \]
+            Матрица такого вида ортогональна и поэтому
+            \( U^{-1} = U^\star = U^{\mathrm{T}} \)
+            (\( X^\mathrm{T} \) --- матрица, транспонированная к \( X\in\mathrm{Matr}_N \)).
         \end{minipage}
 \end{lemma}

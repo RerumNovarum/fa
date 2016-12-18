@@ -1,35 +1,34 @@
 Рассмотрим возмущённую матрицу единиц
-\( \almostallones{M}{N} \) размерности \( N \),
+\( \mathscr{A}_{MN} \) размерности \( N \),
 состоящую из \( N^2 - M \) единиц и \( M \) нулей.
 
 Её можно представить в виде
-\[
-    \almostallones{M}{N} = \allones{N} - \perturbmatrix{M}{N}
-    \]
-Где \( \allones{N} \) --- матрица единиц,
-а \( \perturbmatrix{M}{N} \) -- матрица-возмущение,
+\(
+    \mathscr{A}_{MN} = \mathscr{J}_{N} - \mathscr{B}_{MN},
+    \)
+где \( \mathscr{J}_{N} \) --- матрица единиц,
+а \( \mathscr{B}_{MN} \) -- матрица-возмущение,
 имеющая единицы в точности в тех местах,
-на которых в \( \almostallones{M}{N} \) стоят нули.
+на которых в \( \mathscr{A}_{MN} \) стоят нули.
 
 \begin{prop}
     Подобные матрицы имеют одинаковый спектр
 \end{prop}
 
-Применяя полученную в \eqref{eq:diagtransform} матрицу преобразования,
-получаем, что \( \almostallones{M}{N} \) подобна (а значит, имеет такой же спектр)
+Применяя матрицу преобразования \eqref{eq:diagtransform},
+получаем, что \( \mathscr{A}_{MN} \) подобна (а значит, имеет такой же спектр)
 матрице
 \( A - B, \)
 где
 \[
-    A = \transformmatrix{U}{\allones{N}}
+    A = {U^{-1}}{\mathscr{J}_{N}}{U}
     = \begin{pmatrix}
-      N &   &        & \\
-        & 0 &        & \\
-        &   & \ddots & \\
-        &   &        & 0
-        \end{pmatrix}
+      N      & 0      & \cdots & 0 \\
+      0      & 0      & \cdots & 0 \\
+      \vdots & \vdots & \ddots & \vdots \\
+      0      & 0      & \cdots & 0
+        \end{pmatrix},
         \]
 \[
-    B = \transformmatrix{U}{\perturbmatrix{M}{N}}
+    B = {U^{-1}}{\mathscr{B}_{MN}}{U}.
     \]
-Снова, пропущенные элементы матрицы -- нулевые.

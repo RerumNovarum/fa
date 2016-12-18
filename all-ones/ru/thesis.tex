@@ -1,4 +1,4 @@
-\documentclass[a4paper]{article}
+\documentclass{article}
 
 % \usepackage{libertine}
 % \usepackage{polyglossia}
@@ -7,14 +7,13 @@
 
 \usepackage[utf8]{inputenc}
 \usepackage[russian]{babel}
-\usepackage{graphicx}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{amssymb}
 \pagestyle{empty} \textwidth=108mm \textheight=165mm
 \usepackage{calc,ifthen}
 
-\input{style.tex} % not a package? why?
+\input{style-utf8.tex} % not a package? why?
 
 \begin{document}
 \tezis{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ ПОЛНОГО ОРГРАФА}{}
@@ -28,9 +27,6 @@
 полному орграфу, с небольшим числом ``удалённых'' рёбер.
 В статье получена оценка спектра
 матриц такого вида.
-Здесь под спектром \( \sigma\left({A}\right) \) матрицы \( A \)
-понимается множество таких \( \lambda\in\mathbb{C} \), для которых
-матрица \( A - \lambda E \), необратима (\( E \) --- единичная матрица).
 
 Матрица \( \mathcal{A}_{MN} \) представима в виде
 \[
@@ -45,7 +41,7 @@
 а \( \mathcal{B}_{MN} \) имеет единицы в точности на тех \( M \)
 местах, на которых в \( \mathcal{A}_{MN} \) стоят нули.
 
-Спектр матрицы \( \mathcal{J}_{N} \) легко считается:
+Спектр \( \sigma(\mathcal{J}_{N}) \) матрицы \( \mathcal{J}_{N} \) легко считается:
 \( \sigma\left({\mathcal{J}_{N}}\right) = \left\{0, N \right\} \),
 а при \( M~\ll~N^2 \) можно ожидать ``близость'' спектров
 \( \mathcal{A}_{MN} \) и \( \mathcal{J}_{N} \).
@@ -57,17 +53,19 @@
 \textbf{Теорема.}
 \begin{center}\relax
     Пусть
-    \(M~<~\displaystyle{\left(\frac{N}{4}\right)^p}, \)
-    для некоторого \( p\in\mathbb{N} \).
+    \(M~<~\displaystyle{\frac{N^2}{16}}. \)
 
-Тогда матрица \( \mathcal{A}_{MN} \) имеет в интервале
-    радиуса \( 4\sqrt[p]{M} \) с центром в \( N \)
-    в точности одно собственное значение \( \lambda_1 \):
-    \[ \lvert \lambda_1 - N \rvert < 4\sqrt[p]{M}, \]
-    а остальные собственные числа
-    \( \lambda\in\sigma\left({\mathcal{A}_{MN}}\right)\setminus\{\lambda_1\} \)
-    удовлетворяют неравенству
-    \[ \lvert \lambda \rvert < 4\sqrt[p]{M}. \]
+Тогда спектр матрицы \( \mathcal{A}_{MN} \) есть объединение
+    одноточечного вещественного множества \( \sigma_1 \)
+    и множества \( \sigma_2 \),
+    лежащих в шарах
+    радиуса \( 4\sqrt{M} \)
+    с центрами в \( N \) и \( 0 \), соответственно:
+    \[ \sigma\left(\mathcal{A}_{MN}\right) = \sigma_1 \cup \sigma_2 \]
+    \[ \sigma_1 = \left\{\lambda_1 \right\}
+        \subset \left\{\lambda\in\mathbb{R}; \lvert \lambda - N \rvert < 4\sqrt{M} \right\}, \]
+    \[ \sigma_2
+        \subset \left\{ \lambda\in\mathbb{C}; \lvert \lambda \rvert < 4\sqrt{M} \right\}. \]
 \end{center}
 
 \liter

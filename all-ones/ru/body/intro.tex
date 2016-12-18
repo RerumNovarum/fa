@@ -1,53 +1,47 @@
-Пусть \( \almostallones{M}{N} \) --- матрица порядка \( N \),
+Пусть \( \mathscr{A}_{MN} \) --- матрица порядка \( N \),
 состоящая из \( N^2 - M \) единиц и \( M \) нулей
-и пусть число нулей невелико.
+и пусть число нулей в каком-то смысле мал\`о.
 Матрица такого вида (рассматриваемая, как матрица смежностей) соответствует
 полному орграфу, с небольшим числом ``удалённых'' рёбер.
 В статье получена оценка спектра
 матриц такого вида.
-Здесь под спектром \( \spec{A} \) матрицы \( A \)
-понимается множество таких \( \lambda\in\CC \), для которых
-матрица \( A - \lambda E \), необратима (\( E \) --- единичная матрица).
 
-Матрица \( \almostallones{M}{N} \) представима в виде
+Матрица \( \mathscr{A}_{MN} \) представима в виде
 \[
-    \almostallones{M}{N} = \allones{N} - \perturbmatrix{M}{N},
+    \mathscr{A}_{MN} = \mathscr{J}_{N} - \mathscr{B}_{MN},
     \]
 где \(
-\allones{N} =
+\mathscr{J}_{N} =
 \begin{pmatrix}1 & \cdots & 1 \\
 \vdots & \ddots & \vdots \\
 1 & \cdots & 1
 \end{pmatrix} \) --- матрица единиц,
-а \( \perturbmatrix{M}{N} \) имеет единицы в точности на тех \( M \)
-местах, на которых в \( \almostallones{M}{N} \) стоят нули.
+а \( \mathscr{B}_{MN} \) имеет единицы в точности на тех \( M \)
+местах, на которых в \( \mathscr{A}_{MN} \) стоят нули.
 
-Спектр матрицы \( \allones{N} \) легко считается:
-\( \spec{\allones{N}} = \left\{0, N \right\} \),
+Спектр матрицы \( \mathscr{J}_{N} \) легко считается:
+\( \mathrm{spec}\left({\mathscr{J}_{N}}\right) = \left\{0, N \right\} \),
 а при \( M \ll N^2 \) можно ожидать ``близость'' спектров
-\( \almostallones{M}{N} \) и \( \allones{N} \).
+\( \mathscr{A}_{MN} \) и \( \mathscr{J}_{N} \).
 
-Методом подобных операторов \cite{baskakov-harmonic}
+Методом подобных операторов (см. \cite{baskakov-harmonic} и \cite{baskakov-split})
 достигается основной результат:
 \begin{thm}\label{thm:almostallones-spectra}
     Пусть
-    \(M~<~\displaystyle{\left(N/4\right)^p}, \)
-    для некоторого \( p\in\NN \).
+    \(M~<~\displaystyle{N^2/16}. \)
 
-    Тогда спектр \( \spec{\almostallones{M}{N}} \)
-    матрицы \( \almostallones{M}{N} \)
-    представим в виде объединения непересекающихся
-    вещественного одноточечного множества \( \sigma_1 \)
+    Тогда спектр \( \mathrm{spec}\left({\mathscr{A}_{MN}}\right) \)
+    матрицы \( \mathscr{A}_{MN} \)
+    представим в виде объединения
+    одноточечного вещественного множества \( \sigma_1 \)
     и множества \( \sigma_2 \),
-    лежащих в шарах радиуса \( 4M^{1/p} \)
+    лежащих в шарах радиуса \( 4\sqrt{M} \)
     с центрами в \( N \) и \( 0 \) соответственно
     \begin{equation}\begin{aligned}
-        & \spec{ \almostallones{M}{N} } &&=
-        \sigma_1 + \sigma_2 \\
-        & \sigma_1 = \left\{\lambda_1\right\} \subset\RR
-                   && \lvert\lambda_1 - N\rvert < 4M^{1/p} \\
-        & \forall \lambda\in\sigma_2 \subset\CC
-                   && \lvert\lambda\rvert < 4M^{1/p}
+        & \mathrm{spec}\left({A-B}\right) = \sigma_1 \cup \sigma_2, \\
+        & \sigma_1 = \left\{ \lambda_1 \right\}
+          \subset \left\{ \lambda\in\mathbb{R}; \lvert \lambda - N\rvert < 4\beta \right\}, \\
+        & \sigma_2 \subset \left\{\lambda\in\mathbb{C}; \lvert\lambda\rvert <4\beta \right\}. \\
     \end{aligned}\end{equation}
 \end{thm}
 
@@ -66,7 +60,7 @@
 \( V = \{1, \ldots, N\} \) --- множество узлов (вершин),
 \( E \) --- множество соединений (рёбер).
 Время дискретное, в каждый интервал времени каждый заражённый узел
-пытается заразить смежные ему узлы с одинаковой для всех узлов вероятностью успеха \( \beta \).
+пытается инфецировать смежные ему узлы с одинаковой для всей сети вероятностью успеха \( \beta \).
 В то же время с вероятностью \( \delta \) каждая заражённая вершина может "исцелиться".
 % Эволюция заражённой популяции \( \eta \) описывается уравнением
 % \( \frac{\mathrm{d}\eta}{\mathrm{d}t}(t) = \beta (\mathbb{E} k) \eta_t (1-\eta_t) - \delta \eta_t \),
@@ -74,5 +68,5 @@
 Известно, существует пороговое значение \( \tau \) отношения \( {^\beta}/_{\delta} \),
 выше которого вспышка вируса не гаснет и может превратиться в эпидемию
 (формально: эпидемия гаснет \( \implies ^{\beta}/_{\delta} < \tau \)).
-В \cite{epidemic-eigenvalues} показано, что \( \tau = 1/\spr{A} \),
-где \( \spr{A} \) -- спектральный радиус мартрицы \( A \) смежностей графа \( G \).
+В \cite{epidemic-eigenvalues} показано, что \( \tau = 1/\mathrm{spr}\left({A}\right) \),
+где \( \mathrm{spr}\left({A}\right) \) --- спектральный радиус матрицы \( A \) смежностей графа \( G \).
