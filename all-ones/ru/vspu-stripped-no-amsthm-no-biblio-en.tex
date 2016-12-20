@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+
+% \usepackage{fontspec}
+% \setmainfont{CMU Serif}
+% \usepackage{polyglossia}
+% \setotherlanguage{english}
+
+\usepackage[utf8]{inputenc}
+\usepackage{lmodern}
+
+%\usepackage[a5paper]{geometry}
+\usepackage[a5paper,left=20mm, right=20mm, top=20mm, bottom=20mm, includefoot]{geometry}
+\usepackage[intlimits]{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{latexsym}
+
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+\begin{document}
+\addcontentsline{toc}{section}{{\it{Козлуков С.В.}} Spectra of an almost-all-ones matrix}
+\small{UDC 517.984.3 : 519.177}
+
+\begin{center}
+\textbf{Spectra of almost-all-ones matrix}\\
+\small{S.V. Kozlukov} \\
+\small{Voronezh State University} \\
+\small{rerumnovarum@openmailbox.org} \\
+\end{center}
+
+Let \( \mathscr{A}_{MN} \) be a matrix of degree \( N \),
+consisting of \( N^2 - M \) unities and \( M \) zeroes
+and let the number of zeroes be small in some sense.
+Considered as an adjacency matrix,
+\( \mathscr{A}_{MN} \) corresponds to a complete oriented graph
+with \( N \) vertices
+with some edges ``removed''.
+Estimates for eigenvalues of such a matrix are derived in this article.
+
+Matrix \( \mathscr{A}_{MN} \) can be represented in the form
+\[
+    \mathscr{A}_{MN} = \mathscr{J}_{N} - \mathscr{B}_{MN},
+    \]
+where \(
+\mathscr{J}_{N} =
+\begin{pmatrix}1 & \cdots & 1 \\
+\vdots & \ddots & \vdots \\
+1 & \cdots & 1
+\end{pmatrix} \) --- is all-ones matrix
+and matrix \( \mathscr{B}_{MN} \) has unities
+exactly at these \( M \) places,
+where \( \mathscr{A}_{MN} \) has zeroes.
+
+Spectra \( \mathscr{J}_{N} \) can be easily computed:
+\( \mathrm{spec}\left({\mathscr{J}_{N}}\right) = \left\{0, N \right\} \).
+If the number \( M \) of edges removed
+is significantly smaller than total amount \( N^2 \) of edges in a complete orgraph
+we can expect the eigenvalues of
+\( \mathscr{A}_{MN} \) to be ``close'' to those of \( \mathscr{J}_{N} \).
+
+Using a method of similar operators (see Baskakov AG [1,2])
+the main result is achieved:
+
+\textbf{Theorem.}
+
+{\it
+Let
+\(M~<~\displaystyle{N^2/16}. \)
+
+Then spectra \( \mathrm{spec}\left({\mathscr{A}_{MN}}\right) \)
+of a matrix \( \mathscr{A}_{MN} \)
+can be represented as a union of
+a single-point set \( \sigma_1 \subset \mathbb{R} \)
+and a set \( \sigma_2 \subset \mathbb{C} \),
+contained in balls of radia \( 4\sqrt{M} \)
+centered at \( N \) and \( 0 \) respectively
+\begin{equation*}\begin{aligned}
+    & \mathrm{spec}\left({A-B}\right) = \sigma_1 \cup \sigma_2, \\
+    & \sigma_1 = \left\{ \lambda_1 \right\}
+      \subset \left\{ \lambda\in\mathbb{R}; \lvert \lambda - N\rvert < 4\beta \right\}, \\
+    & \sigma_2 \subset \left\{\lambda\in\mathbb{C}; \lvert\lambda\rvert <4\beta \right\}. \\
+\end{aligned}\end{equation*}
+}
+
+Complete (almost-complete) graphs model (almost-)fully-connected networks,
+which are though rare and of rather academic interest,
+yet might occur in some military applications.
+
+In applications it is also more common practice to consider
+the spectra of Laplacian matrix \( L = D - A \),
+where \( D \) is a (diagonal) degrees matrix
+and \( A \) is adjacency matrix.
+
+The practical value of spectra of adjacencies matrix
+can be seen in the following model of computer virus spread [3]:
+let \( G = (V, E) \) be a connected network (connected orgraph)
+with set of nodes (vertices)\( V = \{1, \ldots, N\} \)
+and set of links (edges)\( E \).
+Time is considered discrete.
+During each time-interval every ``infected'' node
+attempts infect its neighbours (adjacent nodes)
+with a uniform for the whole network success probability \( \beta \) (called ``virus birth rate'').
+At the same time every infected node might be ``cured'' with probability \( \delta \) (``curing rate'').
+It is known that there exist a treshold value \( \tau \) of ratio \( {^\beta}/_{\delta} \),
+above which an infection becomes epidemic,
+and below which epidemic dies out (infection probability decreases exponentially in time).
+Yang Wang and D. Chakrabarti and Chenxi Wang and C. Faloutsos have shown in [3]
+that \( \tau = 1/\mathrm{spr}\left({A}\right) \),
+where \( \mathrm{spr}\left({A}\right) = \max\left\{\lvert \lambda\rvert; \lambda\in\mathrm{spec}\left(A\right) \right\} \)
+denotes a spectral radius of the adjacency matrix \( A \) of the graph \( G \).
+
+% A nice bibtex' include was here,
+% which used to generate a proper bibliography
+% enforcing a single and consistent style;
+% In these times of darkness we're not allowed
+% to use macros or appropriate package
+% or any other kind of generic solution
+% --- you hardcode, so that you can't maintain
+\centerline{\textbf{Bibliography}}
+
+1. Baskakov A. G. Harmonic analysis of linear operators //Voronezh Univ., Voronezh. – 1987. -- pp.~93--121.
+
+2. Baskakov A. G. A theorem on splitting an operator, and some related questions in the analytic theory of perturbations
+   //Mathematics of the USSR-Izvestiya. – 1987. – Vol. 28. – No 3. – pp.~421.
+
+3. Wang Y. et al. Epidemic spreading in real networks: An eigenvalue viewpoint
+   //Reliable Distributed Systems, 2003. Proceedings. 22nd International Symposium on. – IEEE, 2003. – pp.~25-34.
+\end{document}

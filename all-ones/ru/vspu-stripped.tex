@@ -1,0 +1,130 @@
+\documentclass[11pt]{article}
+
+% \usepackage{fontspec}
+% \setmainfont{CMU Serif}
+% \usepackage{polyglossia}
+% \setdefaultlanguage{russian}
+% \setotherlanguage{english}
+\usepackage[utf8]{inputenc}
+\usepackage[russian]{babel}
+
+%\usepackage[a5paper]{geometry}
+\usepackage[a5paper,left=20mm, right=20mm, top=20mm, bottom=20mm, includefoot]{geometry}
+\usepackage[intlimits]{amsmath}
+\interdisplaylinepenalty=2500
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{latexsym}
+
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+\usepackage{amsthm}
+\newtheorem{thm}{Теорема.}
+
+\begin{document}
+\addcontentsline{toc}{section}{{\it{Козлуков С.В.}} Spectra of an almost-all-ones matrix}
+\setcounter{thm}{0}
+\small{УДК 517.984.3 : 519.177}
+
+\begin{center}
+\textbf{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ ПОЛНОГО ОРГРАФА}\\
+\small{Козлуков С.В.} \\
+\small{Воронежский Государственный Университет}
+\small{<rerumnovarum@openmailbox.org>} \\
+\end{center}
+
+Пусть \( \mathscr{A}_{MN} \) --- матрица порядка \( N \),
+состоящая из \( N^2 - M \) единиц и \( M \) нулей
+и пусть число нулей в каком-то смысле мало.
+Матрица такого вида (рассматриваемая, как матрица смежностей) соответствует
+полному орграфу, с небольшим числом ``удалённых'' рёбер.
+В статье получена оценка спектра
+матриц такого вида.
+
+Матрица \( \mathscr{A}_{MN} \) представима в виде
+\[
+    \mathscr{A}_{MN} = \mathscr{J}_{N} - \mathscr{B}_{MN},
+    \]
+где \(
+\mathscr{J}_{N} =
+\begin{pmatrix}1 & \cdots & 1 \\
+\vdots & \ddots & \vdots \\
+1 & \cdots & 1
+\end{pmatrix} \) --- матрица единиц,
+а \( \mathscr{B}_{MN} \) имеет единицы в точности на тех \( M \)
+местах, на которых в \( \mathscr{A}_{MN} \) стоят нули.
+
+Спектр матрицы \( \mathscr{J}_{N} \) легко считается:
+\( \mathrm{spec}\left({\mathscr{J}_{N}}\right) = \left\{0, N \right\} \),
+а при \( M \ll N^2 \) можно ожидать ``близость'' спектров
+\( \mathscr{A}_{MN} \) и \( \mathscr{J}_{N} \).
+
+Методом подобных операторов (см. \cite{baskakov-harmonic} и \cite{baskakov-split})
+достигается основной результат:
+\begin{thm}\label{thm:almostallones-spectra}
+    Пусть
+    \(M~<~\displaystyle{N^2/16}. \)
+
+    Тогда спектр \( \mathrm{spec}\left({\mathscr{A}_{MN}}\right) \)
+    матрицы \( \mathscr{A}_{MN} \)
+    представим в виде объединения
+    одноточечного вещественного множества \( \sigma_1 \)
+    и множества \( \sigma_2 \),
+    лежащих в шарах радиуса \( 4\sqrt{M} \)
+    с центрами в \( N \) и \( 0 \) соответственно
+    \begin{equation}\begin{aligned}
+        & \mathrm{spec}\left({A-B}\right) = \sigma_1 \cup \sigma_2, \\
+        & \sigma_1 = \left\{ \lambda_1 \right\}
+          \subset \left\{ \lambda\in\mathbb{R}; \lvert \lambda - N\rvert < 4\beta \right\}, \\
+        & \sigma_2 \subset \left\{\lambda\in\mathbb{C}; \lvert\lambda\rvert <4\beta \right\}. \\
+    \end{aligned}\end{equation}
+\end{thm}
+
+Полные (почти полные) графы --- довольно редкое явление,
+но могут описывать, например, топологию полносвязной (близкую к ней) сети,
+встречающуюся в задачах, требующих повышенной робастности.
+
+В приложениях вместо спектра матрицы смежности чаще рассматривается
+спектр матрицы-лапласиана \( L = D - A \),
+где \( D \) --- (диагональная) матрица степеней вершин,
+а \( A \) --- матрица смежности.
+
+Пример приложения спектра матрицы смежности можно увидеть
+в следующей модели распространения компьютерного вируса \cite{epidemic-eigenvalues}:
+пусть \( G = (V, E) \) --- связная сеть (связный орграф),
+\( V = \{1, \ldots, N\} \) --- множество узлов (вершин),
+\( E \) --- множество соединений (рёбер).
+Время дискретное, в каждый интервал времени каждый заражённый узел
+пытается инфецировать смежные ему узлы с одинаковой для всей сети вероятностью успеха \( \beta \).
+В то же время с вероятностью \( \delta \) каждая заражённая вершина может "исцелиться".
+% Эволюция заражённой популяции \( \eta \) описывается уравнением
+% \( \frac{\mathrm{d}\eta}{\mathrm{d}t}(t) = \beta (\mathbb{E} k) \eta_t (1-\eta_t) - \delta \eta_t \),
+% где \( \mathbb{E} k \) --- средняя степень вершины графа.
+Известно, существует пороговое значение \( \tau \) отношения \( {^\beta}/_{\delta} \),
+выше которого вспышка вируса не гаснет и может превратиться в эпидемию
+(формально: эпидемия гаснет \( \implies ^{\beta}/_{\delta} < \tau \)).
+В \cite{epidemic-eigenvalues} показано, что \( \tau = 1/\mathrm{spr}\left({A}\right) \),
+где \( \mathrm{spr}\left({A}\right) \) --- спектральный радиус матрицы \( A \) смежностей графа \( G \).
+% A nice bibtex' include was here,
+% which used to generate a proper bibliography
+% enforcing a single and consistent style;
+% In these times of darkness we're not allowed
+% to use macros or appropriate package
+% or any other kind of generic solution
+% --- you hardcode, so that you can't maintain
+\begin{thebibliography}{9}
+\bibitem{baskakov-harmonic}  Баскаков~А.~Г. Гармонический анализ линейных операторов
+    / Баскаков~А.~Г.
+    --- Воронеж : Издательство Воронежского Государственного Университета,
+        1987.
+    ---  с.~93--121.
+\bibitem{baskakov-split} Баскаков~А.~Г., Теорема о расщеплении оператора и некоторые смежные вопросы аналитической теории возмущений
+    / Баскаков~А.~Г.
+    --- Изв. АН СССР. Сер. матем., 50:3, 1986
+    --- с. 435-437
+\bibitem{epidemic-eigenvalues}  Yang Wang and D. Chakrabarti and Chenxi Wang and C. Faloutsos.
+    Epidemic spreading in real networks: an eigenvalue viewpoint
+        --- 22nd International Symposium on Reliable Distributed Systems, Oct 2003. Proceedings., --- pages~25-34.
+\end{thebibliography}
+
+\end{document}
