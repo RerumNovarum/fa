@@ -35,9 +35,9 @@ consisting of \( N^2 - M \) unities and \( M \) zeroes
 and let the number of zeroes be small in some sense.
 Considered as an adjacency matrix,
 \( \mathscr{A}_{MN} \) corresponds to a complete oriented graph
-with \( N \) vertices
-with some edges ``removed''.
-Estimates for eigenvalues of such a matrix are derived in this article.
+with \( N \) vertices,
+from which some \( M \) edges were ``removed''.
+Estimates for eigenvalues of such a matrix are given in this article.
 
 Matrix \( \mathscr{A}_{MN} \) can be represented in the form
 \[
@@ -48,19 +48,19 @@ where \(
 \begin{pmatrix}1 & \cdots & 1 \\
 \vdots & \ddots & \vdots \\
 1 & \cdots & 1
-\end{pmatrix} \) --- is all-ones matrix
-and matrix \( \mathscr{B}_{MN} \) has unities
+\end{pmatrix} \) is all-ones matrix
+and \( \mathscr{B}_{MN} \) has unities
 exactly at these \( M \) places,
-where \( \mathscr{A}_{MN} \) has zeroes.
+where \( \mathscr{A}_{MN} \) has zeroes and vice versa.
 
-Spectra \( \mathscr{J}_{N} \) can be easily computed:
+Spectra of \( \mathscr{J}_{N} \) can be easily computed:
 \( \mathrm{spec}\left({\mathscr{J}_{N}}\right) = \left\{0, N \right\} \).
 If the number \( M \) of edges removed
-is significantly smaller than total amount \( N^2 \) of edges in a complete orgraph
+is small enough
 we can expect the eigenvalues of
 \( \mathscr{A}_{MN} \) to be ``close'' to those of \( \mathscr{J}_{N} \).
 
-Using a method of similar operators (see Baskakov AG [1,2])
+Using method of similar operators (see AG Baskakov [1,2])
 the main result is achieved:
 
 \textbf{Theorem.}
@@ -70,14 +70,14 @@ Let
 \(M~<~\displaystyle{N^2/16}. \)
 
 Then spectra \( \mathrm{spec}\left({\mathscr{A}_{MN}}\right) \)
-of a matrix \( \mathscr{A}_{MN} \)
+of the matrix \( \mathscr{A}_{MN} \)
 can be represented as a union of
 a single-point set \( \sigma_1 \subset \mathbb{R} \)
 and a set \( \sigma_2 \subset \mathbb{C} \),
 contained in balls of radia \( 4\sqrt{M} \)
-centered at \( N \) and \( 0 \) respectively
+centered at \( N \) and \( 0 \) respectively:
 \begin{equation*}\begin{aligned}
-    & \mathrm{spec}\left({A-B}\right) = \sigma_1 \cup \sigma_2, \\
+    & \mathrm{spec}\left({\mathscr{A}_{MN}}\right) = \sigma_1 \cup \sigma_2, \\
     & \sigma_1 = \left\{ \lambda_1 \right\}
       \subset \left\{ \lambda\in\mathbb{R}; \lvert \lambda - N\rvert < 4\beta \right\}, \\
     & \sigma_2 \subset \left\{\lambda\in\mathbb{C}; \lvert\lambda\rvert <4\beta \right\}. \\
@@ -85,7 +85,7 @@ centered at \( N \) and \( 0 \) respectively
 }
 
 Complete (almost-complete) graphs model (almost-)fully-connected networks,
-which are though rare and of rather academic interest,
+which are rare and of rather academic interest,
 yet might occur in some military applications.
 
 In applications it is also more common practice to consider
@@ -127,4 +127,8 @@ denotes a spectral radius of the adjacency matrix \( A \) of the graph \( G \).
 
 3. Wang Y. et al. Epidemic spreading in real networks: An eigenvalue viewpoint
    //Reliable Distributed Systems, 2003. Proceedings. 22nd International Symposium on. – IEEE, 2003. – pp.~25-34.
+
+
+
+{\bf Sergey Kozlukov}, student of Voronezh State University, Voronezh
 \end{document}

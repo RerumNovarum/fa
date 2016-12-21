@@ -1,13 +1,24 @@
-all: main.pdf thesis.pdf thesis-cp1251.pdf vspu.pdf
+all: main.pdf thesis.pdf thesis-cp1251.pdf vspu.pdf vspu-stripped-no-amsthm-no-biblio.pdf vspu-stripped-no-amsthm-no-biblio-en.pdf
 
 .PHONY: clean
 
 clean:
 	rm main.pdf thesis.pdf thesis-cp1251.pdf thesis-cp1251.tex *.aux *.bgl *.blg *.bbl *.out *.log *.toc
 
+vspu-stripped-no-amsthm-no-biblio.pdf: vspu-stripped-no-amsthm-no-biblio.tex
+	pdflatex $<
+	pdflatex $<
+
+vspu-stripped-no-amsthm-no-biblio-en.pdf: vspu-stripped-no-amsthm-no-biblio-en.tex
+	pdflatex $<
+	pdflatex $<
+
 vspu.pdf: vspu.tex
 	xelatex vspu.tex
 	xelatex vspu.tex
+
+main.toc:
+	xelatex main.tex
 
 main.pdf: main.tex main.toc body/intro.tex body/prep-all-ones.tex body/prep-almost-all-ones.tex body/general-method.tex body/final-estimates.tex body/future.tex bibliography.tex
 	xelatex main.tex
