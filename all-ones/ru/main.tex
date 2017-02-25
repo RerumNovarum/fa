@@ -1,15 +1,17 @@
 \documentclass[12pt]{article}
-
-\usepackage{fontspec}
-\setmainfont{CMU Serif}
-\usepackage{polyglossia}
-\setdefaultlanguage{russian}
-\setotherlanguage{english}
-
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
+
+\usepackage{fontspec}
+\usepackage{unicode-math}
+\setmainfont{CMU Serif}
+\setmathfont{Asana Math}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
 
 \usepackage{amsthm}
 \theoremstyle{definition}
@@ -94,13 +96,9 @@
 \input{body/intro}
 \begin{center}{2-1. Доказательство. Предварительные преобразования}\end{center}
 \input{body/prep-all-ones}
-\input{body/prep-almost-all-ones}
-%\clearpage
+% \clearpage
 \begin{center}{2-2. Общая схема метода подобных операторов}\end{center}
 \input{body/general-method}
-\begin{center}{2-3. Доказательство теоремы}\end{center}
 \input{body/final-estimates}
-\begin{center}3. О возможных уточнениях\end{center}
-\input{body/future}
 \input{bibliography}
 \end{document}
