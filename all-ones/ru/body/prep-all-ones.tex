@@ -1,14 +1,20 @@
 Доказательство состоит в построении уравнения для матрицы, подобной \( \mathscr{A}_{MN} \),
-но устроеной ``проще''. Решение возникающего уравнения в банаховой алгебре \( \mathtt{Matr}_N\mathbb{C} \)
-доставляется методом простых итераций (см. \cite{baskakov-harmonic}).
+ но устроеной ``проще''. Решение возникающего уравнения в банаховой алгебре \( \mathtt{Matr}_N\mathbb{C} \)
+ доставляется методом простых итераций (см. \cite{baskakov-harmonic}).
 
 Подобие матриц \( \mathcal{A}_1, \mathcal{A}_2 \)
-понимается в смысле существования обратимой матрицы \( \mathcal{U} \),
-такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
+ понимается в смысле существования обратимой матрицы \( \mathcal{U} \),
+ такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
 Спектры подобные матриц совпадают.
 
 \begin{lemma}
-    Матрица единиц \( \mathcal{J}_N \) подобна матрице
+    Матрица единиц 
+    \( \mathcal{J}_N =
+    \begin{pmatrix}
+        1 & \cdots & 1 \\
+        \vdots & \ddots & \vdots \\ 
+    1 & \cdots & 1 \end{pmatrix} \),
+    подобна матрице
     \[
         \mathcal{A} = \begin{pmatrix}
             N & 0 & \cdots & 0 \\
@@ -18,16 +24,31 @@
         \end{pmatrix}. \]
     Точнее, существует ортогональная матрица \( \mathcal{U} \),
     такая что
-    \( \mathcal{J}_N \mathcal{U} = \mathcal{U} \mathcal{A} \).
+    \( \mathcal{A} = \mathcal{U}\mathcal{J}_N \mathcal{U}^{-1} \).
 \end{lemma}
 \begin{proof}
     Собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
     соответствует собственный вектор \( f_1 = {\left(1,\ldots,1\right)} \),
-        а собственному значению \( 0 \), \( N-1 \) независимый собственный вектор
+        а собственному значению \( 0 \), соответствует \( N-1 \) независимый собственный вектор
         \( f_2 = {\left(1,-1,0,\ldots,0\right)}, ...,
            f_N = {\left(0,\ldots,0,1,-1\right)} \).
     Применив ортогонализацию Грамма-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \).
-    Эти координатные векторы и являются столбцами матрицы \( \mathcal{U} \).
+    В качестве матрицы \( \mathcal{U} \) выберем матрицу,
+    имеющую столбцами векторы \( h_1, \ldots, h_N \):
+    \[ \mathcal{U} =
+    \begin{pmatrix}
+        1/\sqrt N &  1/\sqrt2 & \alpha_2   & \cdots & \alpha_{N-1} \\
+        \vdots    & -1/\sqrt2 & \alpha_2   & \cdots & \alpha_{N-1} \\
+        \vdots    & 0         & -2\alpha_2 & \cdots & \alpha_{N-1} \\
+        \vdots    & \vdots    & 0          & \cdots & \alpha_{N-1} \\
+        \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
+        \vdots    & \vdots    & \vdots     & \cdots & \alpha_{N-1} \\
+        1/\sqrt N & 0         & 0          & \cdots & -(N-1)\alpha_{N-1}
+    \end{pmatrix},\]
+    \[
+        \alpha_1 = \frac{1}{\sqrt{2}}, \]
+    \[
+        \alpha_k = \frac{1}{k\sqrt{k(k-1)^2 \alpha_{k-1}^4 + 1}}, \quad k=\overline{2,N-1}.\]
 \end{proof}
 
 Таким образом, исходная матрица \( \mathcal{A}_{MN} \) подобна матрице

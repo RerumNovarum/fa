@@ -1,4 +1,4 @@
-\documentclass[12pt]{article}
+\documentclass[12pt,a4paper]{article}
 \usepackage{amsmath}
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
@@ -7,7 +7,7 @@
 \usepackage{fontspec}
 \usepackage{unicode-math}
 \setmainfont{CMU Serif}
-\setmathfont{Asana Math}
+\setmathfont{XITS Math}
 \usepackage{polyglossia}
 \setdefaultlanguage{russian}
 \setotherlanguage{english}
@@ -75,29 +75,29 @@
 
 \begin{quote}
     \small{{\bf Аннотация.}
-    В статье найдены оценки собственных значений
+    В статье методом подобных операторов найдены оценки собственных значений
     матриц смежностей почти полных орграфов.
     }
+
     \textbf{Ключевые слова:}
     \small{метод подобных операторов, собственные значения, спектр графов}
 \end{quote}
 
 \begin{quote}
     \small{{\bf Abstract.}
-    This article considers almost-all-ones matrices
-.%    and oriented graphs with a large number of edges.
-    Their eigenvalues estimates are derived.
+    This article considers spectra of almost-complete digraphs.
+    Their eigenvalues estimates are derived using The Method Of Similar Operators.
     }
+
     \textbf{Keywords:}
-    \small{similar operators method, eigenvalues, graph spectra}
+    \small{The Method Of Similar Operators, eigenvalues, graph spectra}
 \end{quote}
 
-\begin{center}{1. Введение и результат}\end{center}
+\begin{center}{1. Введение и основной результат}\end{center}
 \input{body/intro}
-\begin{center}{2-1. Доказательство. Предварительные преобразования}\end{center}
+\begin{center}{2. Доказательство}\end{center}
 \input{body/prep-all-ones}
 % \clearpage
-\begin{center}{2-2. Общая схема метода подобных операторов}\end{center}
 \input{body/general-method}
 \input{body/final-estimates}
 \input{bibliography}

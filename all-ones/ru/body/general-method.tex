@@ -1,0 +1,142 @@
+Матрицы из \( \mathtt{Matr}_N\mathbb{C} \) будем записывать в блочном виде
+\( X \sim
+    \begin{pmatrix}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix}, \)
+    где \( x_{11} \) --- число,
+    \( X_{12} \) --- строка, \( X_{21} \) --- столбец,
+    \( X_{22} \) --- квадратный блок размерности \( N-1 \).
+Такие блочные матрицы сами образуют алгебру, изоморфную исходной
+и их можно естественным образом умножать
+на элементы пространства \( \mathbb{C}\times\mathbb{C}^{N-1} \),
+изоморфного \( \mathbb{C}^N \),
+поэтому далее мы не будем их никак различать.
+
+Следуя общей схеме метода подобных операторов \cite{baskakov-split},
+будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
+в виде \( A - \mathfrak{J} X \)
+с матрицей преобразования подобия \( E + \Gamma X \),
+где \( E \) --- единичная матрица,
+\( \mathfrak{J},\Gamma \) --- линейные операторы,
+действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \),
+подбираемые в ходе решения так, чтобы упростить \( \mathcal{A} - \mathfrak{J}X \).
+Матрица \( \mathcal{A} \) при этом интерпретируется как ``идеальная'',
+а \( \mathcal{B} \) считается возмущением.
+Короче, будем решать в банаховой алгебре матриц порядка \( N \) уравнение
+\begin{equation}\label{simeqn}
+    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+    \end{equation}
+Оператор \( \mathfrak{J} \) обычно выбирают проектором (\(\mathfrak{J}^2=\mathfrak{J}\)).
+\( \Gamma \) определяют поточечно, как решение уравнения
+\( A\Gamma X - (\Gamma X) A = A - \mathfrak{J} X, \quad X\in\mathtt{Matr}_N\mathbb{C} \).
+Ясно, \( \mathcal{A}-\mathcal{B} \) тем ближе к идеальной \( \mathcal{A} \),
+чем шире ядро оператора \( \mathfrak{J} \).
+Уравнение для \( \Gamma \) в свою очередь не позволяет сузить ядро слишком сильно.
+
+Пусть \( \Gamma \) действует по формуле
+\( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
+                              \Gamma_{21}(X) & \Gamma_{22}(X)
+                              \end{pmatrix} \), тогда
+\[
+    \mathcal{A} \Gamma X - (\Gamma X)\mathcal{A} = 
+    \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
+        - N\Gamma_{21}(X) & 0
+        \end{pmatrix}, \]
+\[
+    X - \mathfrak{J} X =
+    N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
+        - \Gamma_{21}(X) & 0
+        \end{pmatrix}.
+    \]
+
+Положим
+\[
+    \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
+\[
+    \mathfrak{\Gamma} X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
+
+Ясно, что при этом спектр блочно-диагональной матрицы \( \mathcal{A} - \mathfrak{J}X \)
+есть объединение спектров её диагональных блоков.
+
+Уравнение \eqref{simeqn} можно свести к уравнению
+\[ X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) \mathfrak{J} X. \]
+Применим к обеим частям уравнения оператор \( \mathfrak{J} \) и получим выражение
+ \( (\Gamma X) \mathfrak{J} X = (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))) \),
+ которое подставим обратно в уравнение:
+
+\begin{equation}\label{fixptneqn}
+    X = \Phi(X) \equiv \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+\end{equation}
+
+Теперь покажем, что, при определённых условиях,
+возникшее отображение \( \Phi \) инвариантно
+относительного некоторого шара с центром в нуле,
+%(т.е. \(\Phi\) отображает этот шар в самого себя),
+на котором оно является сжимающим.
+
+Пусть в \( \mathtt{Matr}_N\mathbb{C} \)
+выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
+(т.е. норма, при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)
+ удовлетворяющая неравенству
+ \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)).
+Нам нужно найти такой радиус \( r \geq 0 \),
+что при \( \|X\|,\|Y\| \leq r \) выполнялись бы условия \( \|\Phi(X)\| \leq \|X\| \)
+и \( \|\Phi(X) - \Phi(Y)\| < 1 \).
+Обозначим
+\( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
+Очевидно неравенство
+
+
+\[ \| \Phi(X) \| \leq
+     \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
+
+\begin{lemma}
+    Пусть \( \gamma\beta < \frac14\),
+    тогда шар
+    \[
+        \Omega = \left\{ X\in \mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\}, \]
+    \[  r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
+    удовлетворяет условию \( \Phi(\Omega)\subset\Omega \).
+\end{lemma}
+
+Аналогичным образом устанавливается
+\begin{lemma}
+    Пусть \(\gamma\beta<\frac14\),
+    тогда \( \Phi \) --- сжимающее отображение:
+    \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \]
+    \[ q = (1+2\gamma r_0) \gamma\beta \leq (1+8\gamma\beta)\gamma\beta \leq \frac34. \]
+\end{lemma}
+Здесь использовано равенство
+\[ (\Gamma X) \mathfrak{J}(\mathcal{B}\Gamma X) - (\Gamma Y) \mathfrak{J}(\mathcal{B}\Gamma Y) =
+    \frac12\left[
+        \Gamma(X-Y) \mathfrak{J}(\mathcal{B}\Gamma(X+Y))
+    +   \Gamma(X+Y) \mathfrak{J}(\mathcal{B}\Gamma(X-Y))
+    \right]. \]
+
+Таким образом, по теореме Банаха о неподвижной точке,
+в шаре \( \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\} \)
+существует и при том единственное решение \( X^o \) уравнения \eqref{fixptneqn},
+являющееся пределом последовательности \( \{ \Phi^k(\mathcal{0}); k\in\mathbb{N} \} \),
+где \( \Phi^k = \Phi\circ\Phi^{k-1} \) --- композиция.
+
+\begin{lemma}
+Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - \mathfrak{J} X^o \):
+\[ \mathcal{A} - \mathcal{B} \sim
+\begin{pmatrix}
+N - x_{11}^o & 0 \\
+0 & -X_{22}^o
+\end{pmatrix}, \]
+и её собственные значения удовлетворяют условиям:
+\[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
+\[ \lambda_1 = N-x_{11}^o \in \{ \mu\in\mathbb{R}; \lvert x \rvert < r_0 \leq 4\beta \}, \]
+\[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}. \]
+\end{lemma}
+\begin{proof}
+    Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - \mathfrak{J} X^o \),
+    поэтому их спектры совпадают.
+    Спектр матрицы \( \mathcal{A} - \mathfrak{J} X^o \) есть объединение спектров её диагональных блоков.
+    В виду субмультипликативности нормы имеют место неравенства
+    \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
+    Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
+\end{proof}
