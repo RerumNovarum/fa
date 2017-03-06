@@ -1,97 +1,40 @@
-\documentclass[12pt,a4paper]{article}
-\usepackage{amsmath}
-\usepackage{amsfonts}
+\documentclass[11pt,a4paper,twoside]{article}
+
+\usepackage{vvmph2}
+\usepackage{rumathbr}
 \usepackage{mathrsfs}
-\usepackage{mathtools}
 
-\usepackage{fontspec}
-\usepackage{unicode-math}
-\setmainfont{CMU Serif}
-\setmathfont{XITS Math}
-\usepackage{polyglossia}
-\setdefaultlanguage{russian}
-\setotherlanguage{english}
-
-
-\usepackage{amsthm}
-\theoremstyle{definition}
-\newtheorem{dfn}{Определение}
-\theoremstyle{plain}
-\newtheorem{thm}{Теорема}
-\newtheorem*{thm*}{Теорема}
-\newtheorem{lemma}{Лемма}
-\theoremstyle{remark}
-\newtheorem{prop}{Утверждение}
-\newtheorem{corollary}{Следствие}
-\newtheorem{conjecture}{Предположение}
-
-% Mimic vestnik' style
-\usepackage{indentfirst}
-\oddsidemargin=-3mm
-\renewcommand{\baselinestretch}{1.2}
-%\evensidemargin=-3mm %
-\textwidth 163mm %
-\textheight220mm %
-\topmargin-8mm %
-\sloppy
-\let\thefootnote\relax
-
-\usepackage{marginnote}
-\usepackage{hyperref}
-\usepackage{tabularx}
+%\usepackage{marginnote}
+%\usepackage{hyperref}
+%\usepackage{tabularx}
 
 \begin{document}
-\setcounter{thm}{0}
-\setcounter{lemma}{0}
-\quad УДК 517.984.3 : 519.177
 
-\begin{center}
-% The whole point of LaTeX (as opposed to e.g. ConTeXt)
-% is to not care about layout and typesetting in the document itself.
-% Instead, macro's and environments are used,
-% which hide all the details and let you enforce a consistent style
-% throughout the whole document by simply modifying
-% these environments' definitions.
-%
-% So the publisher may just ask authors
-% ``please, put theorems in `thm` environments (which we'll provide)''.
-% This way author does not suffer from useless verbosity
-% and an editor can easily adapt an article for publication.
-\vskip0.5cm
-\textbf{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ ПОЛНОГО ОРГРАФА}\\
-\vskip0.5cm
-\textbf{
-    \textbf{Козлуков С.В.\footnotemark} \\
-    \textit{<rerumnovarum@openmailbox.org>} \\
-    \textit{Воронежский Государственный Университет}
-}
-\footnotetext{
-    \copyright Козлуков С.В.
-}
-\end{center}
+\udk{517.984.3 : 519.177}
+\bbk{22.161}
+\art{СПЕКТР МАТРИЦЫ СМЕЖНОСТЕЙ ПОЧТИ ПОЛНОГО ОРГРАФА}{SPECTRUM OF AN ADJACENCIES MATRIX OF AN ALMOST-COMPLETE GRAPH}
 
-\addcontentsline{tos}{subsection}{{\it{Козлуков С.в.}} Спектр матрицы смежностей почти полного орграфа}
-\addcontentsline{toc}{subsection}{{\it{Sergey Kozlukov}} Spectra of an almost-all-ones matrix}
+\fio{Козлуков}{Сергей}{Викторович}
+\pos{Студент}{Student}
+\emp{Воронежский Государственный Университет}{Voronezh State University}
+\email{rerumnovarum@openmailbox.org}
+\addr{Университетская ул., 1, 394000, г. Воронеж, Российская Федерация}{Universitetskaya St, 1, 394000, Voronezh, Russian Federation}
 
-\begin{quote}
-    \small{{\bf Аннотация.}
-    В статье методом подобных операторов найдены оценки собственных значений
-    матриц смежностей почти полных орграфов.
-    }
+\maketitle
 
-    \textbf{Ключевые слова:}
-    \small{метод подобных операторов, собственные значения, спектр графов}
-\end{quote}
+\begin{abstract}
+    С помощью метода подобных операторов изучаются спектральные свойства
+    матриц смежностей ориентированных графов с петлями,
+    близких к полным.
+    Даны оценки собственных значений таких матриц.
+\end{abstract}
 
-\begin{quote}
-    \small{{\bf Abstract.}
-    This article considers spectra of almost-complete digraphs.
-    Their eigenvalues estimates are derived using The Method Of Similar Operators.
-    }
-
-    \textbf{Keywords:}
-    \small{The Method Of Similar Operators, eigenvalues, graph spectra}
-\end{quote}
+\keywords{Метод Подобных Операторов,
+          собственные значения,
+          спектр графа}{
+          The Similar Operators Method,
+          eigenvalues,
+          graphs spectra}
 
 \begin{center}{1. Введение и основной результат}\end{center}
 \input{body/intro}
@@ -101,4 +44,8 @@
 \input{body/general-method}
 \input{body/final-estimates}
 \input{bibliography}
+
+\begin{summary}
+    \input{body/summary}
+\end{summary}
 \end{document}

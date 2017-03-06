@@ -10,7 +10,18 @@
 Такие блочные матрицы сами образуют алгебру, изоморфную исходной
 и их можно естественным образом умножать
 на элементы пространства \( \mathbb{C}\times\mathbb{C}^{N-1} \),
-изоморфного \( \mathbb{C}^N \),
+изоморфного \( \mathbb{C}^N \):
+\[
+    \begin{pmatrix}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix}
+    \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+  = \begin{pmatrix}
+      x_{11} x_1 + X_{12} x_2 \\
+      X_{21} x_1 + X_{22} x_2
+      \end{pmatrix},\quad x \sim \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\in \mathbb{C}\times\mathbb{C}^{N-1},
+    \]
 поэтому далее мы не будем их никак различать.
 
 Следуя общей схеме метода подобных операторов \cite{baskakov-split},
@@ -81,32 +92,43 @@
  удовлетворяющая неравенству
  \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)).
 Нам нужно найти такой радиус \( r \geq 0 \),
-что при \( \|X\|,\|Y\| \leq r \) выполнялись бы условия \( \|\Phi(X)\| \leq \|X\| \)
-и \( \|\Phi(X) - \Phi(Y)\| < 1 \).
+что при \( \|X\|,\|Y\| \leq r \) выполнялись бы условия \( \|\Phi(X)\| \leq r \)
+и \( \|\Phi(X) - \Phi(Y)\| < \|X-Y\| \).
 Обозначим
 \( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
-Очевидно неравенство
 
-
-\[ \| \Phi(X) \| \leq
-     \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
-
-\begin{lemma}
+\begin{lem}
     Пусть \( \gamma\beta < \frac14\),
     тогда шар
     \[
         \Omega = \left\{ X\in \mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\}, \]
-    \[  r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
+    \[  0 < r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
     удовлетворяет условию \( \Phi(\Omega)\subset\Omega \).
-\end{lemma}
+\end{lem}
+\begin{proof}
+Очевидно неравенство
+    \[ \| \Phi(X) \| \leq
+     \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
+Значит, для \( \|\Phi(X)\| \leq r \) при \( \|X\| \leq r \),
+    достаточно, чтобы \( r \) удовлетворяло неравенству
+    \[ \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0, \]
+Если \( \gamma\beta \leq \frac14 \),
+    то дискриминант \( \Delta = 1-4\gamma\beta > 0 \)
+    соответствующего уравнения положителен и его корни вещественны.
+Из знаков коэффициентов возникшего многочлена следует, что оба корня положительны.
+Наименьший положительный \( r \) удовлетворяющий неравенству есть наименьший корень
+этого уравнения:
+    \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
+Учитывая \( \gamma\beta<\frac14 \) имеем \( r_0 < 4\beta \).
+\end{proof}
 
 Аналогичным образом устанавливается
-\begin{lemma}
+\begin{lem}
     Пусть \(\gamma\beta<\frac14\),
     тогда \( \Phi \) --- сжимающее отображение:
     \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \]
     \[ q = (1+2\gamma r_0) \gamma\beta \leq (1+8\gamma\beta)\gamma\beta \leq \frac34. \]
-\end{lemma}
+\end{lem}
 Здесь использовано равенство
 \[ (\Gamma X) \mathfrak{J}(\mathcal{B}\Gamma X) - (\Gamma Y) \mathfrak{J}(\mathcal{B}\Gamma Y) =
     \frac12\left[
@@ -117,10 +139,10 @@
 Таким образом, по теореме Банаха о неподвижной точке,
 в шаре \( \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\} \)
 существует и при том единственное решение \( X^o \) уравнения \eqref{fixptneqn},
-являющееся пределом последовательности \( \{ \Phi^k(\mathcal{0}); k\in\mathbb{N} \} \),
+являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
 где \( \Phi^k = \Phi\circ\Phi^{k-1} \) --- композиция.
 
-\begin{lemma}
+\begin{lem}
 Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - \mathfrak{J} X^o \):
 \[ \mathcal{A} - \mathcal{B} \sim
 \begin{pmatrix}
@@ -131,7 +153,7 @@ N - x_{11}^o & 0 \\
 \[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
 \[ \lambda_1 = N-x_{11}^o \in \{ \mu\in\mathbb{R}; \lvert x \rvert < r_0 \leq 4\beta \}, \]
 \[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}. \]
-\end{lemma}
+\end{lem}
 \begin{proof}
     Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - \mathfrak{J} X^o \),
     поэтому их спектры совпадают.

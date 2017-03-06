@@ -7,7 +7,7 @@
  такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
 Спектры подобные матриц совпадают.
 
-\begin{lemma}
+\begin{lem}
     Матрица единиц 
     \( \mathcal{J}_N =
     \begin{pmatrix}
@@ -20,12 +20,11 @@
             N & 0 & \cdots & 0 \\
             0 & 0 & \cdots & 0 \\
             \vdots & \vdots & \ddots & \vdots \\
-            0 & 0 & \cdots & 0
-        \end{pmatrix}. \]
+            0 & 0 & \cdots & 0 \end{pmatrix}. \]
     Точнее, существует ортогональная матрица \( \mathcal{U} \),
     такая что
     \( \mathcal{A} = \mathcal{U}\mathcal{J}_N \mathcal{U}^{-1} \).
-\end{lemma}
+\end{lem}
 \begin{proof}
     Собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
     соответствует собственный вектор \( f_1 = {\left(1,\ldots,1\right)} \),
@@ -37,13 +36,14 @@
     имеющую столбцами векторы \( h_1, \ldots, h_N \):
     \[ \mathcal{U} =
     \begin{pmatrix}
-        1/\sqrt N &  1/\sqrt2 & \alpha_2   & \cdots & \alpha_{N-1} \\
-        \vdots    & -1/\sqrt2 & \alpha_2   & \cdots & \alpha_{N-1} \\
-        \vdots    & 0         & -2\alpha_2 & \cdots & \alpha_{N-1} \\
-        \vdots    & \vdots    & 0          & \cdots & \alpha_{N-1} \\
-        \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
-        \vdots    & \vdots    & \vdots     & \cdots & \alpha_{N-1} \\
-        1/\sqrt N & 0         & 0          & \cdots & -(N-1)\alpha_{N-1}
+        \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & -3\alpha_3 & \cdots & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-1} \\
+        \vdots    & \vdots            &  \vdots             & \vdots     & \ddots & \vdots  \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & -(N-1)\alpha_{N-1}
     \end{pmatrix},\]
     \[
         \alpha_1 = \frac{1}{\sqrt{2}}, \]
