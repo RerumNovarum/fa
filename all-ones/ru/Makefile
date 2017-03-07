@@ -21,6 +21,7 @@ clean:
 
 escape-accented-chars:
 	find -iname '*.tex' -exec sed -i 's/ё/\\"е/g' \{\} \;
+	sed -i 's/ё/\\"е/g' main.tex
 
 main.pdf: $(MAIN_SOURCES)
 	xelatex "\def\XELATEX{}\input{main.tex}"

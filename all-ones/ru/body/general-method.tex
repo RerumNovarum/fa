@@ -28,20 +28,25 @@
 будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
 в виде \( A - \mathfrak{J} X \)
 с матрицей преобразования подобия \( E + \Gamma X \),
-где \( E \) --- единичная матрица,
+где \( E = (\delta_{ij}) \) --- единица алгебры \( \mathtt{Matr}_N\mathbb{C} \),
+      (\( \delta_{ij} = \left\{\begin{aligned} 1, i=j \\ 0, i\neq j \end{aligned} \right. \)
+          --- символ Кронекера).
 \( \mathfrak{J},\Gamma \) --- линейные операторы,
 действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \) и подбираемые
 в ходе решения так, чтобы упростить \( \mathcal{A} - \mathfrak{J}X \).
 Матрица \( \mathcal{A} \) при этом интерпретируется как ``идеальная'',
 а \( \mathcal{B} \) считается возмущением.
 Короче, будем решать в банаховой алгебре матриц порядка \( N \) уравнение
-\begin{equation}\label{simeqn}
+\begin{equation}\label{kozlukovsv:eq:similarity}
     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
     \end{equation}
 Оператор \( \mathfrak{J} \) обычно выбирают проектором (\(\mathfrak{J}^2=\mathfrak{J}\)).
 \( \Gamma \) определяют поточечно, как решение уравнения
-\( A\Gamma X - (\Gamma X) A = A - \mathfrak{J} X, \quad X\in\mathtt{Matr}_N\mathbb{C} \).
-Ясно, \( \mathcal{A}-\mathcal{B} \) тем ближе к идеальной \( \mathcal{A} \),
+\( A\Gamma X - (\Gamma X) A = A - \mathfrak{J} X, \quad X\in\mathtt{Matr}_N\mathbb{C} \),
+где \( A\Gamma X - (\Gamma X) A = \mathtt{ad}_{\mathcal{A}} \Gamma X \),
+\(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)
+--- оператор коммутирования с \( \mathcal{A} \).
+Ясно, \( \mathcal{A}-\mathfrak{J}X \) имеет тем более простую структуру,
 чем шире ядро оператора \( \mathfrak{J} \).
 Уравнение для \( \Gamma \) в свою очередь не позволяет сузить ядро слишком сильно.
 
@@ -54,6 +59,7 @@
     \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
         - N\Gamma_{21}(X) & 0
         \end{pmatrix}, \]
+и уравнение для \( \Gamma X \) сводится к
 \[
     X - \mathfrak{J} X =
     N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
@@ -61,39 +67,46 @@
         \end{pmatrix}.
     \]
 
-Положим
+Положим для \( X =
+    \begin{pmatrix}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \):
 \[
     \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
 \[
     \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
 
-Ясно, что при этом спектр блочно-диагональной матрицы \( \mathcal{A} - \mathfrak{J}X \)
-есть объединение спектров её диагональных блоков.
+Ясно, что при этом спектр блочно-диагональной матрицы
+\( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
+есть объединение спектров е\"е диагональных блоков:
+\[ \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
 
-Уравнение \eqref{simeqn} можно свести к уравнению
-\[ X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) \mathfrak{J} X. \]
-Применим к обеим частям уравнения оператор \( \mathfrak{J} \) и получим выражение
+Уравнение \eqref{kozlukovsv:eq:similarity} можно свести к
+\begin{equation}\label{kozlukovsv:eq:fixptn-ini}
+    X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) \mathfrak{J} X.
+\end{equation}
+Применив к обеим частям уравнения оператор \( \mathfrak{J} \) получим выражение
  \( (\Gamma X) \mathfrak{J} X = (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))) \),
- которое подставим обратно в уравнение:
-
-\begin{equation}\label{fixptneqn}
+ которое подставим обратно в \eqref{kozlukovsv:eq:fixptn-ini}:
+\begin{equation}\label{kozlukovsv:eq:fixptn}
     X = \Phi(X) \equiv \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
 \end{equation}
 
-Теперь покажем, что, при определённых условиях,
-возникшее отображение \( \Phi \) инвариантно
-относительного некоторого шара с центром в нуле,
-%(т.е. \(\Phi\) отображает этот шар в самого себя),
+Теперь покажем, что, при определ\"енных условиях,
+возникшее нелинейное отображение \( \Phi \) имеет инвариантным множеством
+некоторый шар \( \Omega \subset \mathtt{Matr}_N\mathbb{C} \) с центром в нуле
+(т.е. \( \Phi(\Omega)\subset\Omega \)),
 на котором оно является сжимающим.
 
 Пусть в \( \mathtt{Matr}_N\mathbb{C} \)
 выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
-(т.е. норма, при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)
- удовлетворяющая неравенству
- \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)).
+(т.е. норма, удовлетворяющая неравенству
+ \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
+ при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)).
 Нам нужно найти такой радиус \( r \geq 0 \),
-что при \( \|X\|,\|Y\| \leq r \) выполнялись бы условия \( \|\Phi(X)\| \leq r \)
-и \( \|\Phi(X) - \Phi(Y)\| < \|X-Y\| \).
+что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
+и \( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
 Обозначим
 \( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
 
@@ -111,22 +124,26 @@
      \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
 Значит, для \( \|\Phi(X)\| \leq r \) при \( \|X\| \leq r \),
     достаточно, чтобы \( r \) удовлетворяло неравенству
-    \[ \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0, \]
+    \begin{equation}\label{kozlukovsv:ineq:invariance-radius}
+        \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0,
+    \end{equation}
 Если \( \gamma\beta \leq \frac14 \),
-    то дискриминант \( \Delta = 1-4\gamma\beta > 0 \)
+    то дискриминант \( \Delta = 1-4\gamma\beta \)
     соответствующего уравнения положителен и его корни вещественны.
-Из знаков коэффициентов возникшего многочлена следует, что оба корня положительны.
-Наименьший положительный \( r \) удовлетворяющий неравенству есть наименьший корень
-этого уравнения:
+Из знаков коэффициентов возникшего многочлена видно, что оба корня положительны.
+Следовательно, наименьший положительный \( r \),
+    удовлетворяющий неравенству \eqref{kozlukovsv:ineq:invariance-radius}
+    есть наименьший корень
+    соответствующего уравнения:
     \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
-Учитывая \( \gamma\beta<\frac14 \) имеем \( r_0 < 4\beta \).
+Учитывая \( \gamma\beta<\frac14 \), имеем \( r_0 < 4\beta \).
 \end{proof}
 
 Аналогичным образом устанавливается
 \begin{lem}
     Пусть \(\gamma\beta<\frac14\),
     тогда \( \Phi \) --- сжимающее отображение:
-    \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \]
+    \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \quad X,Y\in\Omega \]
     \[ q = (1+2\gamma r_0) \gamma\beta \leq (1+8\gamma\beta)\gamma\beta \leq \frac34. \]
 \end{lem}
 \begin{proof}
@@ -147,28 +164,30 @@
     \right]. \]
 \end{proof}
 
-Следовательно, по теореме Банаха о неподвижной точке,
-в шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
-существует и при том единственное решение \( X^o \) уравнения \eqref{fixptneqn},
-являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
-где \( \Phi^k = \Phi\circ\Phi^{k-1} \) --- композиция.
-
+Отсюда и из теоремы Банаха о неподвижной точке следует:
 \begin{lem}
+В шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
+    существует и при том единственное решение \( X^o \) уравнения \eqref{kozlukovsv:eq:fixptn},
+    являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
+    где \( \Phi^k = \Phi\circ\Phi^{k-1} \) --- композиция.
+\end{lem}
+
+\begin{crl}
 Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - \mathfrak{J} X^o \):
 \[ \mathcal{A} - \mathcal{B} \sim
 \begin{pmatrix}
 N - x_{11}^o & 0 \\
 0 & -X_{22}^o
 \end{pmatrix}, \]
-и её собственные значения удовлетворяют условиям:
+при этом выполняются условия:
 \[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
-\[ \lambda_1 = N-x_{11}^o \in \{ \mu\in\mathbb{R}; \lvert x \rvert < r_0 \leq 4\beta \}, \]
+    \[ x_{11}^o\in\mathbb{R}, \lvert x_{11}^o \rvert < r_0 \leq 4\beta, \]
 \[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}. \]
-\end{lem}
+\end{crl}
 \begin{proof}
     Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - \mathfrak{J} X^o \),
     поэтому их спектры совпадают.
-    Спектр матрицы \( \mathcal{A} - \mathfrak{J} X^o \) есть объединение спектров её диагональных блоков.
+    Спектр матрицы \( \mathcal{A} - \mathfrak{J} X^o \) есть объединение спектров е\"е диагональных блоков.
     В виду субмультипликативности нормы имеют место неравенства
     \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
     Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.

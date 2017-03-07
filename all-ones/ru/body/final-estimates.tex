@@ -1,16 +1,17 @@
 Верн\"емся, наконец, к непосредственному доказательству основной теоремы:
-\begin{proof}[Доказательство Теоремы \ref{thm:kozlukov-almost-all-ones}]
+\begin{proof}[Доказательство Теоремы \ref{kozlukovsv:thm:almost-all-ones}]
     Для доказательства осталось лишь выбрать подходящую субмультипликативную норму.
     Заметим, что матрица \( \mathcal{U} \),
     приводящая \( \mathcal{J}_N \) к диагональному виду
     является ортогональной,
     поэтому умножение на \( \mathcal{U} \) или \(\mathcal{U}^{-1}\)
-    является изометрией.
-    Короче, \( \|\mathcal{B}\|=\|\mathscr{B}_{MN}\| \).
+    есть изометрия.
+    Следовательно, \( \|\mathcal{B}\|=\|\mathscr{B}_{MN}\| \).
     Рассмотрим в пространстве \( \mathtt{Matr}_{N}\mathbb{C} \)
     норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
     определ\"енную формулой
-    \( {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}. \)
+    \( {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}, \)
+    \( X = (x_{ij})\in\mathtt{Matr}_N\mathbb{C} \).
     Она субмультипликативна.
     При этом
     \( \mathscr{B}_{MN} \) состоит из \( M \) единиц, поэтому
@@ -33,5 +34,5 @@
      где \( \sigma_1 = \{ \lambda_1 \}\subset\mathbb{R}, \lvert \lambda_1 - N \rvert < 4\sqrt{M} \),
      \( \sigma_2 \subset \{ \mu\in\mathbb{C}; \lvert\mu\rvert < 4\sqrt{M} \} \),
      \( \sigma_1 \cap \sigma_2 = \emptyset \).
-    Но в этом и состоит утверждение теоремы.
+    Теорема доказана.
     \end{proof}
