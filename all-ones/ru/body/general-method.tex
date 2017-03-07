@@ -30,8 +30,8 @@
 с матрицей преобразования подобия \( E + \Gamma X \),
 где \( E \) --- единичная матрица,
 \( \mathfrak{J},\Gamma \) --- линейные операторы,
-действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \),
-подбираемые в ходе решения так, чтобы упростить \( \mathcal{A} - \mathfrak{J}X \).
+действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \) и подбираемые
+в ходе решения так, чтобы упростить \( \mathcal{A} - \mathfrak{J}X \).
 Матрица \( \mathcal{A} \) при этом интерпретируется как ``идеальная'',
 а \( \mathcal{B} \) считается возмущением.
 Короче, будем решать в банаховой алгебре матриц порядка \( N \) уравнение
@@ -65,7 +65,7 @@
 \[
     \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
 \[
-    \mathfrak{\Gamma} X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
+    \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
 
 Ясно, что при этом спектр блочно-диагональной матрицы \( \mathcal{A} - \mathfrak{J}X \)
 есть объединение спектров её диагональных блоков.
@@ -129,15 +129,26 @@
     \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \]
     \[ q = (1+2\gamma r_0) \gamma\beta \leq (1+8\gamma\beta)\gamma\beta \leq \frac34. \]
 \end{lem}
+\begin{proof}
+    \begin{align*} \| \Phi(X) - \Phi(Y) \| = \| \mathcal{B}\Gamma (X-Y) + (\Gamma X)(\mathcal{B}\Gamma X + \mathcal{B})
+     - (\Gamma Y)(\mathcal{B} \Gamma Y + \mathcal{B}) \| \leq \\
+        \leq
+     \beta\gamma\|X-Y\| +
+     \beta \gamma^2 \|X-Y\| \|X+Y\| \leq \\
+        \leq
+     \beta\gamma\|X-Y\| +
+     2 r_0 \beta \gamma^2 \|X-Y\|.
+    \end{align*}
 Здесь использовано равенство
 \[ (\Gamma X) \mathfrak{J}(\mathcal{B}\Gamma X) - (\Gamma Y) \mathfrak{J}(\mathcal{B}\Gamma Y) =
     \frac12\left[
         \Gamma(X-Y) \mathfrak{J}(\mathcal{B}\Gamma(X+Y))
     +   \Gamma(X+Y) \mathfrak{J}(\mathcal{B}\Gamma(X-Y))
     \right]. \]
+\end{proof}
 
-Таким образом, по теореме Банаха о неподвижной точке,
-в шаре \( \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\} \)
+Следовательно, по теореме Банаха о неподвижной точке,
+в шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
 существует и при том единственное решение \( X^o \) уравнения \eqref{fixptneqn},
 являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
 где \( \Phi^k = \Phi\circ\Phi^{k-1} \) --- композиция.
