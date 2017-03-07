@@ -1,8 +1,17 @@
-MAIN_SOURCES:= main.tex body/intro.tex body/prep-all-ones.tex body/general-method.tex body/final-estimates.tex body/summary.tex bibliography.tex
+MAIN_SOURCES:= main.tex body/intro.tex body/prep-all-ones.tex \
+			   body/general-method.tex body/final-estimates.tex \
+			   body/summary.tex bibliography.tex
+ZIP_CONTENTS:= cp1251/main.pdf authors.doc liabilities.doc authors.pdf liabilities.pdf \
+	$(addprefix cp1251/,$(MAIN_SOURCES)) \
+	$(addprefix cp1251/,cl5.eps cl5.pdf arms.pdf arms.eps vvmph2.sty rumathbr.sty)
 
 PDFLATEX = pdflatex
 
-all: cp1251/main.pdf # main.pdf
+all: volsu.zip
+
+volsu.zip: $(ZIP_CONTENTS)
+	rm -f volsu.zip
+	zip volsu.zip $(ZIP_CONTENTS)
 
 .PHONY: clean
 
@@ -66,3 +75,12 @@ cp1251/main.toc: $(addprefix cp1251/,$(MAIN_SOURCES))
 	@echo : Making $@
 	cd cp1251 ; $(PDFLATEX) main.tex
 	touch $@
+
+%.doc: %.md
+	pandoc $< -o $@
+
+%.rtf: %.md
+	pandoc $< -o $@
+
+%.pdf: %.md
+	pandoc --latex-engine=xelatex -V mainfont='CMU Serif' $< -o $@
