@@ -6,13 +6,14 @@ with some \( M \) out of \( N^2 \) edges removed.
 Some important properties of a graph are determined by its spectrum.
 For example Wang et al. \cite{epidemic} proposed a discrete-time model
 of viral propagation in a network.
-In that model the virus will die out or linger
+In that model the virus will die out or linger on
 depending on whether the ratio of curing and infection rates
 is below or above the treshold value.
 As Wang et al. have shown that treshold value
-is the spectral radius of the network graph.
+is the spectral radius of the adjacencies matrix of the network graph,
+i.e. the maximal absolute value of its eigenvalues.
 More comprehensive description of spectral graph theory
-and its application is given by Cvetkovic et al. \cite{cvet}.
+and its application is given by Cv\`etkovic et al. \cite{cvet}.
 
 This article analyzes spectral properties of such matrices.
 The matrix \( \mathscr{A}_{MN} \) can be represented in the form
@@ -23,16 +24,18 @@ and \( \mathcal{B}_{MN} \) has unities exactly at these \( M \)
 places where \( \mathscr{A}_{MN} \) has zeroes.
 The spectrum of \( \mathcal{J}_N \) can be easily computed:
 \( \mathcal{J}_N^2 = N \mathcal{J} \),
-so \( \lambda(\lambda - N) \) is the minimal polynomial of \( \mathcal{J}_N \)
+so \( \lambda(\lambda - N) \) is the minimal
+annihilating polynomial of \( \mathcal{J}_N \)
 and hence the spectrum of \( \mathcal{J}_{N} \) is
 \( \sigma(\mathcal{J}_N) = \{ 0,N \} \).
 
 For small enough \( M \) the eigenvalues of \( \mathscr{A}_{MN} \)
 will be ``close'' to those of \( \mathcal{J}_N \).
-Using the Method of Similar Operators \cite{baskakov-harmonic,baskakov-split},
-which allows to find an element of algebra similar to given one
-but having ``simpler'' structure,
-the following theorem is proven:
+Then The Method of Similar Operators \cite{baskakov-harmonic,baskakov-split} is used,
+which allows in the case of perturbation of some ideal object (whose properties are known)
+to find an element of algebra under consideration similar to disturbed one
+yet having ``simpler'' structure.
+Via this method the following theorem is proven:
 %\textbf{Theorem.}
 \begin{center}
 \it
