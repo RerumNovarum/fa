@@ -1,4 +1,4 @@
-Матрицы из \( \mathtt{Matr}_N\mathbb{C} \) будем записывать в блочном виде
+Матрицы из \( \mathtt{Matr}_N\mathbb{C} \) будем записывать в~блочном виде
 \( X \sim
     \begin{pmatrix}
     x_{11} & X_{12} \\
@@ -8,9 +8,9 @@
     \( X_{12} \) --- строка, \( X_{21} \) --- столбец,
     \( X_{22} \) --- квадратный блок размерности \( N-1 \).
 Такие блочные матрицы сами образуют алгебру, изоморфную исходной
-и их можно естественным образом умножать
+и~их можно естественным образом умножать
 на элементы пространства \( \mathbb{C}\times\mathbb{C}^{N-1} \),
-изоморфного \( \mathbb{C}^N \):
+изоморфного~\( \mathbb{C}^N \):
 \[
     \begin{pmatrix}
     x_{11} & X_{12} \\
@@ -22,21 +22,21 @@
       X_{21} x_1 + X_{22} x_2
       \end{pmatrix},\quad x \sim \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\in \mathbb{C}\times\mathbb{C}^{N-1}.
     \]
-В дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми.
+В~дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми.
 
 Следуя общей схеме метода подобных операторов \cite{baskakov-split},
 будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
-в виде \( A - \mathfrak{J} X \)
-с матрицей преобразования подобия \( E + \Gamma X \),
+в~виде \( A - \mathfrak{J} X \)
+с~матрицей преобразования подобия \( E + \Gamma X \),
 где \( E = (\delta_{ij}) \) --- единица алгебры \( \mathtt{Matr}_N\mathbb{C} \),
       (\( \delta_{ij} = \left\{\begin{aligned} 1, i=j \\ 0, i\neq j \end{aligned} \right. \)
           --- символ Кронекера).
 \( \mathfrak{J},\Gamma \) --- линейные операторы,
-действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \) и подбираемые
-в ходе решения так, чтобы упростить \( \mathcal{A} - \mathfrak{J}X \).
+действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \) и~подбираемые
+в~ходе решения так, чтобы упростить \( \mathcal{A} - \mathfrak{J}X \).
 Матрица \( \mathcal{A} \) при этом интерпретируется как ``идеальная'',
-а \( \mathcal{B} \) считается возмущением.
-Короче, будем решать в банаховой алгебре матриц порядка \( N \) уравнение
+а~\( \mathcal{B} \) считается возмущением.
+Короче, будем решать в~банаховой алгебре матриц порядка \( N \) уравнение
 \begin{equation}\label{kozlukovsv:eq:similarity}
     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
     \end{equation}
@@ -59,7 +59,7 @@
     \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
         - N\Gamma_{21}(X) & 0
         \end{pmatrix}, \]
-и уравнение для \( \Gamma X \) сводится к
+и~уравнение для \( \Gamma X \) сводится к
 \[
     X - \mathfrak{J} X =
     N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
@@ -106,7 +106,7 @@
  при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)).
 Нам нужно найти такой радиус \( r \geq 0 \),
 что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
-и \( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
+и~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
 Обозначим
 \( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
 
@@ -122,11 +122,11 @@
 Очевидно неравенство
     \[ \| \Phi(X) \| \leq
      \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
-Значит, для \( \|\Phi(X)\| \leq r \) при \( \|X\| \leq r \),
-    достаточно, чтобы \( r \) удовлетворяло неравенству
+Значит, если \( r \) удовлетворяет неравенству
     \begin{equation}\label{kozlukovsv:ineq:invariance-radius}
         \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0,
     \end{equation}
+    то \( \|\Phi(X)\| \leq r \) при всех \( \|X\| \leq r \).
 Если \( \gamma\beta \leq \frac14 \),
     то дискриминант \( \Delta = 1-4\gamma\beta \)
     соответствующего уравнения положителен и его корни вещественны.
@@ -166,7 +166,7 @@
 
 Отсюда и из теоремы Банаха о неподвижной точке следует:
 \begin{lem}
-В шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
+В~шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
     существует и при том единственное решение \( X^o \) уравнения \eqref{kozlukovsv:eq:fixptn},
     являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
     где \( \Phi^k = \Phi\circ\Phi^{k-1} \) --- композиция.

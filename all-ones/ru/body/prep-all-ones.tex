@@ -1,10 +1,10 @@
-Доказательство состоит в построении уравнения для матрицы, подобной \( \mathscr{A}_{MN} \),
+Доказательство состоит в~построении уравнения для матрицы, подобной \( \mathscr{A}_{MN} \),
  но устроеной ``проще''. Решение возникающего нелинейного уравнения
- в банаховой алгебре \( \mathtt{Matr}_N\mathbb{C} \)
+ в~банаховой алгебре \( \mathtt{Matr}_N\mathbb{C} \)
  доставляется методом простых итераций (см., например, \cite{baskakov-harmonic}).
 
 Подобие матриц \( \mathcal{A}_1, \mathcal{A}_2 \)
- понимается в смысле существования обратимой матрицы \( \mathcal{U} \),
+ понимается в~смысле существования обратимой матрицы \( \mathcal{U} \),
  такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
 Подобные матрицы изоспектральны (их спектры совпадают).
 
@@ -31,22 +31,23 @@
 \begin{proof}
     Собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
     соответствует собственный вектор \( f_1 = {\left(1,\ldots,1\right)} \),
-        а собственному значению \( 0 \) соответствует \( N-1 \) независимый собственный вектор
+        а~собственному значению \( 0 \) соответствует \( N-1 \) независимый собственный вектор
         \( f_2 = {\left(1,-1,0,\ldots,0\right)}, ...,
            f_N = {\left(0,\ldots,0,1,-1\right)} \).
     Применив ортогонализацию Грамма-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \).
-    В качестве матрицы \( \mathcal{U} \) выберем матрицу,
+    В~качестве матрицы \( \mathcal{U} \) выберем матрицу,
     имеющую столбцами векторы \( h_1, \ldots, h_N \):
     \[ \mathcal{U} =
     \begin{pmatrix}
-        \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-1} \\
-        \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-1} \\
-        \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-1} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & -3\alpha_3 & \cdots & \alpha_{N-1} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-1} \\
-        \vdots    & \vdots            &  \vdots             & \vdots     & \ddots & \vdots  \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-1} \\
-        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & -(N-1)\alpha_{N-1}
+        \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & -3\alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \vdots            & \vdots            &  \vdots             & \vdots     & \ddots & \vdots           & \vdots  \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & -(N-2)\alpha_{N-2} & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & 0                  & -(N-1)\alpha_{N-1}
     \end{pmatrix},\]
     \[
         \alpha_1 = \frac{1}{\sqrt{2}}, \]
