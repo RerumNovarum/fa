@@ -48,7 +48,7 @@
 --- оператор коммутирования с \( \mathcal{A} \).
 Ясно, \( \mathcal{A}-\mathfrak{J}X \) имеет тем более простую структуру,
 чем шире ядро оператора \( \mathfrak{J} \).
-Уравнение для \( \Gamma \) в свою очередь не позволяет сузить ядро слишком сильно.
+Уравнение для \( \Gamma \) в~свою очередь не позволяет сузить ядро слишком сильно.
 
 Пусть \( \Gamma \) действует по формуле
 \( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
@@ -59,7 +59,7 @@
     \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
         - N\Gamma_{21}(X) & 0
         \end{pmatrix}, \]
-и~уравнение для \( \Gamma X \) сводится к
+и~уравнение для \( \Gamma X \) сводится~к
 \[
     X - \mathfrak{J} X =
     N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
@@ -82,26 +82,26 @@
 есть объединение спектров е\"е диагональных блоков:
 \[ \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
 
-Уравнение \eqref{kozlukovsv:eq:similarity} можно свести к
+Уравнение \eqref{kozlukovsv:eq:similarity} можно свести~к
 \begin{equation}\label{kozlukovsv:eq:fixptn-ini}
     X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) \mathfrak{J} X.
 \end{equation}
-Применив к обеим частям уравнения оператор \( \mathfrak{J} \) получим выражение
+Применив к~обеим частям уравнения оператор \( \mathfrak{J} \) получим выражение
  \( (\Gamma X) \mathfrak{J} X = (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))) \),
- которое подставим обратно в \eqref{kozlukovsv:eq:fixptn-ini}:
+ которое подставим обратно в~\eqref{kozlukovsv:eq:fixptn-ini}:
 \begin{equation}\label{kozlukovsv:eq:fixptn}
     X = \Phi(X) \equiv \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
 \end{equation}
 
 Теперь покажем, что, при определ\"енных условиях,
 возникшее нелинейное отображение \( \Phi \) имеет инвариантным множеством
-некоторый шар \( \Omega \subset \mathtt{Matr}_N\mathbb{C} \) с центром в нуле
-(т.е. \( \Phi(\Omega)\subset\Omega \)),
+некоторый шар \( \Omega \subset \mathtt{Matr}_N\mathbb{C} \) с~центром в~нуле
+(т.е.~\( \Phi(\Omega)\subset\Omega \)),
 на котором оно является сжимающим.
 
-Пусть в \( \mathtt{Matr}_N\mathbb{C} \)
+Пусть в~\( \mathtt{Matr}_N\mathbb{C} \)
 выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
-(т.е. норма, удовлетворяющая неравенству
+(т.е.~норма, удовлетворяющая неравенству
  \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
  при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)).
 Нам нужно найти такой радиус \( r \geq 0 \),
@@ -129,7 +129,7 @@
     то \( \|\Phi(X)\| \leq r \) при всех \( \|X\| \leq r \).
 Если \( \gamma\beta \leq \frac14 \),
     то дискриминант \( \Delta = 1-4\gamma\beta \)
-    соответствующего уравнения положителен и его корни вещественны.
+    соответствующего уравнения положителен и~его корни вещественны.
 Из знаков коэффициентов возникшего многочлена видно, что оба корня положительны.
 Следовательно, наименьший положительный \( r \),
     удовлетворяющий неравенству \eqref{kozlukovsv:ineq:invariance-radius}
@@ -164,10 +164,10 @@
     \right]. \]
 \end{proof}
 
-Отсюда и из теоремы Банаха о неподвижной точке следует:
+Отсюда и~из теоремы Банаха о~неподвижной точке следует:
 \begin{lem}
 В~шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
-    существует и при том единственное решение \( X^o \) уравнения \eqref{kozlukovsv:eq:fixptn},
+    существует и~при том единственное решение \( X^o \) уравнения \eqref{kozlukovsv:eq:fixptn},
     являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
     где \( \Phi^k = \Phi\circ\Phi^{k-1} \)~--- композиция.
 \end{lem}
@@ -188,7 +188,7 @@ N - x_{11}^o & 0 \\
     Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - \mathfrak{J} X^o \),
     поэтому их спектры совпадают.
     Спектр матрицы \( \mathcal{A} - \mathfrak{J} X^o \) есть объединение спектров е\"е диагональных блоков.
-    В виду субмультипликативности нормы имеют место неравенства
+    В~виду субмультипликативности нормы имеют место неравенства
     \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
     Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
 \end{proof}
