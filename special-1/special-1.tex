@@ -1,0 +1,96 @@
+\documentclass{article}
+
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\usepackage{polyglossia}
+\setdefaultlanguage{russian}
+\setotherlanguage{english}
+
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{mathrsfs}
+\usepackage{mathtools}
+
+\title{О спектральных свойствах матриц некоторого специального класса}
+\author{Sergey Kozlukov}
+
+\begin{document}
+\maketitle
+
+Символом \( \mathtt{Matr}_{n}\mathbb{C} \) будем обозначать алгебру матриц размера \( n\times n\) с комплексными элементами.
+Пространство линейных ограниченных операторов \( X\to X \) (где \( X \) --- банахово пространство)
+будем обозначать \( L(X) \),
+а спектр матрицы (оператора) \( A \) ---  символом \( \sigma(A) \).
+
+Пусть \( H = \mathbb{C}^2 \) --- двумерное гильбертово пространство с естественным скалярным произведением \( (\cdot,\cdot) \),
+\( \mathcal{H} = H^N \) --- \( 2N \)-мерное гильбертово пространство с скалярным произведением, определяемым по формуле
+\( \langle x,y \rangle = \sum_{i=1}^N (x_i, y_i), \) для \( x = \left( x_1, \ldots, x_N \right), y = \left(y_1, \ldots, y_N \right) \in \mathcal{H}, \)
+\( x_j, y_j \in H, j=\overline{1,N} \).
+Будем рассматривать линейные операторы \( A_{2N}\in L(\mathcal{H}) \), задаваемые матрицами \( \mathcal{A}_{2N} \in \mathtt{Matr}_{2N}\mathbb{C} \) размера \( 2N\times 2N \) вида
+\[ \mathcal{A}_{2N} =
+    \begin{pmatrix}
+    0 & 1 & 0 & 1 & \cdots &  1 \\
+    1 & 0 & 1 & 0 & \cdots &  0 \\
+    0 & 1 & 0 & 1 & \cdots &  1 \\
+    \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
+    1 & 0 & 1 & 0 & \cdots & 0
+    \end{pmatrix}. \]
+Их можно записать в виде матрицы, составленной из \( N\times N \) блоков
+\[ \mathcal{A}_{2N} =
+    \begin{pmatrix}
+        \mathcal{A}_2 & \cdots & \mathcal{A}_2 \\
+        \vdots        & \ddots & \vdots \\
+        \mathcal{A}_2 & \cdots & \mathcal{A}_2.
+        \end{pmatrix}, \]
+\[ \mathcal{A}_2 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}. \]
+
+Легко проверяется, что собственными значениями матрицы \( \mathcal{A}_2 \)
+являются \( 1 \) и \( -1 \), а соответствующими собственными векторами --- 
+\( e_1 = \begin{pmatrix}1 \\ 1\end{pmatrix} \),
+\( e_2 = \begin{pmatrix}1 \\ -1\end{pmatrix} \).
+
+Найдём спектр и собственный базис матрицы \( \mathcal{A}_{2N} \).
+Для этого введём в рассмотрение векторы
+\[ h_1^1 = \begin{pmatrix} e_1 \\ -e_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \cdots, h_1^{N-1} = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ e_1 \\ -e_1 \end{pmatrix},
+   h_2^1 = \begin{pmatrix} e_2 \\ -e_2 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \cdots, h_2^{N-1} = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ e_2 \\ -e_2 \end{pmatrix}, \]
+очевидно лежащие в ядре рассматриваемого оператора.
+Также рассмотрим генерируемое ими подпространство
+\[ \mathcal{H}_0 = \mathtt{span}(h_1^1,\ldots,h_1^{N-1},h_2^1,\ldots,h_2^{N-1}), \]
+размерности \( \dim\mathcal{H}_0 = 2N - 2. \)
+Так как, очевидно, \( \mathtt{rank}{\mathcal{A}_{2N}} = 2 \),
+то \( \mathcal{H}_0 \) есть в точности ядро этого оператора: \( \mathcal{H}_0 = \mathtt{Ker}(A_{2N}) \).
+
+Рассмотрим теперь ортогональное дополнение \( \mathcal{H}_1 = \mathcal{H}_0^{\perp} \) к подпространству \( \mathcal{H}_0 \)
+--- такое линейное подпространство \( \mathcal{H}_1 \subset \mathcal{H} \),
+что \( \mathcal{H} = \mathcal{H}_0 \oplus \mathcal{H}_1 \)
+и для всех \( x\in\mathcal{H}_1, y\in\mathcal{H}_0 \) имеет место \( \langle x, y \rangle = 0 \).
+Последнее эквивалентно условию
+\[ \langle x,h_i^j \rangle = 0, \quad \text{ для всех } x\in\mathcal{H}_1, i=\overline{1,2}, j=\overline{1,N-1}. \]
+Заметим:
+\[ \langle x, h_i^j \rangle = (x_i, e_j) + (x_{i+1}, -e_j) = (x_i - x_{i+1}, e_j). \]
+Отсюда для всех \( x = (x_1, \ldots, x_N) \in \mathcal{H}_1 \), где \( x_j = ( x_j^1, x_j^2 )\in H, j = \overline{1,N} \):
+\begin{align*}
+&   \left\{ \begin{aligned}
+    & (x_i - x_{i+1}, \begin{pmatrix} 1 \\1 \end{pmatrix} )  = x_i^1 - x_{i+1}^1 + x_i^2 - x_{i+1}^2 = 0, \\
+    & (x_i - x_{i+1}, \begin{pmatrix} 1 \\ -1\end{pmatrix} ) = x_i^1 - x_{i+1}^1 - x_i^2 + x_{i+1}^2 = 0,
+    \end{aligned} \right. \\
+&   i = \overline{1,N-1}. \end{align*}
+Решая эту систему линейных уравнений, получаем \( x_i = x_{i+1}, i = \overline{1,N} \).
+Короче, все векторы \( x\in \mathcal{H}_1 \) имеют вид \( x = (x_0, \ldots, x_0), \) где \( x_0\in H \).
+В качестве базиса в \( \mathcal{H}_1 \) естественно выбрать \( h_0^i = (e_i, \ldots, e_i), i=\overline{1,2} \).
+Непосредственно проверяется, что эти векторы являются собственными, с соответствующими собственными числами \( N \) и \( -N \).
+
+В построенном базисе \( h_0^1, h_0^2, h_1^1, \ldots, h_1^{N-1} , h_2^1, h_2^{N-1} \)
+матрица рассматриваемого оператора примет вид жордановой нормальной формы:
+\[ \begin{pmatrix}
+    N & 0  & 0 & \cdots & 0 \\
+    0 & -N & 0 & \cdots & 0 \\
+    0 & 0  & 0 & \cdots & 0 \\
+    \vdots & \vdots & \vdots & \ddots & \vdots \\
+    0 & 0  & 0 & \cdots & 0
+    \end{pmatrix} \]
+% 
+% Далее будем рассматривать матрицы вида
+% \[ \mathcal{A}_{2N} - \mathcal{B}_{2N}, \]
+% где \( \mathcal{B}_{2N} \) -- некоторое возмущение.
+\end{document}
