@@ -1,103 +1,59 @@
-Матрицей единиц, размерности \( N \) будем называть матрицу
-\( \mathscr{J}_{N} \in \mathrm{Matr}_{N\times N} \):
-\[
-    \mathscr{J}_{N} =
+Доказательство состоит в~построении уравнения для матрицы, подобной \( \mathscr{A}_{MN} \),
+ но устроеной ``проще''. Решение возникающего нелинейного уравнения
+ в~банаховой алгебре \( \mathtt{Matr}_N\mathbb{C} \)
+ доставляется методом простых итераций (см., например, \cite{baskakov-harmonic}).
+
+Подобие матриц \( \mathcal{A}_1, \mathcal{A}_2 \)
+ понимается в~смысле существования обратимой матрицы \( \mathcal{U} \),
+ такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
+Подобные матрицы изоспектральны (их спектры совпадают).
+
+Провед\"ем предварительные преобразования.
+
+\begin{lem}
+    Матрица единиц 
+    \( \mathcal{J}_N =
     \begin{pmatrix}
-    1 & 1  & \cdots & 1 \\
-    1 & 1  & \cdots & 1 \\
-    \vdots & \vdots & \ddots & \vdots \\
-    1 & 1  & \cdots & 1
-    \end{pmatrix}
-\]
-
-Спектром матрицы \( A \) называется множество таких \( \lambda\in\mathbb{C} \),
-что матрица \( {A - \lambda E} \) необратима \footnote{напомню, \( E \) --- единичная матрица}.
-
-\begin{lemma}
-    Имеет место равенство
-    \begin{equation}\label{eq:allones-squared}
-        \mathscr{J}_{N}^2 = N \mathscr{J}_{N}
-    \end{equation}
-    Из равенства \eqref{eq:allones-squared} следует, что
-    \( p(\lambda) = \lambda^2-N\lambda \)
-    есть минимальный многочлен \( \mathscr{J}_{N} \) и поэтому
+        1 & \cdots & 1 \\
+        \vdots & \ddots & \vdots \\ 
+    1 & \cdots & 1 \end{pmatrix} \),
+    подобна матрице
     \[
-        \mathrm{spec}\left({\mathscr{J}_{N}}\right) = \left\{ 0, N \right\}.
-    \]
-\end{lemma}
-
-\begin{dfn}
-    Две матрицы \( A_1, A_2 \)
-    называются подобными, если существует обратимая матрица \( U \),
+        \mathcal{A} = \begin{pmatrix}
+            N & 0 & \cdots & 0 \\
+            0 & 0 & \cdots & 0 \\
+            \vdots & \vdots & \ddots & \vdots \\
+            0 & 0 & \cdots & 0 \end{pmatrix}. \]
+    Точнее, существует ортогональная матрица \( \mathcal{U} \),
     такая что
-    \[
-        A_1 U = U A_2
-        \]
-    Или, эквивалентно:
-    \[
-        U^{-1} A_1 U = A_2
-        \]
-\end{dfn}
-
-\begin{lemma}
-    Матрица \( \mathscr{J}_{N} \) подобна матрице
-    \begin{equation}\label{repr:allones-eigen}
-        \begin{pmatrix}
-            N       & 0      & \cdots & 0 \\
-            0       & 0      & \cdots & 0 \\
-            \vdots  & \vdots & \ddots & \vdots  \\
-            0       & 0      & \cdots & 0
-        \end{pmatrix}
-    \end{equation}
-
-    Её собственные векторы, соответствующие собственному значению \( 0 \)
-    таковы, что сумма их координат равна нулю,
-    а собственному значению \( N \) соответствует, например,
-    вектор \( \left(1\cdots 1\right) \).
-
-    Проводя ортогонализацию Грамма-Шмидта,
-    получим ортогональную матрицу \( U \) преобразования \( \mathscr{J}_{N} \)
-    к виду \eqref{repr:allones-eigen}:
-    \begin{equation}\label{eq:diagtransform}
-    U =
+    \( \mathcal{A} = \mathcal{U}\mathcal{J}_N \mathcal{U}^{-1} \).
+\end{lem}
+\begin{proof}
+    Собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
+    соответствует собственный вектор \( f_1 = {\left(1,\ldots,1\right)} \),
+        а~собственному значению \( 0 \) соответствует \( N-1 \) независимый собственный вектор
+        \( f_2 = {\left(1,-1,0,\ldots,0\right)}, ...,
+           f_N = {\left(0,\ldots,0,1,-1\right)} \).
+    Применив ортогонализацию Грамма-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \).
+    В~качестве матрицы \( \mathcal{U} \) выберем матрицу,
+    имеющую столбцами векторы \( h_1, \ldots, h_N \):
+    \[ \mathcal{U} =
     \begin{pmatrix}
-        1/\sqrt N &  1/\sqrt2 & 1/\sqrt6   & \cdots & a_{n-1} \\
-        \vdots    & -1/\sqrt2 & 1/\sqrt6   & \cdots & a_{n-1} \\
-        \vdots    & 0         & -2/\sqrt6  & \cdots & a_{n-1} \\
-        \vdots    & \vdots    & 0          & \cdots & a_{n-1} \\
-        \vdots    & \vdots    & \vdots     & \ddots & \vdots  \\
-        \vdots    & \vdots    & \vdots     & \cdots & a_{n-1} \\
-        1/\sqrt N & 0         & 0          & \cdots & -(n-1)a_{n-1}
-        \end{pmatrix}.
-        \end{equation}
+        \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} &   \alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & -3\alpha_3 & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \vdots            & \vdots            &  \vdots             & \vdots     & \ddots & \vdots           & \vdots  \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & \alpha_{N-2}     & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & -(N-2)\alpha_{N-2} & \alpha_{N-1} \\
+        \frac{1}{\sqrt N} & 0                 &  0                  & 0          & \cdots & 0                  & -(N-1)\alpha_{N-1}
+    \end{pmatrix},\]
+    \[
+        \alpha_1 = \frac{1}{\sqrt{2}}, \]
+    \[
+        \alpha_k = \frac{1}{k\sqrt{k(k-1)^2 \alpha_{k-1}^4 + 1}}, \quad k=\overline{2,N-1}.\]
+\end{proof}
 
-        \begin{minipage}{0.9\textwidth}
-            Её столбцы \( f_0, \ldots, f_{N-1} \)
-            --- ортонормированный собственный базис матрицы \( \mathscr{J}_{N} \):
-
-            \[f_0 = \begin{pmatrix} \frac{1}{\sqrt N} & \cdots & \frac{1}{\sqrt N} \end{pmatrix}^{\mathrm{T}}, \]
-            \[
-                f_1
-             = \begin{pmatrix}a_1 & -a_1 & 0 & \cdots & 0 \end{pmatrix}^\mathrm{T},\quad
-                 a_1 = \frac{1}{\sqrt{2}}
-                     \]
-            \[
-                f_k =
-                \begin{pmatrix}
-                    \smash[b]{
-                    \underbrace{
-                        \begin{matrix}
-                            a_k & \cdots & a_k
-                        \end{matrix}
-                    }_{k \text{ раз}}
-                }
-                    & -ka_k & 0 & \cdots & 0
-                \end{pmatrix}^\mathrm{T},
-                a_k = \frac{1}{k\sqrt{k a_{k-1}^2 b_{k-1}^2 + 1}},
-                k=\overline{2,N-1}.
-                \]
-            Матрица такого вида ортогональна и поэтому
-            \( U^{-1} = U^\star = U^{\mathrm{T}} \)
-            (\( X^\mathrm{T} \) --- матрица, транспонированная к \( X\in\mathrm{Matr}_N \)).
-        \end{minipage}
-\end{lemma}
+Таким образом, исходная матрица \( \mathcal{A}_{MN} \) подобна матрице
+\( \mathcal{A} - \mathcal{B} \), где \( \mathcal{B} = \mathcal{U} \mathscr{B}_{MN} \mathcal{U}^{-1} \).

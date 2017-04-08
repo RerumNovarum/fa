@@ -1,0 +1,1133 @@
+% идентифицируем пакет: vvmph v2.0
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{vvmph2}[2016/06/09 v2.2 Paper style for Journal of VolSU]
+
+% загружаем необходимые вспомогательные пакеты с требуемыми опциями
+\RequirePackage{amsmath,amsthm,amssymb,euscript,calc,graphicx,ifthen,textcomp,rotating,cmap,xstring,etoolbox,xparse,l3regex,xargs,changepage,tocloft,titlecaps,enumitem,upgreek}%glyphtounicode - вместо cmap попробовать
+\RequirePackage[noadjust]{cite}
+\RequirePackage[english,russian]{babel}
+\RequirePackage[center]{caption}
+\RequirePackage[a4paper,left=2.5cm,right=2.5cm,top=3.4cm,bottom=3.0cm]{geometry}
+
+% выбираем шрифт - порядок предпочтения: PSCyr, literat, cmcyr (что есть)
+\IfFileExists{pscyr.sty}%
+    {\RequirePackage{pscyr}}%
+    {\IfFileExists{literat.sty}{\RequirePackage{literat}}{}}
+
+%\IfFileExists{rumathbr.sty}{\RequirePackage{rumathbr}}{}
+
+% переопределяем команду, делающую перевод в верхний регистр
+\newcommand{\upc}[1]{\uppercase{#1}}
+% еще один переключатель для опции отмены колонтитулов
+\newcommand{\cols}{y}
+
+% устанавливаем соответствующие опции для работы с разными кодировками кириллицы
+\DeclareOption{cp1251}%
+{\PassOptionsToPackage{cp1251}{inputenc}}
+% вводим опцию документа без колонтитулов
+\DeclareOption{nocols}%
+{\renewcommand{\cols}{n}}
+% обрабатываем опции
+\ProcessOptions
+
+% применяем опции основной кодировки
+\RequirePackage{inputenc}
+
+% определяем новый стиль для окружений типа теорем (будем использовать в определениях)
+\newtheoremstyle{dfntn}%
+  {2pt}%       Отбивка до
+  {2pt}%       Отбивка после
+  {\slshape}%  Шрифт тела
+  {}%          Отступ (пустой - нет отступа)
+  {\bfseries}% Шрифт заголовка
+  {.}%         Разделитель заголовка и тела
+  { }%         Величина пробела между заголовком и номером
+  {}%          Специальный идентификатор теоремы
+
+% и еще один стиль, на всякий случай,
+% если какую-нибудь теорему нужно будет назвать как-то нестандартно
+\newtheoremstyle{mnfth}%
+  {2pt}{2pt}{\itshape}{}{\bfseries}{.}{ }{\thmnote{#3}}
+% и сразу определяем окружение такого стиля
+\theoremstyle{mnfth}
+\newtheorem*{mth}{}
+
+\newtheoremstyle{myplain}%
+  {2pt}{2pt}{\itshape}{}{\bfseries}{}{ }{\thmname{#1}\thmnumber{ #2}\thmnote{\normalfont\ (#3)}.}
+
+%Определяем названия основных объектов и другие строковые константы
+
+\newcommand{\forfn}{\selectfont\selectlanguage{russian}\hspace*{-6mm}ISSN 2222-8896. Вестн. Волгогр. гос. ун-та. Сер. 1, Мат. Физ.}
+ \newcommand{\udkn}{\ifthenelse{\equal{\ep}{0}}{УДК}{UDC}}
+ \newcommand{\bbkn}{\ifthenelse{\equal{\ep}{0}}{ББК}{LBC}}
+ \newcommand{\prnm}{Доказательство}
+ \newcommand{\rld}{\itshape{СПИСОК ЛИТЕРАТУРЫ}}
+ \newcommand{\reflit}{\itshape{СПИСОК ЛИТЕРАТУРЫ}}
+ \newcommand{\kw}{\ifthenelse{\equal{\ep}{0}}{\textbf{Ключевые слова:\ }}{\textbf{Key words:\ }}}
+ \theoremstyle{myplain}
+ \newtheorem{thm}{\ifthenelse{\equal{\ep}{0}}{Теорема}{Theorem}}
+ \newtheorem*{thmn}{\ifthenelse{\equal{\ep}{0}}{Теорема}{Theorem}}
+ \newtheorem{thme}{Theorem}
+ \newtheorem{lem}{Лемма}
+ \newtheorem{crl}{Следствие}
+ \newtheorem*{crln}{Следствие}
+ \newtheorem{prop}{Предложение}
+ \newtheorem{stm}{Утверждение}
+ \theoremstyle{dfntn}
+ \newtheorem{dfn}{Определение}
+ \theoremstyle{definition}
+ \newtheorem{exm}{Пример}
+ \newtheorem{remn}{Замечание}
+ \newtheorem*{rem}{Замечание}
+ \newtheorem*{reme}{Remark}
+
+%переменная и команда, задающая язык статьи
+\newcommand{\ep}{0}
+\newcommand{\plang}[1]{\renewcommand{\ep}{#1}}
+
+\renewcommand{\theenumi}{\arabic{enumi}}
+\renewcommand\labelenumi{\theenumi}
+
+% делаем символ номера активным и заставляем его работать с ожидаемым результатом
+\initiate@active@char{№}
+\newcommand{№}{\symbol{157}}
+%\initiate@active@char{ё}
+%\newcommand{ё}{е}
+
+%Заводим функции для обработки строк
+
+\ExplSyntaxOn
+
+%функция капитализации первого символа строки
+
+\NewDocumentCommand{\cfs}{ m }
+ {
+  \temp_cfs:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_cfs:n #1
+{
+    \tl_set:Nn \l_temp_tl {#1}
+    \regex_replace_once:nnN {(.)}{\c{upc}\1} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+%функция удаления пробелов между инициалами, одновременно транслитерирующая инициалы
+
+\NewDocumentCommand{\delspace}{ m }
+ {
+  \temp_delspace:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_delspace:n #1
+{
+    \tl_set:Nn \l_temp_tl {\temp_translit:n {#1}}
+    \regex_replace_all:nnN {\ }{} \l_temp_tl
+    \regex_replace_all:nnN {\~}{} \l_temp_tl
+    \regex_replace_all:nnN {van}{\ \c{!}van} \l_temp_tl
+    \regex_replace_all:nnN {von}{\ \c{!}von} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+\NewDocumentCommand{\delplb}{ m }
+ {
+  \temp_delplb:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_delplb:n #1
+{
+    \tl_set:Nn \l_temp_tl {#1}
+    \regex_replace_all:nnN {\plb}{} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+%функция транслитерирующая издательство и заменяющая M. на Moscow
+
+\NewDocumentCommand{\translitm}{ m }
+ {
+  \temp_translitm:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_translitm:n #1
+{
+    \tl_set:Nn \l_temp_tl {\temp_translit:n {#1}}
+    \regex_replace_once:nnN {М\.}{Moscow} \l_temp_tl
+    \regex_replace_once:nnN {Л\.}{Leningrad} \l_temp_tl
+    \regex_replace_once:nnN {СПб\.}{Petersburg} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+%функция постановки правильного тире в диапазоне страниц
+
+\NewDocumentCommand{\corhyph}{ m }
+ {
+  \temp_corhyph:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_corhyph:n #1
+{
+    \tl_set:Nn \l_temp_tl {#1}
+    \regex_replace_all:nnN {(\d)\-\-\-(\d) }{\1\-\-\2} \l_temp_tl
+    \regex_replace_all:nnN {(\d)\-(\d) }{\1\-\-\2} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+\NewDocumentCommand{\corhyphd}{ m }
+ {
+  \temp_corhyphd:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_corhyphd:n #1
+{
+    \tl_set:Nn \l_temp_tl {#1}
+    \regex_replace_all:nnN {(\d)\-\-\-(\d) }{\1\-\-\2} \l_temp_tl
+    \regex_replace_all:nnN {(\d)\-\-(\d) }{\1\-\2} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+%функция добавления пробела между инициалами
+
+\NewDocumentCommand{\addspace}{ m }
+ {
+  \temp_addspace:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_addspace:n #1
+{
+    \tl_set:Nn \l_temp_tl {#1}
+    \regex_replace_all:nnN {\ }{} \l_temp_tl
+    \regex_replace_all:nnN {\~}{} \l_temp_tl
+    \regex_replace_all:nnN {(\.)(.)}{\1\ \c{!}\c{!}\2} \l_temp_tl
+        \regex_replace_all:nnN {(\.)(.)+(-)}{\1\3} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+%функция добавления точки в конце параметра, если точки не было
+
+\NewDocumentCommand{\adddot}{ m }
+ {
+  \temp_adddot:n { #1 }
+ }
+
+\cs_new_protected:Npn \temp_adddot:n #1
+{
+    \tl_set:Nn \l_temp_tl { #1 }
+    \regex_replace_once:nnN {Вес(.)+\s Вол(.)+\s гос(.)+\s ун(.)+\s Сер(.)+\s 1.\s Мат(.)+\s Физ(.)?(.)?(.)?}{Вес\c{-}т\c{-}ник\cS1 Вол\c{-}гог\c{-}рад\c{-}с\c{-}ко\c{-}го\cS1 го\c{-}су\c{-}дар\c{-}с\c{-}т\c{-}вен\c{-}но\c{-}го\cS1 уни\c{-}вер\c{-}си\c{-}те\c{-}та\.\cS1 Се\c{-}рия\cS1 1,\cS1 Ма\c{-}те\c{-}ма\c{-}ти\c{-}ка\.\cS1 Фи\c{-}зи\c{-}ка\.}\l_temp_tl
+    \regex_replace_all:nnN { (.)+ } { \0 \. } \l_temp_tl
+    \regex_replace_all:nnN {(\.)(\.)}{\.} \l_temp_tl
+    \tl_use:N \l_temp_tl
+}
+
+%автоматический перевод названий известных журналов, вторая команда - с добавлением курсива
+
+\NewDocumentCommand{\tj}{ m }
+ {
+  \temp_tj:n { #1 }
+ }
+
+\NewDocumentCommand{\tji}{ m }
+ {
+  \temp_tj:n { {\itshape #1} }
+ }
+
+\cs_new_protected:Npn \temp_tj:n #1
+{
+    \tl_set:Nn \l_temp_tl {#1}
+    \regex_replace_once:nnN {Вест(.)+Вол(.)+Сер(.)+1..Мат(.)+Физ(.)+}{\cS1 [Sci\c{-}ence\cS1 Jour\c{-}nal\cS1 of\cS1 Vol\c{-}gog\c{-}rad\cS1 State\cS1 Uni\c{-}ver\c{-}sity\.\cS1 Mathe\c{-}ma\c{-}tics\.\cS1 Physics]} \l_temp_tl
+    \regex_replace_once:nnN {Изв(.)+вузов..Матем(.)+}{\cS1 [Rus\c{-}sian\cS1 Mathe\c{-}ma\c{-}tics]} \l_temp_tl
+    \regex_replace_once:nnN {Мат(.)+заметки}{\cS1 [Mathe\c{-}ma\c{-}ti\c{-}cal\cS1 Notes]} \l_temp_tl
+    \regex_replace_once:nnN {Мат(.)+сб(.)+}{\cS1 [Sbor\c{-}nik:\cS1 Mathe\c{-}ma\c{-}tics]} \l_temp_tl
+    \regex_replace_once:nnN {Сиб(.)+мат(.)+ж(.)+}{\cS1 [Sibe\c{-}ri\c{-}an\cS1 Mathe\c{-}ma\c{-}ti\c{-}cal\cS1 Jour\c{-}nal]} \l_temp_tl
+    \regex_replace_once:nnN {Докл(.)+ак(.)+наук(.)+}{\cS1 [Dokla\c{-}dy\cS1 Mathe\c{-}ma\c{-}tics]} \l_temp_tl
+    \regex_replace_once:nnN {ДАН(.)+}{\cS1 [Dokla\c{-}dy\cS1 Mathe\c{-}ma\c{-}tics]} \l_temp_tl
+    \regex_replace_once:nnN {Изв(.)+ак(.)+наук(.)+}{\cS1 [Izves\c{-}tiya:\cS1 Mathe\c{-}ma\c{-}tics]} \l_temp_tl
+    \regex_replace_once:nnN {Изв(.)+АН(.)+}{\cS1 [Izves\c{-}tiya:\cS1 Mathe\c{-}ma\c{-}tics]} \l_temp_tl
+    \regex_replace_once:nnN {Алгеб(.)+анал(.)+}{\cS1 [St.\cS1 Peter\c{-}s\c{-}burg\cS1 Mathe\c{-}ma\c{-}ti\c{-}cal\cS1 Jour\c{-}nal]} \l_temp_tl
+    \regex_replace_once:nnN {Пробл(.)+управ(.)+}{\cS1 [Cont\c{-}rol\cS1 Scien\c{-}ces]} \l_temp_tl
+    \regex_replace_once:nnN {Аст(.)+ж(.)+}{\cS1 [As\c{-}tro\c{-}no\c{-}my\cS1 Re\c{-}ports]} \l_temp_tl
+    \regex_replace_once:nnN {Мат(.)+мод(.)+}{\cS1 [Ma\c{-}the\c{-}ma\c{-}ti\c{-}cal\cS1 Mo\c{-}dels\cS1 and\cS1 Com\c{-}pu\c{-}ter\cS1 Si\c{-}mu\c{-}la\c{-}tions]} \l_temp_tl
+    \regex_replace_once:nnN {Уфим(.)+мат(.)+жур(.)+}{\cS1 [Ufa\cS1 Ma\c{-}the\c{-}ma\c{-}ti\c{-}cal\cS1 Jour\c{-}nal]} \l_temp_tl
+    \regex_replace_once:nnN {Диф(.)+ур(.)+}{\cS1 [Dif\c{-}fe\c{-}ren\c{-}ti\c{-}al\cS1 Equ\c{-}a\c{-}ti\c{-}ons]}\l_temp_tl
+    \regex_replace_once:nnN {Усп(.)+мат(.)+наук}{\cS1 [Rus\c{-}sian\cS1 Mathe\c{-}ma\c{-}ti\c{-}cal\cS1 Sur\c{-}veys]}\l_temp_tl
+    \ifthenelse{\equal{#1}{\l_temp_tl}}{\tl_set:Nn \l_temp_tl {}}{}
+    \tl_use:N \l_temp_tl
+}
+
+%функции транслитерации. вторая, кроме этого, результат выдает курсивом
+
+\NewDocumentCommand{\translit}{ m }
+ {
+  \temp_translit:n { #1 }
+ }
+
+\NewDocumentCommand{\transliti}{ m }
+ {
+  \temp_translit:n { {\itshape #1} }
+ }
+
+\cs_new_protected:Npn \temp_translit:n #1
+{
+\tl_set:Nn \l_temp_tl { #1 }
+\regex_replace_once:nnN {Вес(.)+\s Вол(.)+\s гос(.)+\s ун(.)+\s Сер(.)+\s 1.\s Мат(.)+\s Физ(\w)+}{Вес\c{-}т\c{-}ник\cS1 Вол\c{-}гог\c{-}рад\c{-}с\c{-}ко\c{-}го\cS1 го\c{-}су\c{-}дар\c{-}с\c{-}т\c{-}вен\c{-}но\c{-}го\cS1 уни\c{-}вер\c{-}си\c{-}те\c{-}та\.\cS1 Се\c{-}рия\cS1 1,\cS1 Ма\c{-}те\c{-}ма\c{-}ти\c{-}ка\.\cS1 Фи\c{-}зика}\l_temp_tl
+\regex_replace_once:nnN {Вес(.)+\s Вол(.)+\s гос(.)+\s ун(.)+\s Сер(.)+\s 1.\s Мат(.)+\s Физ\.}{Вес\c{-}т\c{-}ник\cS1 Вол\c{-}гог\c{-}рад\c{-}с\c{-}ко\c{-}го\cS1 го\c{-}су\c{-}дар\c{-}с\c{-}т\c{-}вен\c{-}но\c{-}го\cS1 уни\c{-}вер\c{-}си\c{-}те\c{-}та\.\cS1 Се\c{-}рия\cS1 1,\cS1 Ма\c{-}те\c{-}ма\c{-}ти\c{-}ка\.\cS1 Фи\c{-}зика}\l_temp_tl
+\regex_replace_all:nnN {Александровна}{Aleksandrovna} \l_temp_tl
+\regex_replace_all:nnN {Александрович}{Aleksandrovich} \l_temp_tl
+\regex_replace_all:nnN {Александра}{Aleksandra} \l_temp_tl
+\regex_replace_all:nnN {Александр}{Alexander} \l_temp_tl
+\regex_replace_all:nnN {тье}{tye} \l_temp_tl
+\regex_replace_all:nnN {лье}{lye} \l_temp_tl
+\regex_replace_all:nnN {нье}{nye} \l_temp_tl
+\regex_replace_all:nnN {а}{a} \l_temp_tl
+\regex_replace_all:nnN {б}{b} \l_temp_tl
+\regex_replace_all:nnN {в}{v} \l_temp_tl
+\regex_replace_all:nnN {г}{g} \l_temp_tl
+\regex_replace_all:nnN {д}{d} \l_temp_tl
+\regex_replace_all:nnN {e}{e} \l_temp_tl
+\regex_replace_all:nnN {ё}{yo} \l_temp_tl
+\regex_replace_all:nnN {ж}{zh} \l_temp_tl
+\regex_replace_all:nnN {з}{z} \l_temp_tl
+\regex_replace_all:nnN {и}{i} \l_temp_tl
+\regex_replace_all:nnN {й}{y} \l_temp_tl
+\regex_replace_all:nnN {к}{k} \l_temp_tl
+\regex_replace_all:nnN {л}{l} \l_temp_tl
+\regex_replace_all:nnN {м}{m} \l_temp_tl
+\regex_replace_all:nnN {н}{n} \l_temp_tl
+\regex_replace_all:nnN {о}{o} \l_temp_tl
+\regex_replace_all:nnN {п}{p} \l_temp_tl
+\regex_replace_all:nnN {р}{r} \l_temp_tl
+\regex_replace_all:nnN {с}{s} \l_temp_tl
+\regex_replace_all:nnN {т}{t} \l_temp_tl
+\regex_replace_all:nnN {у}{u} \l_temp_tl
+\regex_replace_all:nnN {ф}{f} \l_temp_tl
+\regex_replace_all:nnN {х}{kh} \l_temp_tl
+\regex_replace_all:nnN {ц}{ts} \l_temp_tl
+\regex_replace_all:nnN {ч}{ch} \l_temp_tl
+\regex_replace_all:nnN {ш}{sh} \l_temp_tl
+\regex_replace_all:nnN {щ}{shch} \l_temp_tl
+\regex_replace_all:nnN {ъ}{y} \l_temp_tl
+\regex_replace_all:nnN {ы}{y} \l_temp_tl
+\regex_replace_all:nnN {ь}{} \l_temp_tl
+\regex_replace_all:nnN {э}{e} \l_temp_tl
+\regex_replace_all:nnN {ю}{yu} \l_temp_tl
+\regex_replace_all:nnN {я}{ya} \l_temp_tl
+\regex_replace_all:nnN {я}{ya} \l_temp_tl
+\regex_replace_all:nnN {А}{A} \l_temp_tl
+\regex_replace_all:nnN {Б}{B} \l_temp_tl
+\regex_replace_all:nnN {В}{V} \l_temp_tl
+\regex_replace_all:nnN {Г}{G} \l_temp_tl
+\regex_replace_all:nnN {Д}{D} \l_temp_tl
+\regex_replace_all:nnN {Е}{E} \l_temp_tl
+\regex_replace_all:nnN {Ё}{Yo} \l_temp_tl
+\regex_replace_all:nnN {Ж}{Zh} \l_temp_tl
+\regex_replace_all:nnN {З}{Z} \l_temp_tl
+\regex_replace_all:nnN {И}{I} \l_temp_tl
+\regex_replace_all:nnN {Й}{Y} \l_temp_tl
+\regex_replace_all:nnN {К}{K} \l_temp_tl
+\regex_replace_all:nnN {Л}{L} \l_temp_tl
+\regex_replace_all:nnN {М}{M} \l_temp_tl
+\regex_replace_all:nnN {Н}{N} \l_temp_tl
+\regex_replace_all:nnN {О}{O} \l_temp_tl
+\regex_replace_all:nnN {П}{P} \l_temp_tl
+\regex_replace_all:nnN {Р}{R} \l_temp_tl
+\regex_replace_all:nnN {С}{S} \l_temp_tl
+\regex_replace_all:nnN {Т}{T} \l_temp_tl
+\regex_replace_all:nnN {У}{U} \l_temp_tl
+\regex_replace_all:nnN {Ф}{F} \l_temp_tl
+\regex_replace_all:nnN {Х}{Kh} \l_temp_tl
+\regex_replace_all:nnN {Ц}{Ts} \l_temp_tl
+\regex_replace_all:nnN {Ч}{Ch} \l_temp_tl
+\regex_replace_all:nnN {Ш}{Sh} \l_temp_tl
+\regex_replace_all:nnN {Щ}{Shch} \l_temp_tl
+\regex_replace_all:nnN {Ъ}{'} \l_temp_tl
+\regex_replace_all:nnN {Ы}{Y} \l_temp_tl
+\regex_replace_all:nnN {Ь}{} \l_temp_tl
+\regex_replace_all:nnN {Э}{E} \l_temp_tl
+\regex_replace_all:nnN {Ю}{Yu} \l_temp_tl
+\regex_replace_all:nnN {Я}{Ya} \l_temp_tl
+\tl_use:N \l_temp_tl
+}
+
+\ExplSyntaxOff
+
+% вводим переменные для года издания и номера выпуска и команду для их получения
+\newcommand{\vip}{??}
+\newcommand{\yr}{????}
+\newcommand{\ny}{?}
+\newcommand{\vestnik}[3]%файл Вестника должен начинаться с команды \vestnik
+%которой первым аргументом сообщается номер выпуска, вторым - год, третьим - номер в году
+{\renewcommand{\vip}{#1}\renewcommand{\yr}{#2}\renewcommand{\ny}{#3\ }}
+
+% заводим счетчики глав для правильной организации колонтитулов
+\newcounter{chap}
+\setcounter{chap}{0}
+\newcounter{newchap}
+\setcounter{newchap}{0}
+\newcounter{doi}
+\setcounter{doi}{1}
+
+% еще необходимые переменные для той же цели
+\newcommand{\chnamef}{}
+\newcommand{\chnames}{}
+\newcommand{\chname}{}
+\newlength{\chnlen}
+\newlength{\len}
+\newlength{\mlen}
+\newlength{\clen}
+\newlength{\colen}
+\newlength{\celen}
+
+%счетчик сносок
+\newcounter{fn}
+\setcounter{fn}{1}
+\newcounter{fnn}
+\setcounter{fnn}{1}
+%переменная для сбора сносок
+\newcommand{\fns}{}
+\renewcommand{\footnote}[1]{$^\thefn$\!\! \global\appto{\fns}{\ifthenelse{\equal{\thefnn}{1}}{}{\hspace*{5ex}}$^\thefnn$\ #1\stepcounter{fnn}\\}\stepcounter{fn}}
+
+\addto\captionsrussian
+{
+%переопределяем начертание слова "Доказательство"
+\def\proofname{\bfseries{\prnm.}}
+%изменяем заголовок перед списком литературы
+\def\refname{\reflit}
+}
+
+
+%Переопределяем Аннотацию
+\renewenvironment{abstract}
+  {%
+    \vspace*{0mm plus 2mm minus 0mm}
+    \begin{center}
+    \begin{minipage}{\textwidth-10ex}
+        \parindent=5ex
+        \fontsize{11.5pt}{14pt}\selectfont
+        {\ifthenelse{\equal{\ep}{0}}{\bfseries Аннотация.}{\bfseries Abstract.}}\!\!\!
+        %\ifthenelse{\equal{\ep}{1}}{\selectlanguage{english}}{}
+  }%
+  {%
+    \end{minipage}
+    \end{center}
+  }
+
+
+
+%конец доказательства не будем обозначать никак
+\renewcommand{\qedsymbol}{}
+
+\newcommand{\degree}{\mbox{\textdegree}} %знак градуса в математическом режиме
+\newcommand{\plb}{\protect\linebreak} %перевод каретки в заголовках и подписях к рисункам
+
+% вносим изменения в оформление подписей к рисункам
+
+\DeclareCaptionLabelSeparator{dot}{.~} % разделитель между заголовком и телом подписи
+\DeclareCaptionFormat{jvtab}{\raggedleft{#1}#2\centering{#3}}
+\DeclareCaptionFont{m1}{\fontsize{10.5}{13pt}\selectfont} % шрифт подписи
+\captionsetup{labelsep=dot, font=m1} % активация новых настроек
+\captionsetup[table]{labelsep=newline, labelfont=it, textfont=bf, singlelinecheck=off, format=jvtab}
+
+% расстояния от рисунка до текста или другого рисунка
+\intextsep=5mm
+\floatsep=6pt
+\textfloatsep=2pt
+% отбивки до и после подписи
+\abovecaptionskip=5pt
+\belowcaptionskip=0mm
+
+
+% переопределяем оформление списка литературы
+\renewcommand\citepunct{;\,} %разделитель в ссылках на литературу
+\parindent=5ex  % абзацный отступ
+
+\renewenvironment{thebibliography}[1]
+     {\section*{\refname}%
+      \@mkboth{\MakeUppercase\refname}{\MakeUppercase\refname}%
+      \list{\@biblabel{\@arabic\c@enumiv}}%
+           {\settowidth\labelwidth{\@biblabel{#1}}%
+            \leftmargin0pt%\labelsep
+            \itemindent3em
+            \@openbib@code
+            \usecounter{enumiv}%
+            \let\p@enumiv\@empty
+            \renewcommand\theenumiv{\@arabic\c@enumiv}}%
+      \sloppy
+      \clubpenalty4000
+      \@clubpenalty \clubpenalty
+      \widowpenalty4000%
+      \sfcode`\.\@m}
+     {\def\@noitemerr
+       {\@latex@warning{Empty `thebibliography' environment}}%
+      \endlist}
+
+\renewcommand{\@biblabel}[1]{#1.} %метка нового пункта
+
+%убираем лишние пробелы в списке литературы
+\let\oldthebibliography=\thebibliography
+  \let\endoldthebibliography=\endthebibliography
+  \renewenvironment{thebibliography}[1]{%
+  \ifthenelse{\equal{\thefn}{1}}{}{\vspace*{7mm}\centerline{\textbf{\textit{\ifthenelse{\equal{\thefn}{2}}{ПРИМЕЧАНИЕ}{ПРИМЕЧАНИЯ}}}}
+
+  \vspace*{5mm}\normalfont\fontsize{11pt}{12pt}\selectfont\fns} %\vspace*{5mm}
+
+    \begin{oldthebibliography}{99}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0ex}%
+      \setlength{\itemindent}{7.5ex}
+      \fontsize{11pt}{12pt}\selectfont
+  }%
+  {\addto{\engbib}{}
+    \end{oldthebibliography}%
+    \vspace*{-4mm}\begin{engbibliography}{99}
+    \engbib
+    \end{engbibliography}
+  }
+
+%определяем команду для References
+
+  \newenvironment{engbibliography}[1]{%
+    %\selectlanguage{english}
+    \renewcommand{\reflit}{\itshape{REFERENCES}}
+    \begin{oldthebibliography}{#1}%
+      \setlength{\parskip}{0ex}%
+      \setlength{\itemsep}{0ex}%
+      \setlength{\itemindent}{7.5ex}
+%      \setlength{\leftmargin}{0pt}%
+      \fontsize{11pt}{12pt}\selectfont
+  }%
+  {%
+    \end{oldthebibliography}
+  }
+
+%команда запрета разрыва страницы
+\def\npb{\par\nobreak\@afterheading}
+
+% вводим команду для оформления summary
+\newenvironment{summary}% команда имеет 1 параметр, все остальные данные для Summary берутся из шапки документа
+{
+\begin{center}
+ \vspace{5mm}\fontsize{11.5pt}{14pt}\selectfont
+\uppercase{\bfseries \puteart\npb}
+ \vspace*{-2mm}
+\end{center}\npb
+\begin{adjustwidth}{5ex}{5ex}
+\begin{flushleft}
+ \npb\fontsize{10.5pt}{12pt}\selectfont\engtop\npb
+\end{flushleft}\npb
+\vspace{5mm}
+\normalfont\fontsize{11.5pt}{14pt}\selectfont {\bfseries Abstract.}
+}%
+{\end{adjustwidth}
+\begin{adjustwidth}{5ex}{5ex}
+\hspace*{4.5ex}\textbf{Key words:} \kwe.
+\end{adjustwidth}}
+
+\newcommand{\kwe}{ }		%определяем команду для оформления ключевых слов
+\newcommand{\keywords}[2] %
+{\vspace*{-1mm plus 4mm minus 0mm}
+    \begin{minipage}{\textwidth-10ex}
+        \parindent=5ex
+        {\fontsize{11.5pt}{14pt}\selectfont
+         \kw #1.
+        \vspace*{3mm plus 2mm minus 2mm}}
+    \end{minipage}
+\renewcommand{\kwe}{#2}
+}
+
+%Оформляем список литературы
+%определяем внутренние команды-переменные для хранения данных о статьях в списке литературы
+
+\newcommand{\engbib}{}
+
+\newcommand{\ibyr}{}
+\newcommand{\ibyre}{}
+\newcommand{\ibpp}{}
+\newcommand{\ibppe}{}
+\newcommand{\ibpub}{}
+\newcommand{\ibpube}{}
+\newcommand{\ibj}{}
+\newcommand{\ibvol}{}
+\newcommand{\ibnum}{}
+\newcommand{\ibcity}{}
+\newcommand{\ibiaut}{}
+\newcommand{\ibauti}{}
+\newcommand{\ibtit}{}
+\newcommand{\ibtituc}{}
+\newcommand{\ibtituct}{}
+\newcommand{\iibtit}{}
+\newcommand{\ebcity}{}
+\newcommand{\ebauti}{}
+\newcommand{\ebtit}{}
+\newcommand{\ebpub}{,}
+\newcommand{\ebvol}{}
+\newcommand{\ebnum}{}
+\newcommand{\ebj}{}
+\newcommand{\iibj}{}
+\newcommand{\ebtitp}{}
+\newcommand{\ibvole}{}
+\newcommand{\ibbvol}{}
+\newcommand{\ebbvol}{}
+\newcommand{\ebvoli}{}
+\newcommand{\ibiss}{}
+\newcommand{\ibissc}{}
+\newcommand{\ibisse}{}
+\newcommand{\ebiss}{}
+\newcommand{\ibadd}{}
+\newcommand{\ebadd}{}
+\newcommand{\ibtran}{}
+\newcommand{\iurl}{}
+\newcommand{\doi}{}
+\newcommand{\doie}{}
+\newcommand{\artid}{}
+\newcommand{\eartid}{}
+
+\newbool{nr}
+\boolfalse{nr}
+
+\newcounter{auts}
+\setcounter{auts}{0}
+
+\Addlcwords{and on the a of in at to with for as under over --- --}
+
+%определяем внешние команды для задания информации о статье пользователем
+%команда задания автора статьи. в каждом источнике их может быть любое количество, информация суммируется.
+%первый параметр - фамилия автора, второй - инициалы, за каждым стоит опциональный параметр альтернативного написаная латиницей
+%пятый необязательный параметр - для приставок типа van, von... образец оформления: \baut{Leer}{B.~van}[][.]
+\newcommandx{\baut}[5][2,4,5]{\stepcounter{auts}\ifdefempty{\ibiaut}{\renewcommand{\ibiaut}{\addspace{#3}~#1}}{\addto{\ibiaut}{, \addspace{#3}~#1}}%
+    \ifdefempty{\ibauti}{\renewcommand{\ibauti}{#1,~\addspace{#3}#5\ }}{}%
+    \ifthenelse{\equal{#2}{}}%
+        {\ifthenelse{\equal{#4}{}}{\ifdefempty{\ebauti}{\renewcommand{\ebauti}{\expandonce{\translit{#1}~\delspace{#3}#5}}}{\addto{\ebauti}{, \expandonce{\translit{#1}~\delspace{#3}#5}}}}%
+                                  {\ifdefempty{\ebauti}{\renewcommand{\ebauti}{\expandonce{\translit{#1}~\delspace{#4}#5}}}{\addto{\ebauti}{, \expandonce{\translit{#1}~\delspace{#4}#5}}}}%
+                                  }%
+        {\ifthenelse{\equal{#4}{}}{\ifdefempty{\ebauti}{\renewcommand{\ebauti}{\expandonce{#2~\delspace{#3}#5}}}{\addto{\ebauti}{, \expandonce{#2~\delspace{#3}#5}}}}%
+                                  {\ifdefempty{\ebauti}{\renewcommand{\ebauti}{\expandonce{#2~\delspace{#4}#5}}}{\addto{\ebauti}{, \expandonce{#2~\delspace{#4}#5}}}}%
+                                  }%
+    }
+%команда задания переводчика
+\newcommand{\btran}[1]{\renewcommand{\ibtran}{ ; #1}}
+%команда задания названия. необязательный параметр - перевод названия на английский. может отсутствовать у изданий на английском
+%у статей на английском в русскоязычных изданиях в качестве основного параметра указывается оригинальное название, в качестве опционального - знак минус
+\newcommandx{\btit}[3][2=TRANSLATE TITLE TO ENGLISH,3]{\ifthenelse{\equal{#3}{-}}{\global\booltrue{nr}}{}\renewcommand{\ibtit}{\expandonce{#1}}\renewcommand{\ibtituc}{\expandonce{\titlecap{#1}}}\renewcommand{\iibtit}{\expandonce{{\itshape #1}}}%
+                                                       \ifthenelse{\equal{#2}{-}}{\renewcommand{\ebtit}{\expandonce{\transliti{#1}}}\renewcommand{\ebtitp}{\expandonce{\translit{#1}}}}%
+                                                                                 {\ifbool{nr}{\renewcommand{\ebtit}{\expandonce{\transliti{#2}}}\renewcommand{\ebtitp}{\expandonce{\translit{#2}}}}%
+                                                                                           {\renewcommand{\ebtit}{\expandonce{\transliti{#1}\ [\titlecap{#2}]}}\renewcommand{\ebtitp}{\expandonce{\translit{#1}\ [\titlecap{#2}]}}}}%
+                                                      }
+%команда задания года издания
+%у всех команд с числовыми параметрами используется необязательный параметр, если значение параметра отличается в переводном издании
+\newcommandx{\byr}[2][2]{\renewcommand{\ibyr}{#1}\ifthenelse{\equal{#2}{}}{\renewcommand{\ibyre}{#1}}{\global\booltrue{nr}\renewcommand{\ibyre}{#2}}}
+%команда задания страниц издания
+\newcommandx{\bpp}[2][2]{\renewcommand{\ibpp}{\corhyph{#1}}\renewcommand{\ibppe}{\corhyphd{#1}}\ifthenelse{\equal{#2}{}}{\renewcommand{\ibppe}{\corhyphd{#1}}}{\global\booltrue{nr}\renewcommand{\ibppe}{\corhyphd{#2}}}}
+%команда задания города издательства. необязательный параметр - перевод названия города на английский. необходима, если оно не совпадает с транслитерацией названия
+\newcommandx{\bcity}[2][2]{\renewcommand{\ibcity}{#1}\ifthenelse{\equal{#2}{}}{\renewcommand{\ebcity}{\expandonce{\translitm{#1},}}}{\renewcommand{\ebcity}{#2,}}}
+%команда задания названия издательства. необязательный параметр - перевод названия издательства
+\newcommandx{\bpub}[2][2]{\renewcommand{\ibpub}{~: #1,}\renewcommand{\ibpube}{ #1,}\ifthenelse{\equal{#2}{}}{\renewcommand{\ebpub}{\expandonce{\translit{ #1} Publ.,}}}{\renewcommand{\ebpub}{ #2,}}}
+%команда задания названия журнала
+\newcommandx{\bj}[2][2]{\renewcommand{\ibj}{\adddot{#1}}\renewcommand{\iibj}{\expandonce{{\itshape #1}}}
+                                                          \ifthenelse{\equal{#2}{}}{\ifbool{nr}{\renewcommand{\ebj}{\expandonce{\tji{#1}}}}{\renewcommand{\ebj}{\expandonce{\transliti{#1}}\tj{#1}}}}%
+                                                                                   {\ifbool{nr}{\renewcommand{\ebj}{\expandonce{{\itshape #2}}}}{\renewcommand{\ebj}{\expandonce{\transliti{#1}}\ [#2]}}}%
+                        }
+%команда задания выпуска
+%внутренние команды для тома и номера перепутаны местами :-\
+\newcommandx{\bvol}[2][2]{\renewcommand{\ibiss}{.~--- Т.~#1}\renewcommand{\ibisse}{.~--- Vol.~#1}\renewcommand{\ibissc}{, vol.~#1}\ifthenelse{\equal{#2}{}}{\renewcommand{\ebiss}{vol.~#1, }}{\global\booltrue{nr}\renewcommand{\ebiss}{vol.~#2, }}}
+%команда задания тома
+\newcommandx{\biss}[2][2]{\ifdefempty{\ibiss}{\renewcommand{\ibvol}{.~--- Вып.~#1}\renewcommand{\ibvole}{.~--- Iss.~#1}}%
+                                        {\renewcommand{\ibvol}{, вып.~#1}\renewcommand{\ibvole}{, iss.~#1}}
+                        \ifthenelse{\equal{#2}{}}{\renewcommand{\ebvol}{iss.~#1, }\renewcommand{\ebvoli}{, iss.~#1}}{\global\booltrue{nr}\renewcommand{\ebvol}{iss.~#2, }\renewcommand{\ebvoli}{, iss.~#2}}
+                        \renewcommand{\ibbvol}{--- Вып.~#1.~}\renewcommand{\ebbvol}{--- Iss.~#1.~}}
+%команда задания номера
+\newcommandx{\bnum}[2][2]{\ifdefempty{\ibiss}{\renewcommand{\ibnum}{.~--- №~#1}}{\renewcommand{\ibnum}{, №~#1}}\ifthenelse{\equal{#2}{}}{\renewcommand{\ebnum}{no.~#1, }}{\global\booltrue{nr}\renewcommand{\ebnum}{no.~#2, }}}
+%команда для добавления произвольного текста в конце ссылки
+\newcommand{\baid}[1]{\renewcommand{\artid}{.~--- Article ID: #1.}\renewcommand{\eartid}{article ID: #1.}}
+\newcommand{\badd}[2]{\renewcommand{\ibadd}{ \expandonce{#1}}\renewcommand{\ebadd}{ #2}}
+%команда для url
+\newcommand{\burl}[1]{\renewcommand{\iurl}{#1}}
+\newcommand{\bdoi}[1]{\ifthenelse{\equal{\ibiss}{} \AND \equal{\ibvol}{} \AND \equal{\ibnum}{} \AND \equal{\ibpp}{} \AND \equal{\artid}{}}{\renewcommand{\doi}{. --- DOI: #1.}}{\renewcommand{\doi}{ --- DOI: #1.}}
+\renewcommand{\doie}{ DOI: #1.}}
+
+%вводим команду обнуления всех внутренних переменных
+\newcommand{\bnull}{%
+    \renewcommand{\ibyr}{} \renewcommand{\ibpp}{} \renewcommand{\ibpub}{,} \renewcommand{\ibj}{} \renewcommand{\ibvol}{}%
+    \renewcommand{\ibnum}{} \renewcommand{\ibcity}{} \renewcommand{\ibiaut}{} \renewcommand{\ibauti}{} \renewcommand{\ebauti}{}%
+    \renewcommand{\ebcity}{} \renewcommand{\ibtit}{} \renewcommand{\ibtituc}{} \renewcommand{\ebtit}{} \renewcommand{\ebpub}{} \renewcommand{\ebvol}{} \renewcommand{\ebnum}{}%
+    \renewcommand{\ebj}{} \renewcommand{\iibj}{} \renewcommand{\ebtitp}{}\renewcommand{\ibvole}{}\renewcommand{\ebbvol}{}\renewcommand{\ibbvol}{}\renewcommand{\ebvoli}{}
+    \renewcommand{\ibiss}{}\renewcommand{\ibisse}{}\renewcommand{\ebiss}{}\renewcommand{\ibadd}{}\renewcommand{\ebadd}{}\renewcommand{\ibtran}{}\renewcommand{\ibtituct}{}
+    \renewcommand{\ibyre}{}\renewcommand{\ibppe}{}\renewcommand{\ibpube}{}\renewcommand{\iurl}{}\renewcommand{\doi}{}\renewcommand{\doie}{}
+    \renewcommand{\artid}{}\renewcommand{\eartid}{}\renewcommand{\ibissc}{}\global\boolfalse{nr}\setcounter{auts}{0}
+    }
+
+%определяем команды задания типа издания и формирования его описания в списке литературы и References
+%%команда задания книги на русском
+\newcommand{\mkbookr}{\ifthenelse{\theauts>3}{\renewcommand{\ibauti}{}}{}\ibauti\ibtit\ /~\ibiaut.~--- \ibcity\ibpub\ \ibyr\ibiss.~--- \ibpp~c.\ibadd\\[-11pt] %{пп пп пп ппп}%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \ebtit. \ebcity\ebpub\ \ibyre\ibissc.\ \ibppe~p.\ebadd}%
+    \bnull
+    }%
+
+%команда задания книги на английском
+\newcommand{\mkbooke}{\ifthenelse{\theauts>3}{\renewcommand{\ibauti}{}}{}\ifthenelse{\equal{\ep}{0}}{\ibauti\ibtit\ /~\ibiaut.~--- \ibcity\ibpub\ \ibyr\ibisse.~--- \ibpp~p.\ibadd\\[-11pt]}{\ebauti\ \iibtit\ibissc. \ebcity\ibpube\ \ibyr.\ \ibpp~p.\ebadd}%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \iibtit\ibissc. \ebcity\ibpube\ \ibyr.\ \ibppe~p.\ebadd}%
+    \bnull
+    }%
+
+%команда задания статьи на русском
+\newcommand{\mkpaperr}{\ifthenelse{\theauts>3}{\renewcommand{\ibauti}{}}{}\ifthenelse{\equal{\ibpp}{}}{\ibauti\ibtit\ /~\ibiaut\ibtran\ //~\ibj~--- \ibyr\ibiss\ibvol\ibnum\artid \ibadd\doi\\[-11pt]%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \ebtitp. \ebj, \ibyre, \ebiss\ebvol \ebnum\eartid \ebadd\doie}}%
+    {\ibauti\ibtit\ /~\ibiaut\ibtran\ //~\ibj~--- \ibyr\ibiss\ibvol\ibnum.~--- \hbox{C.~\ibpp.\doi}\ibadd\\[-11pt]%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \ebtitp. \ebj, \ibyre, \ebiss\ebvol \ebnum pp.~\ibppe.\doie\ebadd}}%
+        \bnull
+    }%
+
+%команда задания статьи на английском
+\newcommand{\mkpapere}{\ifthenelse{\theauts>3}{\renewcommand{\ibauti}{}}{}\ifthenelse{\equal{\ibpp}{}}{\ifthenelse{\equal{\ep}{0}}{\ibauti\ibtit\ /~\ibiaut\ //~\ibj~--- \ibyr\ibisse\ibvole\ibnum\artid \ibadd\doi\\[-11pt]}{\ebauti\ \ibtit. \iibj, \ibyr, \ebiss \ebvol \ebnum\artid \ebadd\doi}%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \ibtituc. \iibj, \ibyr, \ebiss \ebvol \ebnum\eartid \ebadd\doie}}%
+    {\ifthenelse{\equal{\ep}{0}}{\ibauti\ibtit\ /~\ibiaut\ //~\ibj~--- \ibyr\ibisse\ibvole\ibnum.~--- P.~\ibpp.\doi\ibadd\\[-11pt]}{\ebauti\ \ibtit. \iibj, \ibyr, \ebiss \ebvol \ebnum pp.~\ibpp.\doi\ebadd}%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \ibtituc. \iibj,\ \ibyr, \ebiss \ebvol \ebnum pp.~\ibppe.\doie\ebadd}}%
+    \bnull
+    }%
+
+%команда задания трудов на русском
+\newcommand{\mkprocr}{\ifthenelse{\theauts>3}{\renewcommand{\ibauti}{}}{} \ibauti\ibtit\ /~\ibiaut\ //~\ibj~--- \ibcity\ibpub\ \ibyr\ibiss\ibvol\ibnum.~--- \hbox{C.~\ibpp.\doi\ibadd}\\[-11pt]%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \ebtitp. \ebj.\ \ebcity\ebpub\ \ibyre, \ebiss \ebvol \ebnum pp.~\ibppe.\doie\ebadd}%
+    \bnull
+    }%
+
+%команда задания трудов на английском
+\newcommand{\mkproce}{\ifthenelse{\theauts>3}{\renewcommand{\ibauti}{}}{}\ifthenelse{\equal{\ep}{0}}{\ibauti\ibtit\ /~\ibiaut\ //~\ibj~--- \ibcity\ibpub\ \ibyr\ibisse\ibvole\ibnum.~--- \hbox{P.~\ibpp.\doi\ibadd}\\[-11pt]}{\ebauti\ \ibtit. \iibj,\ \ebcity\ibpube\ \ibyr, \ebiss \ebvol \ebnum pp.~\ibppe.\doi\ebadd}%
+    \addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebauti\ \ibtit. \iibj,\ \ebcity\ibpube\ \ibyr, \ebiss \ebvol \ebnum pp.~\ibppe.\doie\ebadd}%
+    \bnull
+    }%
+
+\newcommand{\mkwebr}{\ibtit.~--- Электрон. текстовые дан.~--- Режим доступа: \iurl.~--- Загл. с экрана.\\[-11pt]\addto{\engbib}{\bibitem{} } \eappto{\engbib}{\ebtit. Available at: \iurl.}\bnull}
+\newcommand{\mkwebe}{\ibtit.~--- Electronic text data.~--- Mode of access: \iurl.~--- Title from screen.\\[-11pt]\addto{\engbib}{\bibitem{} } \eappto{\engbib}{\iibtit. Available at: \iurl.}\bnull}
+
+%команда задания всего остального
+\newcommand{\mkother}[1]{\addto{\engbib}{\bibitem{} #1}}
+
+\newcommand{\csp}{}
+% определяем команду для работы с разделами
+\newcommandx{\chapter}[3][1]
+{%Название раздела может быть длинным - тогда первая его часть
+ %сообщается как необязательный аргумент
+\newpage
+\renewcommand{\chnamef}{\selectfont\selectlanguage{russian}\upc{#1}}
+\renewcommand{\chnames}{\selectfont\selectlanguage{russian}\upc{#2}}
+\renewcommand{\csp}{#3}
+\ifthenelse{\equal{\csp}{1}}{\setlength{\colen}{-2.2mm}\setlength{\celen}{-4.9mm}}{\setlength{\colen}{-2.2mm}\setlength{\celen}{-4mm}}
+\ifthenelse{\equal{#1}{}}%Длинное ли название?
+   {\renewcommand{\chname}{\chnames}}%Нет
+   {\renewcommand{\chname}{\chnamef\ \ \chnames}}%Да: \chname -полное назв-е
+\stepcounter{chap}%увеличиваем счетчик разделов
+}
+
+\newcommand{\l@abcd}{\@dottedtocline{0}{0em}{0em}}%[2]{\hbox to\textwidth{#1\dotfill #2}}
+% еще несколько текстовых переменных
+\newcommand{\autname}{}
+\newcommand{\autnamer}{}
+\newcommand{\shartname}{}
+\newcommand{\aniz}{}
+
+\newcommand{\gni}{}
+\newcommand{\pni}{}
+
+\newcommand{\putudk}{Добавьте УДК!}
+\newcommand{\putbbk}{Добавьте ББК!}
+\newcommand{\putart}{Добавьте название статьи!}
+\newcommand{\putartc}{}
+\newcommand{\putarttoc}{}
+\newcommand{\puteart}{Add title in english!}
+\newcommand{\putearttoc}{Add title in english!}
+\newcommand{\auts}{}
+\newcommand{\engtop}{}
+\newbool{flag}
+\booltrue{flag}
+
+\newlistof{dens}{lod}{\large Table of contents}
+\setlength{\cftdensnumwidth}{0ex} %\cftpagenumbersoff{dens}
+\renewcommand{\cftlodtitlefont}{\bfseries}
+\renewcommand{\cftafterlodtitle}{\hfill}
+\setlength{\cftbeforelodtitleskip}{4.5ex plus1ex minus .2ex}
+\setlength{\cftafterlodtitleskip}{3ex plus.2ex}
+
+
+\def\grenewcommand{\g@star@or@long\renew@command}
+\def\g@star@or@long#1{%
+  \@ifstar{\let\l@ngrel@x\global#1}{\def\l@ngrel@x{\long\global}#1}}
+
+\newcommand{\udk}[1]{\ifthenelse{\equal{#1}{}}{\renewcommand{\putudk}{}}{\renewcommand{\putudk}{\udkn\ #1}}}
+\newcommand{\bbk}[1]{\ifthenelse{\equal{#1}{}}{\renewcommand{\putbbk}{}}{\renewcommand{\putbbk}{\bbkn\ #1}}}
+\newcommand{\art}[3][]{\newpage\renewcommand{\auts}{}\renewcommand{\engtop}{}\renewcommand{\autname}{}\renewcommand{\autnamer}{}\support{}\renewcommand{\engbib}{}%
+    \renewcommand{\ibiaut}{} \renewcommand{\ibauti}{} \renewcommand{\ebauti}{}\renewcommand{\fns}{}\setcounter{fn}{1}\setcounter{fnn}{1}%
+    \renewcommand{\putart}{\upc{#2}}\ifthenelse{\equal{#1}{}}{\renewcommand{\shartname}{#2}}{\renewcommand{\shartname}{#1}}\ifthenelse{\equal{#3}{}}{\renewcommand{\puteart}{Add title in english!}}{\renewcommand{\puteart}{\upc{#3}}}%
+    \renewcommand{\putartc}{\upc{#2}}\renewcommand{\putarttoc}{\delplb{#2}}\renewcommand{\putearttoc}{\delplb{#3}}
+    }
+\newcommand{\support}[1]{%
+ \appto\putart{\,$^{1}$}
+ \appto{\fns}{${}^1$ \!\adddot{#1}\\}
+ \stepcounter{fn}\stepcounter{fnn}
+ }
+\newcommand{\fio}[4][]{%
+ \ifdefempty{\auts}{\addto\auts{\fontsize{11.5}{14}\selectfont\vspace*{2mm}\begin{center}{\bfseries #3 #4 #2}\end{center}\vspace{1mm plus 1mm minus 0mm}\fontsize{10.5}{13}\selectfont}}{\addto\auts{\fontsize{11.5}{14}\selectfont\vspace*{4mm}\begin{center}{\bfseries #3 #4 #2}\end{center}\vspace{-3mm plus 0mm minus 1mm}\fontsize{10.5}{13}\selectfont}}%
+ \ifdefempty{\engtop}{\addto\engtop{\fontsize{11.5}{14}\selectfont\begin{center}{\bfseries \ifthenelse{\equal{#1}{}}{\translit{#3 #4 #2}}{#1}}\end{center}\npb\vspace{1mm}\fontsize{10.5}{12}\selectfont}}%
+                     {\addto\engtop{\fontsize{11.5}{14}\selectfont\begin{center}{\vspace{2mm}\bfseries \ifthenelse{\equal{#1}{}}{\translit{#3 #4 #2}}{#1}}\end{center}\npb\vspace{1mm}\fontsize{10.5}{12}\selectfont}}%
+ \StrLeft{#3}{1}[\gni] \StrLeft{#4}{1}[\pni]
+ \ifdefempty{\autnamer}{\eappto\autnamer{#2\ \gni.\pni.}}{\eappto\autnamer{,\ #2\ \gni.\pni.}}%
+ \ifdefempty{\autname}{\eappto\autname{\gni.\pni. #2}}{\eappto\autname{,\ \gni.\pni. #2}}%
+ }
+\newcommand{\sdeg}[2]{\global\boolfalse{flag}\addto\auts{\cfs{#1}, }\addto\engtop{\cfs{#2}, }}
+\newcommand{\pos}[2]{\ifbool{flag}{\addto\auts{\cfs{#1},\\ }\addto\engtop{#2,\\ }}{\addto\auts{#1,\\ }\addto\engtop{#2,\\ }}\global\booltrue{flag}}
+\newcommand{\emp}[2]{\addto\auts{#1 \\}\addto\engtop{#2\\}}
+\newcommand{\email}[1]{\addto\auts{#1 \\}\addto\engtop{#1\\}}
+\newcommand{\addr}[2]{\addto\auts{#1 \\}\addto\engtop{#2}}
+
+\newcommand{\bdl}{15mm}
+
+\renewcommand{\maketitle}{%
+\ifthenelse{\value{chap}=\value{newchap}}%Проверяем, не открывает ли эта
+                                         %статья новый раздел
+   {\ifthenelse{\equal{\cols}{y}}{\thispagestyle{artit}}{}}%стиль первой страницы статьи внутри раздела
+   {\ifthenelse{\equal{\cols}{y}}{\thispagestyle{chtit}}{}%стиль первой страницы раздела
+    \addtocounter{newchap}{1}\vspace*{2cm}}
+% обнуляем все счетчики
+\setcounter{equation}{0}
+\setcounter{figure}{0}
+\setcounter{table}{0}
+\setcounter{section}{0}
+\setcounter{thm}{0}
+\setcounter{lem}{0}
+\setcounter{crl}{0}
+\setcounter{prop}{0}
+\setcounter{stm}{0}
+\setcounter{dfn}{0}
+\setcounter{exm}{0}
+\begin{flushleft}%оформляем УДК и ББК
+\aniz
+\vspace*{\bdl}
+DOI: http://dx.doi.org/10.15688/jvolsu1.\yr.\ny\!\!.\arabic{doi}\stepcounter{doi}\\[2mm]
+\ifdefempty{\putudk}{}{\putudk\\}
+\putbbk
+\vspace*{5mm}
+\end{flushleft}
+\begin{center}%оформляем заголовок статьи
+\fontsize{14.5}{20pt}\selectfont{\bfseries\putart}%
+\addcontentsline{toc}{abcd}{\autnamer\ \putarttoc}
+\addcontentsline{lod}{dens}{\translit{\autnamer}\ \puteart}
+\end{center}
+%\fontsize{11}{14}\selectfont
+\begin{center}
+\begin{minipage}{\textwidth-10ex}
+\begin{flushleft}
+ \auts
+\end{flushleft}
+\end{minipage}
+\end{center}
+\renewcommand{\putudk}{Добавьте УДК!}
+\renewcommand{\putbbk}{Добавьте ББК!}
+\renewcommand{\putart}{Добавьте название статьи!}
+\renewcommand{\putarttoc}{Добавьте название статьи!}
+\renewcommand{\putearttoc}{Добавьте название статьи!}
+}
+
+%оформляем колонтитулы внутри статей
+\def\ps@vestpage
+{\selectlanguage{russian}
+\let\@mkboth\@gobbletwo%
+\def\@oddhead% нечетный верхний
+{\selectlanguage{russian}
+ \fontsize{10}{10pt}\selectfont
+ \hspace{-3cm}%
+ \includegraphics[height=6pt,width=\textwidth+36mm-\widthof{\textbf{ \chname\ }}]%
+                {cl5}%
+                \textbf{\!\!\!\!\!\!\chname}\hspace*{\colen}%
+                \includegraphics[height=6pt,width=4cm]{cl5}
+}
+\def\@oddfoot% нечетный нижний
+{
+ \fontsize{10.5}{13pt}\selectfont
+ \setlength{\len}%
+  {\textwidth+1mm-\widthof{\textbf{\forfn\ \yr. № \ny (\vip)}}-\widthof{\textbf{\arabic{page}}}}
+ \textbf{\forfn\ \yr. № \ny (\vip)}
+ \hspace{\len}
+ \textbf{ \arabic{page} }%
+ \includegraphics[height=6pt,width=2.5cm]{cl5}
+}
+\def\@evenhead% четный верхний
+{\selectlanguage{russian}
+ \fontsize{10}{10pt}\selectfont
+ \hspace{-3cm}%
+ \includegraphics[height=6pt,width=2.5cm]{cl5}
+ \textbf{\!\!\!\!\!\chname}\hspace*{\celen}%
+ \includegraphics[height=6pt,width=\textwidth+45mm-\widthof{\textbf{ \chname\ }}]%
+                 {cl5}
+}
+\def\@evenfoot% четный нижний
+{
+ \fontsize{10}{13pt}\selectfont
+ \hspace*{-3cm}
+ \includegraphics[width=25mm, height=6pt]{cl5}
+ \textbf{ \arabic{page}}\hfill
+ \fontsize{10}{12pt}\selectfont\selectlanguage{russian}
+ \ifthenelse{\equal{\autname}{}}{}{\hspace*{-3mm}\textit{\autname.}}\ \shartname\\
+ }
+}
+
+%Определяем колонтитулы последней страницы раздела
+\def\ps@eop
+{\selectlanguage{russian}
+\let\@mkboth\@gobbletwo%
+\def\@oddhead% нечетный верхний
+{
+ \fontsize{10}{10pt}\selectfont
+ \hspace{-3cm}%
+ \includegraphics[height=6pt,width=\textwidth+36mm-\widthof{\textbf{ \chname\ }}]%
+                {cl5}%
+                \textbf{\!\!\!\!\!\!\chname}\hspace*{\colen}%
+                \includegraphics[height=6pt,width=4cm]{cl5}
+}
+\def\@oddfoot% нечетный нижний
+{
+ \fontsize{10.5}{13pt}\selectfont
+% \setlength{\len}%
+%  {\textwidth-3mm-\widthof{\textbf{\forfn\ \yr. № \ny (\vip)}}-\widthof{\textbf{\arabic{page}}}}
+% \hspace*{-7mm}
+  \textbf{\forfn\ \yr. № \ny (\vip)}\phantom{hопароаораропаорпароароароа}
+% \hspace{\len}
+% \textbf{ \arabic{page} }%
+% \includegraphics[height=6pt,width=2.5cm]{cl5}
+}
+\def\@evenhead% четный верхний
+{\selectlanguage{russian}
+ \fontsize{10}{10pt}\selectfont
+ \hspace{-3cm}%
+ \includegraphics[height=6pt,width=2.5cm]{cl5}
+ \textbf{\!\!\!\!\!\chname}\hspace*{\celen}%
+ \includegraphics[height=6pt,width=\textwidth+45mm-\widthof{\textbf{ \chname\ }}]%
+                 {cl5}
+}
+\def\@evenfoot% четный нижний
+{\selectlanguage{russian}
+% \fontsize{10}{13pt}\selectfont
+% \hspace*{-3cm}
+% \includegraphics[width=23mm, height=6pt]{cl5}
+% \textbf{ \arabic{page}}
+ \hfill
+ \fontsize{10}{12pt}\selectfont
+ \ifthenelse{\equal{\autname}{}}{}{\hspace*{-3mm}\textit{\autname.}}\ \shartname\\
+}
+}
+
+%Определяем стили колонтитулов в начале статьи
+\def\ps@artit%
+{\selectlanguage{russian}
+\let\@mkboth\@gobbletwo%
+\def\@evenfoot%нижний четный
+{ \fontsize{10}{13pt}\selectfont
+ \hspace*{-3cm}
+ \includegraphics[width=25mm, height=6pt]{cl5}
+ \textbf{ \arabic{page} }
+ \setlength{\len}%
+  {\widthof{\textbf{ \arabic{page} }}+7mm}
+ \hspace*{-\len}
+ \begin{rotate}{90}%
+ \hspace*{8mm}
+ \fontsize{10}{12pt}\selectfont
+ %\!\!\!\!%
+ \ifdefempty{\autnamer}{}{\copyright\ \autnamer,\ \yr}
+ \end{rotate}
+ \fontsize{10.5}{12pt}\selectfont\phantom{\arabic{page}}\hfill {\bfseries\forfn\ \yr. № \ny (\vip)\hspace*{-5.5mm}}
+}
+\def\@oddfoot%нижний нечетный
+{\fontsize{10.5}{13pt}\selectfont
+ \setlength{\len}%
+  {\widthof{\textbf{\forfn\ \yr. № \ny (\vip)}}+2mm}
+ %\hspace*{1.5mm}
+ \textbf{\forfn\ \yr. № \ny (\vip)}
+ \setlength{\mlen}{-1.1mm-\widthof{\textbf{\arabic{page}}}}
+ \hspace*{-\len}
+ \begin{rotate}{90}%
+ \hspace*{8mm}
+ \fontsize{10}{12pt}\selectfont
+ %\!\!\!\!\!%
+ \ifthenelse{\equal{\autnamer}{}}{}{\copyright\ \autnamer,\ \yr}
+ \end{rotate}
+ \hspace{\textwidth}\hspace*{\mlen}
+ \textbf{ \arabic{page} }%
+ \includegraphics[height=6pt,width=3cm]{cl5}
+}
+\def\@oddhead%нечетный верхний
+{\selectlanguage{russian}
+ \fontsize{10}{10pt}\selectfont
+ \hspace{-3cm}
+ \includegraphics[height=6pt,width=2.7cm]{cl5}
+ \begin{minipage}[h]{7mm}
+ \includegraphics[scale=0.1,bb=40 0 312 456]{arms}\\
+ \fontsize{8}{5pt}\selectfont
+ \hspace*{-4.2mm}www.volsu.ru
+ \end{minipage}
+ \includegraphics[height=6pt,width=\textwidth-4mm-\widthof{\textbf{ \chname }}]%
+                 {cl5}
+ \textbf{\!\!\!\!\!\!\!\chname}\hspace*{\colen}%
+ \includegraphics[height=6pt,width=4cm]{cl5}
+}
+\let\@evenhead\@oddhead%четный верхний такой же
+}
+
+%Определяем стили колонтитулов в начале раздела
+\def\ps@chtit%
+{\selectlanguage{russian}
+\let\@mkboth\@gobbletwo
+\def\@evenfoot%нижний четный
+{ \fontsize{10}{13pt}\selectfont
+ \hspace*{-3cm}
+ \includegraphics[width=25mm, height=6pt]{cl5}
+ \textbf{ \arabic{page} }
+ \setlength{\len}%
+  {\widthof{\textbf{ \arabic{page} }}+7mm}
+ \hspace*{-\len}
+ \begin{rotate}{90}%
+ \hspace*{8mm}
+ \fontsize{10}{12pt}\selectfont
+ %\!\!\!\!%
+ \ifthenelse{\equal{\autnamer}{}}{}{\copyright\ \autnamer,\ \yr}
+ \end{rotate}
+
+ \fontsize{10.5}{13pt}\selectfont\bf\hfil \forfn\ \yr. № \ny (\vip)
+}
+\def\@oddfoot%нижний нечетный
+{\selectlanguage{russian}\fontsize{10.5}{12pt}\selectfont
+ \setlength{\len}%
+  {\widthof{\textbf{\forfn\ \yr. № \ny (\vip)}}+4mm}
+ \textbf{\ \forfn\ \yr. № \ny (\vip)}
+ \setlength{\mlen}{-1.1mm-\widthof{\textbf{\arabic{page}}}}
+ \hspace*{-\len}%-131mm}
+ \begin{rotate}{90}%
+ \hspace*{8mm}
+ \fontsize{10}{12pt}\selectfont
+ %\!\!\!\!%
+ \ifthenelse{\equal{\autnamer}{}}{}{\copyright\ \autnamer,\ \yr}
+ \end{rotate}
+ \hspace{\textwidth}\hspace*{\mlen}
+ \textbf{ \arabic{page} }%
+ \includegraphics[height=6pt,width=2.5cm]{cl5}
+}
+\def\@oddhead%верхний
+{\selectlanguage{russian}
+ \ifthenelse{\equal{\csp}{1}}{\setlength{\clen}{-10mm}}{\setlength{\clen}{-9mm}}
+ \fontsize{16}{15.5pt}\selectfont
+ \begin{minipage}[h]{11mm}
+ \vspace*{5mm}
+ \includegraphics[scale=0.153,bb=0 0 312 456]{arms}\\
+ \fontsize{8}{7pt}\selectfont
+ www.volsu.ru
+ \end{minipage}
+ \begin{tabular}{ll}
+   & \\
+   & \\
+   & \\
+   & \\
+   \bf\chnamef & \\
+   \bf\chnames & \hspace{\clen}%
+      \includegraphics[height=6pt,width=\textwidth-0.2cm-\widthof{\bf\chnames}]%
+                      {cl5}
+ \end{tabular}
+}
+\let\@evenhead\@oddhead
+}
+
+
+% определяем стиль оформления частей статьи,
+% которые задаются командой \section
+
+% для постановки точки после номера цитируем russcor.sty (thanks!)
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\def\@aftersepkern{\kern-.5em}
+\def\postsection{.\@aftersepkern}
+\def\postsubsection{.\@aftersepkern}
+\def\postsubsubsection{.\@aftersepkern}
+%Приступим к постановке точек после номеров...
+\def\@sect#1#2#3#4#5#6[#7]#8{\ifnum #2>\c@secnumdepth
+     \let\@svsec\@empty\else
+     \refstepcounter{#1}\edef\@svsec{%
+     \csname the#1\endcsname
+     \csname post#1\endcsname %Добавил строку
+\hskip 1em}\fi
+     \@tempskipa #5\relax
+      \ifdim \@tempskipa>\z@
+        \begingroup #6\relax
+          \@hangfrom{\hskip #3\relax\@svsec
+                   }{\interlinepenalty \@M \ignorespaces#8\par}%
+% Вставил в предыдущей строке \ignorespaces
+% Здесь и далее такие добавки - против лишних пробелов, появляющихся,
+% если аргумент sectioning-команды начинается с пробела.
+        \endgroup
+       \csname #1mark\endcsname{\protect\ignorespaces #7}\addcontentsline
+% Добавил два token'а перед #7
+         {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                      \protect\numberline{\csname the#1\endcsname
+                     \csname post#1\endcsname % Добавил строку
+}\fi
+\protect\ignorespaces #7}\else
+% Добавил два token'а перед #7
+        \def\@svsechd{#6\hskip #3\relax
+                   \@svsec #8\csname #1mark\endcsname
+                      {\protect\ignorespaces #7}\addcontentsline
+% Добавил два token'а перед #7
+                           {toc}{#1}{\ifnum #2>\c@secnumdepth \else
+                             \protect\numberline{\csname the#1\endcsname
+                          \csname post#1\endcsname % Добавил строку
+}\fi
+\protect\ignorespaces #7}}\fi
+% Добавил два token'а перед #7
+     \@xsect{#5}}
+\def\@ssect#1#2#3#4#5{\@tempskipa #3\relax
+   \ifdim \@tempskipa>\z@
+     \begingroup #4\@hangfrom{\hskip #1}{\interlinepenalty \@M
+\ignorespaces #5\par}\endgroup % добавил \ignorespaces перед #5
+   \else \def\@svsechd{#4\hskip #1\relax
+\ignorespaces #5}\fi % добавил \ignorespaces перед #5
+    \@xsect{#3}}
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+% ставим полужирный заголовок основного размера по центру для всех разделов, подразделов и т.д.
+% и делаем абзацный отступ для первой строки
+\def\section{\@startsection {section}{1}{\z@}{3.5ex plus1ex minus
+    .2ex}{2.3ex plus.2ex}{\reset@font\bfseries\centering}}
+\def\subsection{\@startsection {subsection}{1}{\z@}{3.5ex plus1ex minus
+    .2ex}{2.3ex plus.2ex}{\reset@font\bfseries\centering}}
+\def\subsubsection{\@startsection {subsubsection}{1}{\z@}{3.5ex plus1ex minus
+    .2ex}{2.3ex plus.2ex}{\reset@font\bfseries\centering}}
+
+% применяем написанный стиль к страницам статьи, если соответствующая опция это не отменяет
+\ifthenelse{\equal{\cols}{y}}{\pagestyle{vestpage}}{\pagestyle{plain}}
+
+% при необходимости сменить шрифт на Times New Roman
+% нужно просто раскомментировать следующую строку
+%\IfFileExists{pscyr.sty}{\renewcommand{\rmdefault}{ftm}}{}
+
+\setlist[itemize]{itemsep=-0.5mm, topsep=1.5mm}
+\setlist[enumerate]{itemsep=-0.5mm, topsep=1.5mm, label*=\arabic*.}
+\setlist[description]{itemsep=-0.5mm, topsep=1.5mm}
+
+\def\varepsilon{\upvarepsilon}
+\def\phi{\upphi}
+\def\varphi{\upvarphi}
+\def\xi{\upxi}
+\def\delta{\updelta}
+\def\nu{\upnu}
+\def\mu{\upmu}
+\def\pi{\uppi}
+\def\lambda{\uplambda}
+\def\psi{\uppsi}
+\def\rho{\uprho}
+\def\gamma{\upgamma}
+\def\zeta{\upzeta}
+\def\alpha{\upalpha}
+\def\beta{\upbeta}
+\def\theta{\uptheta}
+\def\tau{\uptau}
+\def\eta{\upeta}
+\def\sigma{\upsigma}
+%\def\varkappa{\upkappa}
+\def\kappa{\upkappa}
+
+\AtBeginDocument{\fontsize{11.5}{14}\selectfont}
