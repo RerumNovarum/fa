@@ -13,6 +13,7 @@
 \usepackage{amsthm}
 
 \newtheorem{thm}{Теорема }
+\newtheorem{corollary}{Следствие }
 
 \title{О спектральных свойствах некоторого специального класса матриц}
 \author{Sergey Kozlukov}
@@ -66,7 +67,7 @@
 %    0    0    ... 0    | 0 ... 0
 %    ;    ;    `.  ;    | ; `.  ;
 %    0    0    ... 0    | 0 ... 0
-     \begin{equation}
+     \begin{equation}\label{eq:ideal:jnf}
          \mathtt{JNF}(\mathbb{A})=
          \left(\begin{array}{cccc|ccc}
              N\lambda_1 & 0  & \cdots & 0 & 0 & \cdots & 0 \\
@@ -80,13 +81,15 @@
         \end{array}\right),
      \end{equation}
      а~Жорданов базис образуется ортонормированной относительно скалярного произведения в \( \mathbb{H} \) системой векторов:
-     \[ f_j^0 = \frac{1}{\sqrt{N}}\left( e_j~\cdots~e_j\right)\in\mathtt{Im}\mathbb{A},\quad
-                j=\overline{1,M}, \]
-     \[ f_j^k = \frac{1}{\sqrt{k(k+1)}}
+     \begin{equation}\label{eq:ideal:jbasis-im}
+         f_j^0 = \frac{1}{\sqrt{N}}\left( e_j~\cdots~e_j\right)\in\mathtt{Im}\mathbb{A},\quad
+     j=\overline{1,M}, \end{equation}
+     \begin{equation}\label{eq:ideal:jbasis-ker}
+         f_j^k = \frac{1}{\sqrt{k(k+1)}}
                 {\huge(}%\left(
                     \underbrace{e_j ~ \cdots ~ e_j}_{ k \text{ штук}} ~ -ke_j ~ 0 ~ \cdots ~ 0 {\huge)}\in\mathtt{Ker}\mathbb{A},
                     \quad k=\overline{1,N-1},j=\overline{1,M}
-                    .\] %\right). \]
+     .\end{equation} %\right). \]
  \end{thm}
  \begin{proof}
      Прежде всего заметим, что ортогональность векторов
@@ -121,5 +124,31 @@
      а соответствующие им собственные значения могут быть найдены из равенств
      \[ \mathbb{A} f_j^0 = ( N A e_j ~\cdots~ NA e_j ~ -kNAe_j ~ 0 ~\cdots~ 0 ) = N\lambda_j f_j^0, \quad j=\overline{1,M} \]
      \[ \mathbb{A} f_j^k = 0 f_j^k, \quad j=\overline{1,M}, k=\overline{1,N-1}. \]
+ \end{proof}
+
+ \begin{corollary}
+     Пусть \( \mathcal{A} = (a_{ij}) \) --- самосопряжённая матрица размера \( M\times M \),
+     \( \lambda_1, \ldots, \lambda_M \) --- её (вообще говоря, не все различные) собственные значения,
+     а \( e_1, \ldots, e_M \in H=\mathbb{R}^M \) --- соответствующие нормированные собственные векторы.
+     Тогда блочная матрица
+     \[ \mathfrak{A} = \begin{pmatrix}
+         \mathcal{A} & \cdots & \mathcal{A} \\
+         \vdots & \ddots & \vdots \\
+         \mathcal{A} & \cdots & \mathcal{A}
+     \end{pmatrix} \]
+     размера \( MN\times MN \) имеет жордановы нормальную форму \eqref{eq:ideal:jnf}
+     и базис \eqref{eq:ideal:jbasis-im}\eqref{eq:ideal:jbasis-ker},
+     где векторы \( f_j^k\in H^N,\quad k=\overline{0,N-1},j=\overline{1,M} \)
+     образуют ортонормированный жорданов базис изоморфного к \( H^N \) евклидова пространства \( \mathbb{R}^{MN} \).
+ \end{corollary}
+ \begin{proof}
+     Так как \( \mathcal{A} \) --- самосопряжённая,
+     то её собственные векторы ортогональны относительно евклидова скалярного произведения,
+     т.е. \( (e_i, e_j)_H = \delta_{ij} \).
+     Значит, выполняются условия предыдущей теоремы.
+     Наконец, заметим, что построенное в доказательстве теоремы
+     скалярное произведение \( (x,y) = \sum_{i=1}^N (x_i, y_i)_H, \quad x=(x_1~\cdots~x_N),y=(y_1~\cdots~y_N)\in H^N \)
+     совпадает с евклидовым скалярным произведением в \( \mathbb{R}^{MN} \),
+     а значит ортонормированные в \( H^N \) векторы \( f_j^k \) образуют ортонормированную систему и в \( \mathbb{R}^{MN} \).
  \end{proof}
 \end{document}
