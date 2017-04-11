@@ -10,6 +10,7 @@
 \usepackage{amsfonts}
 \usepackage{mathrsfs}
 \usepackage{mathtools}
+\usepackage{amsthm}
 
 \newtheorem{thm}{Теорема. }
 
@@ -19,135 +20,101 @@
 \begin{document}
 \maketitle
 
-Пусть \( H \) --- \( M \)-мерное евклидово пространство,
-\( A: H\to H \) --- действующий на \( H \) обратимый линейный оператор,
-с известными (не обязательно различными) собственными значениями
-и соответствующими ортонорированными собственными векторами \( e_1, \ldots, e_M \).
+Пусть \( H \) --- \( M \)-мерное ( \( M < \infty \) ) линейное пространство,
+\( A: H\to H \) --- линейный оператор с~простым спектром,
+\( \lambda_1,~\ldots,~\lambda_M \) --- его (не~обязательно различные)
+собственные значения, а \( e_1,~\ldots,~e_M \) --- соответствующие
+собственные векторы, образующие Жорданов базис в \( H \).
 
-Рассмотрим линейный оператор \( \mathbb{A} \),
-действующий на \( MN \)-мерном евклидовом пространстве \( \mathcal{H} = H^N \)
-с естественным индуцированным скалярным произведением,
-заданный операторной матрицей:
-\[
-    \mathbb{A} = \begin{pmatrix}
+Введём в \( H \) скалярное произведение, задав его на~базисных векторах
+\( e_1,~\ldots,~e_M \):
+\[ (e_i,e_j)_H = \delta_{ij}, \]
+где \( \delta_{ij} = \left\{\begin{aligned} 1, i=j\\ 0, i\neq j\end{aligned}\right. \) --- символ Кронекера.
+
+Рассмотрим Евклидово пространство \( \mathbb{H}=H^N \) ( \( N < \infty \) )
+со скалярным произведением
+\[ (x, y) = \sum_{i=1}^N (x_i,y_i)_H, \quad x=(x_1,\ldots,x_N),y=(y_1,\ldots,y_N) \in \mathbb{H}. \] 
+
+В этом пространстве рассмотрим оператор
+\[ \mathbb{A}: \mathbb{H}\to \mathbb{H}: \]
+\[ \mathbb{A}x =
+    \begin{pmatrix}
         A & \cdots & A \\
         \vdots & \ddots & \vdots \\
         A & \cdots & A
-    \end{pmatrix}.
-    \]
+    \end{pmatrix}
+    \begin{pmatrix}
+        x_1 \\
+        \vdots \\
+        x_N
+    \end{pmatrix},
+    x=(x_1,\ldots,x_N) \in \mathbb{H}. \]
 
-Можно найти жорданову нормальную форму матрицы такого оператора.
-Заметим, что ядро \( \mathcal{H}_0 = \mathtt{Ker} \mathbb{A} \) оператора \( \mathbb{A} \)
-состоит в~точности из тех векторов \( x = ( x_1, \ldots, x_N ) \), для которых \( \sum_i x_i  = 0 \).
-Так как \( \mathtt{rank}\mathbb{A} = \mathtt{rank} A = M \),
-то в качестве базиса в \( \mathcal{H}_0 \) можно выбрать систему
-из следующих \( MN - M \) векторов:
-\[ h_1^1 = \begin{pmatrix} e_1 \\ -e_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \cdots,
-    h_1^{N-1} = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ e_1 \\ -e_1 \end{pmatrix}, \cdots,
-    h_M^1 = \begin{pmatrix} e_M \\ -e_M \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \cdots,
-    h_M^{N-1} = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ e_M \\ -e_M \end{pmatrix}. \]
-Рассмотрим теперь ортогональное ядру подпространство
-\[ \mathcal{H}_1 = \mathcal{H}_0^\perp = \{ x\in\mathcal{H};\quad (x,y)=0 \text{ для всех } y\in\mathcal{H}_1 \}, \]
-так что \( \mathcal{H} = \mathcal{H}_0 \oplus \mathcal{H}_1 \).
-Ясно, что \( x~=~(x_1,\ldots,x_N) \) лежит в \( \mathcal{H}_1 \) тогда и~только тогда, когда
-\( 0 = (x, h_i^j) = (x_j - x_{j+1}, e_i) \) для всех \( i=\overline{1,M}, j=\overline{1,N-1} \),
-т.е. вектор \( x_j - x_{j+1} \in H \) ортогонален всем \( e_1, \ldots, e_M \),
-формирующим базис в~\( H \).
-Отсюда следует, что  \( x_j - x_{j+1} = 0 \),
-или, что~то~же~самое:
-Это~означает,~что
-\[ \mathcal{H}_1 = \{ %\left\{
-    x = \begin{pmatrix} x_0 \\ \vdots \\ x_0 \end{pmatrix}; \quad
-    x_0 \in H
-    \}, \]
-    %\right\}. \]
-а в качестве базиса в \( \mathcal{H}_1 \) можно выбрать (собственные) векторы
-\( h_k^0 = (e_k, \ldots, e_k), k=\overline{1,M} \).
+ \begin{thm}
+     Жорданова нормальная форма матрицы оператора \( \mathbb{A} \)
+     имеет вид
+%    Nl_1 0    ... 0    | 0 ... 0
+%    0    Nl_2 ... 0    | 0 ... 0
+%    ;    ;    `.  ;    | ; `.  ;
+%    0    0    ... Nl_M | 0 ... 0
+%    -------------------+--------
+%    0    0    ... 0    | 0 ... 0
+%    ;    ;    `.  ;    | ; `.  ;
+%    0    0    ... 0    | 0 ... 0
+     \begin{equation}
+         \mathtt{JNF}(\mathbb{A})=
+         \left(\begin{array}{cccc|ccc}
+             N\lambda_1 & 0  & \cdots & 0 & 0 & \cdots & 0 \\
+             0 & N\lambda_2  & \cdots & 0 & 0 & \cdots & 0 \\
+             \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+             0 & 0 & \cdots  & N\lambda_M & 0 & \cdots & 0 \\
+             \hline
+             0 & 0 & \cdots  & 0 & 0 & \cdots & 0 \\
+             \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+             0 & 0 & \cdots  & 0 & 0 & \cdots & 0
+        \end{array}\right),
+     \end{equation}
+     а~Жорданов базис образуется ортонормированной относительно скалярного произведения в \( \mathbb{H} \) системой векторов:
+     \[ f_j^0 = \frac{1}{\sqrt{N}}\left( e_j~\cdots~e_j\right)\in\mathtt{Im}\mathbb{A},\quad
+                j=\overline{1,M}, \]
+     \[ f_j^k = \frac{1}{\sqrt{k(k+1)}}
+                {\huge(}%\left(
+                    \underbrace{e_j ~ \cdots ~ e_j}_{ k \text{ штук}} ~ -ke_j ~ 0 ~ \cdots ~ 0 {\huge)}\in\mathtt{Ker}\mathbb{A},
+                    \quad k=\overline{1,N-1},j=\overline{1,M}
+                    .\] %\right). \]
+ \end{thm}
+ \begin{proof}
+     Прежде всего заметим, что ортогональность векторов
+     \[ f_j^k, \quad k=\overline{0,N-1}, j=\overline{1,M} \]
+     проверяется непосредственно.
 
-К векторам \( h_k^j \) применим процесс ортогонализации Грамма-Шмидта и получим
-ортонормированный базис в \( \mathcal{H} \):
-\[ f_k^0 = \frac{1}{\sqrt{N}} \begin{pmatrix} e_k \\ \vdots \\ e_k \end{pmatrix}, k=\overline{1,M}, \]
-\[
-    f_k^j = \frac{1}{\sqrt{k^2+k}}
-    \begin{pmatrix} e_k \\ \vdots \\ e_k \\ -ke_k \\ 0 \\ \vdots \\ 0 \end{pmatrix}, k=\overline{1,M}, j=\overline{1,N-1} \]
-где в \( \|f_k^j\| f_k^j, j=\overline{1,N-1} \) на первых \( k \) местах стоят единицы, на \((k+1)\)-ом --- \( -k \),
-а на остальных нули.
+     Рассмотрим ядро оператора \( \mathbb{A} \):
+     \[ \mathbb{H}_0 = \mathtt{Ker}\mathbb{A} \subset \mathbb{H}. \]
+     Оно состоит из таких векторов \( x = (x_1 ~\cdots~ x_N) \in \mathbb{H} \),
+     для которых \[ \sum_{i=1}^N x_i = 0 \in H. \]
+     Ясно, что все \( MN - M \) ортогональных векторов \({ f_j^k, \quad k=\overline{1,N-1},j=\overline{1,M} }\)
+     принадлежат \( \mathbb{H}_0 \).
+     Они образуют базис в этом подпространстве, так как
+     \( \mathtt{dim}\mathtt{Im}\mathbb{A} = \mathtt{rank}\mathbb{A} = \mathtt{rank}A = M \)
+     и \( \mathtt{dim}\mathbb{H}_0 = \mathtt{dim}\mathbb{H} - \mathtt{dim}\mathtt{Im}\mathbb{A} = MN - M \).
 
-Ясно, что векторы \( f_k^j, k\in\overline{1,M}, j\in\overline{0,N-1} \)
-являются собственными для оператора \( \mathbb{A} \):
-векторам \( f_k^0 \) соответствует собственное значение \( N \lambda_k \),
-а остальным -- ноль:
-\[ \sigma(\mathbb{A}) = N \sigma(A)\cup\{0\} = \{ 0, N\lambda_1, \ldots, N\lambda_M. \]
+     Теперь рассмотрим ортогональное к \( \mathbb{H}_0 \) подпространство
+     \[ \mathbb{H}_1 = \mathbb{H}_0^\perp = \left\{ x\in\mathbb{H};\quad (x,y) \text{ для всех } y\in\mathbb{H}_0 \right\}. \]
+     Вектор \( x=(x_1 ~\cdots~ x_N)\in\mathbb{H} \) лежит в \( \mathbb{H}_1 \)
+     тогда и только тогда, когда
+     \( x \) ортогонален всем базисным векторам в \( \mathbb{H}_0 \):
+     \[ 0 = (x,h_i^k) = (x_k - x_{k+1}, e_j)_H, \quad k=\overline{1,N-1}, j=\overline{1,M}. \]
+     Это означает, что \( x_k - x_{k+1} = 0 \), так как векторы \( x_k - x_{k+1} \in H \)
+     ортогональны всем базисным векторам \( e_1, \ldots, e_M \in H \).
 
-\begin{thm}[О жордановой нормальной форме матрицы  оператора \( \mathbb{A} \)]
-    ...Матрица имеет вид... Унитарная матрица преобразования имеет вид...
-\end{thm}
+     Таким образом все векторы \( \mathbb{H}_1 \) имеют вид
+     \[ x = (x_0 ~\cdots~ x_0)\in\mathbb{H}, \quad x_0\in H, \]
+     а в качестве базиса в \( \mathbb{H}_1 \) естественно выбрать
+     систему \( f_j^0, \quad j=\overline{1,M} \).
 
-% Будем рассматривать линейные операторы \( A_{2N}\in L(\mathcal{H}) \), задаваемые матрицами \( \mathcal{A}_{2N} \in \mathtt{Matr}_{2N}\mathbb{C} \) размера \( 2N\times 2N \) вида
-% \[ \mathcal{A}_{2N} =
-%     \begin{pmatrix}
-%     0 & 1 & 0 & 1 & \cdots &  1 \\
-%     1 & 0 & 1 & 0 & \cdots &  0 \\
-%     0 & 1 & 0 & 1 & \cdots &  1 \\
-%     \vdots & \vdots & \vdots & \vdots & \ddots & \vdots \\
-%     1 & 0 & 1 & 0 & \cdots & 0
-%     \end{pmatrix}. \]
-% Их можно записать в виде матрицы, составленной из \( N\times N \) блоков
-% \[ \mathcal{A}_{2N} =
-%     \begin{pmatrix}
-%         \mathcal{A}_2 & \cdots & \mathcal{A}_2 \\
-%         \vdots        & \ddots & \vdots \\
-%         \mathcal{A}_2 & \cdots & \mathcal{A}_2.
-%         \end{pmatrix}, \]
-% \[ \mathcal{A}_2 = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix}. \]
-% 
-% Легко проверяется, что собственными значениями матрицы \( \mathcal{A}_2 \)
-% являются \( 1 \) и \( -1 \), а соответствующими собственными векторами --- 
-% \( e_1 = \begin{pmatrix}1 \\ 1\end{pmatrix} \),
-% \( e_2 = \begin{pmatrix}1 \\ -1\end{pmatrix} \).
-% 
-% Найдём спектр и собственный базис матрицы \( \mathcal{A}_{2N} \).
-% Для этого введём в рассмотрение векторы
-% \[ h_1^1 = \begin{pmatrix} e_1 \\ -e_1 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \cdots, h_1^{N-1} = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ e_1 \\ -e_1 \end{pmatrix},
-%    h_2^1 = \begin{pmatrix} e_2 \\ -e_2 \\ 0 \\ \vdots \\ 0 \end{pmatrix}, \cdots, h_2^{N-1} = \begin{pmatrix} 0 \\ \vdots \\ 0 \\ e_2 \\ -e_2 \end{pmatrix}, \]
-% очевидно лежащие в ядре рассматриваемого оператора.
-% Также рассмотрим генерируемое ими подпространство
-% \[ \mathcal{H}_0 = \mathtt{span}(h_1^1,\ldots,h_1^{N-1},h_2^1,\ldots,h_2^{N-1}), \]
-% размерности \( \dim\mathcal{H}_0 = 2N - 2. \)
-% Так как, очевидно, \( \mathtt{rank}{\mathcal{A}_{2N}} = 2 \),
-% то \( \mathcal{H}_0 \) есть в точности ядро этого оператора: \( \mathcal{H}_0 = \mathtt{Ker}(A_{2N}) \).
-% 
-% Рассмотрим теперь ортогональное дополнение \( \mathcal{H}_1 = \mathcal{H}_0^{\perp} \) к подпространству \( \mathcal{H}_0 \)
-% --- такое линейное подпространство \( \mathcal{H}_1 \subset \mathcal{H} \),
-% что \( \mathcal{H} = \mathcal{H}_0 \oplus \mathcal{H}_1 \)
-% и для всех \( x\in\mathcal{H}_1, y\in\mathcal{H}_0 \) имеет место \( \langle x, y \rangle = 0 \).
-% Последнее эквивалентно условию
-% \[ \langle x,h_i^j \rangle = 0, \quad \text{ для всех } x\in\mathcal{H}_1, i=\overline{1,2}, j=\overline{1,N-1}. \]
-% Заметим:
-% \[ \langle x, h_i^j \rangle = (x_i, e_j) + (x_{i+1}, -e_j) = (x_i - x_{i+1}, e_j). \]
-% Отсюда для всех \( x = (x_1, \ldots, x_N) \in \mathcal{H}_1 \), где \( x_j = ( x_j^1, x_j^2 )\in H, j = \overline{1,N} \):
-% \begin{align*}
-% &   \left\{ \begin{aligned}
-%     & (x_i - x_{i+1}, \begin{pmatrix} 1 \\1 \end{pmatrix} )  = x_i^1 - x_{i+1}^1 + x_i^2 - x_{i+1}^2 = 0, \\
-%     & (x_i - x_{i+1}, \begin{pmatrix} 1 \\ -1\end{pmatrix} ) = x_i^1 - x_{i+1}^1 - x_i^2 + x_{i+1}^2 = 0,
-%     \end{aligned} \right. \\
-% &   i = \overline{1,N-1}. \end{align*}
-% Решая эту систему линейных уравнений, получаем \( x_i = x_{i+1}, i = \overline{1,N} \).
-% Короче, все векторы \( x\in \mathcal{H}_1 \) имеют вид \( x = (x_0, \ldots, x_0), \) где \( x_0\in H \).
-% В качестве базиса в \( \mathcal{H}_1 \) естественно выбрать \( h_0^i = (e_i, \ldots, e_i), i=\overline{1,2} \).
-% Непосредственно проверяется, что эти векторы являются собственными, с соответствующими собственными числами \( N \) и \( -N \).
-% 
-% В построенном базисе \( h_0^1, h_0^2, h_1^1, \ldots, h_1^{N-1} , h_2^1, h_2^{N-1} \)
-% матрица рассматриваемого оператора примет вид жордановой нормальной формы:
-% \[ \begin{pmatrix}
-%     N & 0  & 0 & \cdots & 0 \\
-%     0 & -N & 0 & \cdots & 0 \\
-%     0 & 0  & 0 & \cdots & 0 \\
-%     \vdots & \vdots & \vdots & \ddots & \vdots \\
-%     0 & 0  & 0 & \cdots & 0
-%     \end{pmatrix} \]
-% % 
-% % Далее будем рассматривать матрицы вида
-% % \[ \mathcal{A}_{2N} - \mathcal{B}_{2N}, \]
-% % где \( \mathcal{B}_{2N} \) -- некоторое возмущение.
- \end{document}
+     Наконец, все найденные векторы являются собственными для \( \mathbb{A} \),
+     а соответствующие им собственные значения могут быть найдены из равенств
+     \[ \mathbb{A} f_j^0 = ( N A e_j ~\cdots~ NA e_j ~ -kNAe_j ~ 0 ~\cdots~ 0 ) = N\lambda_j f_j^0, \quad j=\overline{1,M} \]
+     \[ \mathbb{A} f_j^k = 0 f_j^k, \quad j=\overline{1,M}, k=\overline{1,N-1}. \]
+ \end{proof}
+\end{document}
