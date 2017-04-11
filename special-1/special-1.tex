@@ -1,4 +1,4 @@
-\documentclass{article}
+\documentclass[a4paper]{article}
 
 \usepackage{fontspec}
 \setmainfont{CMU Serif}
@@ -100,24 +100,31 @@
      \[ \mathbb{H}_0 = \mathtt{Ker}\mathbb{A} \subset \mathbb{H}. \]
      Оно состоит из таких векторов \( x = (x_1 ~\cdots~ x_N) \in \mathbb{H} \),
      для которых \[ \sum_{i=1}^N x_i = 0 \in H. \]
-     Ясно, что все \( MN - M \) ортогональных векторов \({ f_j^k, \quad k=\overline{1,N-1},j=\overline{1,M} }\)
+     Рассмотрим систему \( MN - M \) векторов
+     \[ h_1^1 = ( e_1 ~ -e_1 ~ 0 ~\cdots~ 0), ~ \ldots, ~ h_1^{N-1} = (0 ~\cdots~ 0 ~ e_1 ~ -e_1), \]
+     \[ \cdots \]
+     \[ h_M^1 = ( e_M ~ -e_M ~ 0 ~\cdots~ 0), ~ \ldots, ~ h_M^{N-1} = (0 ~\cdots~ 0 ~ e_M ~ -e_M) \in \mathbb{H}. \]
+     Ясно, что все \( MN - M \) линейно-независимых векторов
+     \( h_j^k \)
      принадлежат \( \mathbb{H}_0 \).
      Они образуют базис в этом подпространстве, так как
      \( \mathtt{dim}\mathtt{Im}\mathbb{A} = \mathtt{rank}\mathbb{A} = \mathtt{rank}A = M \)
      и \( \mathtt{dim}\mathbb{H}_0 = \mathtt{dim}\mathbb{H} - \mathtt{dim}\mathtt{Im}\mathbb{A} = MN - M \).
+     Применяя к системе векторов \( h_j^k \) процесс ортогонализации Грамма-Шмидта
+     получим ортонормированный базис \( f_j^k, \quad k=\overline{1,N-1},j=\overline{1,M}\) в~подпространстве \( \mathbb{H}_0 \).
 
      Теперь рассмотрим ортогональное к \( \mathbb{H}_0 \) подпространство
      \[ \mathbb{H}_1 = \mathbb{H}_0^\perp = \left\{ x\in\mathbb{H};\quad (x,y) \text{ для всех } y\in\mathbb{H}_0 \right\}. \]
      Вектор \( x=(x_1 ~\cdots~ x_N)\in\mathbb{H} \) лежит в \( \mathbb{H}_1 \)
-     тогда и только тогда, когда
-     \( x \) ортогонален всем базисным векторам в \( \mathbb{H}_0 \):
+     тогда и~только тогда, когда
+     \( x \) ортогонален всем базисным векторам в~\( \mathbb{H}_0 \):
      \[ 0 = (x,h_i^k) = (x_k - x_{k+1}, e_j)_H, \quad k=\overline{1,N-1}, j=\overline{1,M}. \]
      Это означает, что \( x_k - x_{k+1} = 0 \), так как векторы \( x_k - x_{k+1} \in H \)
      ортогональны всем базисным векторам \( e_1, \ldots, e_M \in H \).
 
      Таким образом все векторы \( \mathbb{H}_1 \) имеют вид
      \[ x = (x_0 ~\cdots~ x_0)\in\mathbb{H}, \quad x_0\in H, \]
-     а в качестве базиса в \( \mathbb{H}_1 \) естественно выбрать
+     а~в~качестве базиса в~\( \mathbb{H}_1 \) естественно выбрать
      систему \( f_j^0, \quad j=\overline{1,M} \).
 
      Наконец, все найденные векторы являются собственными для \( \mathbb{A} \),
