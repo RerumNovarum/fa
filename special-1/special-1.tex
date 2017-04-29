@@ -66,10 +66,10 @@
 
 К векторам \( h_k^j \) применим процесс ортогонализации Грамма-Шмидта и получим
 ортонормированный базис в \( \mathcal{H} \):
-\[ f_k^0 = \frac{1}{\sqrt{N}} \begin{pmatrix} e_k \\ \vdots \\ e_k \end{pmatrix}, k=\overline{1,M}, \]
+\[ f_k^0 = \frac{1}{\sqrt{N}} \begin{pmatrix} e_j \\ \vdots \\ e_j \end{pmatrix}, k=\overline{1,M}, \]
 \[
     f_k^j = \frac{1}{\sqrt{k^2+k}}
-    \begin{pmatrix} e_k \\ \vdots \\ e_k \\ -ke_k \\ 0 \\ \vdots \\ 0 \end{pmatrix}, k=\overline{1,M}, j=\overline{1,N-1} \]
+    \begin{pmatrix} e_j \\ \vdots \\ e_j \\ -ke_j \\ 0 \\ \vdots \\ 0 \end{pmatrix}, k=\overline{1,M}, j=\overline{1,N-1} \]
 где в \( \|f_k^j\| f_k^j, j=\overline{1,N-1} \) на первых \( k \) местах стоят единицы, на \((k+1)\)-ом --- \( -k \),
 а на остальных нули.
 
