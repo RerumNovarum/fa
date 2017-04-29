@@ -1,0 +1,202 @@
+Введём в \( X \) вспомогательное скалярное произведение, задав его на~базисных векторах
+\( e_1,~\ldots,~e_M \):
+\[ (e_i,e_j)_X = \delta_{ij}, \]
+где \( \delta_{ij} = \left\{\begin{aligned} 1, \quad i=j\\ 0, \quad i\neq j\end{aligned}\right. \) --- символ Кронекера.
+
+Рассмотрим Евклидово пространство \( \mathbb{H}=X^N \)
+со скалярным произведением
+\[ (x, y) = \sum_{i=1}^N (x_i,y_i)_X, \quad x=(x_1,\ldots,x_N),y=(y_1,\ldots,y_N) \in \mathbb{H}. \] 
+
+
+ \begin{theorem}
+     Жорданова нормальная форма матрицы оператора \( \mathbb{A} \)
+     имеет вид
+%    Nl_1 0    ... 0    | 0 ... 0
+%    0    Nl_2 ... 0    | 0 ... 0
+%    ;    ;    `.  ;    | ; `.  ;
+%    0    0    ... Nl_M | 0 ... 0
+%    -------------------+--------
+%    0    0    ... 0    | 0 ... 0
+%    ;    ;    `.  ;    | ; `.  ;
+%    0    0    ... 0    | 0 ... 0
+     \begin{equation}\label{eq:ideal:jnf}
+         \mathtt{JNF}(\mathbb{A})=
+         \left(\begin{array}{cccc|ccc}
+             N\lambda_1 & 0  & \cdots & 0 & 0 & \cdots & 0 \\
+             0 & N\lambda_2  & \cdots & 0 & 0 & \cdots & 0 \\
+             \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+             0 & 0 & \cdots  & N\lambda_M & 0 & \cdots & 0 \\
+             \hline
+             0 & 0 & \cdots  & 0 & 0 & \cdots & 0 \\
+             \vdots & \vdots & \ddots & \vdots & \vdots & \ddots & \vdots \\
+             0 & 0 & \cdots  & 0 & 0 & \cdots & 0
+        \end{array}\right),
+     \end{equation}
+     а~Жорданов базис образуется ортонормированной относительно скалярного произведения в \( \mathbb{H} \) системой векторов:
+     \begin{equation}\label{eq:ideal:jbasis-im}
+         f_j^0 = \frac{1}{\sqrt{N}}\left( e_j,~\cdots,~e_j\right)\in\mathtt{Im}\mathbb{A},\quad
+     j=\overline{1,M}, \end{equation}
+     \begin{equation}\label{eq:ideal:jbasis-ker}
+         f_j^k = \frac{1}{\sqrt{k(k+1)}}
+                ({
+                    \underbrace{e_j, ~ \cdots, ~ e_j,}_{ k \text{ раз}} ~ -ke_j, ~ 0, ~ \cdots, ~ 0
+                    })
+                    \in\mathtt{Ker}\mathbb{A},
+                    \quad k=\overline{1,N-1},j=\overline{1,M}
+     .\end{equation} %\right). \]
+ \end{theorem}
+ \begin{proof}
+     Прежде всего заметим, что ортогональность векторов
+     \[ f_j^k, \quad k=\overline{0,N-1}, j=\overline{1,M} \]
+     проверяется непосредственно.
+
+     Рассмотрим ядро оператора \( \mathbb{A} \):
+     \[ \mathbb{H}_0 = \mathtt{Ker}\mathbb{A} \subset \mathbb{H}. \]
+     Оно состоит из таких векторов \( x = (x_1 ~\cdots~ x_N) \in \mathbb{H} \),
+     для которых \[ \sum_{i=1}^N x_i = 0 \in X. \]
+     Рассмотрим систему \( MN - M \) векторов
+     \[ h_1^1 = ( e_1, ~ -e_1, ~ 0, ~\cdots, ~ 0), ~ \ldots, ~ h_1^{N-1} = (0, ~\cdots,~ 0, ~ e_1, ~ -e_1), \]
+     \[ \cdots \]
+     \[ h_M^1 = ( e_M, ~ -e_M, ~ 0, ~\cdots, ~ 0), ~ \ldots, ~ h_M^{N-1} = (0, ~\cdots,~ 0, ~ e_M, ~ -e_M) \in \mathbb{H}. \]
+     Ясно, что все \( MN - M \) линейно-независимых векторов
+     \( h_j^k, k=\overline{1,N-1},j=\overline{1,M} \)
+     принадлежат \( \mathbb{H}_0 \).
+     Они образуют базис в этом подпространстве, так как
+     \( \mathtt{dim}\mathtt{Im}\mathbb{A} = \mathtt{rank}\mathbb{A} = \mathtt{rank}A = M \)
+     и \( \mathtt{dim}\mathbb{H}_0 = \mathtt{dim}\mathbb{H} - \mathtt{dim}\mathtt{Im}\mathbb{A} = MN - M \).
+     Применяя к системе векторов \( h_j^k, k=\overline{1,N-1},j=\overline{1,M} \) процесс ортогонализации Грамма-Шмидта
+     получим ортонормированный базис \( f_j^k, \quad k=\overline{1,N-1},j=\overline{1,M}\) в~подпространстве \( \mathbb{H}_0 \).
+
+     Теперь рассмотрим ортогональное к \( \mathbb{H}_0 \) подпространство
+     \[ \mathbb{H}_1 = \mathbb{H}_0^\perp = \left\{ x\in\mathbb{H};\quad (x,y)=0 \text{ для всех } y\in\mathbb{H}_0 \right\}. \]
+     Вектор \( x=(x_1 ~\cdots~ x_N)\in\mathbb{H} \) лежит в \( \mathbb{H}_1 \)
+     тогда и~только тогда, когда
+     \( x \) ортогонален всем базисным векторам в~\( \mathbb{H}_0 \):
+     \[ 0 = (x,h_i^k) = (x_k - x_{k+1}, e_j)_X, \quad k=\overline{1,N-1}, j=\overline{1,M}. \]
+     Это означает, что \( x_k - x_{k+1} = 0 \), так как векторы \( x_k - x_{k+1} \in X, k=\overline{1,N-1} \)
+     ортогональны всем базисным векторам \( e_1, \ldots, e_M \in X \).
+
+     Таким образом, все векторы в \( \mathbb{H}_1 \) имеют вид
+     \[ x = (x_0, ~\cdots, ~ x_0)\in\mathbb{H}, \quad x_0\in X, \]
+     а~в~качестве базиса в~\( \mathbb{H}_1 \) естественно выбрать
+     систему \( f_j^0, \quad j=\overline{1,M} \).
+
+     Наконец, все найденные векторы являются собственными для \( \mathbb{A} \),
+     а соответствующие им собственные значения определяются равенствами
+     \[ \mathbb{A} f_j^0 = ( N A e_j, ~ \cdots, ~ NA e_j, ~ -kNAe_j, ~ 0, ~ \cdots, ~ 0 ) = N\lambda_j f_j^0, \quad j=\overline{1,M} \]
+     \[ \mathbb{A} f_j^k = 0 = 0 f_j^k, \quad j=\overline{1,M}, k=\overline{1,N-1}. \]
+ \end{proof}
+
+ \begin{corollary}
+     Пусть \( \mathcal{A} = (a_{ij}) \) --- самосопряжённая матрица размера \( M\times M \),
+     \( \lambda_1, \ldots, \lambda_M \) --- её (вообще говоря, не все различные) собственные значения,
+     а \( e_1, \ldots, e_M \in X=\mathbb{R}^M \) --- соответствующие нормированные собственные векторы.
+     Тогда блочная матрица
+     \[ \mathfrak{A} = \begin{pmatrix}
+         \mathcal{A} & \cdots & \mathcal{A} \\
+         \vdots & \ddots & \vdots \\
+         \mathcal{A} & \cdots & \mathcal{A}
+     \end{pmatrix} \]
+     размера \( MN\times MN \) имеет жордановы нормальную форму \eqref{eq:ideal:jnf}
+     и базис вида \eqref{eq:ideal:jbasis-im}\eqref{eq:ideal:jbasis-ker},
+     где векторы \( f_j^k\in X^N,\quad k=\overline{0,N-1},j=\overline{1,M} \)
+     образуют ортонормированный жорданов (относительно \( \mathfrak{A} \))
+     базис изоморфного к \( X^N \) евклидова пространства \( \mathbb{R}^{MN} \).
+     При этом можно явно указать ортогональную матрицу перехода \( \mathfrak{U} \):
+     \[
+         \mathfrak{A} = \mathfrak{U} ~ \mathtt{JNF}(\mathbb{A}) ~ \mathfrak{U}^{-1}, \]
+    \[ \mathfrak{U} = \mathtt{columns}(f_1^0,\ldots,f_M^0,f_1^1,\ldots,f_1^{N-1},\ldots,f_M^1,\ldots,f_M^{N-1}), \]
+    \[ \mathfrak{U}^{-1} = \mathtt{rows}(f_1^0,\ldots,f_M^0,f_1^1,\ldots,f_1^{N-1},\ldots,f_M^1,\ldots,f_M^{N-1}), \]
+     где \( \mathbb{A}:X^N\to X^N \) --- оператор, заданный матрицей \( \mathfrak{A} \),
+     матрица \( \mathtt{JNF(\mathbb{A})} \) и векторы \( f_j^k \) --- из теоремы,
+     а \( \mathtt{columns}(x_1,\ldots,x_n) \) и \( \mathtt{rows}(x_1,\ldots,x_n) \) обозначают матрицы,
+     составленные из векторов \( x_1, \ldots, x_n \in \mathbb{R}^n \),
+     записанных, соответственно, в столбец или строчку.
+ \end{corollary}
+ \begin{proof}
+     Так как \( \mathcal{A} \) --- самосопряжённая,
+     то её собственные векторы ортогональны относительно стандартного скалярного произведения в \( H=\mathbb{R}^M \),
+     т.е. \( (e_i, e_j)_X = \delta_{ij} \).
+     Значит, для оператора \( \mathbb{A}:\mathbb{H}\to\mathbb{H}, \quad \mathbb{H}=X^N \),
+     заданного в каноническом для \( \mathbb{R}^{MN} \) базисе матрицей \( \mathfrak{A} \),
+     выполняются условия предыдущей теоремы.
+     Наконец, заметим, что построенное в доказательстве теоремы
+     скалярное произведение \( (x,y) = \sum_{i=1}^N (x_i, y_i)_X, \quad x=(x_1~\cdots~x_N),y=(y_1~\cdots~y_N)\in\mathbb{H} \)
+     совпадает с стандартным скалярным произведением в \( \mathbb{R}^{MN} \),
+     а значит ортонормированные в \( \mathbb{H} \) векторы \( f_j^k \)
+     образуют ортонормированную систему и в \( \mathbb{R}^{MN} \).
+     Матрица перехода \( \mathfrak{U} \) составляется из ортогональных столбцов \( f_j^k \),
+     поэтому она ортогональна, а обратная и транспонированная к ней матрицы совпадают.
+ \end{proof}
+
+ \begin{example}
+     Рассмотрим матрицу \( \mathcal{J}_N \) размера \( N\times N \), составленную из \( N^2 \) единиц:
+     \[ \mathcal{J}_N =
+        \begin{pmatrix}
+            1 & \cdots & 1 \\
+            \vdots & \ddots & \vdots \\
+            1 & \cdots & 1
+        \end{pmatrix}. \]
+     Рассматривая её, как матрицу, составленную из блоков \( \mathcal{A}=\begin{pmatrix} 1 \end{pmatrix} \)
+     размера \( 1\times 1 \), получаем:
+     \[
+         \mathtt{JNF}(\mathcal{J}_N) =
+         \left(
+         \begin{array}{c|ccc}
+             N & 0 & \cdots & 0 \\ \hline
+             0 & 0 & \cdots & 0 \\
+             \vdots & \vdots  & \ddots & \vdots \\
+             0 & 0 & \cdots & 0
+         \end{array}\right). \]
+     Матрица перехода имеет вид
+     \[
+         \mathfrak{U} = 
+            \begin{pmatrix}
+                \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{N(N-1)}} \\
+                \frac{1}{\sqrt N} & -\frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{N(N-1)}} \\
+                \frac{1}{\sqrt N} & 0                 & -\frac{2}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{N(N-1)}} \\
+                \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{N(N-1)}} \\
+                \vdots            & \vdots            &  \vdots             & \ddots & \vdots \\
+                \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1}{\sqrt{N(N-1)}} \\
+                \frac{1}{\sqrt N} & 0                 &  0                  & \cdots & \frac{1-N}{\sqrt{N(N-1)}}
+            \end{pmatrix}.
+         \]
+ \end{example}
+
+ \begin{example}
+     Рассмотрим \( \mathcal{A} = \begin{pmatrix} 0 & 1 \\ 1 & 0 \end{pmatrix} \),
+         \( \mathfrak{A} =
+                    \begin{pmatrix}
+                        \mathcal{A} & \cdots & \mathcal{A} \\
+                        \vdots      & \ddots & \vdots \\
+                        \mathcal{A} & \cdots & \mathcal{A}
+                    \end{pmatrix} \).
+     Собственными векторами матрицы \( \mathcal{A} \) являются
+     \[
+         e_1 = \frac{1}{\sqrt2}\begin{pmatrix} 1 \\ 1 \end{pmatrix},\quad e_2 = \frac{1}{\sqrt2}\begin{pmatrix} 1 \\ -1 \end{pmatrix},
+             \]
+         с соответствующими собственными значениями \( \lambda_1=1, \lambda_2=-1 \).
+     Отсюда находим жорданову форму матрицы \( \mathfrak{A} \) и ортогональную матрицу перехода \( \mathfrak{U} \):
+     \[
+         \mathtt{JNF}(\mathfrak{A}) =
+         \begin{pmatrix}
+             1 & 0  & 0 & \cdots & 0 \\
+             0 & -1 & 0 & \cdots & 0 \\
+             0 & 0  & 0 & \cdots & 0 \\
+             \vdots & \vdots & \vdots & \ddots & \vdots \\
+             0 & 0 & 0 & \cdots & 0
+         \end{pmatrix}, \]
+     \[
+         \mathfrak{U} = 
+         \begin{pmatrix}
+             \frac{1}{\sqrt{2N}}  & \frac{1}{\sqrt{2N}}  & \frac12  & \cdots & \frac{1}{\sqrt{2N(N-1)}}   & \frac12  & \cdots & \frac{1}{\sqrt{2N(N-1)}} \\
+             \frac{1}{\sqrt{2N}}  & \frac{-1}{\sqrt{2N}} & \frac12  & \cdots & \frac{1}{\sqrt{2N(N-1)}}   & -\frac12 & \cdots & \frac{-1}{\sqrt{2N(N-1)}} \\
+             \frac{-1}{\sqrt{2N}} & \frac{-1}{\sqrt{2N}} & -\frac12 & \cdots & \frac{1}{\sqrt{2N(N-1)}}   & -\frac12 & \cdots & \frac{-1}{\sqrt{2N(N-1)}} \\
+             \frac{-1}{\sqrt{2N}} & \frac{1}{\sqrt{2N}}  & -\frac12 & \cdots & \frac{1}{\sqrt{2N(N-1)}}   & \frac12  & \cdots & \frac{1}{\sqrt{2N(N-1)}} \\
+             \frac{1}{\sqrt{2N}}  & \frac{1}{\sqrt{2N}}  & 0        & \cdots & \frac{1}{\sqrt{2N(N-1)}}   & 0        & \cdots & \frac{1}{\sqrt{2N(N-1)}} \\
+             \frac{1}{\sqrt{2N}}  & \frac{-1}{\sqrt{2N}} & 0        & \cdots & \frac{1}{\sqrt{2N(N-1)}}   & 0        & \cdots & \frac{-1}{\sqrt{2N(N-1)}} \\
+             \vdots               & \vdots               & \vdots   & \ddots & \vdots                     & \vdots   & \ddots & \vdots \\
+             \frac{1}{\sqrt{2N}}  & \frac{1}{\sqrt{2N}}  & 0        & \cdots & \frac{1-N}{\sqrt{2N(N-1)}} & 0        & \cdots & \frac{1-N}{\sqrt{2N(N-1)}} \\
+             \frac{1}{\sqrt{2N}}  & \frac{-1}{\sqrt{2N}} & 0        & \cdots & \frac{1-N}{\sqrt{2N(N-1)}} & 0        & \cdots & \frac{N-1}{\sqrt{2N(N-1)}}
+         \end{pmatrix}. \]
+ \end{example}

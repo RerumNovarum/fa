@@ -1,0 +1,187 @@
+\documentclass[a4paper,twoside]{article}
+\usepackage[cp1251]{inputenc}
+\usepackage[T2A]{fontenc}
+\usepackage{array}
+\usepackage{amssymb}
+\usepackage{amsmath}
+\usepackage{amsthm}
+\usepackage{latexsym}
+\usepackage{indentfirst}
+\usepackage{bm}
+\usepackage{enumerate}
+\usepackage[dvips]{graphicx}
+\usepackage{epsf}
+%\usepackage{epsfig}
+%\DeclareGraphicsExtensions{.pdf,.png,.jpg}
+\usepackage{wrapfig}
+\usepackage{euscript}
+\usepackage{indentfirst}
+\usepackage[english,russian]{babel}
+
+\sloppy\unitlength=.24mm
+\renewcommand{\thefootnote}{\arabic{footnote}}
+
+\textwidth=132mm
+\headheight=7mm
+\headsep=5mm
+\textheight=200mm
+\oddsidemargin=0mm
+\evensidemargin=0mm
+\topmargin=0mm
+
+\newcommand{\firstheader}[1]{\noindent\textbf{#1}\nopagebreak\bigskip}
+\newcommand{\header}[1]{\bigskip\medskip\noindent\textbf{#1}\nopagebreak\bigskip}
+\newcommand{\subheader}[1]{\bigskip\medskip\noindent\emph{#1}\nopagebreak\bigskip}
+\newcommand{\subsub}[1]{\bigskip\medskip\noindent\emph{#1}\nopagebreak\bigskip}
+
+\theoremstyle{theorem}
+\newtheorem{theorem}{Теорема}
+\newtheorem{Theorem}{Теорема}
+\newtheorem{definition}{Определение}
+\newtheorem{Def}{Определение}
+\newtheorem{corollary}{Следствие}
+\newtheorem{proposition}{Предложение}
+\newtheorem{prop}{Предположение}
+\newtheorem{lemma}{Лемма}
+\newtheorem{assumption}{Предположение}
+\newtheorem{Lemma}{Лемма}
+\newtheorem{Cons}{Следствие}
+\newtheorem{Proposition}{Предложение}
+\newtheorem{Statement}{Утверждение}
+\newtheorem{statement}{Утверждение}
+\theoremstyle{remark}
+\newtheorem{remark}{Замечание}
+\newtheorem{Remark}{Замечание}
+\newtheorem{example}{Пример}
+\newtheorem{Example}{Пример}
+\newtheorem{notation}{Замечание}
+\newtheorem{teo}{Теорема}
+\newtheorem{sled}{Следствие}
+\newtheorem{sublemma}[theorem]{\indent\bf Подлемма}
+\newtheorem{problem}{\indent\bf Проблема}
+\newtheorem{hypothesis}{\indent\bf Гипотеза}
+\newtheorem{denotation}[theorem]{\indent\bf Обозначение}
+\newtheorem{thr}{Теорема}
+\newtheorem{crl}[thr]{Следствие}
+\newtheorem{lmm}[thr]{Лемма}
+\newtheorem{qu}{Вопрос}
+\newtheorem{dfn}{Определение}
+\newtheorem{approval}{Утверждение}
+
+% нумерацию можно оставить как есть
+\newcommand{\pages}{1-8}
+
+\begin{document}
+\pagestyle{headings}
+\makeatletter
+\renewcommand{\@evenhead}{\raisebox{0pt}[\headheight][0pt]{\vbox{\hbox to\textwidth{\thepage\hfill \strut {\small \input{author}}}\hrule}}}
+\renewcommand{\@oddhead}{\raisebox{0pt}[\headheight][0pt]{\vbox{\hbox to\textwidth{{\small \input{title} }\hfill \strut\thepage}\hrule}}}
+\makeatother
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Заголовок
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+\thispagestyle{plain}
+УДК \input{udc}
+\begin{center}
+    {\bf \input{title}}
+\vspace{4mm}\par
+    {\bf \input{author}}\\
+    $^{*}$\input{university} \\
+\end{center}
+\vspace{2mm}\par
+
+\begin{center}
+\renewcommand{\arraystretch}{0}
+\begin{tabular}{c}
+\hline
+\rule{0pt}{2mm}\\
+\small\it
+Поступила в редакцию xx.xx.xxxx,
+после переработки xx.xx.xxxx.
+\\
+\rule{0pt}{2mm}\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{quote}
+    \input{abstract}
+\end{quote}
+
+\begin{quote}
+    {\bf Ключевые слова:} \input{keywords}.
+\end{quote}
+{\small {\it Вестник ТвГУ. Серия: Прикладная математика. XXXX. № X. С.~\pages.}}
+\vspace{5mm}
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+% Статья
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+\firstheader{Введение}
+
+\input{intro}
+
+\header{Основные результаты и доказательство}
+
+\input{body}
+
+\header{Заключение}
+
+\input{afterword}
+
+
+\bigskip\bigskip\def\refname{\centerline{Список литературы}}
+\begin{thebibliography}{99}
+        \input{thebibliography}
+\end{thebibliography}
+
+\bigskip\medskip{\centerline{\bf Библиографическая ссылка}}\medskip
+{Бенинг В.Е., Савушкин В.А. О дефекте выборочной медианы в случае выборок случайного объема // Вестник ТвГУ. Серия: Прикладная математика. 2016. №~2. С.~\pages.}
+
+\bigskip\medskip{\centerline{\bf Сведения об авторах}}
+\input{about-authors}
+
+\newpage
+\thispagestyle{plain}
+%%%%%%%%%%%%%%%%%%%%%%%%%%
+\begin{center}
+    {\bf \input{title-en}}
+\vspace{4mm}\par
+    {\bf \input{author-en}}\\
+    \input{author-position-en}\\
+    {\it \input{university-addr-en}.\\ E-mail: \input{author-email}}\\ \vspace{2mm}
+\end{center}
+\vspace{2mm}\par
+
+\begin{center}
+\renewcommand{\arraystretch}{0}
+\begin{tabular}{c}
+\hline
+\rule{0pt}{2mm}\\
+\small\it
+Received XX.XX.XXXX,
+revised XX.XX.XXXX.
+\\
+\rule{0pt}{2mm}\\
+\hline
+\end{tabular}
+\end{center}
+
+\begin{quote}
+    \input{abstract-en}
+\end{quote}
+\begin{quote}
+    {\bf Keywords:} \input{keywords-en}.
+\end{quote}
+\vspace{5mm}
+
+\bigskip{\centerline{\bf Bibliographic citation}}\medskip
+{\input{author-en}. \input{title-en}. {\it Vestnik TvGU. Seriya: Prikladnaya Matematika} [Herald of Tver State University. Series: Applied Mathematics], 2017, no.~X, pp. \pages.} (in Russian) 
+
+
+\bigskip\bigskip\def\refname{\centerline{References}}
+\input{thebibliography-en}
+\end{document}
