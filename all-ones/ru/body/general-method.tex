@@ -24,32 +24,51 @@
     \]
 В~дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми.
 
-Следуя общей схеме метода подобных операторов \cite{baskakov-split},
+Следуя общей схеме метода подобных операторов~\cite{baskakov-split},
 будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
 в~виде \( \mathcal{A} - \mathfrak{J} X \)
 с~матрицей преобразования подобия \( E + \Gamma X \),
-где \( E = (\delta_{ij}) \)~--- единица алгебры \( \mathtt{Matr}_N\mathbb{C} \),
-      (\( \delta_{ij} = \left\{\begin{aligned} 1, i=j \\ 0, i\neq j \end{aligned} \right. \)
-         ~--- символ Кронекера).
-\( \mathfrak{J},\Gamma \)~--- линейные операторы,
-действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \) и~подбираемые
-в~ходе решения так, чтобы упростить \( \mathcal{A} - \mathfrak{J}X \).
-Матрица \( \mathcal{A} \) при этом интерпретируется как ``идеальная'',
-а~\( \mathcal{B} \) считается возмущением.
-Короче, будем решать в~банаховой алгебре матриц порядка \( N \) уравнение
-\begin{equation}\label{kozlukovsv:eq:similarity}
-    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
-    \end{equation}
-Оператор \( \mathfrak{J} \) обычно выбирают проектором (\(\mathfrak{J}^2=\mathfrak{J}\)).
-\( \Gamma \) определяют поточечно, как решение уравнения
-\( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J} X, \quad X\in\mathtt{Matr}_N\mathbb{C} \),
-где \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = \mathtt{ad}_{\mathcal{A}} \Gamma X \),
-\(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)
---- оператор коммутирования с \( \mathcal{A} \).
-Ясно, \( \mathcal{A}-\mathfrak{J}X \) имеет тем более простую структуру,
-чем шире ядро проектора \( \mathfrak{J} \).
-Уравнение для \( \Gamma \) в~свою очередь не позволяет сузить ядро слишком сильно.
+где \( E\in{\mathtt{Matr}_N\mathbb{C}} \)~--- единичная матрица,
+\( \mathfrak{J},\Gamma : \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)~--- линейные операторы,
+действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \), подбираемые
+в~ходе решения,
+      прич\"ем \( \mathfrak{J} \) --- проектор (\(\mathfrak{J}^2=\mathfrak{J}\)),
+      а \( \Gamma \)
+      при всех \( X\in {\mathtt{Matr}_N\mathbb{C}} \) % \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in {\mathtt{Matr}_N\mathbb{C}} \)
+      удовлетворяет уравнению
+          \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J}X. \)
+% Короче, будем решать в~банаховой алгебре матриц порядка \( N \) уравнение
+% \begin{equation}\label{kozlukovsv:eq:similarity}
+%     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+%     \end{equation}
+% Оператор \( \mathfrak{J} \) обычно выбирают проектором (\(\mathfrak{J}^2=\mathfrak{J}\)).
+% \( \Gamma \) определяют поточечно, как решение уравнения
+% \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J} X, \quad X\in\mathtt{Matr}_N\mathbb{C} \),
+% где \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = \mathtt{ad}_{\mathcal{A}} \Gamma X \),
+% \(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)
+% --- оператор коммутирования с \( \mathcal{A} \).
+% Ясно, \( \mathcal{A}-\mathfrak{J}X \) имеет тем более простую структуру,
+% чем шире ядро проектора \( \mathfrak{J} \).
+% Уравнение для \( \Gamma \) в~свою очередь не позволяет сузить ядро слишком сильно.
 
+\begin{lem}
+    Этим ограничениям удовлетворяют только операторы \( \mathfrak{J} \) и \( \Gamma \),
+    заданные следующими формулами:
+    \[
+        \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
+    \[
+        \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
+        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \).
+
+\end{lem}
+\begin{crl}
+    Спектр блочно-диагональной матрицы
+    \( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
+    есть объединение спектров е\"е диагональных блоков:
+    \[
+        \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
+\end{crl}
+\begin{proof}
 Пусть \( \Gamma \) действует по формуле
 \( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
                               \Gamma_{21}(X) & \Gamma_{22}(X)
@@ -76,25 +95,40 @@
     \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
 \[
     \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
+\end{proof}
 
-Ясно, что при этом спектр блочно-диагональной матрицы
-\( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
-есть объединение спектров е\"е диагональных блоков:
-\[ \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
-
-Уравнение \eqref{kozlukovsv:eq:similarity} можно свести~к
+Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
+и \( \mathcal{A} - \mathfrak{J} X \):
+\begin{equation}\label{kozlukovsv:eq:similarity}
+    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+\end{equation}
+\begin{lem}
+    Уравнение~\eqref{kozlukovsv:eq:similarity} эквивалентно уравнению
+    \begin{equation}\label{kozlukovsv:eq:fixptn}
+        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+    \end{equation}
+\end{lem}
+\begin{proof}
+Раскрывая скобки, уравнение~\eqref{kozlukovsv:eq:similarity} можно преобразовать к виду
 \begin{equation}\label{kozlukovsv:eq:fixptn-ini}
     X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) \mathfrak{J} X.
 \end{equation}
-Применив к~обеим частям уравнения оператор \( \mathfrak{J} \) получим выражение
- \( (\Gamma X) \mathfrak{J} X = (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))) \),
- которое подставим обратно в~\eqref{kozlukovsv:eq:fixptn-ini}:
-\begin{equation}\label{kozlukovsv:eq:fixptn}
-    X = \Phi(X) \equiv \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (\Gamma X + E))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
-\end{equation}
+Пусть для \( X \) выполнено~\eqref{kozlukovsv:eq:fixptn-ini}.
+Тогда
+    \begin{equation}\label{kozlukovsv:eq:jx}
+        \mathfrak{J} X = \mathfrak{J}(\mathcal{B} (E + \Gamma X)).
+    \end{equation}
+Подставляя это выражение обратно в~\eqref{kozlukovsv:eq:fixptn-ini}
+    получим~\eqref{kozlukovsv:eq:fixptn}.
+Обратно, применяя \( \mathfrak{J} \) к обеим частям уравнения~\eqref{kozlukovsv:eq:fixptn},
+    получаем~\eqref{kozlukovsv:eq:jx} и~\eqref{kozlukovsv:eq:fixptn-ini}.
+\end{proof}
 
+Выражение в правой части уравнения~\eqref{kozlukovsv:eq:fixptn} обозначим как
+\[
+    \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))).\]
 Теперь покажем, что, при определ\"енных условиях,
-возникшее нелинейное отображение \( \Phi \) имеет инвариантным множеством
+возникшее нелинейное отображение \( \Phi:\mathtt{Matr}_N\mathbb{C}\to \mathtt{Matr}_N\mathbb{C} \) имеет инвариантным множеством
 некоторый шар \( \Omega \subset \mathtt{Matr}_N\mathbb{C} \) с~центром в~нуле
 (т.е.~\( \Phi(\Omega)\subset\Omega \)),
 на котором оно является сжимающим.
@@ -132,7 +166,7 @@
     соответствующего уравнения положителен и~его корни вещественны.
 Из знаков коэффициентов возникшего многочлена видно, что оба корня положительны.
 Следовательно, наименьший положительный \( r \),
-    удовлетворяющий неравенству \eqref{kozlukovsv:ineq:invariance-radius}
+    удовлетворяющий неравенству~\eqref{kozlukovsv:ineq:invariance-radius}
     есть наименьший корень
     соответствующего уравнения:
     \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
@@ -167,7 +201,7 @@
 Отсюда и~из теоремы Банаха о~неподвижной точке следует:
 \begin{lem}
 В~шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
-    существует и~при том единственное решение \( X^o \) уравнения \eqref{kozlukovsv:eq:fixptn},
+    существует и~при том единственное решение \( X^o \) уравнения~\eqref{kozlukovsv:eq:fixptn},
     являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
     где \( \Phi^k = \Phi\circ\Phi^{k-1} \)~--- композиция.
 \end{lem}
