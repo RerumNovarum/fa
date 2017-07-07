@@ -33,10 +33,12 @@
 действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \), подбираемые
 в~ходе решения,
       прич\"ем \( \mathfrak{J} \) --- проектор (\(\mathfrak{J}^2=\mathfrak{J}\)),
+      ``упрощающий'' возмущение \( \mathfrak{J}X \),
       а \( \Gamma \)
       при всех \( X\in {\mathtt{Matr}_N\mathbb{C}} \) % \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in {\mathtt{Matr}_N\mathbb{C}} \)
       удовлетворяет уравнению
           \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J}X. \)
+
 % Короче, будем решать в~банаховой алгебре матриц порядка \( N \) уравнение
 % \begin{equation}\label{kozlukovsv:eq:similarity}
 %     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
@@ -52,8 +54,8 @@
 % Уравнение для \( \Gamma \) в~свою очередь не позволяет сузить ядро слишком сильно.
 
 \begin{lem}
-    Этим ограничениям удовлетворяют только операторы \( \mathfrak{J} \) и \( \Gamma \),
-    заданные следующими формулами:
+    Операторы \( \mathfrak{J} \) и \( \Gamma \)
+    следует задать формулами
     \[
         \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
     \[
@@ -83,10 +85,12 @@
     X - \mathfrak{J} X =
     N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
         - \Gamma_{21}(X) & 0
-        \end{pmatrix}.
-    \]
+        \end{pmatrix}. \]
 
-Положим для \( X =
+Значит, \( \mathfrak{J} \) может обнулить вс\"е,
+    кроме двух диагональных блоков размеров \( 1\times 1 \)
+    и \( (N-1)\times(N-1) \),
+поэтому для \( X =
     \begin{pmatrix}
     x_{11} & X_{12} \\
     X_{21} & X_{22}
