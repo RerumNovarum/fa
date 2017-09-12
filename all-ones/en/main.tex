@@ -1,0 +1,58 @@
+\documentclass[12pt,a4paper,twoside]{article}
+
+\usepackage{amsmath}
+\usepackage{mathtools}
+\usepackage{mathrsfs}
+\usepackage{unicode-math}
+\usepackage{marginnote}
+\usepackage{hyperref}
+\usepackage{tabularx}
+
+\usepackage{fontspec}
+% \setmainfont{CMU Serif}
+
+\usepackage{amsthm}
+\newtheorem{thm}{Theorem}
+\newtheorem{lem}[thm]{Lemma}
+\newtheorem{crl}[thm]{Corollary}
+\theoremstyle{definition}
+\newtheorem{dfn}{Definition}
+
+\begin{document}
+
+\noindent {UDK 517.984.3 : 519.177}
+
+\begin{center}
+    \textbf{ON SPECTRAL PROPERTIES OF AN ADJACENCY MATRIX OF AN ALMOST-COMPLETE GRAPH}
+    
+    \textbf{Sergey Kozlukov}\\[2mm]
+    \emph{Voronezh State University}
+\end{center}
+
+% \maketitle
+
+\begin{abstract}
+    \input{body/summary}
+\end{abstract}
+
+%\keywords{Метод Подобных Операторов,
+%          собственные значения,
+%          спектр графа}{
+%          The Similar Operators Method,
+%          eigenvalues,
+%          graphs spectra}
+
+\section*{Introduction and the main result}
+\input{body/intro}
+\section*{Preliminary transformations}
+\input{body/prep-all-ones}
+% \clearpage
+\subsection*{Splitting the matrix and estimating eigenvalues}
+\input{body/general-method}
+\input{body/final-estimates}
+
+
+\smallskip\centerline{\bf Bibliography} 
+\input{bibliography}
+
+\end{document}
