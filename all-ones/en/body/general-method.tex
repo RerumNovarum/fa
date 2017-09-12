@@ -6,7 +6,7 @@ We will write \( \mathbb{C}^{N\times N} \) matrices down in the block form:
     \end{pmatrix}, \)
     where \( x_{11} \) is a~scalar,
     \( X_{12} \)~--- a~row, \( X_{21} \)~--- a~column vector,
-    \( X_{22} \)~--- a \( {(N{-}1){\times}(N{-}1)} \)~matrix.
+    \( X_{22} \)~--- an \( {(N{-}1){\times}(N{-}1)} \)~matrix.
 Such block matrices form an algebra that is isomorphic to \( \mathbb{C}^{N\times N} \)
 and they can be multiplied by elements of \( \mathbb{C}\times\mathbb{C}^{N-1}\sim\mathbb{C}^N \)
 in a natural way:
@@ -127,7 +127,7 @@ Denote the right hand side expression of~\eqref{kozlukovsv:eq:fixptn} as
 \[
     \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))).
     \]
-Let's show that under certain restrictions
+Let's show that
     this nonlinear mapping \( \Phi:\mathbb{C}^{N{\times}N}{\to}\mathbb{C}^{N{\times}N} \)
     restricted to a~cetrain zero-centered ball \( \Omega \subset \mathbb{C}^{N{\times}N} \)
     is a contraction.
@@ -154,6 +154,7 @@ We want to find such a radius \( r \geq 0 \),
 That is we seek for such an \( r \)
     that \( \|X\|,\|Y\| \leq r \) implies \( \|\Phi(X)\| \leq r \)
 and~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
+
 Denote
 \( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
 
@@ -178,7 +179,7 @@ If \( \gamma\beta \leq \frac14 \),
     then the discriminant \( \Delta = 1-4\gamma\beta \)
     of the corresponding equation is positive.
 The coefficients of the polynomial imply the roots are real and positive.
-Hence the smallest \( r \),
+Hence the smallest \( r>0 \),
     that satisfies~\eqref{kozlukovsv:ineq:invariance-radius} is
     \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
 Finally \( \gamma\beta<\frac14 \) implies \( r_0 < 4\beta \).
@@ -216,13 +217,13 @@ These two lemmas and the Banach fix-point theorem imply
     \[
         \Omega = \left\{ X\in\mathbb{C}^{N{\times}N}; \quad \|X\| \leq r_0 \right\}.
         \]
-    This solution is a limit of the sequence \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
+    This solution is a limit of a sequence \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
     where \( \Phi^k = \Phi\circ\Phi^{k-1} \) denotes a composition.
 \end{lem}
 
 \begin{crl}
-The matrix \( \mathcal{A} - \mathcal{B} \) is similar
-    to a block-diagonal matrix \( \mathcal{A} - \mathfrak{J} X^o \):
+The matrix \( \mathcal{A}{-}\mathcal{B} \) is similar
+    to a block-diagonal matrix \( \mathcal{A}{-}\mathfrak{J} X^o \):
 \[
     \mathcal{A} - \mathcal{B} \sim
     \begin{pmatrix}
@@ -250,5 +251,5 @@ and the following conditions are satisfied:
     \[
         \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0.
         \]
-    The final note is that \( x_{11}^o \) is a real number for it is a limit of convergent real sequence.
+    The final note is that \( x_{11}^o \) is a real number for it is a limit of a convergent real sequence.
 \end{proof}
