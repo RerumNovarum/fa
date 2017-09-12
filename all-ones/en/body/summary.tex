@@ -1,58 +1,61 @@
 Suppose
-\[
+\begin{equation}\label{eq:kozlukovsv:amn}
     \mathscr{A}_{MN} =
     \begin{pmatrix}
         1 & \cdots & 1 \\
         \vdots & \ddots & \vdots \\
         1 & \cdots & 1
-    \end{pmatrix} - \mathscr{B}
-    \]
-is a~\( N\times N \) matrix composed of
-\( N^2 - M \) unities and \( M \) zeroes.
+    \end{pmatrix} - \mathscr{B}_{MN}
+\end{equation}
+    is a~\( N\times N \) matrix composed of
+    \( N^2 - M \) unities and \( M \) zeroes.
 If considered as an adjacency matrix \( \mathscr{A}_{MN} \)
-defines a~complete digraph with loops on \( N \) vertices
-with some \( M \) out of \( N^2 \) total edges removed.
+    defines a~complete digraph (with loops) on \( N \) vertices
+    with some \( M \) out of \( N^2 \) total edges removed.
 Some important properties of a~graph are determined by its spectrum.
 For example Wang et al. \cite{epidemic} proposed a~discrete-time model
-of viral propagation in a~network.
-In that model a virus will die out or linger on
-depending on whether the ratio of curing and infection rates
-is below or above the treshold value.
+    of viral propagation in a~network.
+In this work it is shown that the ratio
+    of the cure and the infection probabilities
+    being belove or above a certain treshold value
+    determines whether the contamination will take an epidemic form
+    or fade out.
 Wang et al. have shown that treshold value
-to be the spectral radius of the adjacency matrix of the network,
-i.e. the largest absolute value of its eigenvalues.
-More comprehensive description of spectral graph theory
-and its application is given by Cv\`etkovic et al. \cite{cvet}.
+    to be the spectral radius of the adjacency matrix of the network,
+    i.e. the largest absolute value of its eigenvalues.
+A more comprehensive description of spectral graph theory
+    and its application is given by Cv\`etkovic et al. \cite{cvet}.
 
-This article analyzes spectral properties of such matrices.
-The matrix \( \mathscr{A}_{MN} \) can be represented in the form
-\( \mathscr{A}_{MN} = \mathcal{J}_N - \mathscr{B}_{MN} \),
-where \( \mathcal{J}_N \) is a~\( N\times N \) matrix
-whose all entries are ones
-and \( \mathcal{B}_{MN} \) has unities exactly at these \( M \)
-places where \( \mathscr{A}_{MN} \) has zeroes.
+This article analyzes spectral properties of matrices such as \eqref{eq:kozlukovsv:amn}.
+First of all the matrix \( \mathscr{A}_{MN} \) can be represented in the form
+    \( \mathscr{A}_{MN} = \mathcal{J}_N - \mathscr{B}_{MN} \),
+    where \( \mathcal{J}_N \) is a~\( N\times N \) matrix
+    whose all entries are ones
+    and \( \mathcal{B}_{MN} \) has ones exactly at these \( M \)
+    places where \( \mathscr{A}_{MN} \) has zeros.
 The spectrum of \( \mathcal{J}_N \) can be easily computed:
-\( \mathcal{J}_N^2 = N \mathcal{J} \),
-so \( \lambda(\lambda - N) \) is the minimal
-annihilating polynomial of \( \mathcal{J}_N \)
-and hence the spectrum of \( \mathcal{J}_{N} \) is
-\( \sigma(\mathcal{J}_N) = \{ 0,N \} \).
+    \( \mathcal{J}_N^2 = N \mathcal{J} \),
+    so \( \lambda(\lambda - N) \) is the minimal
+    annihilating polynomial of \( \mathcal{J}_N \)
+    and thus the spectrum of \( \mathcal{J}_{N} \) is
+    \( \sigma(\mathcal{J}_N) = \{ 0,N \} \).
 
-If the \( M \) is small enough, then the eigenvalues of \( \mathscr{A}_{MN} \)
-should be ``close'' to those of \( \mathcal{J}_N \).
-The method of similar operators \cite{baskakov-harmonic,baskakov-split} is used
-to prove the following
+Be \( M \) small enough
+    the eigenvalues of \( \mathscr{A}_{MN} \) would be close to those of \( \mathcal{J}_N \).
+Applying the method of similar operators (see \cite{baskakov-harmonic,baskakov-split})
+    we prove the following theorem:
 \begin{thm}\label{kozlukovsv:thm:almost-all-ones}
     Let \( M < \frac{N^2}{16} \),
-    then the spectrum of \( \mathscr{A}_{MN} \) can be represented as a~disjoint union
+    then the spectrum of \( \mathscr{A}_{MN} \)
+    can be represented as a~disjoint union
     \( \sigma\left(\mathscr{A}_{MN}\right) = \sigma_1 \cup \sigma_2 \)
     of a~singletone \( \sigma_1=\{\lambda_1\} \)
-    and the set \( \sigma_2 \), satisfying the following conditions:
+    and the set \( \sigma_2 \) satisfying the following restrictions:
     \[
         \sigma_1 \subset \left\{
-            \mu\in\mathbb{R}; %\lvert \mu - N \rvert < 4\sqrt{M}
+            \mu\in\mathbb{R};\ \lvert N - \mu \rvert < 4\sqrt{M}
             \right\},
         \]
-    \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C}; \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
+    \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C};\ \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
 \end{thm}
 
