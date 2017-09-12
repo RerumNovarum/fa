@@ -1,48 +1,57 @@
-Доказательство состоит в~построении уравнения для матрицы, подобной \( \mathscr{A}_{MN} \),
- но устроеной ``проще''. Решение возникающего нелинейного уравнения
- в~банаховой алгебре \( \mathtt{Matr}_N\mathbb{C} \)
- доставляется методом простых итераций (см., например,~\cite{baskakov-harmonic}).
+Matrices \( \mathcal{A}_1, \mathcal{A}_2 \in\mathbb{C}^{N\times N} \)
+    are said to be similar, if
+    there exists such an invertible matrix \( \mathcal{U}\in\mathbb{C}^{N\times N} \)
+    that \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
+Similar matrices are isospectral, i.e. they have exact same spectra.
 
-Подобие матриц \( \mathcal{A}_1, \mathcal{A}_2 \)
- понимается в~смысле существования обратимой матрицы \( \mathcal{U} \),
- такой что \( \mathcal{A}_1 \mathcal{U} = \mathcal{U} \mathcal{A}_2 \).
-Подобные матрицы изоспектральны (их спектры совпадают).
+The proof of the theorem \eqref{kozlukovsv:thm:almost-all-ones} consists of construction of a matrix
+    \emph{similar} to \( \mathscr{A}_{MN} \) (and thus isospectral)
+    yet having ``simpler structure''.
+The problem is reduced to a nonlinear equation in the Banach algebra
+    \( \mathbb{C}^{N\times N} \) of \( N\times N \) complex matrices.
+The existence of the solution of this equation is proved
+    and norm estimates are derived using the fix-point iteration~\cite{baskakov-harmonic}.
 
-Провед\"ем предварительные преобразования.
+Let's approach the problem by analyzing the \( \mathcal{J}_N \) first.
 
 \begin{lem}
-    Матрица единиц 
+    The all-ones matrix
     \( \mathcal{J}_N =
     \begin{pmatrix}
         1 & \cdots & 1 \\
         \vdots & \ddots & \vdots \\ 
     1 & \cdots & 1 \end{pmatrix} \),
-    подобна матрице
+    is similar to the matrix
     \[
         \mathcal{A} = \begin{pmatrix}
             N & 0 & \cdots & 0 \\
             0 & 0 & \cdots & 0 \\
             \vdots & \vdots & \ddots & \vdots \\
             0 & 0 & \cdots & 0 \end{pmatrix}. \]
-    Точнее, существует ортогональная матрица \( \mathcal{U} \),
-    такая что
+    There exists an orthogonal matrix \( \mathcal{U} \),
+    such that
     \( \mathcal{J}_N = \mathcal{U}\mathcal{A} \mathcal{U}^{-1} \).
 \end{lem}
 \begin{proof}
-    Собственному значению \( 0 \) соответствует \( N-1 \) независимый собственный вектор
+    The kernel of \( \mathcal{J}_N \)
+        is a \( (N-1) \)-dimensional subspace
+        with the basis
         \( f_1 = {\left(1,-1,0,\ldots,0\right)}, \ldots,
-           f_{N-1} = {\left(0,\ldots,0,1,-1\right)} \),
-    а~собственному значению \( N \) матрицы \( \mathcal{J}_N \) 
-    соответствует собственный вектор \( f_N = {\left(1,\ldots,1\right)} \).
-    Применив ортогонализацию Грамма-Шмидта, получим ортонормальную систему \( h_1, \ldots, h_N \):
+           f_{N-1} = {\left(0,\ldots,0,1,-1\right)} \).
+    The eigenvalue \( N \) of the matrix \( \mathcal{J}_N \) 
+        has a single corresponding eigenvector
+        \( f_N = {\left(1,\ldots,1\right)} \).
+    Applying the Gram-Schmidt process,
+        we get vectors \( h_1, \ldots, h_N \)
+        which form an orthonormal eigenbasis of the matrix \( \mathcal{J}_N \):
     \[
         h_k = \frac{1}{\sqrt{k(k+1)}}
-            \left(\smash{\underbrace{1,~\ldots,~1,}_{k \text{ раз}}}~-k,~0,~\ldots,~0\right)
-            \in \mathbb{R}^N, \quad k={1, \ldots, N-1} \]
+            \left(\smash{\underbrace{1,~\ldots,~1,}_{k\ \text{times}}}~-k,~0,~\ldots,~0\right)
+            \in \mathbb{R}^N, \quad k={1, \ldots, N-1}, \]
     \[
-        h_N = {\left(1,~\ldots,~1\right)} \in \mathbb{R}^N, \]
-    В~качестве матрицы \( \mathcal{U} \) выберем матрицу,
-    имеющую столбцами векторы \( h_N, h_1, \ldots, h_{N-1} \):
+        h_N = \frac{1}{\sqrt{N}}{\left(1,~\ldots,~1\right)} \in \mathbb{R}^N, \]
+    The matrix \( \mathcal{U} \) is then
+    comprised of column-vectors \( h_N, h_1, \ldots, h_{N-1} \):
     \[ \mathcal{U} =
     \begin{pmatrix}
         \frac{1}{\sqrt N} &  \frac{1}{\sqrt2} &  \frac{1}{\sqrt{6}} & \cdots & \frac{1}{\sqrt{(N-2)(N-1)}} & \frac{1}{\sqrt{N(N-1)}} \\
@@ -56,6 +65,8 @@
     \end{pmatrix}.\]
 \end{proof}
 
-Таким образом, исходная матрица \( \mathcal{A}_{MN} \) подобна матрице
-\( \mathcal{A} - \mathcal{B} \), где \( \mathcal{B} = \mathcal{U}^{-1} \mathscr{B}_{MN} \mathcal{U} \).
-Далее ортогональность матрицы \( U \) будет играть важную роль.
+The matrix \( \mathcal{A}_{MN} \) is of actual interest
+    and it is clearly similar to the matrix
+    \( \mathcal{A} - \mathcal{B} \),
+    where \( \mathcal{B} = \mathcal{U}^{-1} \mathscr{B}_{MN} \mathcal{U} \).
+The matrix \( \mathcal{U} \) is orthogonal and thus \( \|\mathcal{B}\| = \|\mathscr{B}_{MN}\| \).
