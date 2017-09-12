@@ -1,16 +1,15 @@
-Матрицы из \( \mathtt{Matr}_N\mathbb{C} \) будем записывать в~блочном виде
-\( X \sim
+We will write \( \mathbb{C}^{N\times N} \) matrices down in the block form:
+\( X{\sim}
     \begin{pmatrix}
     x_{11} & X_{12} \\
     X_{21} & X_{22}
     \end{pmatrix}, \)
-    где \( x_{11} \)~--- число,
-    \( X_{12} \)~--- строка, \( X_{21} \)~--- столбец,
-    \( X_{22} \)~--- квадратный блок размерности \( N-1 \).
-Такие блочные матрицы сами образуют алгебру, изоморфную исходной
-и~их можно естественным образом умножать
-на элементы пространства \( \mathbb{C}\times\mathbb{C}^{N-1} \),
-изоморфного~\( \mathbb{C}^N \):
+    where \( x_{11} \) is a~scalar,
+    \( X_{12} \)~--- a~row, \( X_{21} \)~--- a~column vector,
+    \( X_{22} \)~--- a \( {(N{-}1){\times}(N{-}1)} \)~matrix.
+Such block matrices form an algebra that is isomorphic to \( \mathbb{C}^{N\times N} \)
+and they can be multiplied by elements of \( \mathbb{C}\times\mathbb{C}^{N-1}\sim\mathbb{C}^N \)
+in a natural way:
 \[
     \begin{pmatrix}
     x_{11} & X_{12} \\
@@ -20,92 +19,85 @@
   = \begin{pmatrix}
       x_{11} x_1 + X_{12} x_2 \\
       X_{21} x_1 + X_{22} x_2
-      \end{pmatrix},\quad x \sim \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}\in \mathbb{C}\times\mathbb{C}^{N-1}.
+      \end{pmatrix},\quad x \sim
+      \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
+          \in \mathbb{C}\times\mathbb{C}^{N-1}.
     \]
-В~дальнейших выкладках изоморфные объекты понимаются взаимозаменяемыми.
+Throughout the rest of the document isomorphic objects
+    are used interchangeably.
 
-Следуя общей схеме метода подобных операторов~\cite{baskakov-split},
-будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
-в~виде \( \mathcal{A} - \mathfrak{J} X \)
-с~матрицей преобразования подобия \( E + \Gamma X \),
-где \( E\in{\mathtt{Matr}_N\mathbb{C}} \)~--- единичная матрица,
-\( \mathfrak{J},\Gamma : \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)~--- линейные операторы,
-действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \), подбираемые
-в~ходе решения,
-      прич\"ем \( \mathfrak{J} \) --- проектор (\(\mathfrak{J}^2=\mathfrak{J}\)),
-      ``упрощающий'' возмущение \( \mathfrak{J}X \),
-      а \( \Gamma \)
-      при всех \( X\in {\mathtt{Matr}_N\mathbb{C}} \) % \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in {\mathtt{Matr}_N\mathbb{C}} \)
-      удовлетворяет уравнению
-          \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J}X. \)
-
-% Короче, будем решать в~банаховой алгебре матриц порядка \( N \) уравнение
-% \begin{equation}\label{kozlukovsv:eq:similarity}
-%     (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
-%     \end{equation}
-% Оператор \( \mathfrak{J} \) обычно выбирают проектором (\(\mathfrak{J}^2=\mathfrak{J}\)).
-% \( \Gamma \) определяют поточечно, как решение уравнения
-% \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J} X, \quad X\in\mathtt{Matr}_N\mathbb{C} \),
-% где \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = \mathtt{ad}_{\mathcal{A}} \Gamma X \),
-% \(  \mathtt{ad}_{\mathcal{A}}: \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)
-% --- оператор коммутирования с \( \mathcal{A} \).
-% Ясно, \( \mathcal{A}-\mathfrak{J}X \) имеет тем более простую структуру,
-% чем шире ядро проектора \( \mathfrak{J} \).
-% Уравнение для \( \Gamma \) в~свою очередь не позволяет сузить ядро слишком сильно.
+Following the similar operators method~\cite{baskakov-split},
+    we'll seek for a matrix \( X \) such that
+\begin{equation}\label{kozlukovsv:eq:similarity}
+    (\mathcal{A-B})(E+\Gamma X) =
+    (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X),
+    \ X\in\mathbb{C}^{N{\times}N}.
+\end{equation}
+That is \( \mathcal{A}{-}\mathfrak{J} X \) is a ``simpler'' matrix
+    that is similar to \( \mathcal{A}{-}\mathcal{B} \)
+    and \( E{+}\Gamma X \) is the similarity matrix.
+Here \( E\in{\mathbb{C}^{N{\times}N}} \) is an identity matrix,
+    \( \mathfrak{J},\Gamma{:}\ \mathbb{C}^{N{\times}N}{\to}\mathbb{C}^{N{\times}N} \)
+    are yet-to-be-picked linear operators called \emph{transformations}.
+\( \mathfrak{J} \) is some projection (\(\mathfrak{J}^2=\mathfrak{J}\))
+    such that \( \mathcal{A} - \mathfrak{J}X \) is a block-diagonal matrix.
+The \( \Gamma \) is defined on every
+    \( X\in {\mathbb{C}^{N{\times}N}} \)
+    by the equation
+\begin{equation}\label{eq:kozlukovsv:gamma}
+    \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J}X.
+\end{equation}
 
 \begin{lem}
-    Операторы \( \mathfrak{J} \) и \( \Gamma \)
-    следует задать формулами
+    Operators \( \mathfrak{J} \) and \( \Gamma \)
+    shall be defined as
     \[
         \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
     \[
         \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
-        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \).
+     for \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathbb{C}^{N{\times}N} \).
 
 \end{lem}
 \begin{crl}
-    Спектр блочно-диагональной матрицы
-    \( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
-    есть объединение спектров е\"е диагональных блоков:
+    The spectrum of a block-diagonal matrix
+    \( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N{-}x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
+    is the union of the spectra of its diagonal blocks:
     \[
         \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
 \end{crl}
 \begin{proof}
-Пусть \( \Gamma \) действует по формуле
-\( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
-                              \Gamma_{21}(X) & \Gamma_{22}(X)
-                              \end{pmatrix} \), тогда
+Let \( \Gamma \) be defined by formula
+    \( \Gamma X = \begin{pmatrix} \Gamma_{11}(X) & \Gamma_{12}(X) \\
+        \Gamma_{21}(X) & \Gamma_{22}(X)
+    \end{pmatrix} \).
+    Then
 \[
     \mathcal{A} \Gamma X - (\Gamma X)\mathcal{A} = 
     \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
         - N\Gamma_{21}(X) & 0
-        \end{pmatrix}, \]
-и~уравнение для \( \Gamma X \) сводится~к
+        \end{pmatrix}. \]
+The equation \eqref{eq:kozlukovsv:gamma} reduces then to
 \[
     X - \mathfrak{J} X =
     N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
         - \Gamma_{21}(X) & 0
         \end{pmatrix}. \]
+Thus the best we can do with \( \mathfrak{J} \)
+    is to project every \( X \) unto its two diagonal blocks of the sizes
+    of \( 1\times 1 \) and \( (N-1)\times(N-1) \) respectively.
 
-Значит, \( \mathfrak{J} \) может обнулить вс\"е,
-    кроме двух диагональных блоков размеров \( 1\times 1 \)
-    и \( (N-1)\times(N-1) \),
-поэтому для \( X =
-    \begin{pmatrix}
-    x_{11} & X_{12} \\
-    X_{21} & X_{22}
-    \end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \):
+So we define
 \[
     \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
 \[
-    \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}. \]
+    \Gamma X = \frac{1}{N}\begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
+for \( X =
+    \begin{pmatrix}
+    x_{11} & X_{12} \\
+    X_{21} & X_{22}
+    \end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \).
 \end{proof}
 
-Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
-и \( \mathcal{A} - \mathfrak{J} X \):
-\begin{equation}\label{kozlukovsv:eq:similarity}
-    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
-\end{equation}
 \begin{lem}
     Уравнение~\eqref{kozlukovsv:eq:similarity} эквивалентно уравнению
     \begin{equation}\label{kozlukovsv:eq:fixptn}
