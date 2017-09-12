@@ -11,6 +11,7 @@ Such block matrices form an algebra that is isomorphic to \( \mathbb{C}^{N\times
 and they can be multiplied by elements of \( \mathbb{C}\times\mathbb{C}^{N-1}\sim\mathbb{C}^N \)
 in a natural way:
 \[
+    X x \sim
     \begin{pmatrix}
     x_{11} & X_{12} \\
     X_{21} & X_{22}
@@ -19,7 +20,10 @@ in a natural way:
   = \begin{pmatrix}
       x_{11} x_1 + X_{12} x_2 \\
       X_{21} x_1 + X_{22} x_2
-      \end{pmatrix},\quad x \sim
+      \end{pmatrix},
+    \]
+\[
+      x \sim
       \begin{pmatrix} x_1 \\ x_2 \end{pmatrix}
           \in \mathbb{C}\times\mathbb{C}^{N-1}.
     \]
@@ -27,11 +31,10 @@ Throughout the rest of the document isomorphic objects
     are used interchangeably.
 
 Following the similar operators method~\cite{baskakov-split},
-    we'll seek for a matrix \( X \) such that
+    we'll seek for a matrix \( X{\in}\mathbb{C}^{N{\times}N} \) such that
 \begin{equation}\label{kozlukovsv:eq:similarity}
     (\mathcal{A-B})(E+\Gamma X) =
-    (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X),
-    \ X\in\mathbb{C}^{N{\times}N}.
+    (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X).
 \end{equation}
 That is \( \mathcal{A}{-}\mathfrak{J} X \) is a ``simpler'' matrix
     that is similar to \( \mathcal{A}{-}\mathcal{B} \)
@@ -76,7 +79,7 @@ Let \( \Gamma \) be defined by formula
     \begin{pmatrix} 0 & N\Gamma_{12}(X) \\
         - N\Gamma_{21}(X) & 0
         \end{pmatrix}. \]
-The equation \eqref{eq:kozlukovsv:gamma} reduces then to
+The equation \eqref{eq:kozlukovsv:gamma} then reduces to
 \[
     X - \mathfrak{J} X =
     N \begin{pmatrix} 0 & \Gamma_{12}(X) \\
@@ -95,84 +98,96 @@ for \( X =
     \begin{pmatrix}
     x_{11} & X_{12} \\
     X_{21} & X_{22}
-    \end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \).
+    \end{pmatrix} \in \mathbb{C}^{N{\times}N} \).
 \end{proof}
 
 \begin{lem}
-    Уравнение~\eqref{kozlukovsv:eq:similarity} эквивалентно уравнению
+    The equation~\eqref{kozlukovsv:eq:similarity} is equivalent to
     \begin{equation}\label{kozlukovsv:eq:fixptn}
-        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))),\ X\in\mathbb{C}^{N{\times}N}.
     \end{equation}
 \end{lem}
 \begin{proof}
-Раскрывая скобки, уравнение~\eqref{kozlukovsv:eq:similarity} можно преобразовать к виду
+By expansion the equation~\eqref{kozlukovsv:eq:similarity} is reduced to
 \begin{equation}\label{kozlukovsv:eq:fixptn-ini}
     X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X) \mathfrak{J} X.
 \end{equation}
-Пусть для \( X \) выполнено~\eqref{kozlukovsv:eq:fixptn-ini}.
-Тогда
+Suppose \( X \) satisfies~\eqref{kozlukovsv:eq:fixptn-ini}.
+Then
     \begin{equation}\label{kozlukovsv:eq:jx}
         \mathfrak{J} X = \mathfrak{J}(\mathcal{B} (E + \Gamma X)).
     \end{equation}
-Подставляя это выражение обратно в~\eqref{kozlukovsv:eq:fixptn-ini}
-    получим~\eqref{kozlukovsv:eq:fixptn}.
-Обратно, применяя \( \mathfrak{J} \) к обеим частям уравнения~\eqref{kozlukovsv:eq:fixptn},
-    получаем~\eqref{kozlukovsv:eq:jx} и~\eqref{kozlukovsv:eq:fixptn-ini}.
+Substituting this equality back to~\eqref{kozlukovsv:eq:fixptn-ini}
+    we obtain~\eqref{kozlukovsv:eq:fixptn}.
+Conversely applying \( \mathfrak{J} \) to~\eqref{kozlukovsv:eq:fixptn},
+    yields~\eqref{kozlukovsv:eq:jx} and~\eqref{kozlukovsv:eq:fixptn-ini}.
 \end{proof}
 
-Выражение в правой части уравнения~\eqref{kozlukovsv:eq:fixptn} обозначим как
+Denote the right hand side expression of~\eqref{kozlukovsv:eq:fixptn} as
 \[
-    \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))).\]
-Теперь покажем, что, при определ\"енных условиях,
-возникшее нелинейное отображение \( \Phi:\mathtt{Matr}_N\mathbb{C}\to \mathtt{Matr}_N\mathbb{C} \) имеет инвариантным множеством
-некоторый шар \( \Omega \subset \mathtt{Matr}_N\mathbb{C} \) с~центром в~нуле
-(т.е.~\( \Phi(\Omega)\subset\Omega \)),
-на котором оно является сжимающим.
+    \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))).
+    \]
+Let's show that under certain restrictions
+    this nonlinear mapping \( \Phi:\mathbb{C}^{N{\times}N}{\to}\mathbb{C}^{N{\times}N} \)
+    restricted to a~cetrain zero-centered ball \( \Omega \subset \mathbb{C}^{N{\times}N} \)
+    is a contraction.
 
-Пусть в~\( \mathtt{Matr}_N\mathbb{C} \)
-выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
-(т.е.~норма, удовлетворяющая неравенству
- \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
- при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)).
-Нам нужно найти такой радиус \( r \geq 0 \),
-что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
-и~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
-Обозначим
+Suppose there is some submultiplicative norm \( \|\cdot\| \) chosen in~\( \mathbb{C}^{N{\times}N} \),
+    i.e.\ such a norm that satisfies
+    \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
+    for every \( \mathcal{A}_1, \mathcal{A}_2 \in \mathbb{C}^{N{\times}N} \).
+For example one may consider Frobenius norm
+\[
+    \|Z\|_{\mathrm{F}}^2 = \sum_{ij}|z_{ij}|^2,\ Z=(z_{ij})\in\mathbb{C}^{N{\times}N}.
+    \]
+If the norm \( \|\cdot\| \) is submultiplicative,
+    then
+\[
+    \max_{\lambda\in\sigma(Z)}|\lambda| \leq \|Z\|.
+    \]
+
+
+We want to find such a radius \( r \geq 0 \),
+    that the ball \( \{ X{\in}\mathbb{C}^{N{\times}N};\ \|X\|{\leq}r \} \)
+    is an invariant set under \( \Phi \)
+    and \( \Phi \) is a contraction on this set.
+That is we seek for such an \( r \)
+    that \( \|X\|,\|Y\| \leq r \) implies \( \|\Phi(X)\| \leq r \)
+and~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
+Denote
 \( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
 
 \begin{lem}
-    Пусть \( \gamma\beta < \frac14\),
-    тогда шар
+    Let \( \gamma\beta < \frac14\),
+    then the ball
     \[
-        \Omega = \left\{ X\in \mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\}, \]
+        \Omega = \left\{ X\in \mathbb{C}^{N{\times}N}; \|X\| \leq r_0 \right\}, \]
     \[  0 < r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
-    удовлетворяет условию \( \Phi(\Omega)\subset\Omega \).
+    satisfies the condition \( \Phi(\Omega)\subset\Omega \).
 \end{lem}
 \begin{proof}
-Очевидно неравенство
+By definition of \( \Phi \) and properties of the norm \( \|\cdot\| \):
     \[ \| \Phi(X) \| \leq
      \beta \gamma^2 \|X\|^2 + 2\beta\gamma\|X\| + \beta. \]
-Значит, если \( r \) удовлетворяет неравенству
+Thus if \( r \) satisfies inequality
     \begin{equation}\label{kozlukovsv:ineq:invariance-radius}
         \beta \gamma^2 r^2 + (2\beta\gamma - 1)r + \beta \leq 0,
     \end{equation}
-    то \( \|\Phi(X)\| \leq r \) при всех \( \|X\| \leq r \).
-Если \( \gamma\beta \leq \frac14 \),
-    то дискриминант \( \Delta = 1-4\gamma\beta \)
-    соответствующего уравнения положителен и~его корни вещественны.
-Из знаков коэффициентов возникшего многочлена видно, что оба корня положительны.
-Следовательно, наименьший положительный \( r \),
-    удовлетворяющий неравенству~\eqref{kozlukovsv:ineq:invariance-radius}
-    есть наименьший корень
-    соответствующего уравнения:
+    then \( \|\Phi(X)\| \leq r \) for all \( \|X\| \leq r \).
+If \( \gamma\beta \leq \frac14 \),
+    then the discriminant \( \Delta = 1-4\gamma\beta \)
+    of the corresponding equation is positive.
+The coefficients of the polynomial imply the roots are real and positive.
+Hence the smallest \( r \),
+    that satisfies~\eqref{kozlukovsv:ineq:invariance-radius} is
     \[ r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta}. \]
-Учитывая \( \gamma\beta<\frac14 \), имеем \( r_0 < 4\beta \).
+Finally \( \gamma\beta<\frac14 \) implies \( r_0 < 4\beta \).
 \end{proof}
 
-Аналогичным образом устанавливается
+In a similar manner we prove the following
 \begin{lem}
-    Пусть \(\gamma\beta<\frac14\),
-    тогда \( \Phi \)~--- сжимающее отображение:
+    Let \(\gamma\beta<\frac14\),
+    then \( \Phi \) is a contraction on \( \Omega \):
     \[ \| \Phi(X) - \Phi(Y) \| \leq q \|X - Y\|, \quad X,Y\in\Omega \]
     \[ q = (1+2\gamma r_0) \gamma\beta \leq (1+8\gamma\beta)\gamma\beta \leq \frac34. \]
 \end{lem}
@@ -186,7 +201,7 @@ for \( X =
      \beta\gamma\|X-Y\| +
      2 r_0 \beta \gamma^2 \|X-Y\|.
     \end{align*}
-Здесь использовано равенство
+Here we used the equality
 \[ (\Gamma X) \mathfrak{J}(\mathcal{B}\Gamma X) - (\Gamma Y) \mathfrak{J}(\mathcal{B}\Gamma Y) =
     \frac12\left[
         \Gamma(X-Y) \mathfrak{J}(\mathcal{B}\Gamma(X+Y))
@@ -194,31 +209,46 @@ for \( X =
     \right]. \]
 \end{proof}
 
-Отсюда и~из теоремы Банаха о~неподвижной точке следует:
+These two lemmas and the Banach fix-point theorem imply
 \begin{lem}
-В~шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
-    существует и~при том единственное решение \( X^o \) уравнения~\eqref{kozlukovsv:eq:fixptn},
-    являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
-    где \( \Phi^k = \Phi\circ\Phi^{k-1} \)~--- композиция.
+    The equation~\eqref{kozlukovsv:eq:fixptn} has a~unique solution~\( X^o \)
+    in the ball
+    \[
+        \Omega = \left\{ X\in\mathbb{C}^{N{\times}N}; \quad \|X\| \leq r_0 \right\}.
+        \]
+    This solution is a limit of the sequence \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
+    where \( \Phi^k = \Phi\circ\Phi^{k-1} \) denotes a composition.
 \end{lem}
 
 \begin{crl}
-Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - \mathfrak{J} X^o \):
-\[ \mathcal{A} - \mathcal{B} \sim
-\begin{pmatrix}
-N - x_{11}^o & 0 \\
-0 & -X_{22}^o
-\end{pmatrix}, \]
-при этом выполняются условия:
-\[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
-    \[ x_{11}^o\in\mathbb{R}, \lvert x_{11}^o \rvert < r_0 \leq 4\beta, \]
-\[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}. \]
+The matrix \( \mathcal{A} - \mathcal{B} \) is similar
+    to a block-diagonal matrix \( \mathcal{A} - \mathfrak{J} X^o \):
+\[
+    \mathcal{A} - \mathcal{B} \sim
+    \begin{pmatrix}
+    N - x_{11}^o & 0 \\
+    0 & -X_{22}^o
+    \end{pmatrix},
+    \]
+and the following conditions are satisfied:
+\[
+    \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right),
+    \]
+\[
+    x_{11}^o\in\mathbb{R}, \lvert x_{11}^o \rvert < r_0 \leq 4\beta,
+    \]
+\[
+    \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}.
+    \]
 \end{crl}
 \begin{proof}
-    Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - \mathfrak{J} X^o \),
-    поэтому их спектры совпадают.
-    Спектр матрицы \( \mathcal{A} - \mathfrak{J} X^o \) есть объединение спектров е\"е диагональных блоков.
-    В~виду субмультипликативности нормы имеют место неравенства
-    \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
-    Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
+    The matrix \( \mathcal{A} - \mathcal{B} \) is similar to the block-diagonal matrix \( \mathcal{A} - \mathfrak{J} X^o \)
+        so they are isospectral.
+    The spectrum of \( \mathcal{A} - \mathfrak{J} X^o \)
+        is the union of the spectra of its diagonal blocks.
+    Submultiplicativity of the norm implies
+    \[
+        \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0.
+        \]
+    The final note is that \( x_{11}^o \) is a real number for it is a limit of convergent real sequence.
 \end{proof}
