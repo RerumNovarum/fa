@@ -1,0 +1,66 @@
+\documentclass[11pt,a4paper,twoside]{article}
+
+\usepackage{fontspec}
+\usepackage{polyglossia}
+\usepackage{mathtools}
+\usepackage{amsmath}
+\usepackage{unicode-math}
+\usepackage{fontspec}
+\setmainfont
+[ Extension = .otf,
+  UprightFont = *-regular,
+  BoldFont = *-bold,
+  ItalicFont = *-italic,
+  BoldItalicFont = *-bolditalic,
+]{xits}
+\setmathfont
+[ Extension = .otf,
+  BoldFont = *bold,
+]{xits-math}
+% \newfontfamily\cyrillicfont{Linux Libertine O}
+\let\cyrillicfonttt\ttfamily
+\setmainlanguage{russian}
+
+\usepackage{marginnote}
+\usepackage{hyperref}
+\usepackage{tabularx}
+\usepackage{amsthm}
+\newtheorem{thm}{Теорема}
+\newtheorem{lem}[thm]{Лемма}
+\newtheorem{crl}[thm]{Следствие}
+\theoremstyle{definition}
+\newtheorem{dfn}{Определение}
+
+\usepackage{biblatex}
+\addbibresource{allones.bib}
+
+\begin{document}
+
+\noindent {UDK 517.984.3 : 519.177}
+
+\begin{center}
+    \textbf{Спектральные свойства матрицы смежностей почти-полного орграфа}
+    
+    \textbf{Сергей Козлуков}\\[2mm]
+    \emph{Воронежский Государственный Университет}
+\end{center}
+
+\begin{abstract}
+    С помощью Метода Подобных Операторов~\cite{baskakov-harmonic,baskakov1983}
+    изучаются спектральные свойства
+    матриц смежностей графов, близких к ориентированным полным графам.
+    Приведены оценки собственных значений таких матриц.
+\end{abstract}
+
+\section{Введение и основной результат}
+\input{body/intro}
+\section{Доказательство}
+\subsection*{Предварительные преобразования}
+\input{body/prep-all-ones}
+% \clearpage
+\subsection*{Расщепление матрицы и результат}
+\input{body/general-method}
+\input{body/final-estimates}
+
+\printbibliography
+\end{document}
