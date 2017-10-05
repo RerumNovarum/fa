@@ -65,10 +65,16 @@
 \end{lem}
 \begin{crl}
     Спектр блочно-диагональной матрицы
-    \( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N - x_{11} & 0 \\ 0 & X_{22} \end{pmatrix} \)
+    \( \mathcal{A} - \mathfrak{J}X = \begin{pmatrix} N - x_{11} & 0 \\ 0 & -X_{22} \end{pmatrix} \)
     есть объединение спектров е\"е диагональных блоков:
     \[
-        \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(X_{22}). \]
+        \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(-X_{22}). \]
+    Если \( v \) --- собственный вектор матрицы \( \mathcal{A} - \mathfrak{J}X \),
+    а \( \lambda \) --- соответствующее ему собственное значение,
+    то матрица \( \mathscr{A} - \mathscr{B} \)
+    имеет собственный вектор \( w = U(E + \Gamma X)v \),
+    с этим же собственным значением \( \lambda \).
+% <TODO>: justify w = U(E+Gamma X)v %
 \end{crl}
 \begin{proof}
 Пусть \( \Gamma \) действует по формуле
