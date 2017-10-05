@@ -40,10 +40,11 @@
           \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J}X. \)
 
 \begin{lem}
-    Операторы \( \mathfrak{J} \) и \( \Gamma \)
-    следует задать формулами
+    В качестве \( \mathfrak{J} \)
+        естественно выбрать оператор блочной диагонализации:
     \[
         \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
+    При этом:
     \[
         \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
         для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \).
@@ -55,12 +56,6 @@
     есть объединение спектров е\"е диагональных блоков:
     \[
         \sigma(\mathcal{A} - \mathfrak{J} X) = \{ N - x_{11} \} \cup \sigma(-X_{22}). \]
-    Если \( v \) --- собственный вектор матрицы \( \mathcal{A} - \mathfrak{J}X \),
-    а \( \lambda \) --- соответствующее ему собственное значение,
-    то матрица \( A - B \)
-    имеет собственный вектор \( w = U(E + \Gamma X)v \),
-    с этим же собственным значением \( \lambda \).
-% <TODO>: justify w = U(E+Gamma X)v %
 \end{crl}
 \begin{proof}
 Пусть \( \Gamma \) действует по формуле
@@ -134,11 +129,17 @@
 (т.е.~норма, удовлетворяющая неравенству
  \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
  при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)).
+В пространстве \( L(\mathtt{Matr}_N\mathbb{C}) \)
+  линейных преобразований матриц размера \( N{\times}N \)
+  будем рассматривать операторную норму
+  \[
+      \|\Psi\|_{\mathrm{op}} = \sup_{\|X\|=1,\ X\in\mathtt{Matr}_N\mathbb{C}} \|\Psi X\|,\ \Psi\in L(\mathtt{Matr}_N\mathbb{C})
+      \]
 Нам нужно найти такой радиус \( r \geq 0 \),
 что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
 и~\( \|\Phi(X) - \Phi(Y)\| < q\|X-Y\| \), \( q\in(0,1) \).
 Обозначим
-\( \beta = \|\mathcal{B}\| \), \( \gamma = \sup_{\|X\|=1} \|\Gamma X\| \).
+\( \beta = \|\mathcal{B}\| \), \( \gamma = \|\Gamma\|_{\mathrm{op}} = \sup_{\|X\|=1} \|\Gamma X\| \).
 
 \begin{lem}
     Пусть \( \gamma\beta < \frac14\),
@@ -203,16 +204,26 @@
 \end{lem}
 
 \begin{crl}
-Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - \mathfrak{J} X^o \):
-\[ \mathcal{A} - \mathcal{B} \sim
-\begin{pmatrix}
-N - x_{11}^o & 0 \\
-0 & -X_{22}^o
-\end{pmatrix}, \]
-при этом выполняются условия:
-\[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
-    \[ x_{11}^o\in\mathbb{R}, \lvert x_{11}^o \rvert < r_0 \leq 4\beta, \]
-\[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}. \]
+    Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной матрице \( \mathcal{A} - \mathfrak{J} X^o \):
+    \[ \mathcal{A} - \mathcal{B} \sim
+    \begin{pmatrix}
+    N - x_{11}^o & 0 \\
+    0 & -X_{22}^o
+    \end{pmatrix}, \]
+        при этом выполняются условия:
+    \[ \sigma\left(\mathcal{A} - \mathcal{B}\right) = \left\{N-x_{11}^o\right\}\cup \sigma\left(-X_{22}^o\right), \]
+        \[ x_{11}^o\in\mathbb{R}, \lvert x_{11}^o \rvert < r_0 \leq 4\beta, \]
+    \[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}. \]
+
+    Собственное значение \( N - x_{11}^o \)
+    совпадает со спектральным радиусом матрицы \( A-B \)
+    и ему отвечает собственный вектор
+    \[ 
+        w = \mathcal{U}(E + \Gamma X)\begin{pmatrix}1\\0\end{pmatrix},
+        \]
+    \[
+        \|w - \mathcal{U}\begin{pmatrix}1\\0\end{pmatrix}\|_2 \leq \frac{4\beta}{N}.
+        \]
 \end{crl}
 \begin{proof}
     Матрица \( \mathcal{A} - \mathcal{B} \) подобна блочно-диагональной \( \mathcal{A} - \mathfrak{J} X^o \),
@@ -221,4 +232,28 @@ N - x_{11}^o & 0 \\
     В~виду субмультипликативности нормы имеют место неравенства
     \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
     Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
+
+    Пусть теперь \( v \) --- собственный вектор матрицы \( \mathcal{A}-\mathfrak{J}X \):
+    \[
+        (\mathcal{A} - \mathfrak{J}X) v = \lambda v.
+        \]
+    Тогда
+    \[
+        (E+\Gamma X)^{-1}\mathcal{U}^{-1} (A - B) \mathcal{U} (E+\Gamma X) v = (A - \mathfrak{J}X)v = \lambda v,
+        \]
+    \[
+        (A - B) \underbrace{\mathcal{U} (E+\Gamma X) v}_{w} = \lambda \underbrace{\mathcal{U} (E+\Gamma X) v}_{w},
+        \]
+    при этом
+    \[
+        \|w - \mathcal{U}v\|_2 = \|\mathcal{U}\Gamma X v\|_2 \leq
+        \|\Gamma\|_{\mathrm{op}} \|X\|_{\mathrm{op}} \|\mathcal{U} v\|_2 \leq
+        \frac{4\beta}{N} \|v\|.
+        \]
+    Здесь использована ортогональность матрицы \( \mathcal{U} \).
+    Наибольшему собственному значению \( N - x_{11}^o \)
+        матрицы \( \mathcal{A} - \mathfrak{J}X \) соответствует
+        собственный вектор \( \begin{pmatrix}1\\ 0\end{pmatrix} \).
+    Подставляя \( v = \begin{pmatrix}1\\ 0\end{pmatrix} \)
+            получим желаемый результат.
 \end{proof}

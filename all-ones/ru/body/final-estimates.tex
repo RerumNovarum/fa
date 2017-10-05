@@ -5,7 +5,7 @@
     приводящая \( \mathcal{J}_N \) к~диагональному виду
     является ортогональной,
     поэтому умножение на \( \mathcal{U} \) или \(\mathcal{U}^{-1}\)
-    есть изометрия.
+    есть изометрия в \( \mathbb{C}^N \) с евклидовой нормой.
     Следовательно, \( \|\mathcal{B}\|=\|B\| \).
     Рассмотрим в~пространстве \( \mathtt{Matr}_{N}\mathbb{C} \)
     норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
@@ -34,5 +34,17 @@
      где \( \sigma_1 = \{ \lambda_1 \}\subset\mathbb{R}, \lvert \lambda_1 - N \rvert < 4\sqrt{M} \),
      \( \sigma_2 \subset \{ \mu\in\mathbb{C}; \lvert\mu\rvert < 4\sqrt{M} \} \),
      \( \sigma_1 \cap \sigma_2 = \emptyset \).
+
+     Наконец, собственному значению \( N - x_{11}^o \)
+     матрицы \( A-B \)
+     соответствует собственный вектор
+     \[
+         v_1 = \mathcal{U}(E+\Gamma X) \begin{pmatrix}1\\0\end{pmatrix}
+             = \frac{1}{\sqrt{N}} \begin{pmatrix}1\\ \vdots \\ 1\end{pmatrix}
+                 + \mathcal{U}\Gamma X \begin{pmatrix}1\\0\end{pmatrix}, \]
+     где \( \|\mathcal{U}\Gamma X \begin{pmatrix}1\\0\end{pmatrix}\|_2 \leq \frac{4\beta}{N} \leq \frac{4\sqrt{M}}{N} \).
+
+    
+                     % <TODO>: justify w = \mathcal{U}(E+Gamma X)v %
     Теорема доказана.
     \end{proof}
