@@ -1,14 +1,14 @@
 MAIN_SOURCES:= allones.tex body/intro.tex body/prep-all-ones.tex \
 			   body/general-method.tex body/final-estimates.tex \
 			   body/summary.tex allones.bib
-ZIP_CONTENTS:= allones.pdf authors.doc liabilities.doc authors.pdf liabilities.pdf \
-	$(addprefix cp1251/,$(MAIN_SOURCES)) \
+ZIP_CONTENTS:= allones.pdf authors.pdf $(MAIN_SOURCES)  # \
+#	$(addprefix cp1251/,$(MAIN_SOURCES)) \
 
 PDFLATEX = pdflatex
 
-all: currentproblems.zip
+all: allones.zip
 
-currentproblems.zip: $(ZIP_CONTENTS)
+allones.zip: $(ZIP_CONTENTS)
 	rm -f $@
 	zip $@ $(ZIP_CONTENTS)
 

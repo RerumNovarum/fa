@@ -7,11 +7,11 @@
     поэтому умножение на \( \mathcal{U} \) или \(\mathcal{U}^{-1}\)
     есть изометрия в \( \mathbb{C}^N \) с евклидовой нормой.
     Следовательно, \( \|\mathcal{B}\|=\|B\| \).
-    Рассмотрим в~пространстве \( \mathtt{Matr}_{N}\mathbb{C} \)
+    Рассмотрим в~пространстве \( \mathbb{C}^{N{\times}N} \)
     норму Фробениуса \( {\left\|\cdot\right\|}_{F} \),
     определ\"енную формулой
     \( {\left\|X\right\|}_{F} = \sqrt{\sum_{ij} \lvert x_{ij}\rvert^2}, \)
-    \( X = (x_{ij})\in\mathtt{Matr}_N\mathbb{C} \).
+    \( X = (x_{ij})\in\mathbb{C}^{N{\times}N} \).
     Она субмультипликативна.
     При этом
     \( B \) состоит из \( M \) единиц, поэтому
@@ -19,11 +19,6 @@
         \beta = {\left\|B\right\|}_{F} =
         {\left\|B\right\|}_{F} = \sqrt{M}.
         \]
-    Заметим также очевидное равенство
-    \[
-        \gamma = \frac1N
-                \sup_{{\left\|X\right\|}_{F}=1}{\left\|\begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix}\right\|}_{F}
-                = \frac1N. \]
     
     Если
      \( \sqrt{M} < \frac{N}{4} \),
@@ -36,15 +31,13 @@
      \( \sigma_1 \cap \sigma_2 = \emptyset \).
 
      Наконец, собственному значению \( N - x_{11}^o \)
-     матрицы \( A-B \)
+     матрицы \( A \)
      соответствует собственный вектор
      \[
-         v_1 = \mathcal{U}(E+\Gamma X) \begin{pmatrix}1\\0\end{pmatrix}
+         v_1 = \mathcal{U}(E+\Gamma X^o) \begin{pmatrix}1\\0\end{pmatrix}
              = \frac{1}{\sqrt{N}} \begin{pmatrix}1\\ \vdots \\ 1\end{pmatrix}
-                 + \mathcal{U}\Gamma X \begin{pmatrix}1\\0\end{pmatrix}, \]
-     где \( \|\mathcal{U}\Gamma X \begin{pmatrix}1\\0\end{pmatrix}\|_2 \leq \frac{4\beta}{N} \leq \frac{4\sqrt{M}}{N} \).
+                 + \mathcal{U}\Gamma X^o \begin{pmatrix}1\\0\end{pmatrix}, \]
+     где \( \|\mathcal{U}\Gamma X^o \begin{pmatrix}1\\0\end{pmatrix}\|_2 \leq \frac{4\beta}{N} \leq \frac{4\sqrt{M}}{N} \).
 
-    
-                     % <TODO>: justify w = \mathcal{U}(E+Gamma X)v %
     Теорема доказана.
     \end{proof}

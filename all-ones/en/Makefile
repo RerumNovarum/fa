@@ -1,7 +1,7 @@
-MAIN_SOURCES:= main.tex body/intro.tex body/prep-all-ones.tex \
+MAIN_SOURCES:= allones.tex body/intro.tex body/prep-all-ones.tex \
 			   body/general-method.tex body/final-estimates.tex \
 			   body/summary.tex bibliography.tex
-ZIP_CONTENTS:= main.pdf \
+ZIP_CONTENTS:= allones.pdf \
 	$(MAIN_SOURCES)
 
 PDFLATEX = pdflatex
@@ -15,7 +15,7 @@ allones.zip: $(ZIP_CONTENTS)
 .PHONY: clean
 
 clean:
-	rm -f main.pdf
+	rm -f allones.pdf
 	find -iname '*.aux' -exec rm -f \{\} \;
 	find -iname '*.bgl' -exec rm -f \{\} \;
 	find -iname '*.blg' -exec rm -f \{\} \;
@@ -24,10 +24,11 @@ clean:
 	find -iname '*.log' -exec rm -f \{\} \;
 	find -iname '*.toc' -exec rm -f \{\} \;
 
-main.pdf: $(MAIN_SOURCES)
-	xelatex "\def\XELATEX{}\input{main.tex}"
-	xelatex "\def\XELATEX{}\input{main.tex}"
-	xelatex "\def\XELATEX{}\input{main.tex}"
+allones.pdf: $(MAIN_SOURCES)
+	xelatex "\def\XELATEX{}\input{allones.tex}"
+	biber allones
+	xelatex "\def\XELATEX{}\input{allones.tex}"
+	xelatex "\def\XELATEX{}\input{allones.tex}"
 	touch $@
 
 %.pdf: %.toc %.tex
@@ -40,8 +41,8 @@ main.pdf: $(MAIN_SOURCES)
 	xelatex "\def\XELATEX{} \input{$*.tex}"
 	touch $@
 
-main-updown.pdf: main.pdf
-	pdftk A=main.pdf shuffle Aodd Aevensouth output main-updown.pdf
+main-updown.pdf: allones.pdf
+	pdftk A=allones.pdf shuffle Aodd Aevensouth output main-updown.pdf
 	touch $@
 
 %.doc: %.md

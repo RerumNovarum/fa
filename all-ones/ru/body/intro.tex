@@ -1,4 +1,8 @@
-Рассмотрим матрицу \( A \) размера \( N\times N \),
+Символом \( \mathbb{C}^{m\times n} \)
+будем обозначать линейное пространство
+комплексных матриц размера \( m\times n \).
+
+Рассмотрим матрицу \( A \) размера \( N{\times}N \),
  составленную из \( M \) нулей и \( N^2 - M \) единиц.
 Как матрица смежности, \( A \) соответствует орграфу,
  полученному из полного графа с~петлями на \( N \) вершинах
@@ -26,7 +30,7 @@
 Матрицу \( A \) можно представить в~виде
 \[ A = \mathcal{J}_N - B =
     \begin{pmatrix}1 & \cdots & 1\\ \vdots & \ddots & \vdots \\ 1 & \cdots & 1\end{pmatrix} - B, \]
- где \( \mathcal{J}_N \)~--- матрица, составленная из \( N\times N \) единиц,
+ где \( \mathcal{J}_N \)~--- матрица, составленная из \( N{\times}N \) единиц,
  а~\( B \) имеет единицы в~точности на тех \( M \) местах,
  где в~\( A \) стоят нули.
 
@@ -61,3 +65,23 @@
     \begin{pmatrix} 1/\sqrt{N}\\ \vdots \\ 1/\sqrt{N}\end{pmatrix}\right\|_2
         \leq 4\frac{\sqrt{M}}{N}. \]
 \end{thm}
+
+В будущем теорему можно обобщить имея в виду, например,
+следующий известный результат~\cite{bellman-matrices-kron}.
+Пусть матрицы \( X{=}(x_{ij})\in\mathbb{C}^{n\times n},\ Y\in\mathbb{C}^{m\times m} \)
+имеют собственные значения
+\( \lambda_1, \ldots, \lambda_n \)
+и \( \mu_1, \ldots, \mu_m \) соответственно.
+Тогда их прямое произведение (произведение Кронекера)
+\[
+    X\otimes Y =
+    \begin{pmatrix}
+        x_{11} Y & \cdots & x_{1n} Y \\
+        \vdots & \ddots & \vdots \\
+        x_{n1} Y & \cdots & x_{nn} Y \\
+    \end{pmatrix}\in\mathbb{C}^{mn\times mn}
+    \]
+имеет спектр
+\[
+    \sigma(X\otimes Y) = \{ \lambda_i \mu _j;\ i=\overline{1,n},\ j=\overline{1,m} \}.
+    \]

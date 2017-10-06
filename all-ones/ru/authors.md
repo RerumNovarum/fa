@@ -2,7 +2,7 @@
 
 Козлуков Сергей Викторович;
 
-Студент бакалавриата;
+Студент;
 
 Кафедра "Нелинейной Динамики" факультета "Прикладной Математики и Информатики"
 Воронежского Государственного Университета;
@@ -11,13 +11,13 @@
 
 Телефон: 79515665772;
 
-rerumnovarum@openmailbox.org;
+ithesaboteur@yandex.com
 
 # About authors
 
 Kozlukov Sergey Viktorovitch;
 
-Undergraduate student;
+Student;
 
 Department of Nonlinear Oscillations
 on the faculty of Applied Mathematics and Informatics,
@@ -27,4 +27,4 @@ Universitetskaya St, 1, 394000, Voronezh, Russian Federation;
 
 79515665772;
 
-rerumnovarum@openmailbox.org;
+ithesaboteur@yandex.com

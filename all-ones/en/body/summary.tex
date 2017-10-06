@@ -13,7 +13,7 @@ If considered as an adjacency matrix \( \mathscr{A}_{MN} \)
     defines a~complete digraph (with loops) on \( N \) vertices
     with some \( M \) out of \( N^2 \) total edges removed.
 Some important properties of a~graph are determined by its spectrum.
-For example Wang et al.\ \cite{epidemic} proposed a~discrete-time model
+For example Wang et al.\ \cite{wang2003epidemic,chakrabarti2008epidemic} proposed a~discrete-time model
     of viral propagation in a~network.
 In this work it is shown that the ratio
     of the cure and the infection probabilities
@@ -23,8 +23,14 @@ In this work it is shown that the ratio
 Wang et al.\ have shown that treshold value
     to be the spectral radius of the adjacency matrix of the network,
     i.e.\ the largest absolute value of its eigenvalues.
-A more comprehensive description of spectral graph theory
-    and its application is given by Cv\`etkovic et al.\ \cite{cvet}.
+The dominating eigenvector
+(i.e.\ the eigenvector corresponding to the largest absolute eigenvalue)
+of the adjacency matrix
+plays vital role in citation ranking~\cite{bonacich1972factoring,ilprints422}.
+
+A more comprehensive study of spectral graph theory
+    and its application is given by Cv\`etkovic~et~al.~in~\cite{cvetkovic1980spectra}
+    and by Godsil~in~\cite{godsil2013algebraic}.
 
 This article analyzes spectral properties of matrices such as \eqref{eq:kozlukovsv:amn}.
 First of all the matrix \( \mathscr{A}_{MN} \) can be represented in the form
@@ -42,7 +48,7 @@ The spectrum of \( \mathcal{J}_N \) can be easily computed:
 
 Be \( M \) small enough
     the eigenvalues of \( \mathscr{A}_{MN} \) would be close to those of \( \mathcal{J}_N \).
-Applying the method of similar operators (see \cite{baskakov-harmonic,baskakov-split})
+Applying the method of similar operators (see \cite{baskakov-harmonic,baskakov1983})
     we prove the following theorem:
 \begin{thm}\label{kozlukovsv:thm:almost-all-ones}
     Let \( M < \frac{N^2}{16} \),
@@ -57,5 +63,12 @@ Applying the method of similar operators (see \cite{baskakov-harmonic,baskakov-s
             \right\},
         \]
     \[ \sigma_2 \subset \left\{ \mu\in\mathbb{C};\ \lvert \mu \rvert < 4\sqrt{M} \right\}. \]
+    The largest eigenvalue of \( A \)
+    is the \( \lambda_1 \)
+    and the corresponding eigenvector \( v_1 \) satisfies
+    the condition
+    \[ \left\|v_1 - 
+    \begin{pmatrix} 1/\sqrt{N}\\ \vdots \\ 1/\sqrt{N}\end{pmatrix}\right\|_2
+        \leq 4\frac{\sqrt{M}}{N}. \]
 \end{thm}
 

@@ -1,4 +1,4 @@
-Матрицы из \( \mathtt{Matr}_N\mathbb{C} \) будем записывать в~блочном виде
+Матрицы из \( \mathbb{C}^{N{\times}N} \) будем записывать в~блочном виде
 \( X \sim
     \begin{pmatrix}
     x_{11} & X_{12} \\
@@ -28,14 +28,14 @@
 будем искать более ``простую'' матрицу, подобную \( \mathcal{A} - \mathcal{B} \),
 в~виде \( \mathcal{A} - \mathfrak{J} X \)
 с~матрицей преобразования подобия \( E + \Gamma X \),
-где \( E\in{\mathtt{Matr}_N\mathbb{C}} \)~--- единичная матрица,
-\( \mathfrak{J},\Gamma : \mathtt{Matr}_N\mathbb{C}\to\mathtt{Matr}_N\mathbb{C} \)~--- линейные операторы,
-действующие на алгебре \( \mathtt{Matr}_N\mathbb{C} \), подбираемые
+где \( E\in{\mathbb{C}^{N{\times}N}} \)~--- единичная матрица,
+\( \mathfrak{J},\Gamma{:}\ \mathbb{C}^{N{\times}N}{\to}\mathbb{C}^{N{\times}N} \)~--- линейные операторы,
+действующие на алгебре \( \mathbb{C}^{N{\times}N} \), подбираемые
 в~ходе решения,
       прич\"ем \( \mathfrak{J} \) --- проектор (\(\mathfrak{J}^2=\mathfrak{J}\)),
       ``упрощающий'' возмущение \( \mathfrak{J}X \),
       а \( \Gamma \)
-      при всех \( X\in {\mathtt{Matr}_N\mathbb{C}} \)
+      при всех \( X\in {\mathbb{C}^{N{\times}N}} \)
       удовлетворяет уравнению
           \( \mathcal{A}\Gamma X - (\Gamma X) \mathcal{A} = X - \mathfrak{J}X. \)
 
@@ -43,11 +43,16 @@
     В качестве \( \mathfrak{J} \)
         естественно выбрать оператор блочной диагонализации:
     \[
-        \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
+        \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}. \]
     При этом:
     \[
         \Gamma X = \frac{1}{N} \begin{pmatrix} 0 & X_{12} \\ -X_{21} & 0 \end{pmatrix}, \]
-        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \).
+        для \( X\sim \begin{pmatrix}x_{11} & X_{12} \\ X_{21} & X_{22}\end{pmatrix} \in \mathbb{C}^{N{\times}N} \)
+    и имеет место равенство
+    \[
+        \gamma = \frac1N
+                \sup_{{\left\|X\right\|}_{F}=1}{\left\|\begin{pmatrix}0 & X_{12} \\ -X_{21} & 0\end{pmatrix}\right\|}_{F}
+                = \frac1N. \]
 
 \end{lem}
 \begin{crl}
@@ -81,7 +86,7 @@
     \begin{pmatrix}
     x_{11} & X_{12} \\
     X_{21} & X_{22}
-    \end{pmatrix} \in \mathtt{Matr}_N\mathbb{C} \):
+    \end{pmatrix} \in \mathbb{C}^{N{\times}N} \):
 \[
     \mathfrak{J} X = \begin{pmatrix} x_{11} & 0 \\ 0 & X_{22} \end{pmatrix}, \]
 \[
@@ -91,12 +96,12 @@
 Теперь выпишем уравнение подобия матриц \( \mathcal{A} - \mathcal{B} \)
 и \( \mathcal{A} - \mathfrak{J} X \):
 \begin{equation}\label{kozlukovsv:eq:similarity}
-    (\mathcal{A-B})(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+    A(E+\Gamma X) = (E+\Gamma X)(\mathcal{A} - \mathfrak{J} X), \quad X\in\mathbb{C}^{N{\times}N}.
 \end{equation}
 \begin{lem}
     Уравнение~\eqref{kozlukovsv:eq:similarity} эквивалентно уравнению
     \begin{equation}\label{kozlukovsv:eq:fixptn}
-        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))), \quad X\in\mathtt{Matr}_N\mathbb{C}.
+        X = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))), \quad X\in\mathbb{C}^{N{\times}N}.
     \end{equation}
 \end{lem}
 \begin{proof}
@@ -119,21 +124,22 @@
 \[
     \Phi(X) = \mathcal{B} \Gamma X + \mathcal{B} - (\Gamma X)(\mathfrak{J}(\mathcal{B} (E + \Gamma X))).\]
 Теперь покажем, что, при определ\"енных условиях,
-возникшее нелинейное отображение \( \Phi:\mathtt{Matr}_N\mathbb{C}\to \mathtt{Matr}_N\mathbb{C} \) имеет инвариантным множеством
-некоторый шар \( \Omega \subset \mathtt{Matr}_N\mathbb{C} \) с~центром в~нуле
+возникшее нелинейное отображение
+\( \Phi{:}\ \mathbb{C}^{N{\times}N}{\to}\mathbb{C}^{N{\times}N} \) имеет инвариантным множеством
+некоторый шар \( \Omega \subset \mathbb{C}^{N{\times}N} \) с~центром в~нуле
 (т.е.~\( \Phi(\Omega)\subset\Omega \)),
 на котором оно является сжимающим.
 
-Пусть в~\( \mathtt{Matr}_N\mathbb{C} \)
+Пусть в~\( \mathbb{C}^{N{\times}N} \)
 выбрана какая-нибудь субмультипликативная норма \( \|\cdot\| \)
 (т.е.~норма, удовлетворяющая неравенству
  \( \| \mathcal{A}_1\mathcal{A}_2 \| \leq \|\mathcal{A}_1\|\|\mathcal{A}_2\| \)
- при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathtt{Matr}_N\mathbb{C} \)).
-В пространстве \( L(\mathtt{Matr}_N\mathbb{C}) \)
+ при всех \( \mathcal{A}_1, \mathcal{A}_2 \in \mathbb{C}^{N{\times}N} \)).
+В пространстве \( L(\mathbb{C}^{N{\times}N}) \)
   линейных преобразований матриц размера \( N{\times}N \)
   будем рассматривать операторную норму
   \[
-      \|\Psi\|_{\mathrm{op}} = \sup_{\|X\|=1,\ X\in\mathtt{Matr}_N\mathbb{C}} \|\Psi X\|,\ \Psi\in L(\mathtt{Matr}_N\mathbb{C})
+      \|\Psi\|_{\mathrm{op}} = \sup_{\|X\|=1,\ X\in\mathbb{C}^{N{\times}N}} \|\Psi X\|,\ \Psi\in L(\mathbb{C}^{N{\times}N})
       \]
 Нам нужно найти такой радиус \( r \geq 0 \),
 что при \( \|X\|,\|Y\| \leq r \) выполнялись бы неравенства \( \|\Phi(X)\| \leq r \)
@@ -145,7 +151,7 @@
     Пусть \( \gamma\beta < \frac14\),
     тогда шар
     \[
-        \Omega = \left\{ X\in \mathtt{Matr}_N\mathbb{C}; \|X\| \leq r_0 \right\}, \]
+        \Omega = \left\{ X\in \mathbb{C}^{N{\times}N}; \|X\| \leq r_0 \right\}, \]
     \[  0 < r_0 = \frac{1 - 2\gamma\beta - \sqrt{1-4\gamma\beta}}{2\gamma^2\beta} < 4\beta, \]
     удовлетворяет условию \( \Phi(\Omega)\subset\Omega \).
 \end{lem}
@@ -197,7 +203,7 @@
 
 Отсюда и~из теоремы Банаха о~неподвижной точке следует:
 \begin{lem}
-В~шаре \[ \Omega = \left\{ X\in\mathtt{Matr}_N\mathbb{C}; \quad \|X\| \leq r_0 \right\} \]
+В~шаре \[ \Omega = \left\{ X\in\mathbb{C}^{N{\times}N}; \quad \|X\| \leq r_0 \right\} \]
     существует и~при том единственное решение \( X^o \) уравнения~\eqref{kozlukovsv:eq:fixptn},
     являющееся пределом последовательности \( \{ \Phi^k(0); k\in\mathbb{N} \} \),
     где \( \Phi^k = \Phi\circ\Phi^{k-1} \)~--- композиция.
@@ -216,10 +222,10 @@
     \[ \sigma\left(-X_{22}^o\right) \subset \{ \mu\in\mathbb{C}; \lvert x \rvert < r_0 \leq 4\beta \}. \]
 
     Собственное значение \( N - x_{11}^o \)
-    совпадает со спектральным радиусом матрицы \( A-B \)
+    совпадает со спектральным радиусом матрицы \( A \)
     и ему отвечает собственный вектор
     \[ 
-        w = \mathcal{U}(E + \Gamma X)\begin{pmatrix}1\\0\end{pmatrix},
+        w = \mathcal{U}(E + \Gamma X^o)\begin{pmatrix}1\\0\end{pmatrix},
         \]
     \[
         \|w - \mathcal{U}\begin{pmatrix}1\\0\end{pmatrix}\|_2 \leq \frac{4\beta}{N}.
@@ -233,21 +239,21 @@
     \[ \mathtt{spr}(X^o) = \max_{\lambda\in\sigma(X^o)}\lvert\lambda\rvert \leq \|X^o\| \leq r_0. \]
     Кроме того, собственное значение \( x_{11}^o \) является вещественным, как предел сходящейся вещественной последовательности.
 
-    Пусть теперь \( v \) --- собственный вектор матрицы \( \mathcal{A}-\mathfrak{J}X \):
+    Пусть теперь \( v \) --- собственный вектор матрицы \( \mathcal{A}-\mathfrak{J}X^o \):
     \[
-        (\mathcal{A} - \mathfrak{J}X) v = \lambda v.
+        (\mathcal{A} - \mathfrak{J}X^o) v = \lambda v.
         \]
     Тогда
     \[
-        (E+\Gamma X)^{-1}\mathcal{U}^{-1} (A - B) \mathcal{U} (E+\Gamma X) v = (A - \mathfrak{J}X)v = \lambda v,
+        (E+\Gamma X^o)^{-1}\mathcal{U}^{-1} A \mathcal{U} (E+\Gamma X^o) v = (\mathcal{A} - \mathfrak{J}X^o)v = \lambda v,
         \]
     \[
-        (A - B) \underbrace{\mathcal{U} (E+\Gamma X) v}_{w} = \lambda \underbrace{\mathcal{U} (E+\Gamma X) v}_{w},
+        A \underbrace{\mathcal{U} (E+\Gamma X^o) v}_{w} = \lambda \underbrace{\mathcal{U} (E+\Gamma X^o) v}_{w},
         \]
     при этом
     \[
-        \|w - \mathcal{U}v\|_2 = \|\mathcal{U}\Gamma X v\|_2 \leq
-        \|\Gamma\|_{\mathrm{op}} \|X\|_{\mathrm{op}} \|\mathcal{U} v\|_2 \leq
+        \|w - \mathcal{U}v\|_2 = \|\mathcal{U}\Gamma X^o v\|_2 \leq
+        \|\Gamma\|_{\mathrm{op}} \|X^o\|_{\mathrm{op}} \|\mathcal{U} v\|_2 \leq
         \frac{4\beta}{N} \|v\|.
         \]
     Здесь использована ортогональность матрицы \( \mathcal{U} \).
